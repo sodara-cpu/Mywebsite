@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Schibsted+Grotesk:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@500;700&display=swap">
 <style>
-/* Layout: page blanche, un seul bord gauche partagé par les quatre pages. Colonne de lecture de 760 px dans un gabarit de 1120 px, capsule de navigation flottante.
+/* Layout: page blanche, un seul bord gauche partagé par les quatre pages. Gabarit de 1120 px occupé sur toute sa largeur : intitulé de rubrique à gauche, contenu à droite, capsule de navigation flottante.
    Points de rupture : 900 px (lignes du titre), 720 px (cartes d'articles), 620 px (mobile). */
 :root {
   /* Couleurs */
@@ -27,6 +27,7 @@
   --on-link: #ffffff;
   --hover: rgba(22, 25, 30, 0.055);
   --glass: rgba(255, 255, 255, 0.8);
+  --logo-filter: none;
   /* Élévations */
   --e1: 0 1px 2px rgba(22, 25, 30, 0.05), 0 6px 20px rgba(22, 25, 30, 0.06);
   --e2: 0 1px 2px rgba(22, 25, 30, 0.06), 0 12px 32px rgba(22, 25, 30, 0.11);
@@ -43,7 +44,7 @@
   --t-lg: 1.375rem;
   --t-xl: 1.7rem;
   --t-page: clamp(2.4rem, 6vw, 3.5rem);
-  --t-hero: clamp(2.4rem, 6.35vw, 5.25rem);
+  --t-hero: clamp(2.4rem, 8.05vw, 6rem);
   /* Espacements */
   --s-1: 4px;
   --s-2: 8px;
@@ -63,7 +64,7 @@
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
   /* Gabarits */
   --w-wide: 1120px;
-  --w-col: 760px;
+  --w-label: 240px;
   --w-read: 62ch;
 }
 @media (prefers-color-scheme: dark) {
@@ -71,7 +72,7 @@
     --bg: #12151a; --fg: #eceef1; --text: #d5d8de; --muted: #9aa1ac; --line: #2a2f37;
     --paper: #1b1f26; --bar: #363c46; --link: #7ea9f6; --link-hover: #a5c3fa;
     --link-line: rgba(126, 169, 246, 0.42); --on-link: #0f1319; --hover: rgba(255, 255, 255, 0.07);
-    --glass: rgba(27, 31, 38, 0.8);
+    --glass: rgba(27, 31, 38, 0.8); --logo-filter: invert(1);
     --e1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.25);
     --e2: 0 1px 2px rgba(0, 0, 0, 0.35), 0 12px 32px rgba(0, 0, 0, 0.4);
     --e-active: 0 1px 2px rgba(0, 0, 0, 0.4);
@@ -82,7 +83,7 @@
   --bg: #12151a; --fg: #eceef1; --text: #d5d8de; --muted: #9aa1ac; --line: #2a2f37;
   --paper: #1b1f26; --bar: #363c46; --link: #7ea9f6; --link-hover: #a5c3fa;
   --link-line: rgba(126, 169, 246, 0.42); --on-link: #0f1319; --hover: rgba(255, 255, 255, 0.07);
-  --glass: rgba(27, 31, 38, 0.8);
+  --glass: rgba(27, 31, 38, 0.8); --logo-filter: invert(1);
   --e1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.25);
   --e2: 0 1px 2px rgba(0, 0, 0, 0.35), 0 12px 32px rgba(0, 0, 0, 0.4);
   --e-active: 0 1px 2px rgba(0, 0, 0, 0.4);
@@ -151,7 +152,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   padding-block: var(--s-8);
   display: grid; gap: var(--s-8);
 }
-.col { width: 100%; max-width: var(--w-col); min-width: 0; margin-left: max(0px, calc((100% - var(--w-wide)) / 2)); margin-right: auto; }
+.col { width: 100%; max-width: var(--w-wide); min-width: 0; margin-inline: auto; }
 .wide { width: 100%; max-width: var(--w-wide); min-width: 0; margin-inline: auto; }
 .stack { display: grid; gap: var(--s-5); }
 
@@ -170,16 +171,43 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .hero-write svg { position: absolute; left: 0.02em; bottom: -0.05em; width: calc(100% - 0.04em); height: 0.12em; overflow: visible; animation: draw 700ms var(--ease) 260ms both; }
 .hero-write path { fill: none; stroke: var(--link); stroke-width: 2.25; stroke-linecap: round; vector-effect: non-scaling-stroke; }
 @keyframes draw { from { clip-path: inset(-50% 100% -50% 0); } to { clip-path: inset(-50% -2% -50% 0); } }
-.links { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s-1) var(--s-5); color: var(--muted); font-size: var(--t-sm); }
-.links strong { color: var(--fg); font-weight: 700; }
-.links a { color: var(--muted); overflow-wrap: anywhere; }
-.links a:hover { color: var(--fg); }
+
 
 /* Texte de présentation */
-.bio { display: grid; gap: var(--s-4); max-width: var(--w-read); line-height: 1.7; }
+.bio { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s-4) var(--s-7); align-items: start; line-height: 1.7; }
+.bio p:first-child { color: var(--fg); font-size: var(--t-lg); line-height: 1.4; letter-spacing: -0.012em; }
 .bio p { text-wrap: pretty; }
 .bio a { text-decoration-color: var(--link-line); }
 .bio a:hover { text-decoration-color: currentColor; }
+
+/* Logos */
+.trust { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-6); }
+.trust-item { display: grid; align-content: start; gap: var(--s-1); min-width: 0; }
+.trust-logo { display: flex; align-items: flex-end; height: 72px; margin-bottom: var(--s-3); }
+.trust-logo img { display: block; width: auto; filter: var(--logo-filter); }
+.trust-logo .logo-bpi { height: 34px; }
+.trust-logo .logo-gs { height: 72px; }
+.trust-logo .logo-liora { height: 56px; }
+.trust-item p { line-height: 1.5; text-wrap: pretty; }
+.trust-item .what { color: var(--fg); }
+.trust-item .where { color: var(--muted); font-size: var(--t-sm); }
+@media (max-width: 620px) {
+  .trust { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .trust-item { grid-template-columns: 112px minmax(0, 1fr); column-gap: var(--s-4); padding-block: var(--s-4); }
+  .trust-item + .trust-item { border-top: 1px solid var(--line); }
+  .trust-item:first-child { padding-top: 0; }
+  .trust-logo { grid-row: 1 / span 2; align-items: flex-start; height: auto; margin-bottom: 0; }
+  .trust-logo .logo-bpi { height: 26px; }
+  .trust-logo .logo-gs { height: 62px; }
+  .trust-logo .logo-liora { height: 48px; }
+  .trust-item p { grid-column: 2; }
+}
+
+/* Me contacter */
+.contact { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--fg); }
+.contact li { padding-block: var(--s-4); border-bottom: 1px solid var(--line); color: var(--fg); font-size: var(--t-lg); line-height: 1.35; letter-spacing: -0.012em; }
+.contact a { color: var(--fg); overflow-wrap: anywhere; }
+.contact a:hover { color: var(--link); }
 
 /* Titres */
 .sec {
@@ -191,10 +219,12 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .title-page { font-family: var(--serif); font-size: var(--t-page); font-weight: 400; letter-spacing: -0.025em; line-height: 1.08; }
 .lede { color: var(--muted); font-size: var(--t-md); line-height: 1.5; max-width: 56ch; text-wrap: pretty; }
 .stack:has(> .title-page) { gap: var(--s-3); }
+.col.stack:has(> .sec) { grid-template-columns: var(--w-label) minmax(0, 1fr); gap: var(--s-6); align-items: start; padding-top: var(--s-5); border-top: 1px solid var(--line); }
+.col.stack > .sec { flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: var(--s-1); padding-bottom: 0; border-bottom: 0; }
 
 /* Liste à vignettes */
 .list { display: grid; gap: var(--s-6); }
-.row { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: var(--s-6); align-items: start; }
+.row { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: var(--s-6); align-items: start; }
 .list .row + .row { padding-top: var(--s-6); border-top: 1px solid var(--line); }
 .thumb svg { width: 100%; height: auto; display: block; }
 .row h3 { font-size: var(--t-md); font-weight: 500; line-height: 1.35; letter-spacing: -0.008em; }
@@ -214,13 +244,12 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .meta { color: var(--muted); font-size: var(--t-xs); font-variant-numeric: tabular-nums; }
 
 /* Parcours */
-#v-parcours .sec { padding-bottom: var(--s-3); border-bottom: 1px solid var(--fg); }
+#v-parcours .col.stack:has(> .sec) { border-top-color: var(--fg); }
 #v-parcours .sec h2 { font-size: var(--t-lg); letter-spacing: -0.018em; }
-#v-parcours .stack { gap: 0; }
-#v-parcours .stack > p { padding-top: var(--s-4); }
 .tl { display: grid; }
 .tl .row { grid-template-columns: 148px minmax(0, 1fr); gap: var(--s-5); align-items: baseline; padding-block: var(--s-4); }
 .tl .row + .row { border-top: 1px solid var(--line); }
+.tl .row:first-child { padding-top: 0; }
 .when { color: var(--muted); font-family: var(--mono); font-size: var(--t-xs); font-variant-numeric: tabular-nums; line-height: 1.5; }
 .tl h3 { font-weight: 700; font-size: var(--t-md); line-height: 1.35; letter-spacing: -0.01em; }
 .tl p:not(.when) { margin-top: 2px; }
@@ -270,7 +299,13 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
 /* Lignes du titre : coupes choisies sur grand écran, retour automatique en dessous */
 @media (min-width: 901px) {
-  .hl { display: block; }
+  .hl { display: block; white-space: nowrap; }
+}
+@media (max-width: 900px) {
+  .bio { grid-template-columns: minmax(0, 1fr); max-width: var(--w-read); margin-inline: 0; }
+  .bio p:first-child { font-size: var(--t-md); line-height: 1.55; }
+  .col.stack:has(> .sec) { grid-template-columns: minmax(0, 1fr); gap: var(--s-5); }
+  .col.stack > .sec { flex-direction: row; align-items: baseline; justify-content: space-between; }
 }
 @media (max-width: 720px) {
   .grid { grid-template-columns: minmax(0, 1fr); gap: var(--s-6); }
@@ -296,12 +331,15 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     background: var(--glass); -webkit-backdrop-filter: blur(12px) saturate(140%); backdrop-filter: blur(12px) saturate(140%);
     border: 1px solid var(--line); border-radius: var(--r-pill); box-shadow: var(--e1);
   }
-  .nav a { flex: 1 1 auto; padding: 9px 4px; text-align: center; }
+  .nav a { flex: 1 1 auto; padding: 9px 4px; font-size: 0.875rem; text-align: center; white-space: nowrap; }
   .row { grid-template-columns: 104px minmax(0, 1fr); gap: var(--s-4); }
   .tl .row { grid-template-columns: minmax(0, 1fr); gap: 2px; padding-block: var(--s-3); }
   .post { grid-template-columns: minmax(0, 1fr); }
   .sketch { grid-row: auto; margin-bottom: var(--s-2); }
   .post > :not(.sketch) { grid-column: auto; }
+}
+@media (max-width: 380px) {
+  .nav a { padding-inline: 2px; font-size: var(--t-xs); }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -317,6 +355,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
       <a href="#ecrits" data-view="ecrits">Écrits</a>
       <a href="#projets" data-view="projets">Projets</a>
       <a href="#parcours" data-view="parcours">Parcours</a>
+      <a href="#contact" data-view="contact">Me contacter</a>
     </nav>
   </div>
 </header>
@@ -325,12 +364,32 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   <div class="page" id="v-accueil" data-page>
     <section class="wide hero">
       <h1><span class="hl">Je lis les marchés, <img class="hero-photo" src="christian-sodara.jpg" alt="Portrait de Christian Sodara" width="600" height="600"></span> <span class="hl">je code mes modèles</span> <span class="hl">et <span class="hero-write">j’écris<svg viewBox="0 0 240 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3 12 C42 5 78 15 118 9 C158 4 196 14 237 6"></path></svg></span> ce que j’y trouve.</span></h1>
-      <p class="links"><strong>Paris</strong><a href="#parcours">parcours</a><a href="mailto:christiansodara00@gmail.com">christiansodara00@gmail.com</a><a href="https://github.com/sodara-cpu">github</a></p>
     </section>
 
     <section class="col bio">
       <p>Je construis mes <a href="#projets">propres modèles</a>, du backtest de stratégies systématiques au pricing d’options, et <a href="#ecrits">mes écrits</a> portent sur les taux et la politique monétaire.</p>
       <p>Originaire de Côte d’Ivoire, j’ai étudié l’informatique et les télécommunications à l’ESATIC à Abidjan. J’ai ensuite passé deux ans comme Business Analyst chez Willis Towers Watson, où j’ai piloté le déploiement d’une plateforme logicielle de 2&nbsp;M$. Je poursuis à Paris le Programme Grande École de SKEMA Business School, en Corporate Financial Management et Quantitative Finance, et je prépare le CFA niveau&nbsp;1. J’ai aussi travaillé chez Bpifrance, sur le reporting et les tableaux de bord de la direction.</p>
+    </section>
+
+    <section class="col stack">
+      <div class="sec"><h2>Ce qu’on m’a confié</h2></div>
+      <div class="trust">
+        <article class="trust-item">
+          <div class="trust-logo"><img class="logo-gs" src="logo-gras-savoye.png" alt="Gras Savoye Willis Towers Watson" width="720" height="466"></div>
+          <p class="what">Le déploiement d’une plateforme logicielle de 2&nbsp;M$, et l’analyse de données sur 4&nbsp;pays.</p>
+          <p class="where">Business Analyst, 2 ans</p>
+        </article>
+        <article class="trust-item">
+          <div class="trust-logo"><img class="logo-bpi" src="logo-bpifrance.png" alt="Bpifrance" width="674" height="194"></div>
+          <p class="what">Les reportings et les tableaux de bord KPI de la direction.</p>
+          <p class="where">Assistant chef de projet, stage</p>
+        </article>
+        <article class="trust-item">
+          <div class="trust-logo"><img class="logo-liora" src="logo-liora.png" alt="Liora, ex DataScientest" width="884" height="416"></div>
+          <p class="what">Un stage dans la formation en data science.</p>
+          <p class="where">Stage</p>
+        </article>
+      </div>
     </section>
 
     <section class="col stack">
@@ -396,6 +455,18 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     <section class="col stack">
       <div class="sec"><h2>Langues</h2></div>
       <p>Français (langue maternelle), anglais (courant), chinois (A1).</p>
+    </section>
+  </div>
+
+  <div class="page" id="v-contact" data-page hidden>
+    <section class="col"><h1 class="title-page">Me contacter</h1></section>
+    <section class="col">
+      <ul class="contact">
+        <li>Paris</li>
+        <li><a href="#parcours">parcours</a></li>
+        <li><a href="mailto:christiansodara00@gmail.com">christiansodara00@gmail.com</a></li>
+        <li><a href="https://github.com/sodara-cpu">github</a></li>
+      </ul>
     </section>
   </div>
 </main>
@@ -661,7 +732,7 @@ fill("home-posts", POSTS.filter(p => p.home).map(postHTML).join(""));
 fill("all-posts", POSTS.map(postHTML).join(""));
 
 /* Navigation */
-const views = ["accueil", "ecrits", "projets", "parcours"];
+const views = ["accueil", "ecrits", "projets", "parcours", "contact"];
 function route() {
   const h = location.hash.slice(1), v = views.includes(h) ? h : "accueil";
   document.querySelectorAll("[data-page]").forEach(el => { el.hidden = el.id !== "v-" + v; });

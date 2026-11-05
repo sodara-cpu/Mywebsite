@@ -1,0 +1,33 @@
+name: Deploy
+# test -> https://<user>.github.io/Mywebsite/test/   (recette)
+# main -> https://<user>.github.io/Mywebsite/        (production)
+on:
+  push:
+    branches: [test, main]
+permissions:
+  contents: write
+concurrency:
+  group: deploy-gh-pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref_name == 'main' && 'production' || 'test' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: ./scripts/check.sh
+      - name: Préparer le dossier publié
+        run: |
+          mkdir -p _site
+          rsync -a --exclude '.git*' --exclude '.github' --exclude 'scripts' \
+                --exclude '_site' --exclude 'README.md' --exclude '.htmlvalidate.json' ./ _site/
+      - name: Publier sur gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./_site
+          destination_dir: ${{ github.ref_name == 'main' && '.' || 'test' }}
+          keep_files: true

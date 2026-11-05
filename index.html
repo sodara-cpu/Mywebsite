@@ -69,25 +69,18 @@ h1, h2, h3, p { margin: 0; }
 .stack { display: grid; gap: 22px; }
 
 /* En-tête de profil */
-.head { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 36px; align-items: center; }
-.portrait {
-  aspect-ratio: 1; max-width: 100%; border-radius: 6px; overflow: hidden;
-  background: var(--paper); color: var(--muted);
-  display: grid; place-items: center;
-}
-.portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.id { text-align: center; display: grid; gap: 8px; justify-items: center; }
-.id h1 { font-size: clamp(2.5rem, 7vw, 3.4rem); font-weight: 400; line-height: 1.08; letter-spacing: -0.015em; text-wrap: balance; }
-.id .tag { font-weight: 700; }
-.mail { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 2px 10px; color: var(--muted); }
-.mail span { user-select: all; overflow-wrap: anywhere; }
-.mail button {
-  font: inherit; font-size: 0.82em; color: var(--link); background: none; border: 0; padding: 0; cursor: pointer;
-}
-.mail button:hover { text-decoration: underline; text-underline-offset: 3px; }
+.hero { display: grid; gap: 34px; padding-block: 28px 4px; }
+.hero h1 { font-size: clamp(2.5rem, 6.9vw, 5.5rem); font-weight: 500; line-height: 1.12; letter-spacing: -0.035em; }
+.hero-photo { display: inline-block; width: 1.18em; height: 1.18em; max-width: 100%; border-radius: 50%; object-fit: cover; vertical-align: -0.22em; margin-inline: 0.06em; outline: 1px solid var(--line); outline-offset: -1px; }
+.hero-write { position: relative; display: inline-block; color: var(--link); }
+.hero-write svg { position: absolute; left: 0; bottom: -0.06em; width: 100%; height: 0.2em; overflow: visible; }
+.hero-write path { fill: none; stroke: var(--link); stroke-width: 3.5; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.links { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 24px; color: var(--muted); }
+.links strong { color: var(--fg); font-weight: 700; }
+.links a { color: var(--muted); overflow-wrap: anywhere; }
+#v-accueil .col { margin-left: max(0px, calc((100% - 1120px) / 2)); margin-right: 0; }
 
 .bio { display: grid; gap: 14px; }
-.seek { color: var(--fg); font-weight: 500; }
 
 /* Titres de section */
 .sec { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 18px; }
@@ -163,8 +156,6 @@ h1, h2, h3, p { margin: 0; }
 @media (max-width: 620px) {
   body { font-size: 16px; }
   .page { padding-block: 28px 56px; gap: 44px; }
-  .head { grid-template-columns: 1fr; gap: 20px; justify-items: center; }
-  .portrait { width: 210px; }
   .grid { grid-template-columns: minmax(0, 1fr); }
   .row { grid-template-columns: 112px minmax(0, 1fr); gap: 16px; }
   .tl .row { grid-template-columns: minmax(0, 1fr); gap: 2px; }
@@ -177,7 +168,6 @@ h1, h2, h3, p { margin: 0; }
   <div class="top-in">
     <a class="brand" href="#accueil">Christian Sodara</a>
     <nav class="nav" aria-label="Navigation principale">
-      <a href="#accueil" data-view="accueil">Accueil</a>
       <a href="#ecrits" data-view="ecrits">Écrits</a>
       <a href="#projets" data-view="projets">Projets</a>
       <a href="#parcours" data-view="parcours">Parcours</a>
@@ -187,19 +177,14 @@ h1, h2, h3, p { margin: 0; }
 
 <main>
   <div class="page" id="v-accueil" data-page>
-    <section class="col head">
-      <div class="portrait"><img src="christian-sodara.jpg" alt="Portrait de Christian Sodara" width="400" height="400"></div>
-      <div class="id">
-        <h1>Christian Sodara</h1>
-        <p class="tag">Marchés financiers. Paris.</p>
-        <a href="#parcours">[parcours et CV]</a>
-        <p class="mail"><span id="mail">christiansodara00@gmail.com</span> <button type="button" id="copy">copier</button></p>
-      </div>
+    <section class="wide hero">
+      <h1>Je lis les marchés, <img class="hero-photo" src="christian-sodara.jpg" alt="Portrait de Christian Sodara" width="660" height="660"> je code mes modèles et <span class="hero-write">j’écris<svg viewBox="0 0 240 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3 12 C42 5 78 15 118 9 C158 4 196 14 237 6"></path></svg></span> ce que j’y trouve.</h1>
+      <p class="links"><strong>Christian Sodara, Paris</strong><a href="mailto:christiansodara00@gmail.com">christiansodara00@gmail.com</a><a href="https://github.com/sodara-cpu">github</a></p>
     </section>
 
     <section class="col bio">
-      <p>Je suis étudiant au Programme Grande École de SKEMA Business School à Paris, spécialisé en Corporate Financial Management avec un électif en Quantitative Finance. Originaire de Côte d’Ivoire, j’ai étudié l’informatique et les télécommunications à l’ESATIC à Abidjan, puis passé deux ans comme Business Analyst chez Willis Towers Watson, où j’ai piloté le déploiement d’une plateforme logicielle de 2&nbsp;M$. Après un stage chez Bpifrance, je me concentre sur les marchés&nbsp;: je construis mes <a href="#projets">propres modèles</a> en Python, je prépare le CFA niveau&nbsp;1 et <a href="#ecrits">j’écris</a> sur les taux et la politique monétaire.</p>
-      <p class="seek">Je cherche un stage d’été 2027 (Londres, Paris), un stage de 6&nbsp;mois à partir d’avril 2027 ou un graduate programme 2027, en priorité en Sales &amp; Trading, Structuring et Capital Markets.</p>
+      <p>Je construis mes <a href="#projets">propres modèles</a>, du backtest de stratégies systématiques au pricing d’options, et <a href="#ecrits">mes écrits</a> portent sur les taux et la politique monétaire.</p>
+      <p>Originaire de Côte d’Ivoire, j’ai étudié l’informatique et les télécommunications à l’ESATIC à Abidjan. J’ai ensuite passé deux ans comme Business Analyst chez Willis Towers Watson, où j’ai piloté le déploiement d’une plateforme logicielle de 2&nbsp;M$. Je poursuis à Paris le Programme Grande École de SKEMA Business School, en Corporate Financial Management et Quantitative Finance, et je prépare le CFA niveau&nbsp;1. J’ai aussi travaillé chez Bpifrance, sur le reporting et les tableaux de bord de la direction.</p>
     </section>
 
     <section class="col stack">
@@ -224,7 +209,7 @@ h1, h2, h3, p { margin: 0; }
   <div class="page" id="v-projets" data-page hidden>
     <section class="col stack">
       <h1 class="title-page">Projets</h1>
-      <p class="lede">Des modèles de marché que je construis pour apprendre, et des logiciels que je développe à côté.</p>
+      <p class="lede">Les modèles de marché et les logiciels que je construis.</p>
     </section>
     <section class="col stack">
       <div class="sec"><h2>Finance</h2></div>
@@ -309,19 +294,19 @@ const POSTS = [
   { sketch:"curve", home:true, cat:"Taux", title:"La courbe américaine se pentifie. Est-ce vraiment un signal bullish&nbsp;?",
     ex:"Baisse du 2 ans ou hausse du 10 ans : la même pentification raconte deux histoires. Je croise le 2s10s, les SOFR Futures, la courbe OIS et le term premium.",
     meta:"Carrousel LinkedIn · 6 slides" },
-  { sketch:"silence", cat:"Fed", title:"Warsh et la politique du silence",
+  { sketch:"silence", home:true, cat:"Fed", title:"Warsh et la politique du silence",
     ex:"Quand la Fed en dit moins, le marché doit se faire son propre avis. Ce que cela change pour le 10 ans, le 30 ans et le term premium.",
     meta:"Article LinkedIn" },
-  { sketch:"futures", cat:"Taux", title:"Ce que les Fed Funds Futures disent des taux",
+  { sketch:"futures", home:true, cat:"Taux", title:"Ce que les Fed Funds Futures disent des taux",
     ex:"L’arithmétique des probabilités implicites, et la différence entre les contrats Fed Funds et SOFR.",
     meta:"Post LinkedIn" },
   { sketch:"oat", cat:"Souverain", title:"Dette française : ce que raconte le spread OAT-Bund",
     ex:"3&nbsp;536&nbsp;Md€ de dette au T1 2026, 117,5&nbsp;% du PIB et un déficit projeté à 5,2&nbsp;% en 2026.",
     meta:"À paraître" },
-  { sketch:"luck", home:true, cat:"Recherche", title:"Gérants de fonds : chance ou mérite&nbsp;?",
+  { sketch:"luck", cat:"Recherche", title:"Gérants de fonds : chance ou mérite&nbsp;?",
     ex:"Mon sujet de recherche à SKEMA. Comment savoir si une surperformance vient du talent du gérant ou du hasard.",
     meta:"Recherche en cours" },
-  { sketch:"journey", home:true, cat:"Vie", title:"D’Abidjan à Paris",
+  { sketch:"journey", cat:"Vie", title:"D’Abidjan à Paris",
     ex:"L’ESATIC, Willis Towers Watson, puis SKEMA. Comment un parcours en informatique m’a conduit vers les marchés.",
     meta:"À paraître" }
 ];
@@ -541,14 +526,6 @@ function route() {
 }
 addEventListener("hashchange", route);
 route();
-
-/* Copie de l'email */
-document.getElementById("copy").addEventListener("click", e => {
-  const btn = e.currentTarget, text = document.getElementById("mail").textContent;
-  const done = () => { btn.textContent = "copié"; setTimeout(() => { btn.textContent = "copier"; }, 1600); };
-  const pick = () => { const s = getSelection(), r = document.createRange(); r.selectNodeContents(document.getElementById("mail")); s.removeAllRanges(); s.addRange(r); btn.textContent = "sélectionné"; };
-  if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, pick); else pick();
-});
 </script>
 </body>
 </html>

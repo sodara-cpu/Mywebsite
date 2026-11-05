@@ -8,7 +8,7 @@
 <style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Schibsted+Grotesk:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@500;700&display=swap">
 <style>
 /* Layout: page blanche à colonne étroite (photo, bio, liste à vignettes techniques) qui s'élargit pour une grille d'articles illustrés de graphiques dessinés à la main */
 :root {
@@ -19,17 +19,23 @@
   --paper: #f4f3ef;
   --link: #2b67d6;
   --bar: #d5d9e0;
+  --glass: rgba(255, 255, 255, 0.86);
+  --on-link: #ffffff;
+  --shadow: rgba(28, 31, 36, 0.09);
+  --serif: Newsreader, "Times New Roman", Times, serif;
   --body: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
   --hand: "Caveat", "Segoe Print", "Bradley Hand", cursive;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
+    --glass: rgba(27, 31, 38, 0.86); --on-link: #12151a; --shadow: rgba(0, 0, 0, 0.35);
     --bg: #12151a; --fg: #e9ebee; --muted: #9aa1ac; --line: #2a2f37;
     --paper: #1b1f26; --link: #7ea9f6; --bar: #363c46; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
+  --glass: rgba(27, 31, 38, 0.86); --on-link: #12151a; --shadow: rgba(0, 0, 0, 0.35);
   --bg: #12151a; --fg: #e9ebee; --muted: #9aa1ac; --line: #2a2f37;
   --paper: #1b1f26; --link: #7ea9f6; --bar: #363c46; color-scheme: dark;
 }
@@ -45,7 +51,18 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; border-radius: 2px; }
 h1, h2, h3, p { margin: 0; }
 
-.top { border-bottom: 1px solid var(--line); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 11; background: var(--bg); }
+.top {
+  position: sticky; top: calc(env(safe-area-inset-top, 0px) + 10px); z-index: 10; margin-top: 16px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.capsule {
+  max-width: 1120px; margin-inline: auto; padding: 7px 8px 7px 24px;
+  display: flex; align-items: center; justify-content: space-between; gap: 6px 24px;
+  background: var(--glass); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  border: 1px solid var(--line); border-radius: 999px; box-shadow: 0 10px 30px var(--shadow);
+}
 .top-in {
   max-width: 1152px; margin-inline: auto;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
@@ -53,10 +70,13 @@ h1, h2, h3, p { margin: 0; }
   padding-block: 18px;
   display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 28px;
 }
-.brand { color: var(--fg); font-weight: 700; }
-.nav { display: flex; flex-wrap: wrap; gap: 4px 24px; }
-.nav a { color: var(--fg); }
-.nav a[aria-current="page"] { color: var(--link); }
+.brand { color: var(--fg); font-size: 1.2rem; font-weight: 800; letter-spacing: -0.025em; }
+.brand:hover { text-decoration: none; }
+.nav { display: flex; align-items: center; gap: 4px; }
+.nav a { padding: 8px 18px; border-radius: 999px; color: var(--fg); font-size: 0.95rem; transition: background-color 0.15s ease; }
+.nav a:hover { background: var(--paper); text-decoration: none; }
+.nav a[aria-current="page"], .nav a[aria-current="page"]:hover { background: var(--link); color: var(--on-link); font-weight: 500; }
+@media (prefers-reduced-motion: reduce) { .nav a { transition: none; } }
 
 .page {
   padding-left: max(16px, env(safe-area-inset-left, 0px));
@@ -86,7 +106,7 @@ h1, h2, h3, p { margin: 0; }
 .sec { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 18px; }
 .sec h2 { font-size: 1.05rem; font-weight: 700; }
 .sec a { font-size: 0.94rem; }
-.title-page { font-size: clamp(1.8rem, 5vw, 2.4rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; }
+.title-page { font-family: var(--serif); font-size: clamp(2.4rem, 6vw, 3.4rem); font-weight: 400; letter-spacing: -0.025em; line-height: 1.1; }
 .lede { color: var(--muted); max-width: 62ch; }
 
 /* Liste à vignettes */
@@ -105,7 +125,7 @@ h1, h2, h3, p { margin: 0; }
 .sketch { background: var(--paper); aspect-ratio: 400 / 260; max-width: 100%; margin-bottom: 8px; color: var(--fg); }
 .sketch svg { width: 100%; height: 100%; display: block; }
 .cat { color: var(--muted); font-size: 0.92rem; font-weight: 500; }
-.post h3 { font-size: 1.42rem; font-weight: 800; line-height: 1.16; letter-spacing: -0.018em; text-wrap: balance; }
+.post h3 { font-family: var(--serif); font-size: 1.7rem; font-weight: 500; line-height: 1.12; letter-spacing: -0.015em; text-wrap: balance; }
 .ex { line-height: 1.5; }
 .meta { color: var(--muted); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
 
@@ -159,15 +179,21 @@ h1, h2, h3, p { margin: 0; }
   .grid { grid-template-columns: minmax(0, 1fr); }
   .row { grid-template-columns: 112px minmax(0, 1fr); gap: 16px; }
   .tl .row { grid-template-columns: minmax(0, 1fr); gap: 2px; }
-  .post h3 { font-size: 1.32rem; }
+  .post h3 { font-size: 1.55rem; }
+  .top { position: static; }
+  .capsule { flex-wrap: wrap; border-radius: 22px; padding: 10px 8px 8px; }
+  .brand { width: 100%; padding-left: 10px; }
+  .nav { width: 100%; justify-content: space-between; gap: 2px; }
+  .nav a { padding: 7px 12px; }
 }
 </style>
 </head>
 <body>
 <header class="top">
-  <div class="top-in">
+  <div class="capsule">
     <a class="brand" href="#accueil">Christian Sodara</a>
     <nav class="nav" aria-label="Navigation principale">
+      <a href="#accueil" data-view="accueil">Accueil</a>
       <a href="#ecrits" data-view="ecrits">Écrits</a>
       <a href="#projets" data-view="projets">Projets</a>
       <a href="#parcours" data-view="parcours">Parcours</a>
@@ -179,7 +205,7 @@ h1, h2, h3, p { margin: 0; }
   <div class="page" id="v-accueil" data-page>
     <section class="wide hero">
       <h1>Je lis les marchés, <img class="hero-photo" src="christian-sodara.jpg" alt="Portrait de Christian Sodara" width="660" height="660"> je code mes modèles et <span class="hero-write">j’écris<svg viewBox="0 0 240 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3 12 C42 5 78 15 118 9 C158 4 196 14 237 6"></path></svg></span> ce que j’y trouve.</h1>
-      <p class="links"><strong>Christian Sodara, Paris</strong><a href="mailto:christiansodara00@gmail.com">christiansodara00@gmail.com</a><a href="https://github.com/sodara-cpu">github</a></p>
+      <p class="links"><strong>Paris</strong><a href="#parcours">parcours</a><a href="mailto:christiansodara00@gmail.com">christiansodara00@gmail.com</a><a href="https://github.com/sodara-cpu">github</a></p>
     </section>
 
     <section class="col bio">

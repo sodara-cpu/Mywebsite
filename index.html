@@ -20,6 +20,8 @@
   --muted: #626873;
   --line: #e6e8ec;
   --paper: #f5f5f2;
+  --soft: #f6f7f9;
+  --tint: #eef3fd;
   --bar: #d5d9e0;
   --link: #1d5fe0;
   --link-hover: #174cb8;
@@ -57,6 +59,7 @@
   /* Rayons */
   --r-s: 6px;
   --r-m: 10px;
+  --r-l: 20px;
   --r-pill: 999px;
   /* Mouvement */
   --fast: 140ms;
@@ -72,7 +75,7 @@
     --bg: #12151a; --fg: #eceef1; --text: #d5d8de; --muted: #9aa1ac; --line: #2a2f37;
     --paper: #1b1f26; --bar: #363c46; --link: #7ea9f6; --link-hover: #a5c3fa;
     --link-line: rgba(126, 169, 246, 0.42); --on-link: #0f1319; --hover: rgba(255, 255, 255, 0.07);
-    --glass: rgba(27, 31, 38, 0.8); --logo-filter: invert(1);
+    --glass: rgba(27, 31, 38, 0.8); --logo-filter: invert(1); --soft: #191d23; --tint: #1a2436;
     --e1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.25);
     --e2: 0 1px 2px rgba(0, 0, 0, 0.35), 0 12px 32px rgba(0, 0, 0, 0.4);
     --e-active: 0 1px 2px rgba(0, 0, 0, 0.4);
@@ -83,7 +86,7 @@
   --bg: #12151a; --fg: #eceef1; --text: #d5d8de; --muted: #9aa1ac; --line: #2a2f37;
   --paper: #1b1f26; --bar: #363c46; --link: #7ea9f6; --link-hover: #a5c3fa;
   --link-line: rgba(126, 169, 246, 0.42); --on-link: #0f1319; --hover: rgba(255, 255, 255, 0.07);
-  --glass: rgba(27, 31, 38, 0.8); --logo-filter: invert(1);
+  --glass: rgba(27, 31, 38, 0.8); --logo-filter: invert(1); --soft: #191d23; --tint: #1a2436;
   --e1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.25);
   --e2: 0 1px 2px rgba(0, 0, 0, 0.35), 0 12px 32px rgba(0, 0, 0, 0.4);
   --e-active: 0 1px 2px rgba(0, 0, 0, 0.4);
@@ -173,16 +176,30 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 @keyframes draw { from { clip-path: inset(-50% 100% -50% 0); } to { clip-path: inset(-50% -2% -50% 0); } }
 
 
-/* Texte de présentation */
-.bio { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--s-4) var(--s-7); align-items: start; line-height: 1.7; }
-.bio p:first-child { color: var(--fg); font-size: var(--t-lg); line-height: 1.4; letter-spacing: -0.012em; }
-.bio p { text-wrap: pretty; }
-.bio a { text-decoration-color: var(--link-line); }
-.bio a:hover { text-decoration-color: currentColor; }
+/* Courbe de parcours */
+.traj { margin: 0; background: var(--paper); border-radius: var(--r-l); overflow: hidden; }
+.traj svg { display: block; width: 100%; height: auto; }
+.traj-m { display: none !important; }
+.traj-main { fill: none; stroke: var(--link); stroke-width: 3.5; stroke-linecap: round; }
+.traj-ghost { fill: none; stroke: var(--link); stroke-width: 1.2; stroke-linecap: round; opacity: 0.4; }
+.traj-dot { fill: var(--link); stroke: var(--paper); stroke-width: 3; }
+.traj-name { fill: var(--fg); font: 700 31px var(--hand); }
+.traj-sub { fill: var(--muted); font: 500 15px var(--body); }
+.traj-note { fill: var(--muted); font: 700 27px var(--hand); }
+.traj-name-m { font-size: 26px; }
+.traj-sub-m { font-size: 13px; }
+.traj-x { animation: traj-x 1100ms var(--ease) 200ms both; }
+.traj-y { animation: traj-y 1100ms var(--ease) 200ms both; }
+@keyframes traj-x { from { clip-path: inset(-5% 100% -5% -5%); } to { clip-path: inset(-5% -5% -5% -5%); } }
+@keyframes traj-y { from { clip-path: inset(100% -5% -5% -5%); } to { clip-path: inset(-5% -5% -5% -5%); } }
+@media (max-width: 760px) {
+  .traj-d { display: none !important; }
+  .traj-m { display: block !important; }
+}
 
 /* Logos */
-.trust { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-6); }
-.trust-item { display: grid; align-content: start; gap: var(--s-1); min-width: 0; }
+.trust { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-4); }
+.trust-item { display: grid; align-content: start; gap: var(--s-1); min-width: 0; padding: var(--s-5); background: var(--soft); border: 1px solid var(--line); border-radius: var(--r-l); }
 .trust-logo { display: flex; align-items: flex-end; height: 72px; margin-bottom: var(--s-3); }
 .trust-logo img { display: block; width: auto; filter: var(--logo-filter); }
 .trust-logo .logo-bpi { height: 34px; }
@@ -192,10 +209,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .trust-item .what { color: var(--fg); }
 .trust-item .where { color: var(--muted); font-size: var(--t-sm); }
 @media (max-width: 620px) {
-  .trust { grid-template-columns: minmax(0, 1fr); gap: 0; }
-  .trust-item { grid-template-columns: 112px minmax(0, 1fr); column-gap: var(--s-4); padding-block: var(--s-4); }
-  .trust-item + .trust-item { border-top: 1px solid var(--line); }
-  .trust-item:first-child { padding-top: 0; }
+  .trust { grid-template-columns: minmax(0, 1fr); gap: var(--s-3); }
+  .trust-item { grid-template-columns: 104px minmax(0, 1fr); column-gap: var(--s-4); padding: var(--s-4); }
   .trust-logo { grid-row: 1 / span 2; align-items: flex-start; height: auto; margin-bottom: 0; }
   .trust-logo .logo-bpi { height: 26px; }
   .trust-logo .logo-gs { height: 62px; }
@@ -214,7 +229,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px var(--s-5);
   padding-bottom: var(--s-3); border-bottom: 1px solid var(--line);
 }
-.sec h2 { font-size: var(--t-md); font-weight: 700; letter-spacing: -0.012em; line-height: 1.3; }
+.sec h2 { font-size: var(--t-lg); font-weight: 700; letter-spacing: -0.018em; line-height: 1.25; }
 .sec a { font-size: var(--t-sm); }
 .title-page { font-family: var(--serif); font-size: var(--t-page); font-weight: 400; letter-spacing: -0.025em; line-height: 1.08; }
 .lede { color: var(--muted); font-size: var(--t-md); line-height: 1.5; max-width: 56ch; text-wrap: pretty; }
@@ -302,8 +317,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   .hl { display: block; white-space: nowrap; }
 }
 @media (max-width: 900px) {
-  .bio { grid-template-columns: minmax(0, 1fr); max-width: var(--w-read); margin-inline: 0; }
-  .bio p:first-child { font-size: var(--t-md); line-height: 1.55; }
   .col.stack:has(> .sec) { grid-template-columns: minmax(0, 1fr); gap: var(--s-5); }
   .col.stack > .sec { flex-direction: row; align-items: baseline; justify-content: space-between; }
 }
@@ -366,10 +379,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
       <h1><span class="hl">Je lis les marchés, <img class="hero-photo" src="christian-sodara.jpg" alt="Portrait de Christian Sodara" width="600" height="600"></span> <span class="hl">je code mes modèles</span> <span class="hl">et <span class="hero-write">j’écris<svg viewBox="0 0 240 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3 12 C42 5 78 15 118 9 C158 4 196 14 237 6"></path></svg></span> ce que j’y trouve.</span></h1>
     </section>
 
-    <section class="col bio">
-      <p>Je construis mes <a href="#projets">propres modèles</a>, du backtest de stratégies systématiques au pricing d’options, et <a href="#ecrits">mes écrits</a> portent sur les taux et la politique monétaire.</p>
-      <p>Originaire de Côte d’Ivoire, j’ai étudié l’informatique et les télécommunications à l’ESATIC à Abidjan. J’ai ensuite passé deux ans comme Business Analyst chez Willis Towers Watson, où j’ai piloté le déploiement d’une plateforme logicielle de 2&nbsp;M$. Je poursuis à Paris le Programme Grande École de SKEMA Business School, en Corporate Financial Management et Quantitative Finance, et je prépare le CFA niveau&nbsp;1. J’ai aussi travaillé chez Bpifrance, sur le reporting et les tableaux de bord de la direction.</p>
-    </section>
+    <section class="wide"><figure class="traj" role="img" aria-label="Courbe de parcours : ESATIC à Abidjan, informatique et télécoms ; Willis Towers Watson, Business Analyst ; DataScientest, gestion de projets ; Bpifrance, reporting et pilotage ; SKEMA à Paris, Corporate Finance et Quant."><svg class="traj-d" viewBox="0 -44 1120 384" aria-hidden="true"><g class="traj-line traj-x"><path class="traj-ghost" d="M63 265 C242 258 343 240 472 193 C603 143 703 132 812 99 C903 67 1003 64 1058 55"></path><path class="traj-main" d="M60 262 C240 262 340 236 470 190 C600 146 700 128 810 96 C900 70 1000 60 1060 52"></path></g><circle class="traj-dot" cx="60" cy="262" r="7"></circle><text class="traj-name" x="50" y="302" text-anchor="start">ESATIC, Abidjan</text><text class="traj-sub" x="50" y="324" text-anchor="start">Informatique et télécoms</text><circle class="traj-dot" cx="321" cy="235" r="7"></circle><text class="traj-name" x="317" y="275" text-anchor="start">Willis Towers Watson</text><text class="traj-sub" x="317" y="297" text-anchor="start">Business Analyst</text><circle class="traj-dot" cx="580" cy="156" r="7"></circle><text class="traj-name" x="576" y="196" text-anchor="start">DataScientest</text><text class="traj-sub" x="576" y="218" text-anchor="start">Gestion de projets</text><circle class="traj-dot" cx="810" cy="96" r="7"></circle><text class="traj-name" x="806" y="136" text-anchor="start">Bpifrance</text><text class="traj-sub" x="806" y="158" text-anchor="start">Reporting et pilotage</text><circle class="traj-dot" cx="1060" cy="52" r="7"></circle><text class="traj-name" x="1070" y="4" text-anchor="end">SKEMA, Paris</text><text class="traj-sub" x="1070" y="26" text-anchor="end">Corporate Finance et Quant</text><text class="traj-note" x="50" y="14">Mon parcours, en une courbe</text></svg><svg class="traj-m" viewBox="0 0 390 440" aria-hidden="true"><g class="traj-line traj-y"><path class="traj-main" d="M40 390 C44 350 52 330 62 305 C72 280 82 250 92 220 C102 190 114 165 130 135 C146 105 160 80 180 50"></path></g><circle class="traj-dot" cx="40" cy="390" r="6"></circle><text class="traj-name traj-name-m" x="58" y="393">ESATIC, Abidjan</text><text class="traj-sub traj-sub-m" x="58" y="411">Informatique et télécoms</text><circle class="traj-dot" cx="62" cy="305" r="6"></circle><text class="traj-name traj-name-m" x="80" y="308">Willis Towers Watson</text><text class="traj-sub traj-sub-m" x="80" y="326">Business Analyst</text><circle class="traj-dot" cx="92" cy="220" r="6"></circle><text class="traj-name traj-name-m" x="110" y="223">DataScientest</text><text class="traj-sub traj-sub-m" x="110" y="241">Gestion de projets</text><circle class="traj-dot" cx="130" cy="135" r="6"></circle><text class="traj-name traj-name-m" x="148" y="138">Bpifrance</text><text class="traj-sub traj-sub-m" x="148" y="156">Reporting et pilotage</text><circle class="traj-dot" cx="180" cy="50" r="6"></circle><text class="traj-name traj-name-m" x="198" y="53">SKEMA, Paris</text><text class="traj-sub traj-sub-m" x="198" y="71">Corporate Finance et Quant</text></svg></figure></section>
 
     <section class="col stack">
       <div class="sec"><h2>Ce qu’on m’a confié</h2></div>

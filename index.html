@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Christian Sodara</title>
+<meta name="description" content="Christian Sodara, marchés financiers, Paris. Parcours, projets et écrits.">
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@500;700&display=swap">
+<style>
+/* Layout: page blanche à colonne étroite (photo, bio, liste à vignettes techniques) qui s'élargit pour une grille d'articles illustrés de graphiques dessinés à la main */
+:root {
+  --bg: #ffffff;
+  --fg: #1c1f24;
+  --muted: #666c76;
+  --line: #e3e5e9;
+  --paper: #f4f3ef;
+  --link: #2b67d6;
+  --bar: #d5d9e0;
+  --body: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --hand: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151a; --fg: #e9ebee; --muted: #9aa1ac; --line: #2a2f37;
+    --paper: #1b1f26; --link: #7ea9f6; --bar: #363c46; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12151a; --fg: #e9ebee; --muted: #9aa1ac; --line: #2a2f37;
+  --paper: #1b1f26; --link: #7ea9f6; --bar: #363c46; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--body); font-size: 17px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; border-radius: 2px; }
+h1, h2, h3, p { margin: 0; }
+
+.top { border-bottom: 1px solid var(--line); }
+.top-in {
+  max-width: 1152px; margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 18px;
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 28px;
+}
+.brand { color: var(--fg); font-weight: 700; }
+.nav { display: flex; flex-wrap: wrap; gap: 4px 24px; }
+.nav a { color: var(--fg); }
+.nav a[aria-current="page"] { color: var(--link); }
+
+.page {
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 44px 72px;
+  display: grid; gap: 56px;
+}
+.col { width: 100%; max-width: 760px; margin-inline: auto; min-width: 0; }
+.wide { width: 100%; max-width: 1120px; margin-inline: auto; min-width: 0; }
+.stack { display: grid; gap: 22px; }
+
+/* En-tête de profil */
+.head { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 36px; align-items: center; }
+.portrait {
+  aspect-ratio: 1; max-width: 100%; border-radius: 6px; overflow: hidden;
+  background: var(--paper); color: var(--muted);
+  display: grid; place-items: center;
+}
+.portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.id { text-align: center; display: grid; gap: 8px; justify-items: center; }
+.id h1 { font-size: clamp(2.5rem, 7vw, 3.4rem); font-weight: 400; line-height: 1.08; letter-spacing: -0.015em; text-wrap: balance; }
+.id .tag { font-weight: 700; }
+.mail { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 2px 10px; color: var(--muted); }
+.mail span { user-select: all; overflow-wrap: anywhere; }
+.mail button {
+  font: inherit; font-size: 0.82em; color: var(--link); background: none; border: 0; padding: 0; cursor: pointer;
+}
+.mail button:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.bio { display: grid; gap: 14px; }
+.seek { color: var(--fg); font-weight: 500; }
+
+/* Titres de section */
+.sec { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 18px; }
+.sec h2 { font-size: 1.05rem; font-weight: 700; }
+.sec a { font-size: 0.94rem; }
+.title-page { font-size: clamp(1.8rem, 5vw, 2.4rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; }
+.lede { color: var(--muted); max-width: 62ch; }
+
+/* Liste à vignettes */
+.list { display: grid; gap: 32px; }
+.row { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 28px; align-items: start; }
+.thumb svg { width: 100%; height: auto; display: block; }
+.row h3 { font-size: 1.08rem; font-weight: 500; line-height: 1.35; }
+.row p { line-height: 1.5; }
+.row .what { margin-top: 3px; }
+.row .where { color: var(--muted); font-size: 0.94rem; margin-top: 3px; }
+.row .more { margin-top: 8px; font-size: 0.97rem; }
+
+/* Grille d'articles */
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 44px 34px; }
+.post { display: grid; align-content: start; gap: 8px; min-width: 0; }
+.sketch { background: var(--paper); aspect-ratio: 400 / 260; max-width: 100%; margin-bottom: 8px; color: var(--fg); }
+.sketch svg { width: 100%; height: 100%; display: block; }
+.cat { color: var(--muted); font-size: 0.92rem; font-weight: 500; }
+.post h3 { font-size: 1.42rem; font-weight: 800; line-height: 1.16; letter-spacing: -0.018em; text-wrap: balance; }
+.ex { line-height: 1.5; }
+.meta { color: var(--muted); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+
+/* Parcours */
+.tl { display: grid; gap: 24px; }
+.tl .row { grid-template-columns: 150px minmax(0, 1fr); }
+.when { color: var(--muted); font-size: 0.94rem; font-variant-numeric: tabular-nums; line-height: 1.5; padding-top: 2px; }
+.tl h3 { font-weight: 700; font-size: 1.05rem; }
+.state { color: var(--muted); }
+.state.done { color: var(--link); }
+
+.foot { border-top: 1px solid var(--line); }
+.foot .top-in { color: var(--muted); font-size: 0.92rem; }
+
+/* Figures techniques (vignettes) */
+.f-axis, .f-a, .f-b, .f-c, .f-box { fill: none; }
+.f-axis { stroke: var(--muted); stroke-width: 0.7; }
+.f-a { stroke: var(--link); stroke-width: 1.5; stroke-linejoin: round; }
+.f-b { stroke: var(--fg); stroke-width: 1; stroke-linejoin: round; }
+.f-c { stroke: var(--muted); stroke-width: 0.9; stroke-dasharray: 3 2.5; }
+.f-box { stroke: var(--muted); stroke-width: 0.8; }
+.f-boxa { fill: var(--link); fill-opacity: 0.14; stroke: var(--link); stroke-width: 1; }
+.f-t { fill: var(--muted); font: 400 7.5px var(--mono); }
+.f-tt { fill: var(--fg); font: 500 7.5px var(--mono); }
+.f-cell { fill: var(--link); }
+.f-bar { fill: var(--bar); }
+.f-fill { fill: var(--link); fill-opacity: 0.16; stroke: none; }
+.f-dot { fill: var(--link); stroke: none; }
+.f-range { fill: var(--link); fill-opacity: 0.55; stroke: none; }
+
+/* Croquis (articles) */
+.ink, .ink-a, .ink-d, .ink-h {
+  fill: none; stroke-linecap: round; stroke-linejoin: round;
+}
+.ink { stroke: var(--fg); stroke-width: 1.7; }
+.ink-a { stroke: var(--link); stroke-width: 2.3; }
+.ink-d { stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 6 7; }
+.ink-h { stroke: var(--link); stroke-width: 1.2; }
+.ghost { opacity: 0.35; stroke-width: 1; }
+.hand { fill: var(--fg); font: 700 21px var(--hand); }
+.hand-a { fill: var(--link); font: 700 21px var(--hand); }
+.dot-ink { fill: var(--fg); stroke: none; }
+.dot-a { fill: var(--link); stroke: none; }
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 620px) {
+  body { font-size: 16px; }
+  .page { padding-block: 28px 56px; gap: 44px; }
+  .head { grid-template-columns: 1fr; gap: 20px; justify-items: center; }
+  .portrait { width: 210px; }
+  .grid { grid-template-columns: minmax(0, 1fr); }
+  .row { grid-template-columns: 112px minmax(0, 1fr); gap: 16px; }
+  .tl .row { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .post h3 { font-size: 1.32rem; }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="#accueil">Christian Sodara</a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="#accueil" data-view="accueil">Accueil</a>
+      <a href="#ecrits" data-view="ecrits">Écrits</a>
+      <a href="#projets" data-view="projets">Projets</a>
+      <a href="#parcours" data-view="parcours">Parcours</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="page" id="v-accueil" data-page>
+    <section class="col head">
+      <div class="portrait"><img src="christian-sodara.jpg" alt="Portrait de Christian Sodara" width="400" height="400"></div>
+      <div class="id">
+        <h1>Christian Sodara</h1>
+        <p class="tag">Marchés financiers. Paris.</p>
+        <a href="#parcours">[parcours et CV]</a>
+        <p class="mail"><span id="mail">christiansodara00@gmail.com</span> <button type="button" id="copy">copier</button></p>
+      </div>
+    </section>
+
+    <section class="col bio">
+      <p>Je suis étudiant au Programme Grande École de SKEMA Business School à Paris, spécialisé en Corporate Financial Management avec un électif en Quantitative Finance. Originaire de Côte d’Ivoire, j’ai étudié l’informatique et les télécommunications à l’ESATIC à Abidjan, puis passé deux ans comme Business Analyst chez Willis Towers Watson, où j’ai piloté le déploiement d’une plateforme logicielle de 2&nbsp;M$. Après un stage chez Bpifrance, je me concentre sur les marchés&nbsp;: je construis mes <a href="#projets">propres modèles</a> en Python, je prépare le CFA niveau&nbsp;1 et <a href="#ecrits">j’écris</a> sur les taux et la politique monétaire.</p>
+      <p class="seek">Je cherche un stage d’été 2027 (Londres, Paris), un stage de 6&nbsp;mois à partir d’avril 2027 ou un graduate programme 2027, en priorité en Sales &amp; Trading, Structuring et Capital Markets.</p>
+    </section>
+
+    <section class="col stack">
+      <div class="sec"><h2>Projets</h2><a href="#projets">Tous les projets</a></div>
+      <div class="list" id="home-projects"></div>
+    </section>
+
+    <section class="wide stack">
+      <div class="sec"><h2>Écrits</h2><a href="#ecrits">Tous les écrits</a></div>
+      <div class="grid" id="home-posts"></div>
+    </section>
+  </div>
+
+  <div class="page" id="v-ecrits" data-page hidden>
+    <section class="wide stack">
+      <h1 class="title-page">Écrits</h1>
+      <p class="lede">Taux, politique monétaire, dette souveraine et performance des fonds. Et de temps en temps, mon parcours.</p>
+    </section>
+    <section class="wide"><div class="grid" id="all-posts"></div></section>
+  </div>
+
+  <div class="page" id="v-projets" data-page hidden>
+    <section class="col stack">
+      <h1 class="title-page">Projets</h1>
+      <p class="lede">Des modèles de marché que je construis pour apprendre, et des logiciels que je développe à côté.</p>
+    </section>
+    <section class="col stack">
+      <div class="sec"><h2>Finance</h2></div>
+      <div class="list" id="proj-finance"></div>
+    </section>
+    <section class="col stack">
+      <div class="sec"><h2>Logiciel</h2></div>
+      <div class="list" id="proj-soft"></div>
+    </section>
+  </div>
+
+  <div class="page" id="v-parcours" data-page hidden>
+    <section class="col"><h1 class="title-page">Parcours</h1></section>
+    <section class="col stack">
+      <div class="sec"><h2>Expérience</h2></div>
+      <div class="tl">
+        <div class="row"><p class="when">Août à déc. 2025</p><div><h3>Bpifrance</h3><p>Assistant chef de projet, stage. Reportings structurés et tableaux de bord KPI pour la direction.</p></div></div>
+        <div class="row"><p class="when">Stage</p><div><h3>DataScientest</h3><p>Organisme de formation en data science.</p></div></div>
+        <div class="row"><p class="when">2 ans</p><div><h3>Willis Towers Watson</h3><p>Business Analyst. Analyse de données sur 4 pays, conseil en gestion des risques, déploiement d’une plateforme logicielle de 2&nbsp;M$.</p></div></div>
+      </div>
+    </section>
+    <section class="col stack">
+      <div class="sec"><h2>Formation</h2></div>
+      <div class="tl">
+        <div class="row"><p class="when">2024 à 2027</p><div><h3>SKEMA Business School, Paris</h3><p>Programme Grande École (Master in Management). Corporate Financial Management, électif Quantitative Finance.</p></div></div>
+        <div class="row"><p class="when">Licence</p><div><h3>ESATIC, Abidjan</h3><p>Informatique et télécommunications.</p></div></div>
+      </div>
+    </section>
+    <section class="col stack">
+      <div class="sec"><h2>Certifications</h2></div>
+      <div class="tl">
+        <div class="row"><p class="when">Fév. 2027</p><div><h3>CFA Level I</h3><p class="state">Candidat</p></div></div>
+        <div class="row"><p class="when">Déc. 2026</p><div><h3>Certification AMF</h3><p class="state">Examen planifié</p></div></div>
+        <div class="row"><p class="when">Juin 2026</p><div><h3>Bloomberg Market Concepts</h3><p class="state done">Obtenue</p></div></div>
+        <div class="row"><p class="when">DataCamp</p><div><h3>Python</h3><p class="state done">Obtenue</p></div></div>
+      </div>
+    </section>
+    <section class="col stack">
+      <div class="sec"><h2>Langues</h2></div>
+      <p>Français (langue maternelle), anglais (courant), chinois (A1).</p>
+    </section>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="top-in"><span>Christian Sodara, Paris</span><span>christiansodara00@gmail.com</span></div>
+</footer>
+
+<script>
+/* ---------- Contenu : à modifier ici ---------- */
+const PROJECTS = [
+  { fig:"pairs", group:"finance", home:true, title:"Backtests de cinq stratégies systématiques",
+    what:"Pairs Trading, Momentum, Volatility Arbitrage et autres, sur environ 120 trades simulés.",
+    where:"Python. Projet personnel.",
+    more:"Chaque stratégie est évaluée par son ratio de Sharpe, son max drawdown et son alpha face à un benchmark." },
+  { fig:"bs", group:"finance", home:true, title:"Pricer d’options Black-Scholes",
+    what:"Pricer d’options avec des grecques calculées manuellement.",
+    where:"Projet personnel.",
+    more:"La figure montre le prix d’un call (K = 100, σ = 20&nbsp;%, r = 3&nbsp;%) à 1 an et à 3 mois, face à son payoff à l’échéance." },
+  { fig:"dcf", group:"finance", home:true, title:"Valorisation de LVMH",
+    what:"DCF complet et comparables, sur les cinq divisions du groupe.",
+    where:"Projet personnel." },
+  { fig:"wind", group:"finance", home:true, title:"Parc éolien sur 20 ans : modèle de PE infrastructure",
+    what:"DSCR, TRI et mécanique du tarif de rachat (Feed-in-Tariff).",
+    where:"Projet personnel." },
+  { fig:"luck", group:"finance", home:false, title:"Chance ou mérite : la performance des fonds",
+    what:"Comment séparer le talent de la chance dans la performance d’un gérant.",
+    where:"Recherche à SKEMA. En cours.",
+    more:"Mon sujet de recherche, accompagné d’une mini revue de littérature." },
+  { fig:"finlens", group:"soft", home:false, title:"FinLens",
+    what:"Plateforme d’equity research par industrie : données de marché, valorisation DCF et multiples, thèse d’investissement.",
+    where:"Projet personnel. En lancement." },
+  { fig:"weskool", group:"soft", home:false, title:"WeSkool",
+    what:"ERP académique international pour l’enseignement supérieur : multi-campus, multi-programmes, multi-devises, mobilité internationale.",
+    where:"En équipe. Node, PostgreSQL, Render, GitHub." },
+  { fig:"gauge", group:"soft", home:false, title:"CandiPilot",
+    what:"Application web d’aide à la candidature : génération de CV et de lettres, suivi des candidatures, score de correspondance avec l’offre.",
+    where:"HTML/JS, API Anthropic, Netlify. En développement." }
+];
+
+const POSTS = [
+  { sketch:"curve", home:true, cat:"Taux", title:"La courbe américaine se pentifie. Est-ce vraiment un signal bullish&nbsp;?",
+    ex:"Baisse du 2 ans ou hausse du 10 ans : la même pentification raconte deux histoires. Je croise le 2s10s, les SOFR Futures, la courbe OIS et le term premium.",
+    meta:"Carrousel LinkedIn · 6 slides" },
+  { sketch:"silence", cat:"Fed", title:"Warsh et la politique du silence",
+    ex:"Quand la Fed en dit moins, le marché doit se faire son propre avis. Ce que cela change pour le 10 ans, le 30 ans et le term premium.",
+    meta:"Article LinkedIn" },
+  { sketch:"futures", cat:"Taux", title:"Ce que les Fed Funds Futures disent des taux",
+    ex:"L’arithmétique des probabilités implicites, et la différence entre les contrats Fed Funds et SOFR.",
+    meta:"Post LinkedIn" },
+  { sketch:"oat", cat:"Souverain", title:"Dette française : ce que raconte le spread OAT-Bund",
+    ex:"3&nbsp;536&nbsp;Md€ de dette au T1 2026, 117,5&nbsp;% du PIB et un déficit projeté à 5,2&nbsp;% en 2026.",
+    meta:"À paraître" },
+  { sketch:"luck", home:true, cat:"Recherche", title:"Gérants de fonds : chance ou mérite&nbsp;?",
+    ex:"Mon sujet de recherche à SKEMA. Comment savoir si une surperformance vient du talent du gérant ou du hasard.",
+    meta:"Recherche en cours" },
+  { sketch:"journey", home:true, cat:"Vie", title:"D’Abidjan à Paris",
+    ex:"L’ESATIC, Willis Towers Watson, puis SKEMA. Comment un parcours en informatique m’a conduit vers les marchés.",
+    meta:"À paraître" }
+];
+
+/* ---------- Figures techniques : calculées, pas dessinées ---------- */
+const pts = a => a.map(p => p[0].toFixed(1) + "," + p[1].toFixed(1)).join(" ");
+const pl = (a, c) => `<polyline class="${c}" points="${pts(a)}"/>`;
+const tx = (x, y, s, c = "f-t", anchor = "start") => `<text class="${c}" x="${x}" y="${y}" text-anchor="${anchor}">${s}</text>`;
+const svg = (body, label) => `<svg viewBox="0 0 190 120" role="img" aria-label="${label}">${body}</svg>`;
+
+function seeded(seed) { let s = seed; return () => (s = (s * 16807) % 2147483647) / 2147483647; }
+function gauss(r) { return Math.sqrt(-2 * Math.log(r() + 1e-9)) * Math.cos(2 * Math.PI * r()); }
+function cdf(x) { // Abramowitz & Stegun 26.2.17
+  const t = 1 / (1 + 0.2316419 * Math.abs(x));
+  const d = 0.3989423 * Math.exp(-x * x / 2);
+  const p = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274))));
+  return x > 0 ? 1 - p : p;
+}
+function call(S, K, r, v, T) {
+  if (T <= 0) return Math.max(S - K, 0);
+  const d1 = (Math.log(S / K) + (r + v * v / 2) * T) / (v * Math.sqrt(T));
+  return S * cdf(d1) - K * Math.exp(-r * T) * cdf(d1 - v * Math.sqrt(T));
+}
+const normal = (x, m, s) => Math.exp(-((x - m) ** 2) / (2 * s * s)) / (s * Math.sqrt(2 * Math.PI));
+
+const FIGS = {
+  bs() {
+    const X = s => 22 + (s - 60) / 80 * 158, Y = v => 102 - v / 45 * 92;
+    const curve = T => { const a = []; for (let s = 60; s <= 140; s += 2) a.push([X(s), Y(call(s, 100, 0.03, 0.2, T))]); return a; };
+    return svg(
+      pl([[22, 8], [22, 102], [182, 102]], "f-axis") +
+      pl(curve(0), "f-b") + pl(curve(0.25), "f-c") + pl(curve(1), "f-a") +
+      [60, 100, 140].map(s => tx(X(s), 112, s, "f-t", "middle")).join("") +
+      tx(26, 15, "prix du call") + tx(122, 52, "T = 1 an", "f-tt", "end") + tx(150, 92, "payoff", "f-t", "start"),
+      "Prix d’un call Black-Scholes selon le sous-jacent, à 1 an, 3 mois et à l’échéance");
+  },
+  pairs() {
+    const r = seeded(4217); let z = 0.4; const a = [], hits = [];
+    const X = i => 26 + i / 149 * 156, Y = v => 56 - Math.max(-3.2, Math.min(3.2, v)) * 15;
+    let armed = true;
+    for (let i = 0; i < 150; i++) {
+      z = 0.93 * z + 0.52 * gauss(r); a.push([X(i), Y(z)]);
+      if (Math.abs(z) > 2 && armed) { hits.push([X(i), Y(z)]); armed = false; }
+      if (Math.abs(z) < 0.5) armed = true;
+    }
+    return svg(
+      pl([[26, Y(2)], [182, Y(2)]], "f-c") + pl([[26, Y(-2)], [182, Y(-2)]], "f-c") + pl([[26, Y(0)], [182, Y(0)]], "f-axis") +
+      pl(a, "f-b") + hits.map(h => `<circle class="f-dot" cx="${h[0].toFixed(1)}" cy="${h[1].toFixed(1)}" r="2.6"/>`).join("") +
+      tx(22, Y(2) + 2.5, "+2σ", "f-t", "end") + tx(22, Y(-2) + 2.5, "−2σ", "f-t", "end") + tx(22, Y(0) + 2.5, "0", "f-t", "end") +
+      tx(104, 114, "z-score du spread", "f-t", "middle"),
+      "Illustration d’un z-score de spread avec bandes à plus ou moins deux sigmas et points d’entrée");
+  },
+  dcf() {
+    const W = [7, 7.5, 8, 8.5, 9], G = [1, 1.5, 2, 2.5, 3];
+    const val = (w, g) => 1 / (w - g), lo = val(9, 1), hi = val(7, 3);
+    let b = "";
+    W.forEach((w, i) => G.forEach((g, j) => {
+      const o = 0.08 + 0.82 * (val(w, g) - lo) / (hi - lo);
+      b += `<rect class="f-cell" x="${36 + j * 29}" y="${8 + i * 17.5}" width="27.5" height="16" fill-opacity="${o.toFixed(2)}"/>`;
+    }));
+    return svg(b + `<rect class="f-b" x="${36 + 2 * 29}" y="${8 + 2 * 17.5}" width="27.5" height="16"/>` +
+      tx(30, 55, "WACC", "f-t", "end") + tx(107, 113, "croissance terminale", "f-t", "middle"),
+      "Matrice de sensibilité de la valeur terminale au WACC et au taux de croissance");
+  },
+  wind() {
+    let b = ""; const bw = 6.6, X = i => 26 + i * 7.9, base = 100;
+    for (let i = 0; i < 20; i++) {
+      const cf = 72 - i * 0.9 - (i >= 15 ? 14 : 0);
+      b += `<rect class="f-bar" x="${X(i).toFixed(1)}" y="${(base - cf).toFixed(1)}" width="${bw}" height="${cf.toFixed(1)}"/>`;
+      if (i < 15) { const ds = cf / 1.35; b += `<rect class="f-cell" fill-opacity="0.75" x="${X(i).toFixed(1)}" y="${(base - ds).toFixed(1)}" width="${bw}" height="${ds.toFixed(1)}"/>`; }
+    }
+    return svg(b + pl([[24, 100], [186, 100]], "f-axis") +
+      [1, 5, 10, 15, 20].map(y => tx(X(y - 1) + bw / 2, 111, y, "f-t", "middle")).join("") +
+      tx(26, 16, "flux disponibles") + `<rect class="f-cell" fill-opacity="0.75" x="120" y="10" width="7" height="7"/>` + tx(130, 16, "dette"),
+      "Illustration des flux disponibles et du service de la dette sur 20 ans");
+  },
+  luck() {
+    const X = t => 12 + (t + 4.5) / 9 * 166, Y = d => 100 - d * 215;
+    const a = [], b = [];
+    for (let t = -4.5; t <= 4.5; t += 0.15) { a.push([X(t), Y(normal(t, 0, 1))]); b.push([X(t), Y(normal(t, -0.1, 1.45))]); }
+    const tail = [[X(2), 100]]; for (let t = 2; t <= 4.5; t += 0.15) tail.push([X(t), Y(normal(t, -0.1, 1.45))]); tail.push([X(4.5), 100]);
+    return svg(`<polygon class="f-fill" points="${pts(tail)}"/>` + pl(a, "f-b") + pl(b, "f-a") + pl([[12, 100], [178, 100]], "f-axis") +
+      tx(X(0) + 26, 22, "chance seule", "f-tt") + tx(X(2.3), 72, "fonds") + tx(95, 113, "t(α)", "f-t", "middle"),
+      "Illustration de la distribution des t-stats d’alpha des fonds face à une distribution de pure chance");
+  },
+  weskool() {
+    const box = (x, y, w, s, a) => `<rect class="${a ? "f-boxa" : "f-box"}" x="${x}" y="${y}" width="${w}" height="24" rx="3"/>` + tx(x + w / 2, y + 15, s, "f-tt", "middle");
+    const arrow = (x1, y1, x2, y2) => pl([[x1, y1], [x2, y2]], "f-axis") + pl([[x2 - 3, y2 - 2.5], [x2, y2], [x2 - 3, y2 + 2.5]], "f-axis");
+    return svg(box(4, 24, 52, "GitHub") + box(72, 24, 46, "test") + box(134, 24, 52, "prod", true) + box(112, 80, 74, "PostgreSQL") +
+      arrow(56, 36, 71, 36) + arrow(118, 36, 133, 36) + pl([[160, 48], [160, 79]], "f-axis") +
+      tx(30, 62, "branches", "f-t", "middle") + tx(4, 104, "Render"),
+      "Schéma de déploiement de WeSkool : GitHub, environnement de test, production et base PostgreSQL");
+  },
+  gauge() {
+    const cx = 95, cy = 88, R = 62, pt = d => [cx + R * Math.cos(d), cy + R * Math.sin(d)];
+    const arc = (a, b, c) => { const p = []; for (let t = a; t <= b + 0.001; t += (b - a) / 40) p.push(pt(t)); return pl(p, c); };
+    const a0 = Math.PI, a1 = 2 * Math.PI, v = a0 + (a1 - a0) * 0.78;
+    return svg(arc(a0, a1, "f-c") + `<g style="stroke-width:5">${arc(a0, v, "f-a")}</g>` +
+      tx(cx, cy - 12, "score", "f-tt", "middle") + tx(cx, cy + 2, "CV / offre", "f-t", "middle"),
+      "Jauge de score de correspondance entre un CV et une offre");
+  },
+  finlens() {
+    const rows = [["DCF", 62, 132], ["EV/EBITDA", 76, 120], ["P/E", 70, 112], ["52 sem.", 56, 138]];
+    const b = rows.map((r, i) => tx(46, 22 + i * 22, r[0], "f-t", "end") + `<rect class="f-range" x="${r[1]}" y="${13 + i * 22}" width="${r[2] - r[1]}" height="12"/>`).join("");
+    return svg(b + pl([[98, 6], [98, 100]], "f-c") + tx(98, 112, "cours", "f-t", "middle"),
+      "Illustration d’un football field de valorisation : DCF, multiples et plage de cours");
+  }
+};
+
+/* ---------- Croquis : tracés au stylo, avec un léger tremblement ---------- */
+function ink(points, cls, seed, amp = 1.1, ghost = true) {
+  const dense = [];
+  for (let i = 0; i < points.length - 1; i++) {
+    const [a, b] = [points[i], points[i + 1]];
+    const n = Math.max(1, Math.round(Math.hypot(b[0] - a[0], b[1] - a[1]) / 22));
+    for (let k = 0; k < n; k++) dense.push([a[0] + (b[0] - a[0]) * k / n, a[1] + (b[1] - a[1]) * k / n]);
+  }
+  dense.push(points[points.length - 1]);
+  const pass = (s, extra) => {
+    const r = seeded(s);
+    const p = dense.map(q => [q[0] + (r() - 0.5) * 2 * amp, q[1] + (r() - 0.5) * 2 * amp]);
+    let d = `M${p[0][0].toFixed(1)} ${p[0][1].toFixed(1)}`;
+    for (let i = 0; i < p.length - 1; i++) {
+      const p0 = p[i - 1] || p[i], p1 = p[i], p2 = p[i + 1], p3 = p[i + 2] || p2;
+      d += `C${(p1[0] + (p2[0] - p0[0]) / 6).toFixed(1)} ${(p1[1] + (p2[1] - p0[1]) / 6).toFixed(1)} ${(p2[0] - (p3[0] - p1[0]) / 6).toFixed(1)} ${(p2[1] - (p3[1] - p1[1]) / 6).toFixed(1)} ${p2[0].toFixed(1)} ${p2[1].toFixed(1)}`;
+    }
+    return `<path class="${cls} ${extra}" d="${d}"/>`;
+  };
+  return pass(seed, "") + (ghost && cls !== "ink-d" ? pass(seed * 7 + 13, "ghost") : "");
+}
+const hand = (x, y, s, a, anchor = "start") => `<text class="${a ? "hand-a" : "hand"}" x="${x}" y="${y}" text-anchor="${anchor}">${s}</text>`;
+const sk = (body, label) => `<svg viewBox="0 0 400 260" role="img" aria-label="${label}">${body}</svg>`;
+const arrowHead = (x, y, dx, dy, seed, cls = "ink") => ink([[x - dx * 11 - dy * 7, y - dy * 11 + dx * 7], [x, y], [x - dx * 11 + dy * 7, y - dy * 11 - dx * 7]], cls, seed, 0.5, false);
+
+const SKETCHES = {
+  curve: () => sk(
+    ink([[58, 30], [56, 214], [362, 216]], "ink", 11) +
+    ink([[78, 128], [130, 133], [190, 138], [260, 140], [340, 136]], "ink-d", 12) +
+    ink([[78, 182], [130, 156], [190, 118], [260, 86], [340, 62]], "ink-a", 13) +
+    ink([[130, 210], [130, 222]], "ink", 14, 0.4, false) + ink([[304, 210], [304, 222]], "ink", 15, 0.4, false) +
+    hand(130, 244, "2 ans", false, "middle") + hand(304, 244, "10 ans", false, "middle") +
+    hand(346, 160, "avant", false, "end") + hand(330, 50, "après", true, "end"),
+    "Croquis d’une courbe des taux qui se pentifie entre 2 ans et 10 ans"),
+  silence: () => {
+    const b = []; for (let t = 0; t <= 6.28; t += 0.35) b.push([150 + 92 * Math.cos(t), 78 + 50 * Math.sin(t)]);
+    return sk(ink(b, "ink", 21) + ink([[108, 122], [88, 160], [136, 128]], "ink", 22, 0.7) +
+      `<circle class="dot-ink" cx="122" cy="80" r="4"/><circle class="dot-ink" cx="150" cy="80" r="4"/><circle class="dot-ink" cx="178" cy="80" r="4"/>` +
+      hand(60, 186, "la Fed") +
+      ink([[120, 226], [190, 214], [260, 186], [310, 142], [360, 96]], "ink-a", 23) + arrowHead(360, 96, 0.73, -0.68, 24, "ink-a") +
+      hand(252, 234, "term premium", true),
+      "Croquis d’une bulle de parole vide au-dessus d’une prime de terme qui monte");
+  },
+  futures: () => {
+    let h = ""; for (let y = 88; y < 202; y += 12) h += ink([[176, y + 8], [228, y - 4]], "ink-h", 40 + y, 0.5, false);
+    return sk(ink([[66, 204], [350, 206]], "ink", 31) +
+      ink([[92, 204], [92, 150], [146, 150], [148, 204]], "ink", 32) +
+      ink([[172, 204], [172, 80], [232, 80], [232, 204]], "ink-a", 33) + h +
+      ink([[258, 204], [258, 170], [312, 170], [314, 204]], "ink", 34) +
+      hand(120, 232, "−25 pb", false, "middle") + hand(202, 232, "inchangé", true, "middle") + hand(286, 232, "+25 pb", false, "middle") +
+      hand(66, 44, "proba. implicite"),
+      "Croquis de trois barres de probabilité implicite selon la décision de la banque centrale");
+  },
+  oat: () => sk(
+    ink([[48, 196], [130, 190], [210, 182], [290, 186], [352, 176]], "ink", 41) +
+    ink([[48, 176], [130, 160], [210, 128], [290, 108], [352, 70]], "ink-a", 42) +
+    ink([[334, 90], [334, 164]], "ink", 43, 0.6, false) + arrowHead(334, 84, 0, -1, 44) + arrowHead(334, 170, 0, 1, 45) +
+    hand(322, 134, "spread", false, "end") + hand(250, 88, "OAT", true, "end") + hand(240, 214, "Bund"),
+    "Croquis du spread entre l’OAT et le Bund qui s’élargit"),
+  luck: () => {
+    const b1 = [], b2 = [], base = 210, g = (x, m, s, a) => a * Math.exp(-((x - m) ** 2) / (2 * s * s)); let h = "";
+    for (let x = 30; x <= 370; x += 10) { b1.push([x, base - g(x, 170, 44, 150)]); b2.push([x, base - g(x, 190, 78, 92)]); }
+    for (let x = 298; x < 366; x += 11) { const t = base - g(x, 190, 78, 92); h += ink([[x, base - 2], [x + 6, t + 2]], "ink-h", x, 0.4, false); }
+    return sk(ink([[24, 210], [376, 212]], "ink", 51) + ink(b1, "ink", 52, 0.8) + ink(b2, "ink-a", 53, 0.8) + h +
+      hand(170, 40, "chance", false, "middle") + hand(322, 132, "mérite ?", true, "middle") + ink([[322, 140], [330, 176]], "ink-a", 54, 0.5, false) + arrowHead(330, 180, 0.2, 1, 55, "ink-a"),
+      "Croquis de deux distributions de performance, chance et mérite, avec la queue droite hachurée");
+  },
+  journey: () => sk(
+    ink([[92, 206], [112, 130], [180, 74], [260, 58], [318, 86]], "ink-d", 61) +
+    `<circle class="dot-a" cx="92" cy="208" r="6"/><circle class="dot-a" cx="320" cy="90" r="6"/>` +
+    hand(108, 222, "Abidjan") + hand(306, 122, "Paris", false, "end") +
+    ink([[336, 150], [350, 96], [358, 40]], "ink", 62, 0.6) + ink([[380, 150], [366, 96], [358, 40]], "ink", 63, 0.6) +
+    ink([[343, 122], [373, 122]], "ink", 64, 0.5, false) + ink([[351, 92], [365, 92]], "ink", 65, 0.5, false) +
+    ink([[52, 208], [58, 176], [66, 146]], "ink", 66, 0.6) +
+    ink([[66, 146], [46, 142], [32, 156]], "ink", 67, 0.6) + ink([[66, 146], [88, 138], [100, 152]], "ink", 68, 0.6) +
+    ink([[66, 146], [52, 128], [36, 124]], "ink", 69, 0.6) + ink([[66, 146], [78, 124], [96, 118]], "ink", 70, 0.6),
+    "Croquis d’une ligne pointillée entre Abidjan et Paris, avec un palmier et la tour Eiffel")
+};
+
+/* ---------- Rendu ---------- */
+function rowHTML(p, full) {
+  const head = full ? p.title : `<a href="#projets">${p.title}</a>`;
+  return `<article class="row"><div class="thumb">${FIGS[p.fig]()}</div><div>
+    <h3>${head}</h3>
+    <p class="what">${p.what}</p><p class="where">${p.where}</p>
+    ${full && p.more ? `<p class="more">${p.more}</p>` : ""}</div></article>`;
+}
+function postHTML(p) {
+  return `<article class="post"><div class="sketch">${SKETCHES[p.sketch]()}</div>
+    <p class="cat">${p.cat}</p><h3>${p.title}</h3><p class="ex">${p.ex}</p><p class="meta">${p.meta}</p></article>`;
+}
+const fill = (id, html) => { document.getElementById(id).innerHTML = html; };
+fill("home-projects", PROJECTS.filter(p => p.home).map(p => rowHTML(p, false)).join(""));
+fill("proj-finance", PROJECTS.filter(p => p.group === "finance").map(p => rowHTML(p, true)).join(""));
+fill("proj-soft", PROJECTS.filter(p => p.group === "soft").map(p => rowHTML(p, true)).join(""));
+fill("home-posts", POSTS.filter(p => p.home).map(postHTML).join(""));
+fill("all-posts", POSTS.map(postHTML).join(""));
+
+/* Navigation */
+const views = ["accueil", "ecrits", "projets", "parcours"];
+function route() {
+  const h = location.hash.slice(1), v = views.includes(h) ? h : "accueil";
+  document.querySelectorAll("[data-page]").forEach(el => { el.hidden = el.id !== "v-" + v; });
+  document.querySelectorAll(".nav a").forEach(a => {
+    if (a.dataset.view === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+  });
+  window.scrollTo(0, 0);
+}
+addEventListener("hashchange", route);
+route();
+
+/* Copie de l'email */
+document.getElementById("copy").addEventListener("click", e => {
+  const btn = e.currentTarget, text = document.getElementById("mail").textContent;
+  const done = () => { btn.textContent = "copié"; setTimeout(() => { btn.textContent = "copier"; }, 1600); };
+  const pick = () => { const s = getSelection(), r = document.createRange(); r.selectNodeContents(document.getElementById("mail")); s.removeAllRanges(); s.addRange(r); btn.textContent = "sélectionné"; };
+  if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, pick); else pick();
+});
+</script>
+</body>
+</html>

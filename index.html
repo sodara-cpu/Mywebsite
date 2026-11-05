@@ -176,25 +176,26 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 @keyframes draw { from { clip-path: inset(-50% 100% -50% 0); } to { clip-path: inset(-50% -2% -50% 0); } }
 
 
-/* Courbe de parcours */
-.traj { margin: 0; background: var(--paper); border-radius: var(--r-l); overflow: hidden; }
-.traj svg { display: block; width: 100%; height: auto; }
-.traj-m { display: none !important; }
+/* Courbe de parcours et présentation */
+.intro { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: var(--s-7); align-items: center; }
+.intro-text { display: grid; gap: var(--s-4); min-width: 0; max-width: 38em; font-family: var(--serif); }
+.intro-text p { text-wrap: pretty; }
+.intro-text p:first-child { color: var(--fg); font-size: clamp(1.45rem, 2.5vw, 1.9rem); line-height: 1.26; letter-spacing: -0.014em; }
+.intro-text p:last-child { color: var(--muted); font-size: clamp(1.15rem, 1.8vw, 1.35rem); font-style: italic; line-height: 1.35; }
+.traj { min-width: 0; margin: 0; }
+.traj svg { display: block; width: 100%; height: auto; overflow: visible; }
 .traj-main { fill: none; stroke: var(--link); stroke-width: 3.5; stroke-linecap: round; }
 .traj-ghost { fill: none; stroke: var(--link); stroke-width: 1.2; stroke-linecap: round; opacity: 0.4; }
-.traj-dot { fill: var(--link); stroke: var(--paper); stroke-width: 3; }
-.traj-name { fill: var(--fg); font: 700 31px var(--hand); }
-.traj-sub { fill: var(--muted); font: 500 15px var(--body); }
-.traj-note { fill: var(--muted); font: 700 27px var(--hand); }
-.traj-name-m { font-size: 26px; }
-.traj-sub-m { font-size: 13px; }
-.traj-x { animation: traj-x 1100ms var(--ease) 200ms both; }
-.traj-y { animation: traj-y 1100ms var(--ease) 200ms both; }
-@keyframes traj-x { from { clip-path: inset(-5% 100% -5% -5%); } to { clip-path: inset(-5% -5% -5% -5%); } }
-@keyframes traj-y { from { clip-path: inset(100% -5% -5% -5%); } to { clip-path: inset(-5% -5% -5% -5%); } }
-@media (max-width: 760px) {
-  .traj-d { display: none !important; }
-  .traj-m { display: block !important; }
+.traj-dot { fill: var(--link); stroke: var(--bg); stroke-width: 3; }
+.traj-name { fill: var(--fg); font: 700 26px var(--hand); }
+.traj-line { animation: traj 1100ms var(--ease) 200ms both; }
+@keyframes traj { from { clip-path: inset(100% -5% -5% -5%); } to { clip-path: inset(-5% -5% -5% -5%); } }
+@media (max-width: 900px) {
+  .intro { grid-template-columns: 240px minmax(0, 1fr); gap: var(--s-6); }
+}
+@media (max-width: 620px) {
+  .intro { grid-template-columns: minmax(0, 1fr); gap: var(--s-5); }
+  .traj { max-width: 280px; }
 }
 
 /* Logos */
@@ -379,26 +380,11 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
       <h1><span class="hl">Je lis les marchés, <img class="hero-photo" src="christian-sodara.jpg" alt="Portrait de Christian Sodara" width="600" height="600"></span> <span class="hl">je code mes modèles</span> <span class="hl">et <span class="hero-write">j’écris<svg viewBox="0 0 240 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3 12 C42 5 78 15 118 9 C158 4 196 14 237 6"></path></svg></span> ce que j’y trouve.</span></h1>
     </section>
 
-    <section class="wide"><figure class="traj" role="img" aria-label="Courbe de parcours : ESATIC à Abidjan, informatique et télécoms ; Willis Towers Watson, Business Analyst ; DataScientest, gestion de projets ; Bpifrance, reporting et pilotage ; SKEMA à Paris, Corporate Finance et Quant."><svg class="traj-d" viewBox="0 -44 1120 384" aria-hidden="true"><g class="traj-line traj-x"><path class="traj-ghost" d="M63 265 C242 258 343 240 472 193 C603 143 703 132 812 99 C903 67 1003 64 1058 55"></path><path class="traj-main" d="M60 262 C240 262 340 236 470 190 C600 146 700 128 810 96 C900 70 1000 60 1060 52"></path></g><circle class="traj-dot" cx="60" cy="262" r="7"></circle><text class="traj-name" x="50" y="302" text-anchor="start">ESATIC, Abidjan</text><text class="traj-sub" x="50" y="324" text-anchor="start">Informatique et télécoms</text><circle class="traj-dot" cx="321" cy="235" r="7"></circle><text class="traj-name" x="317" y="275" text-anchor="start">Willis Towers Watson</text><text class="traj-sub" x="317" y="297" text-anchor="start">Business Analyst</text><circle class="traj-dot" cx="580" cy="156" r="7"></circle><text class="traj-name" x="576" y="196" text-anchor="start">DataScientest</text><text class="traj-sub" x="576" y="218" text-anchor="start">Gestion de projets</text><circle class="traj-dot" cx="810" cy="96" r="7"></circle><text class="traj-name" x="806" y="136" text-anchor="start">Bpifrance</text><text class="traj-sub" x="806" y="158" text-anchor="start">Reporting et pilotage</text><circle class="traj-dot" cx="1060" cy="52" r="7"></circle><text class="traj-name" x="1070" y="4" text-anchor="end">SKEMA, Paris</text><text class="traj-sub" x="1070" y="26" text-anchor="end">Corporate Finance et Quant</text><text class="traj-note" x="50" y="14">Mon parcours, en une courbe</text></svg><svg class="traj-m" viewBox="0 0 390 440" aria-hidden="true"><g class="traj-line traj-y"><path class="traj-main" d="M40 390 C44 350 52 330 62 305 C72 280 82 250 92 220 C102 190 114 165 130 135 C146 105 160 80 180 50"></path></g><circle class="traj-dot" cx="40" cy="390" r="6"></circle><text class="traj-name traj-name-m" x="58" y="393">ESATIC, Abidjan</text><text class="traj-sub traj-sub-m" x="58" y="411">Informatique et télécoms</text><circle class="traj-dot" cx="62" cy="305" r="6"></circle><text class="traj-name traj-name-m" x="80" y="308">Willis Towers Watson</text><text class="traj-sub traj-sub-m" x="80" y="326">Business Analyst</text><circle class="traj-dot" cx="92" cy="220" r="6"></circle><text class="traj-name traj-name-m" x="110" y="223">DataScientest</text><text class="traj-sub traj-sub-m" x="110" y="241">Gestion de projets</text><circle class="traj-dot" cx="130" cy="135" r="6"></circle><text class="traj-name traj-name-m" x="148" y="138">Bpifrance</text><text class="traj-sub traj-sub-m" x="148" y="156">Reporting et pilotage</text><circle class="traj-dot" cx="180" cy="50" r="6"></circle><text class="traj-name traj-name-m" x="198" y="53">SKEMA, Paris</text><text class="traj-sub traj-sub-m" x="198" y="71">Corporate Finance et Quant</text></svg></figure></section>
-
-    <section class="col stack">
-      <div class="sec"><h2>Ce qu’on m’a confié</h2></div>
-      <div class="trust">
-        <article class="trust-item">
-          <div class="trust-logo"><img class="logo-gs" src="logo-gras-savoye.png" alt="Gras Savoye Willis Towers Watson" width="720" height="466"></div>
-          <p class="what">Le déploiement d’une plateforme logicielle de 2&nbsp;M$, et l’analyse de données sur 4&nbsp;pays.</p>
-          <p class="where">Business Analyst, 2 ans</p>
-        </article>
-        <article class="trust-item">
-          <div class="trust-logo"><img class="logo-bpi" src="logo-bpifrance.png" alt="Bpifrance" width="674" height="194"></div>
-          <p class="what">Les reportings et les tableaux de bord KPI de la direction.</p>
-          <p class="where">Assistant chef de projet, stage</p>
-        </article>
-        <article class="trust-item">
-          <div class="trust-logo"><img class="logo-liora" src="logo-liora.png" alt="Liora, ex DataScientest" width="884" height="416"></div>
-          <p class="what">Un stage dans la formation en data science.</p>
-          <p class="where">Stage</p>
-        </article>
+    <section class="wide intro">
+      <figure class="traj" role="img" aria-label="Courbe de parcours : ESATIC à Abidjan, Willis Towers Watson, DataScientest, Bpifrance, puis SKEMA à Paris."><svg viewBox="0 0 340 316" aria-hidden="true"><g class="traj-line"><path class="traj-ghost" d="M22 298 C26 264 34 251 44 234 C54 208 64 192 74 170 C84 144 96 128 112 106 C128 78 142 64 158 42"></path><path class="traj-main" d="M20 296 C24 265 32 248 42 232 C52 210 62 190 72 168 C82 146 94 126 110 104 C126 80 140 62 160 40"></path></g><circle class="traj-dot" cx="20" cy="296" r="6"></circle><text class="traj-name" x="37" y="304">ESATIC, Abidjan</text><circle class="traj-dot" cx="42" cy="232" r="6"></circle><text class="traj-name" x="59" y="240">Willis Towers Watson</text><circle class="traj-dot" cx="72" cy="168" r="6"></circle><text class="traj-name" x="89" y="176">DataScientest</text><circle class="traj-dot" cx="110" cy="104" r="6"></circle><text class="traj-name" x="127" y="112">Bpifrance</text><circle class="traj-dot" cx="160" cy="40" r="6"></circle><text class="traj-name" x="177" y="48">SKEMA, Paris</text></svg></figure>
+      <div class="intro-text">
+        <p>Issu d’une formation technique en informatique et télécoms, passé par Willis Towers Watson, DataScientest et Bpifrance, je poursuis le Programme Grande École de SKEMA Business School et prépare le CFA Level I.</p>
+        <p>Je m’intéresse aux marchés financiers, à la valorisation d’entreprises et à la modélisation quantitative avec Python.</p>
       </div>
     </section>
 
@@ -438,6 +424,23 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 
   <div class="page" id="v-parcours" data-page hidden>
     <section class="col"><h1 class="title-page">Parcours</h1></section>
+    <section class="col stack">
+      <div class="sec"><h2>Ce qu’on m’a confié</h2></div>
+      <div class="trust">
+        <article class="trust-item">
+          <div class="trust-logo"><img class="logo-gs" src="logo-gras-savoye.png" alt="Gras Savoye Willis Towers Watson" width="720" height="466"></div>
+          <p class="what">Le déploiement d’une plateforme logicielle de 2&nbsp;M$.</p>
+        </article>
+        <article class="trust-item">
+          <div class="trust-logo"><img class="logo-bpi" src="logo-bpifrance.png" alt="Bpifrance" width="674" height="194"></div>
+          <p class="what">Les tableaux de bord de la direction.</p>
+        </article>
+        <article class="trust-item">
+          <div class="trust-logo"><img class="logo-liora" src="logo-liora.png" alt="Liora, ex DataScientest" width="884" height="416"></div>
+          <p class="what">La gestion de projets.</p>
+        </article>
+      </div>
+    </section>
     <section class="col stack">
       <div class="sec"><h2>Expérience</h2></div>
       <div class="tl">

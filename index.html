@@ -1,554 +1,1780 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Christian Sodara</title>
-<meta name="description" content="Christian Sodara, marchés financiers, Paris. Parcours, projets et écrits.">
-<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Christian Sodara · Corporate Finance &amp; Financial Modelling</title>
+<meta name="description" content="Christian Sodara : finance d’entreprise, modélisation financière, valorisation et outils data. Parcours, projets détaillés, analyses et veille des marchés.">
+<link rel="canonical" href="https://sodara-cpu.github.io/Mywebsite/">
+<meta property="og:type" content="profile">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Christian Sodara">
+<meta property="og:title" content="Christian Sodara · J’analyse les enjeux financiers. Je construis les outils pour y répondre.">
+<meta property="og:description" content="Corporate finance, modélisation financière et data : projets détaillés, analyses et veille des marchés.">
+<meta property="og:url" content="https://sodara-cpu.github.io/Mywebsite/">
+<meta property="og:image" content="https://sodara-cpu.github.io/Mywebsite/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Christian Sodara, portrait professionnel, et sa phrase de présentation">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&family=Caveat:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&amp;display=swap">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Christian Sodara",
+  "url": "https://sodara-cpu.github.io/Mywebsite/",
+  "image": "https://sodara-cpu.github.io/Mywebsite/christian-portrait.jpg",
+  "description": "Corporate finance, modélisation financière et data & technologie.",
+  "affiliation": { "@type": "CollegeOrUniversity", "name": "SKEMA Business School" },
+  "alumniOf": [{ "@type": "CollegeOrUniversity", "name": "ESATIC" }],
+  "knowsAbout": ["Corporate finance", "Financial modelling", "DCF valuation", "Backtesting", "Python", "Business analysis"],
+  "address": { "@type": "PostalAddress", "addressLocality": "Paris", "addressCountry": "FR" },
+  "sameAs": ["https://github.com/sodara-cpu"]
+}
+</script>
 <style>
-/* Layout: page blanche à colonne étroite (photo, bio, liste à vignettes techniques) qui s'élargit pour une grille d'articles illustrés de graphiques dessinés à la main */
+/* Blanc, accent bleu, Jakarta pour l'interface, Newsreader réservé au contenu éditorial. */
 :root {
-  --bg: #ffffff;
-  --fg: #1c1f24;
-  --muted: #666c76;
-  --line: #e3e5e9;
-  --paper: #f4f3ef;
-  --link: #2b67d6;
-  --bar: #d5d9e0;
-  --body: "Schibsted Grotesk", "Helvetica Neue", Arial, sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
-  --hand: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  --paper: #FFFFFF;
+  --subtle: #F5F6F8;
+  --photo: #F4F2F7;
+  --surface: #FFFFFF;
+  --ink: #17191E;
+  --body: #3A3F47;
+  --muted: #68717D;
+  --line: #E5E8EC;
+  --accent: #245BE6;
+  --accent-soft: #EAF0FD;
+  --draft: #7F5800;
+  --draft-bg: #FFF8E6;
+  --sans: "Plus Jakarta Sans", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --wrap: 1200px;
+  --r: 14px;
+  color-scheme: light;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #12151a; --fg: #e9ebee; --muted: #9aa1ac; --line: #2a2f37;
-    --paper: #1b1f26; --link: #7ea9f6; --bar: #363c46; color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #12151a; --fg: #e9ebee; --muted: #9aa1ac; --line: #2a2f37;
-  --paper: #1b1f26; --link: #7ea9f6; --bar: #363c46; color-scheme: dark;
-}
-
 * { box-sizing: border-box; }
-body {
-  background: var(--bg); color: var(--fg);
-  font-family: var(--body); font-size: 17px; line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
+html { scroll-behavior: smooth; }
+body { position: relative; margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+h1, h2, h3 { text-wrap: balance; margin: 0; letter-spacing: -0.02em; }
+p { margin: 0; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 clamp(16px, 4vw, 32px); }
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px; }
+.num { font-variant-numeric: tabular-nums; }
+.skip { position: absolute; left: -999px; top: 8px; z-index: 50; background: var(--ink); color: #fff; padding: 8px 14px; border-radius: 8px; text-decoration: none; }
+.skip:focus { left: 8px; }
+
+/* Brouillons : visibles en aperçu et en local, jamais sur le site en ligne */
+.draft { border: 1px dashed var(--draft); background: var(--draft-bg); color: var(--draft); border-radius: 8px; padding: 10px 12px; font-size: 14px; line-height: 1.5; }
+.draft::before { content: "À compléter · non publié"; display: block; font-weight: 700; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
+.draft ul { margin: 6px 0 0; padding-left: 18px; display: grid; gap: 3px; }
+body:not(.show-drafts) .draft, body:not(.show-drafts) .draft-only { display: none !important; }
+
+/* En-tête : capsule flottante */
+.top { position: sticky; top: 12px; z-index: 20; margin-top: 16px; padding: 0 16px; }
+.capsule { max-width: 1120px; margin: 0 auto; padding: 5px 5px 5px 22px; display: flex; align-items: center; justify-content: space-between; gap: 8px 24px;
+  background: rgba(255, 255, 255, 0.8); -webkit-backdrop-filter: blur(12px) saturate(140%); backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid var(--line); border-radius: 999px; box-shadow: 0 1px 2px rgba(22, 25, 30, .05), 0 6px 20px rgba(22, 25, 30, .06); transition: box-shadow .24s ease; }
+.top.scrolled .capsule { box-shadow: 0 1px 2px rgba(22, 25, 30, .06), 0 12px 32px rgba(22, 25, 30, .11); }
+.brand { color: var(--ink); font-size: 19px; font-weight: 800; letter-spacing: -0.025em; text-decoration: none; }
+.brand:hover { color: var(--accent); }
+.nav { display: flex; align-items: center; gap: 2px; }
+.nav a { padding: 9px 16px; border-radius: 999px; color: #2F343B; font-size: 15px; font-weight: 500; line-height: 1.3; text-decoration: none; transition: background-color .14s ease, color .14s ease, transform .14s ease; }
+.nav a:hover { background: rgba(22, 25, 30, 0.055); color: var(--ink); }
+.nav a:active { transform: scale(0.97); }
+.nav a[aria-current="page"], .nav a[aria-current="page"]:hover { background: var(--accent); color: #fff; box-shadow: 0 1px 2px rgba(29, 95, 224, .35); }
+
+/* Boutons et liens */
+.btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 700; font-size: 15px; padding: 11px 18px; border-radius: 999px; border: 1px solid var(--ink); background: var(--ink); color: #fff; cursor: pointer; font-family: inherit; transition: transform .15s, background .15s, border-color .15s; }
+.btn:hover { transform: translateY(-1px); background: #000; }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn.ghost:hover { border-color: var(--ink); background: var(--surface); }
+.btn.small { padding: 8px 14px; font-size: 14px; }
+.link { font-weight: 700; font-size: 15px; text-decoration: none; color: var(--ink); background-image: linear-gradient(var(--accent), var(--accent)); background-size: 0% 2px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size .25s; padding-bottom: 2px; }
+.link:hover { background-size: 100% 2px; }
+.link::after { content: " →"; color: var(--accent); }
+
+/* Sections */
+section { padding: 52px 0; }
+section + section { border-top: 1px solid var(--line); }
+.sec-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 26px; flex-wrap: wrap; }
+.sec-head .sub { color: var(--muted); font-size: 16px; margin-top: 8px; max-width: 62ch; }
+.eyebrow { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+h2 { font-size: clamp(28px, 3vw, 38px); line-height: 1.12; font-weight: 800; }
+h3 { font-size: clamp(18px, 1.7vw, 21px); line-height: 1.28; font-weight: 700; }
+.lede { font-size: clamp(17px, 1.4vw, 19px); line-height: 1.6; color: var(--body); max-width: 60ch; }
+.pill { display: inline-block; font-size: 12px; font-weight: 700; padding: 2px 9px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); white-space: nowrap; }
+.pill.grey { background: #EEF0F2; color: #4A515B; }
+.pill.ok { background: #E7F4EC; color: #1E6B3E; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.chips.flat { margin: 0; }
+.chip { font-size: 12.5px; font-weight: 600; color: #4A515B; border: 1px solid var(--line); border-radius: 6px; padding: 2px 8px; }
+
+/* Hero */
+.hero { padding: 22px 0 18px; border-top: 0; }
+.hero .grid { align-items: center; }
+.hero-text { grid-column: span 7; }
+.hero .eyebrow { font-size: 12.5px; letter-spacing: 0.1em; }
+.hero h1 { font-size: clamp(32px, 3.5vw, 47px); line-height: 1.08; font-weight: 800; margin: 10px 0 16px; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero .lede { margin-bottom: 22px; font-size: 17px; }
+.ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+.hero-photo { grid-column: 8 / span 5; margin: 0; position: relative; background: var(--photo); border-radius: 22px; overflow: hidden; }
+.hero-photo img { width: 100%; height: 390px; object-fit: cover; object-position: 50% 12%; }
+.hero-photo figcaption { position: absolute; left: 14px; bottom: 14px; background: rgba(255, 255, 255, .92); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-radius: 999px; padding: 6px 14px; font-size: 13px; color: var(--muted); }
+.hero-photo figcaption b { color: var(--ink); }
+
+/* Piliers */
+.pillars { padding: 4px 0 18px; border-top: 0; }
+.pillar-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.pillar { display: flex; gap: 12px; align-items: flex-start; text-decoration: none; padding: 12px 16px; border: 1px solid var(--line); border-radius: 12px; transition: border-color .2s, background-color .2s; }
+.pillar:hover { border-color: #C9D3E6; background: #FAFBFD; }
+.pillar svg { width: 20px; height: 20px; flex: none; margin-top: 2px; fill: none; stroke: var(--accent); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.pillar b { display: block; font-size: 14px; font-weight: 800; letter-spacing: .02em; }
+.pillar b::after { content: " →"; color: var(--accent); }
+.pillar span { display: block; font-size: 14px; color: var(--muted); line-height: 1.45; }
+.pillar .more { color: var(--accent); font-weight: 700; font-size: 13px; margin-top: 4px; }
+
+/* Repères */
+.marks { padding: 0 0 8px; border-top: 0; }
+.marks-row { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.mark { padding: 10px 16px; display: flex; align-items: center; gap: 14px; text-decoration: none; transition: background-color .2s; }
+.mark + .mark { border-left: 1px solid var(--line); }
+.mark:hover { background: #FAFBFD; }
+.mark .lz { width: 70px; height: 36px; flex: none; display: flex; align-items: center; justify-content: center; }
+.mark b { display: block; font-size: 14px; font-weight: 800; line-height: 1.3; }
+.mark span { display: block; font-size: 12.5px; color: var(--muted); line-height: 1.35; }
+.logo { width: auto; max-width: 70px; filter: brightness(0); opacity: .5; transition: filter .25s, opacity .25s; }
+.mark:hover .logo, .tl:hover .tl-logo { filter: none; opacity: 1; }
+.l-wtw { height: 20px; } .l-bpi { height: 22px; } .l-liora { height: 34px; }
+.wordmark { font-weight: 800; font-size: 17px; letter-spacing: 0.12em; color: #17191E; opacity: .5; transition: opacity .25s, color .25s; }
+.mark:hover .wordmark { opacity: 1; color: #0A2D6E; }
+
+/* Bande de preuves : expérience, formation, projets */
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.creds { padding: 6px 0 4px; border-top: 0; }
+.cred-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.cred-row > .cred { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 18px 24px 18px 0; display: flex; flex-direction: column; }
+.cred-row > .cred + .cred { padding-left: 24px; border-left: 1px solid var(--line); }
+.cred-k { font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+.cred-logos { display: flex; align-items: center; gap: 22px; height: 40px; margin: 8px 0 10px; flex-wrap: wrap; }
+.cred-logos a { display: flex; align-items: center; text-decoration: none; border-radius: 6px; }
+.cred-logos a:hover .logo { filter: none; opacity: 1; }
+.cred-logos a:hover .wordmark { opacity: 1; color: #0A2D6E; }
+.cred-tag { font-size: 12.5px; font-weight: 700; color: #4A515B; background: var(--subtle); border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; white-space: nowrap; }
+.cred-t { font-size: 15px; line-height: 1.5; color: var(--muted); }
+.cred-t b { color: var(--ink); font-weight: 700; }
+.cred-go { margin-top: auto; padding-top: 10px; font-size: 13.5px; font-weight: 700; color: var(--ink); text-decoration: none; }
+.cred-go::after { content: " →"; color: var(--accent); transition: margin .2s; }
+.cred-go:hover { color: var(--accent); }
+.cred .logo { max-width: none; }
+.cred .l-wtw { height: 19px; } .cred .l-bpi { height: 21px; } .cred .l-liora { height: 30px; }
+.cred .l-skema { height: 21px; }
+.tl-logo.skema { height: 18px; }
+@media (max-width: 900px) {
+  .cred-row { grid-template-columns: 1fr; }
+  .cred-row > .cred { padding: 16px 0; border-bottom: 0; }
+  .cred-row > .cred + .cred { padding-left: 0; border-left: 0; }
+  .cred-row > .cred:last-child { border-bottom: 1px solid var(--line); }
 }
-a { color: var(--link); text-decoration: none; }
-a:hover { text-decoration: underline; text-underline-offset: 3px; }
-a:focus-visible, button:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; border-radius: 2px; }
-h1, h2, h3, p { margin: 0; }
 
-.top { border-bottom: 1px solid var(--line); }
-.top-in {
-  max-width: 1152px; margin-inline: auto;
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
-  padding-block: 18px;
-  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 28px;
-}
-.brand { color: var(--fg); font-weight: 700; }
-.nav { display: flex; flex-wrap: wrap; gap: 4px 24px; }
-.nav a { color: var(--fg); }
-.nav a[aria-current="page"] { color: var(--link); }
+/* Cartes projets */
+.sel { padding-top: 34px; border-top: 0; }
+.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.cards.four { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px 14px 18px; display: flex; flex-direction: column; gap: 14px; text-decoration: none; transition: border-color .2s, transform .2s, box-shadow .2s; }
+.card:hover { border-color: #C9D3E6; transform: translateY(-2px); box-shadow: 0 10px 30px -18px rgba(23, 25, 30, .35); }
+.card .fig { background: var(--subtle); border-radius: 10px; padding: 14px 20px; aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; }
+.card .fig svg { width: 100%; height: 100%; }
+.card .txt { padding: 0 6px; display: flex; flex-direction: column; flex: 1; }
+.card .meta { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
+.card h3 { margin-bottom: 6px; }
+.card p { font-size: 15px; color: var(--body); line-height: 1.5; }
+.card .go { margin-top: auto; padding-top: 14px; display: inline-flex; align-self: flex-start; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; color: var(--ink); }
+.card .go::after { content: "→"; color: var(--accent); transition: transform .2s; }
+.card:hover .go::after { transform: translateX(3px); }
+.cards.four .card .chips { display: none; }
 
-.page {
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
-  padding-block: 44px 72px;
-  display: grid; gap: 56px;
-}
-.col { width: 100%; max-width: 760px; margin-inline: auto; min-width: 0; }
-.wide { width: 100%; max-width: 1120px; margin-inline: auto; min-width: 0; }
-.stack { display: grid; gap: 22px; }
+/* Figures calculées */
+svg text { font-family: var(--sans); }
+.f-axis { fill: none; stroke: #9AA2AD; stroke-width: 1; }
+.f-a { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; }
+.f-b { fill: none; stroke: var(--ink); stroke-width: 1.4; stroke-linejoin: round; }
+.f-c { fill: none; stroke: #B7BEC8; stroke-width: 1; stroke-dasharray: 3 3; }
+.f-t { fill: var(--muted); font-size: 8px; }
+.f-tt { fill: var(--ink); font-size: 8px; font-weight: 700; }
+.f-dot { fill: var(--accent); }
+.f-cell { fill: var(--accent); }
+.f-bar { fill: #D4DCEB; }
+.f-fill { fill: var(--accent); fill-opacity: .15; }
+.f-range { fill: var(--accent); fill-opacity: .7; }
+.f-box { fill: var(--surface); stroke: #9AA2AD; }
+.f-boxa { fill: var(--accent-soft); stroke: var(--accent); }
 
-/* En-tête de profil */
-.head { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 36px; align-items: center; }
-.portrait {
-  aspect-ratio: 1; max-width: 100%; border-radius: 6px; overflow: hidden;
-  background: var(--paper); color: var(--muted);
-  display: grid; place-items: center;
-}
-.portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.id { text-align: center; display: grid; gap: 8px; justify-items: center; }
-.id h1 { font-size: clamp(2.5rem, 7vw, 3.4rem); font-weight: 400; line-height: 1.08; letter-spacing: -0.015em; text-wrap: balance; }
-.id .tag { font-weight: 700; }
-.mail { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 2px 10px; color: var(--muted); }
-.mail span { user-select: all; overflow-wrap: anywhere; }
-.mail button {
-  font: inherit; font-size: 0.82em; color: var(--link); background: none; border: 0; padding: 0; cursor: pointer;
-}
-.mail button:hover { text-decoration: underline; text-underline-offset: 3px; }
+/* Tuiles de domaines */
+.dom-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin: 40px 0 14px; }
+.dom-head .eyebrow { margin: 0; }
+.tiles { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+.tile { --c: var(--accent); background: var(--c); color: #fff; border: 0; border-radius: 10px; min-height: 124px; padding: 18px 14px 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; text-align: center; text-decoration: none; font: inherit; cursor: pointer; transition: transform .18s, box-shadow .18s, opacity .18s, filter .18s; }
+.tile:hover { transform: translateY(-3px); box-shadow: 0 14px 28px -16px var(--c); filter: brightness(1.08); }
+.tile svg { width: 34px; height: 34px; fill: none; stroke: #fff; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; margin-bottom: 8px; }
+.tile b { font-size: 16px; font-weight: 700; line-height: 1.25; }
+.tile span { font-size: 12.5px; color: rgba(255, 255, 255, .92); }
+.t-valo { --c: #0B1F4D; } .t-marches { --c: #245BE6; } .t-pf { --c: #4338CA; } .t-ba { --c: #0F766E; } .t-recherche { --c: #334155; }
+.tiles-filter { margin-top: 24px; }
+.tiles-filter.has-sel .tile[aria-pressed="false"] { opacity: .38; }
+.tile[aria-pressed="true"] { box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--c); }
+.tiles-all { margin-top: 14px; }
+.link-btn { background: none; border: 0; padding: 0; font: inherit; font-size: 14px; font-weight: 700; color: var(--accent); cursor: pointer; }
+.link-btn:hover { text-decoration: underline; }
+@media (max-width: 900px) { .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } .tiles > :last-child:nth-child(odd) { grid-column: 1 / -1; } .tile { min-height: 108px; } .tile b { font-size: 14.5px; } }
 
-.bio { display: grid; gap: 14px; }
-.seek { color: var(--fg); font-weight: 500; }
+/* De l'analyse à l'exécution */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 2px solid var(--ink); }
+.step { padding: 22px 24px 4px 0; display: flex; flex-direction: column; }
+.step + .step { padding-left: 24px; border-left: 1px solid var(--line); }
+.step .n { font-size: 14px; font-weight: 800; color: var(--accent); margin-bottom: 10px; display: block; }
+.step h3 { margin-bottom: 8px; }
+.step p { font-size: 15.5px; color: var(--body); }
+.step .ex { margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--line); font-size: 14.5px; color: var(--muted); text-decoration: none; display: block; }
+.step .ex b { display: block; color: var(--ink); font-size: 14px; margin-bottom: 2px; }
+.step .ex:hover b { color: var(--accent); }
 
-/* Titres de section */
-.sec { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 18px; }
-.sec h2 { font-size: 1.05rem; font-weight: 700; }
-.sec a { font-size: 0.94rem; }
-.title-page { font-size: clamp(1.8rem, 5vw, 2.4rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; }
-.lede { color: var(--muted); max-width: 62ch; }
+/* Veille */
+.veille { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; border-top: 1px solid var(--line); }
+.v-item { display: grid; grid-template-columns: 110px 64px minmax(0, 1fr); gap: 16px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--line); text-decoration: none; }
+.v-item time { font-size: 13.5px; color: var(--muted); font-weight: 600; }
+.v-item span.t { font-weight: 600; font-size: 15.5px; line-height: 1.45; }
+.v-item:hover span.t { color: var(--accent); }
+.v-item span.t::after { content: " ↗"; color: var(--muted); font-weight: 400; }
+.v-foot { font-size: 13px; color: var(--muted); margin-top: 12px; }
+.v-empty { border: 1px solid var(--line); border-radius: var(--r); padding: 22px; background: var(--subtle); display: flex; gap: 16px; align-items: flex-start; }
+.v-empty svg { width: 22px; height: 22px; flex: none; fill: none; stroke: var(--muted); stroke-width: 1.6; stroke-linecap: round; }
+.v-empty b { display: block; margin-bottom: 4px; }
+.v-empty p { font-size: 15px; color: var(--body); }
+.v-empty a { font-weight: 700; color: var(--accent); }
 
-/* Liste à vignettes */
-.list { display: grid; gap: 32px; }
-.row { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 28px; align-items: start; }
-.thumb svg { width: 100%; height: auto; display: block; }
-.row h3 { font-size: 1.08rem; font-weight: 500; line-height: 1.35; }
-.row p { line-height: 1.5; }
-.row .what { margin-top: 3px; }
-.row .where { color: var(--muted); font-size: 0.94rem; margin-top: 3px; }
-.row .more { margin-top: 8px; font-size: 0.97rem; }
+/* Écrits */
+.posts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.post { text-decoration: none; display: flex; flex-direction: column; gap: 10px; }
+.cover { aspect-ratio: 16 / 9; border-radius: 12px; background: var(--subtle); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; padding: 14px 22px; overflow: hidden; }
+.cover svg { width: 100%; height: 100%; }
+.cover.typo { justify-content: flex-start; align-items: flex-end; background: linear-gradient(135deg, #F5F6F8 0%, #EAF0FD 100%); }
+.cover.typo span { font-family: var(--serif); font-size: 30px; line-height: 1.05; color: var(--accent); letter-spacing: -0.01em; }
+.post .cat { font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); margin-top: 4px; }
+.post h3 { font-family: var(--serif); font-weight: 500; font-size: 23px; letter-spacing: -0.01em; transition: color .15s; }
+.post:hover h3 { color: var(--accent); }
+.post p { font-size: 15px; color: var(--body); }
+.post .meta { font-size: 13px; color: var(--muted); margin-top: auto; }
+.post-static h3 { cursor: default; }
+.post-static:hover h3 { color: inherit; }
+body.show-drafts .post-draft .cover { outline: 2px dashed var(--draft); outline-offset: -2px; }
 
-/* Grille d'articles */
-.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 44px 34px; }
-.post { display: grid; align-content: start; gap: 8px; min-width: 0; }
-.sketch { background: var(--paper); aspect-ratio: 400 / 260; max-width: 100%; margin-bottom: 8px; color: var(--fg); }
-.sketch svg { width: 100%; height: 100%; display: block; }
-.cat { color: var(--muted); font-size: 0.92rem; font-weight: 500; }
-.post h3 { font-size: 1.42rem; font-weight: 800; line-height: 1.16; letter-spacing: -0.018em; text-wrap: balance; }
-.ex { line-height: 1.5; }
-.meta { color: var(--muted); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+/* Événements & engagements */
+.events { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 24px; align-items: start; }
+.event-photo { margin: 0; border-radius: var(--r); overflow: hidden; border: 1px solid var(--line); display: flex; flex-direction: column; }
+.event-photo img { width: 100%; height: 420px; object-fit: cover; object-position: 50% 38%; }
+.event-photo figcaption { padding: 14px 16px; font-size: 14px; color: var(--muted); }
+.event-photo figcaption b { display: block; color: var(--ink); font-size: 15px; }
+.engs { display: grid; gap: 16px; align-content: start; }
+.eng { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 20px; border-top: 3px solid var(--accent); }
+.eng-k { font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); margin-bottom: 6px; }
+.eng h3 { margin-bottom: 4px; }
+.eng p.desc { font-size: 15px; color: var(--body); margin-top: 6px; }
+.eng-stages { list-style: none; margin: 12px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.eng-stages li { border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; font-size: 13.5px; }
+.eng-stages li b { display: block; font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.eng .draft { margin-top: 12px; }
+
+/* Pages intérieures */
+.page-head { padding: 44px 0 26px; border-top: 0; }
+.flush { border-top: 0; padding-top: 8px; }
+.flush0 { border-top: 0; padding-top: 0; }
+.page-head h1 { font-size: clamp(32px, 3.8vw, 50px); line-height: 1.08; font-weight: 800; margin: 6px 0 14px; }
+.filters { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 22px; }
+.filters button { font: inherit; font-size: 14px; font-weight: 700; border: 1px solid var(--line); background: var(--surface); color: var(--muted); padding: 7px 14px; border-radius: 999px; cursor: pointer; transition: border-color .15s, color .15s; }
+.filters button:hover { border-color: #C9D3E6; color: var(--ink); }
+.filters button[aria-pressed="true"] { color: #fff; background: var(--ink); border-color: var(--ink); }
+
+/* Étude de cas */
+.crumb { font-size: 14px; color: var(--muted); text-decoration: none; font-weight: 600; }
+.crumb:hover { color: var(--ink); }
+.case-top { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 32px; align-items: start; margin-top: 18px; }
+.case-fig { background: var(--subtle); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; margin: 0; }
+.case-fig figcaption { font-size: 13px; color: var(--muted); margin-top: 10px; line-height: 1.45; }
+.facts-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 15px; }
+.facts-table th { text-align: left; font-weight: 600; color: var(--muted); font-size: 13px; text-transform: uppercase; letter-spacing: .05em; padding: 10px 16px 10px 0; vertical-align: top; width: 120px; border-top: 1px solid var(--line); }
+.facts-table td { padding: 10px 0; border-top: 1px solid var(--line); }
+.case-body { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; }
+.toc { position: sticky; top: 96px; align-self: start; list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; font-size: 14px; }
+.toc a { text-decoration: none; color: var(--muted); font-weight: 600; }
+.toc a:hover { color: var(--accent); }
+.case-sec { padding: 0 0 26px; border: 0; }
+.case-sec + .case-sec { border-top: 1px solid var(--line); padding-top: 24px; }
+.case-sec h2 { font-size: 22px; margin-bottom: 10px; display: flex; gap: 10px; align-items: baseline; }
+.case-sec h2 .n { color: var(--accent); font-size: 14px; }
+.case-sec p, .case-sec li { font-size: 16.5px; color: #2E3239; max-width: 68ch; }
+.case-sec p + p { margin-top: 8px; }
+.case-sec ul { padding-left: 20px; margin: 8px 0 0; display: grid; gap: 4px; }
+.case-sec .chips { margin-top: 14px; }
 
 /* Parcours */
-.tl { display: grid; gap: 24px; }
-.tl .row { grid-template-columns: 150px minmax(0, 1fr); }
-.when { color: var(--muted); font-size: 0.94rem; font-variant-numeric: tabular-nums; line-height: 1.5; padding-top: 2px; }
-.tl h3 { font-weight: 700; font-size: 1.05rem; }
-.state { color: var(--muted); }
-.state.done { color: var(--link); }
+.timeline { list-style: none; margin: 0; padding: 0; }
+.tl { display: grid; grid-template-columns: 170px 28px minmax(0, 1fr); gap: 0 16px; scroll-margin-top: 110px; border-radius: 12px; transition: background-color .6s; }
+.tl.flash { background: var(--accent-soft); }
+.tl .when { text-align: right; padding-top: 2px; font-size: 14px; font-weight: 700; color: var(--muted); }
+.tl .rail { position: relative; }
+.tl .rail::before { content: ""; position: absolute; left: 13px; top: 0; bottom: 0; width: 2px; background: var(--line); }
+.tl .rail::after { content: ""; position: absolute; left: 7px; top: 6px; width: 14px; height: 14px; border-radius: 50%; background: var(--surface); border: 3px solid var(--accent); }
+.tl:last-child .rail::before { bottom: auto; height: 12px; }
+.tl .body { padding-bottom: 30px; }
+.tl .stage { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .07em; color: var(--accent); }
+.tl-head { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin: 2px 0 2px; }
+.tl-head h3 { margin: 0; }
+.tl-logo { height: 22px; width: auto; filter: brightness(0); opacity: .5; transition: filter .25s, opacity .25s; }
+.tl-logo.tall { height: 30px; }
+.tl .role { font-weight: 600; color: var(--body); font-size: 15.5px; margin-bottom: 8px; }
+.tl ul { margin: 0; padding-left: 18px; font-size: 15.5px; color: var(--body); display: grid; gap: 3px; }
+.tl .draft, .tl .tl-link { margin-top: 10px; }
+.tl .tl-link { display: inline-block; }
+.path { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; counter-reset: s; padding: 0; margin: 0 0 40px; }
+.path li { list-style: none; position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; }
+.path li::before { counter-increment: s; content: "0" counter(s); font-size: 12px; font-weight: 800; color: var(--accent); display: block; margin-bottom: 4px; }
+.path li b { display: block; font-size: 16px; font-weight: 800; line-height: 1.3; }
+.path li span { font-size: 14px; color: var(--muted); }
+.path li:not(:last-child)::after { content: ""; position: absolute; right: -10px; top: 50%; width: 8px; height: 2px; background: var(--accent); }
+.skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.skill { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 20px; }
+.skill h3 { margin-bottom: 14px; }
+.skill .lvl { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin: 12px 0 6px; }
+.skill .draft { margin-top: 12px; }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 14px; color: var(--muted); margin-bottom: 18px; }
+.tbl { width: 100%; border-collapse: collapse; font-size: 15.5px; }
+.tbl td { padding: 12px 12px 12px 0; border-top: 1px solid var(--line); vertical-align: top; }
+.tbl tr:last-child td { border-bottom: 1px solid var(--line); }
+.tbl td:first-child { width: 150px; color: var(--muted); font-weight: 600; font-size: 14px; }
+.tbl td:last-child { text-align: right; }
+.col-7 { grid-column: span 7; }
+.col-4r { grid-column: 9 / span 4; }
+.h-gap { margin-bottom: 18px; }
 
-.foot { border-top: 1px solid var(--line); }
-.foot .top-in { color: var(--muted); font-size: 0.92rem; }
+/* Article */
+.progress { position: fixed; top: 0; left: 0; height: 3px; width: 0; background: var(--accent); z-index: 30; }
+.article { max-width: 720px; margin: 0 auto; }
+.article .eyebrow { margin-top: 18px; }
+.article h1 { font-family: var(--serif); font-weight: 500; font-size: clamp(32px, 4vw, 46px); line-height: 1.12; letter-spacing: -0.015em; margin: 6px 0 14px; }
+.article .byline { display: flex; gap: 6px 14px; flex-wrap: wrap; font-size: 14px; color: var(--muted); padding-bottom: 18px; border-bottom: 1px solid var(--line); margin-bottom: 24px; }
+.article .cover { margin-bottom: 24px; aspect-ratio: 16 / 7; }
+.article .intro { font-family: var(--serif); font-size: 21px; line-height: 1.55; margin-bottom: 20px; }
+.prose p, .prose li { font-family: var(--serif); font-size: 19px; line-height: 1.7; margin-bottom: 14px; }
+.prose ul { padding-left: 22px; }
+.prose h2 { font-size: 23px; margin: 30px 0 10px; }
+.sources { margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--line); }
+.sources h2 { font-size: 18px; margin-bottom: 8px; }
+.sources ol { padding-left: 20px; margin: 0; display: grid; gap: 6px; font-size: 14.5px; color: var(--body); }
+.sources a { color: var(--accent); }
+.article .draft { margin: 16px 0; }
 
-/* Figures techniques (vignettes) */
-.f-axis, .f-a, .f-b, .f-c, .f-box { fill: none; }
-.f-axis { stroke: var(--muted); stroke-width: 0.7; }
-.f-a { stroke: var(--link); stroke-width: 1.5; stroke-linejoin: round; }
-.f-b { stroke: var(--fg); stroke-width: 1; stroke-linejoin: round; }
-.f-c { stroke: var(--muted); stroke-width: 0.9; stroke-dasharray: 3 2.5; }
-.f-box { stroke: var(--muted); stroke-width: 0.8; }
-.f-boxa { fill: var(--link); fill-opacity: 0.14; stroke: var(--link); stroke-width: 1; }
-.f-t { fill: var(--muted); font: 400 7.5px var(--mono); }
-.f-tt { fill: var(--fg); font: 500 7.5px var(--mono); }
-.f-cell { fill: var(--link); }
-.f-bar { fill: var(--bar); }
-.f-fill { fill: var(--link); fill-opacity: 0.16; stroke: none; }
-.f-dot { fill: var(--link); stroke: none; }
-.f-range { fill: var(--link); fill-opacity: 0.55; stroke: none; }
+/* Contact */
+.contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.c-item { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 20px; }
+.c-item .k { font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 6px; }
+.c-item .v { font-weight: 700; font-size: 16px; word-break: break-all; }
+.c-item .row { display: flex; gap: 10px; align-items: center; margin-top: 12px; flex-wrap: wrap; }
+.c-item .draft { margin-top: 12px; }
+.toast { font-size: 13px; color: var(--accent); }
+.note { color: var(--muted); font-size: 15px; margin-top: 20px; }
+.cta-band { background: var(--ink); color: #fff; border-radius: 20px; padding: 34px; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+.cta-band h2 { color: #fff; font-size: clamp(23px, 2.4vw, 30px); max-width: 26ch; }
+.cta-band p { color: #C4C9D1; margin-top: 8px; font-size: 16px; }
+.cta-band .btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.cta-band .btn { background: #fff; color: var(--ink); border-color: #fff; }
+.cta-band .btn.ghost { background: transparent; color: #fff; border-color: #50565F; }
+.cta-band .btn.ghost:hover { border-color: #fff; }
 
-/* Croquis (articles) */
-.ink, .ink-a, .ink-d, .ink-h {
-  fill: none; stroke-linecap: round; stroke-linejoin: round;
+/* Pied de page : bandeau de couleur */
+.foot { background: #0B1F4D; color: #fff; margin-top: 24px; padding: 40px 0 44px; }
+.foot-grid { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 3fr) minmax(0, 3fr); gap: 32px; align-items: start; }
+.foot-brand { color: #fff; font-size: 24px; font-weight: 800; letter-spacing: -0.025em; text-decoration: none; }
+.foot-tag { margin-top: 6px; font-size: 13.5px; color: #AFC0E6; }
+.foot-copy { margin-top: 18px; font-size: 13px; color: #8EA2CF; }
+.foot-col { display: flex; flex-direction: column; gap: 8px; }
+.foot-k { font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #7FA2FF; margin-bottom: 4px; }
+.foot-col a { color: #fff; font-size: 16px; font-weight: 500; text-decoration: none; width: fit-content; background-image: linear-gradient(#7FA2FF, #7FA2FF); background-size: 0% 1px; background-position: 0 100%; background-repeat: no-repeat; transition: background-size .2s; }
+.foot-col a:hover { background-size: 100% 1px; }
+.foot .draft { font-size: 12.5px; padding: 6px 8px; }
+@media (max-width: 760px) { .foot-grid { grid-template-columns: 1fr 1fr; } .foot-id { grid-column: 1 / -1; } }
+
+/* Fonds « art » des cartes d’événements */
+.cover.art { position: relative; border: 0; padding: 0; color: #fff; background: radial-gradient(110% 90% at 88% 8%, var(--g2) 0%, transparent 62%), linear-gradient(140deg, var(--g1) 0%, #050B1F 100%); }
+.cover.art .waves { position: absolute; inset: 0; width: 100%; height: 100%; }
+.cover.art .waves path { fill: none; stroke: rgba(150, 185, 255, .28); stroke-width: 1.1; }
+.cover.art .art-fig { position: relative; width: 74%; height: 78%; display: flex; align-items: center; justify-content: center; }
+.cover.art .art-fig svg { width: 100%; height: 100%; }
+.cover.art .art-word { position: absolute; left: 22px; bottom: 16px; font-family: var(--serif); font-size: 30px; line-height: 1.05; color: #fff; }
+.th-0 { --g1: #0B1F4D; --g2: #245BE6; } .th-1 { --g1: #1E1B4B; --g2: #5B54E8; } .th-2 { --g1: #062A30; --g2: #0F9488; }
+.th-3 { --g1: #0B1F4D; --g2: #3B82F6; } .th-4 { --g1: #111827; --g2: #52627A; } .th-5 { --g1: #052E2B; --g2: #14B8A6; }
+.art .f-axis { stroke: rgba(255, 255, 255, .4); } .art .f-a { stroke: #9CC0FF; stroke-width: 2.4; } .art .f-b { stroke: #fff; }
+.art .f-c { stroke: rgba(255, 255, 255, .4); } .art .f-t { fill: rgba(255, 255, 255, .7); } .art .f-tt { fill: #fff; } .art .f-dot { fill: #fff; }
+.art .f-cell, .art .f-range, .art .f-fill { fill: #9CC0FF; } .art .f-bar { fill: rgba(255, 255, 255, .2); }
+.art .f-box { fill: rgba(255, 255, 255, .06); stroke: rgba(255, 255, 255, .55); } .art .f-boxa { fill: rgba(156, 192, 255, .22); stroke: #9CC0FF; }
+
+/* Événements : cartes hautes avec titre en surimpression */
+.stories { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.story { position: relative; min-height: 440px; border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 26px; color: #fff; text-decoration: none; isolation: isolate; }
+.story > img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; z-index: -2; transition: transform .5s ease; }
+.story .cover.art { position: absolute; inset: 0; z-index: -2; border-radius: 0; aspect-ratio: auto; transition: transform .5s ease; }
+.story::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(5, 11, 31, 0) 35%, rgba(5, 11, 31, .82) 100%); }
+.story:hover > img.bg, .story:hover .cover.art { transform: scale(1.04); }
+.story .s-ico { position: absolute; top: 34%; left: 50%; transform: translate(-50%, -50%); width: 120px; opacity: .95; }
+.story .s-ico svg { width: 100%; height: auto; fill: none; stroke: #fff; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; }
+.story .s-logo { position: absolute; top: 34%; left: 50%; transform: translate(-50%, -50%); width: 58%; filter: brightness(0) invert(1); }
+.story .s-k { font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #BFD2FF; }
+.story h3 { font-size: 22px; margin: 6px 0 4px; color: #fff; }
+.story .s-s { font-size: 14.5px; color: #DCE4F5; }
+.story .s-more { margin-top: 12px; font-weight: 800; font-size: 14.5px; }
+.story .s-more::after { content: " →"; }
+
+@media (max-width: 1000px) { .stories { grid-template-columns: 1fr 1fr; } .stories .story:first-child { grid-column: 1 / -1; } }
+@media (max-width: 620px) { .stories { grid-template-columns: 1fr; } .story { min-height: 360px; } }
+
+/* Sélecteur de langue */
+.lang-sw { display: flex; gap: 2px; padding: 3px; border: 1px solid var(--line); border-radius: 999px; margin-left: 4px; }
+.lang-sw button { font: inherit; font-size: 13px; font-weight: 700; letter-spacing: .04em; min-width: 36px; min-height: 32px; border: 0; border-radius: 999px; background: transparent; color: var(--muted); cursor: pointer; }
+.lang-sw button:hover { color: var(--ink); }
+.lang-sw button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+.capsule { gap: 8px 14px; }
+
+/* Pages éditoriales : Parcours et Contact (inspiration cabinets de conseil) */
+.ed-head { padding: 40px 0 44px; border-top: 0; }
+.crumbs { display: flex; gap: 8px; font-size: 13.5px; color: var(--muted); margin-bottom: 20px; }
+.crumbs a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: #C3C9D2; }
+.crumbs a:hover { color: var(--ink); }
+.crumbs [aria-current] { color: var(--ink); font-weight: 600; }
+.ed-h1 { font-family: var(--serif); font-weight: 500; font-size: clamp(40px, 5.2vw, 68px); line-height: 1.02; letter-spacing: -0.02em; margin-bottom: 18px; }
+.ed-h1:focus, h1:focus { outline: none; }
+.ed-lede { font-size: clamp(18px, 1.6vw, 21px); line-height: 1.55; color: var(--body); max-width: 58ch; margin-bottom: 28px; }
+.bio { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 56px; align-items: end; }
+.bio-facts { margin: 0 0 30px; border-top: 1px solid var(--ink); }
+.bio-facts > div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.bio-facts dt { font-size: 13px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; padding-top: 2px; }
+.bio-facts dd { margin: 0; font-size: 16px; }
+.ctas .link { align-self: center; margin-left: 8px; }
+.bio-photo { margin: 0; background: var(--photo); }
+.bio-photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 18%; }
+.subnav { position: sticky; top: 82px; z-index: 15; background: rgba(255, 255, 255, .94); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.subnav .wrap { display: flex; gap: 4px 28px; overflow-x: auto; scrollbar-width: none; }
+.subnav .wrap::-webkit-scrollbar { display: none; }
+.subnav button { flex: none; font: inherit; font-size: 14.5px; font-weight: 600; color: var(--body); background: none; border: 0; padding: 14px 0 12px; border-bottom: 2px solid transparent; cursor: pointer; white-space: nowrap; }
+.subnav button:hover { color: var(--ink); border-bottom-color: var(--accent); }
+.stats { padding: 40px 0; border-top: 0; }
+.stat-row { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.stat-row li { padding: 4px 24px; border-left: 1px solid var(--line); }
+.stat-row li:first-child { padding-left: 0; border-left: 0; }
+.stat-row b { display: block; font-family: var(--serif); font-weight: 500; font-size: clamp(40px, 4.4vw, 60px); line-height: 1; letter-spacing: -0.02em; color: var(--accent); }
+.stat-row span { display: block; margin-top: 10px; font-size: 15px; color: var(--body); line-height: 1.45; max-width: 24ch; }
+.ed-sec { padding: 56px 0; scroll-margin-top: 130px; }
+.ed-grid { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); gap: 40px; align-items: start; }
+.ed-h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(26px, 2.4vw, 34px); line-height: 1.12; letter-spacing: -0.01em; position: sticky; top: 140px; }
+.ed-h2:focus { outline: none; }
+.rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
+.row-item { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 140px; transition: background-color .6s; }
+.row-item.flash { background: var(--accent-soft); }
+.row-when { font-size: 14px; font-weight: 700; color: var(--muted); padding-top: 4px; }
+.row-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.row-head h3 { font-size: clamp(19px, 1.7vw, 22px); }
+.row-logo { height: 22px; width: auto; max-width: 110px; filter: brightness(0); opacity: .45; transition: filter .25s, opacity .25s; }
+.row-logo.tall { height: 30px; }
+.row-item:hover .row-logo { filter: none; opacity: 1; }
+.row-role { font-weight: 600; color: var(--ink); font-size: 16px; margin-top: 4px; }
+.row-stage { font-size: 12.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--accent); margin: 6px 0 10px; }
+.row-desc { color: var(--body); font-size: 16px; margin-top: 8px; max-width: 68ch; }
+.row-body ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; color: var(--body); font-size: 16px; }
+.row-body .link { display: inline-block; margin-top: 14px; }
+.row-body .draft { margin-top: 12px; }
+.skills-ed { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; border-top: 1px solid var(--ink); padding-top: 22px; }
+.sk h3 { font-size: 19px; margin-bottom: 12px; }
+.sk-l { font-size: 12.5px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); margin: 14px 0 6px; }
+.sk ul { list-style: none; margin: 0; padding: 0; }
+.sk li { padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 15.5px; }
+.sk .draft { margin-top: 12px; }
+.tbl-wrap { overflow-x: auto; }
+.ed-table { width: 100%; border-collapse: collapse; font-size: 15.5px; border-top: 1px solid var(--ink); }
+.ed-table th, .ed-table td { text-align: left; padding: 14px 16px 14px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.ed-table thead th { font-size: 12.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.ed-table tbody th { font-weight: 700; }
+.st { display: inline-block; font-size: 13px; font-weight: 700; color: var(--accent); white-space: nowrap; }
+.st::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: currentColor; margin-right: 7px; vertical-align: 1px; }
+.st.ok { color: #1E6B3E; }
+.langs-ed { margin: 28px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+.langs-ed > div { padding: 14px 16px 0 0; }
+.langs-ed dt { font-weight: 700; }
+.langs-ed dd { margin: 2px 0 0; color: var(--muted); font-size: 15px; }
+.ed-close { padding: 64px 0 72px; background: var(--subtle); border-top: 0; }
+.ed-close h2 { font-family: var(--serif); font-weight: 500; font-size: clamp(28px, 3vw, 42px); line-height: 1.12; max-width: 24ch; margin-bottom: 24px; }
+
+/* Contact */
+.ed-sec.flush0 { padding-top: 8px; }
+.c-ed { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 64px; align-items: start; }
+.h-sm { font-size: 13px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); padding-bottom: 12px; border-bottom: 1px solid var(--ink); }
+.c-dl { margin: 0 0 40px; }
+.c-dl > div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.c-dl dt { font-size: 14px; color: var(--muted); font-weight: 600; }
+.c-dl dd { margin: 0; display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; }
+.c-dl dd a { color: var(--ink); font-weight: 700; text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 4px; word-break: break-word; }
+.c-dl dd a:hover { color: var(--accent); }
+.topic-list { list-style: none; margin: 0; padding: 0; }
+.topic { width: 100%; text-align: left; font: inherit; font-size: 16.5px; font-weight: 600; color: var(--ink); background: none; border: 0; border-bottom: 1px solid var(--line); padding: 16px 28px 16px 0; cursor: pointer; position: relative; }
+.topic::after { content: ""; position: absolute; right: 6px; top: 50%; width: 8px; height: 8px; border-right: 2px solid var(--accent); border-top: 2px solid var(--accent); transform: translateY(-50%) rotate(45deg); transition: right .2s; }
+.topic:hover { color: var(--accent); }
+.topic:hover::after { right: 2px; }
+.topic[aria-current="true"] { color: var(--accent); }
+.c-form { display: grid; gap: 18px; }
+.c-note { color: var(--body); font-size: 15px; margin-top: -4px; }
+.c-req { color: var(--muted); font-size: 13.5px; margin-top: -10px; }
+.field { display: grid; gap: 6px; }
+.field label { font-size: 14px; font-weight: 700; }
+.c-form input, .c-form select, .c-form textarea { width: 100%; font: inherit; font-size: 16px; padding: 12px 14px; border: 1px solid #8D96A3; border-radius: 0; background: #fff; color: var(--ink); }
+.c-form textarea { resize: vertical; min-height: 160px; }
+.c-form input:focus, .c-form select:focus, .c-form textarea:focus { outline: 2px solid var(--accent); outline-offset: 0; border-color: var(--accent); }
+.f2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.f-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.f-actions .btn { border-radius: 0; padding: 13px 22px; background: var(--accent); border-color: var(--accent); }
+.f-actions .btn:hover { background: #1747C4; border-color: #1747C4; }
+.fr-only { font-size: 14px; color: var(--muted); font-style: italic; margin: -8px 0 18px; }
+.v-t { font-weight: 700; margin-bottom: 4px; }
+
+.brand, .nav a { white-space: nowrap; }
+@media (min-width: 621px) and (max-width: 900px) {
+  .capsule { padding-left: 16px; gap: 6px; }
+  .brand { font-size: 17px; }
+  .nav a { padding: 8px 10px; font-size: 14px; }
+  .lang-sw button { min-width: 32px; }
 }
-.ink { stroke: var(--fg); stroke-width: 1.7; }
-.ink-a { stroke: var(--link); stroke-width: 2.3; }
-.ink-d { stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 6 7; }
-.ink-h { stroke: var(--link); stroke-width: 1.2; }
-.ghost { opacity: 0.35; stroke-width: 1; }
-.hand { fill: var(--fg); font: 700 21px var(--hand); }
-.hand-a { fill: var(--link); font: 700 21px var(--hand); }
-.dot-ink { fill: var(--fg); stroke: none; }
-.dot-a { fill: var(--link); stroke: none; }
-
-@media (max-width: 900px) {
-  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 621px) and (max-width: 720px) { .nav a { padding: 8px 7px; font-size: 13.5px; } .brand { font-size: 16px; } .capsule { padding-right: 4px; } }
+@media (max-width: 1000px) {
+  .bio, .c-ed { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .bio-photo { max-width: 340px; }
+  .ed-grid { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .ed-h2 { position: static; }
+  .stat-row { grid-template-columns: 1fr 1fr; row-gap: 28px; }
+  .stat-row li:nth-child(3) { padding-left: 0; border-left: 0; }
+  .skills-ed { grid-template-columns: 1fr; gap: 8px; }
 }
 @media (max-width: 620px) {
+  .lang-sw { position: absolute; top: 8px; right: 12px; background: #fff; }
+  .lang-sw button { min-height: 30px; }
+  .brand { display: flex; align-items: center; min-height: 46px; margin-top: 4px; padding-right: 110px; }
+  .subnav { top: 62px; }
+  .row-item { grid-template-columns: 1fr; gap: 4px; }
+  .bio-facts > div, .c-dl > div { grid-template-columns: 1fr; gap: 2px; }
+  .langs-ed { grid-template-columns: 1fr; }
+  .f2 { grid-template-columns: 1fr; }
+  .stat-row span { font-size: 14px; }
+  .nav a { padding: 12px 4px; }
+}
+@media (max-width: 380px) { .nav { margin: 8px 8px 0; overflow-x: auto; scrollbar-width: none; } .nav a { font-size: 12px; padding: 12px 2px; letter-spacing: -0.01em; } .brand { padding: 0 8px; } .stat-row { grid-template-columns: 1fr; } .stat-row li { padding-left: 0; border-left: 0; } }
+
+/* Retour en haut */
+.to-top { position: fixed; right: 20px; bottom: 20px; z-index: 25; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: rgba(255, 255, 255, .92); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: 0 6px 20px rgba(22, 25, 30, .1); cursor: pointer; display: grid; place-items: center; opacity: 0; transform: translateY(8px); pointer-events: none; transition: opacity .2s, transform .2s, border-color .2s; }
+.to-top.on { opacity: 1; transform: none; pointer-events: auto; }
+.to-top:hover { border-color: var(--ink); }
+.to-top svg { width: 18px; height: 18px; fill: none; stroke: var(--ink); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .cards.four { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 1000px) {
+  .hero-text { grid-column: span 12; }
+  .hero-photo { grid-column: span 12; max-width: 460px; }
+  .hero-photo img { height: 380px; }
+  .pillar-row { grid-template-columns: 1fr; gap: 10px; }
+  .cards { grid-template-columns: 1fr; }
+  .posts { grid-template-columns: 1fr 1fr; }
+  .case-body, .case-top, .events { grid-template-columns: 1fr; }
+  .toc { display: none; }
+}
+@media (max-width: 820px) {
+  .marks-row { grid-template-columns: 1fr 1fr; }
+  .mark:nth-child(3) { border-left: 0; }
+  .mark:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .steps { grid-template-columns: 1fr; }
+  .step + .step { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+  .path { grid-template-columns: 1fr 1fr; }
+  .path li::after { display: none; }
+  .skills, .contact-grid { grid-template-columns: 1fr; }
+  .tl { grid-template-columns: 0 28px minmax(0, 1fr); gap: 0 12px; }
+  .tl .when { display: none; }
+  .tl .when-m { display: block; font-size: 13px; font-weight: 700; color: var(--muted); }
+  .col-7, .col-4r { grid-column: span 12; }
+  .v-item { grid-template-columns: 1fr; gap: 2px; }
+  .v-item .pill { justify-self: start; }
+  .eng-stages { grid-template-columns: 1fr; }
+}
+@media (min-width: 821px) { .tl .when-m { display: none; } }
+@media (max-width: 620px) {
+  .top, .capsule { display: contents; }
+  .brand { display: block; margin-top: 12px; padding: 0 16px; line-height: 1.3; }
+  .nav { position: sticky; top: 8px; z-index: 20; margin: 8px 16px 0; padding: 4px; background: rgba(255, 255, 255, 0.8); -webkit-backdrop-filter: blur(12px) saturate(140%); backdrop-filter: blur(12px) saturate(140%); border: 1px solid var(--line); border-radius: 999px; box-shadow: 0 1px 2px rgba(22, 25, 30, .05), 0 6px 20px rgba(22, 25, 30, .06); }
+  .nav a { flex: 1 1 auto; padding: 9px 4px; font-size: 13.5px; text-align: center; white-space: nowrap; }
+  .cards.four { grid-template-columns: 1fr; }
+  .marks-row { grid-template-columns: 1fr; }
+  .mark + .mark { border-left: 0; border-top: 1px solid var(--line); }
+}
+@media (max-width: 560px) {
   body { font-size: 16px; }
-  .page { padding-block: 28px 56px; gap: 44px; }
-  .head { grid-template-columns: 1fr; gap: 20px; justify-items: center; }
-  .portrait { width: 210px; }
-  .grid { grid-template-columns: minmax(0, 1fr); }
-  .row { grid-template-columns: 112px minmax(0, 1fr); gap: 16px; }
-  .tl .row { grid-template-columns: minmax(0, 1fr); gap: 2px; }
-  .post h3 { font-size: 1.32rem; }
+  .posts { grid-template-columns: 1fr; }
+  section { padding: 40px 0; }
+  .tbl td:first-child { width: 100px; }
+  .hero-photo img { height: 340px; }
 }
 </style>
 </head>
 <body>
+<a class="skip" href="#main" data-i18n="skip">Aller au contenu</a>
+<div class="progress" id="progress" hidden></div>
+<p class="sr" id="announcer" aria-live="polite"></p>
+
 <header class="top">
-  <div class="top-in">
+  <div class="capsule">
     <a class="brand" href="#accueil">Christian Sodara</a>
-    <nav class="nav" aria-label="Navigation principale">
-      <a href="#accueil" data-view="accueil">Accueil</a>
-      <a href="#ecrits" data-view="ecrits">Écrits</a>
-      <a href="#projets" data-view="projets">Projets</a>
-      <a href="#parcours" data-view="parcours">Parcours</a>
+    <nav class="nav" id="nav" aria-label="Navigation principale" data-i18n-aria="nav.label">
+      <a href="#accueil" data-view="accueil" data-i18n="nav.home">Accueil</a>
+      <a href="#ecrits" data-view="ecrits" data-i18n="nav.writing">Écrits</a>
+      <a href="#projets" data-view="projets" data-i18n="nav.projects">Projets</a>
+      <a href="#parcours" data-view="parcours" data-i18n="nav.path">Parcours</a>
+      <a href="#contact" data-view="contact" data-i18n="nav.contact">Me contacter</a>
     </nav>
+    <div class="lang-sw" role="group" aria-label="Langue · Language">
+      <button type="button" data-lang="fr" lang="fr" aria-label="Français" aria-pressed="true">FR</button>
+      <button type="button" data-lang="en" lang="en" aria-label="English" aria-pressed="false">EN</button>
+    </div>
   </div>
 </header>
 
-<main>
-  <div class="page" id="v-accueil" data-page>
-    <section class="col head">
-      <div class="portrait"><img src="christian-sodara.jpg" alt="Portrait de Christian Sodara" width="400" height="400"></div>
-      <div class="id">
-        <h1>Christian Sodara</h1>
-        <p class="tag">Marchés financiers. Paris.</p>
-        <a href="#parcours">[parcours et CV]</a>
-        <p class="mail"><span id="mail">christiansodara00@gmail.com</span> <button type="button" id="copy">copier</button></p>
+<main id="main" tabindex="-1">
+
+<!-- ACCUEIL -->
+<div id="v-accueil" data-page>
+  <section class="hero">
+    <div class="wrap grid">
+      <div class="hero-text">
+        <p class="eyebrow">Corporate Finance · Financial Modelling · Data &amp; Technology</p>
+        <h1 tabindex="-1" data-i18n="h.h1">J’analyse les enjeux financiers. <em>Je construis les outils pour y répondre.</em></h1>
+        <p class="lede" data-i18n="h.lede">Mon parcours associe une formation technique, une expérience en transformation et analyse métier, et une spécialisation en finance d’entreprise. J’explore les marchés financiers, la valorisation et la modélisation quantitative à travers des projets concrets et des analyses appliquées.</p>
+        <div class="ctas">
+          <a class="btn" href="#projets" data-i18n="h.cta1">Découvrir mes réalisations</a>
+          <a class="btn ghost" href="#parcours" data-i18n="h.cta2">Consulter mon parcours</a>
+        </div>
       </div>
-    </section>
+      <figure class="hero-photo">
+        <img src="christian-portrait.jpg" alt="Portrait professionnel de Christian Sodara" data-i18n-alt="alt.portrait" width="684" height="855" fetchpriority="high">
+        <figcaption><b>Christian Sodara</b> · Paris</figcaption>
+      </figure>
+    </div>
+  </section>
 
-    <section class="col bio">
-      <p>Je suis étudiant au Programme Grande École de SKEMA Business School à Paris, spécialisé en Corporate Financial Management avec un électif en Quantitative Finance. Originaire de Côte d’Ivoire, j’ai étudié l’informatique et les télécommunications à l’ESATIC à Abidjan, puis passé deux ans comme Business Analyst chez Willis Towers Watson, où j’ai piloté le déploiement d’une plateforme logicielle de 2&nbsp;M$. Après un stage chez Bpifrance, je me concentre sur les marchés&nbsp;: je construis mes <a href="#projets">propres modèles</a> en Python, je prépare le CFA niveau&nbsp;1 et <a href="#ecrits">j’écris</a> sur les taux et la politique monétaire.</p>
-      <p class="seek">Je cherche un stage d’été 2027 (Londres, Paris), un stage de 6&nbsp;mois à partir d’avril 2027 ou un graduate programme 2027, en priorité en Sales &amp; Trading, Structuring et Capital Markets.</p>
-    </section>
-
-    <section class="col stack">
-      <div class="sec"><h2>Projets</h2><a href="#projets">Tous les projets</a></div>
-      <div class="list" id="home-projects"></div>
-    </section>
-
-    <section class="wide stack">
-      <div class="sec"><h2>Écrits</h2><a href="#ecrits">Tous les écrits</a></div>
-      <div class="grid" id="home-posts"></div>
-    </section>
-  </div>
-
-  <div class="page" id="v-ecrits" data-page hidden>
-    <section class="wide stack">
-      <h1 class="title-page">Écrits</h1>
-      <p class="lede">Taux, politique monétaire, dette souveraine et performance des fonds. Et de temps en temps, mon parcours.</p>
-    </section>
-    <section class="wide"><div class="grid" id="all-posts"></div></section>
-  </div>
-
-  <div class="page" id="v-projets" data-page hidden>
-    <section class="col stack">
-      <h1 class="title-page">Projets</h1>
-      <p class="lede">Des modèles de marché que je construis pour apprendre, et des logiciels que je développe à côté.</p>
-    </section>
-    <section class="col stack">
-      <div class="sec"><h2>Finance</h2></div>
-      <div class="list" id="proj-finance"></div>
-    </section>
-    <section class="col stack">
-      <div class="sec"><h2>Logiciel</h2></div>
-      <div class="list" id="proj-soft"></div>
-    </section>
-  </div>
-
-  <div class="page" id="v-parcours" data-page hidden>
-    <section class="col"><h1 class="title-page">Parcours</h1></section>
-    <section class="col stack">
-      <div class="sec"><h2>Expérience</h2></div>
-      <div class="tl">
-        <div class="row"><p class="when">Août à déc. 2025</p><div><h3>Bpifrance</h3><p>Assistant chef de projet, stage. Reportings structurés et tableaux de bord KPI pour la direction.</p></div></div>
-        <div class="row"><p class="when">Stage</p><div><h3>DataScientest</h3><p>Organisme de formation en data science.</p></div></div>
-        <div class="row"><p class="when">2 ans</p><div><h3>Willis Towers Watson</h3><p>Business Analyst. Analyse de données sur 4 pays, conseil en gestion des risques, déploiement d’une plateforme logicielle de 2&nbsp;M$.</p></div></div>
+  <section class="creds" aria-labelledby="creds-t">
+    <h2 id="creds-t" class="sr" data-i18n="cr.t">En bref</h2>
+    <div class="wrap cred-row">
+      <div class="cred">
+        <p class="cred-k" data-i18n="cr.k1">Expérience</p>
+        <div class="cred-logos">
+          <a href="#parcours-wtw"><img class="logo l-wtw" src="logo-wtw.png" alt="Willis Towers Watson" width="191" height="68"></a>
+          <a href="#parcours-bpifrance"><img class="logo l-bpi" src="logo-bpifrance.png" alt="Bpifrance" width="345" height="105"></a>
+          <a href="#parcours-datascientest"><img class="logo l-liora" src="logo-liora.png" alt="DataScientest (Liora)" width="333" height="160"></a>
+        </div>
+        <p class="cred-t" data-i18n="cr.t1"><b>2 ans en Business Analysis</b> chez Willis Towers Watson : transformation et coordination internationale.</p>
+        <a class="cred-go" href="#parcours-wtw" data-i18n="cr.go1">Voir l’expérience</a>
       </div>
-    </section>
-    <section class="col stack">
-      <div class="sec"><h2>Formation</h2></div>
-      <div class="tl">
-        <div class="row"><p class="when">2024 à 2027</p><div><h3>SKEMA Business School, Paris</h3><p>Programme Grande École (Master in Management). Corporate Financial Management, électif Quantitative Finance.</p></div></div>
-        <div class="row"><p class="when">Licence</p><div><h3>ESATIC, Abidjan</h3><p>Informatique et télécommunications.</p></div></div>
+      <div class="cred">
+        <p class="cred-k" data-i18n="cr.k2">Formation</p>
+        <div class="cred-logos"><a href="#parcours-skema"><img class="logo l-skema" src="logo-skema.png" alt="SKEMA Business School" width="859" height="180"></a><span class="cred-tag" data-i18n="cr.cfa">CFA Level I · en préparation</span></div>
+        <p class="cred-t" data-i18n="cr.t2"><b>SKEMA Business School</b>, Corporate Financial Management &amp; Quantitative Finance.</p>
+        <a class="cred-go" href="#parcours-skema" data-i18n="cr.go2">Voir la formation</a>
       </div>
-    </section>
-    <section class="col stack">
-      <div class="sec"><h2>Certifications</h2></div>
-      <div class="tl">
-        <div class="row"><p class="when">Fév. 2027</p><div><h3>CFA Level I</h3><p class="state">Candidat</p></div></div>
-        <div class="row"><p class="when">Déc. 2026</p><div><h3>Certification AMF</h3><p class="state">Examen planifié</p></div></div>
-        <div class="row"><p class="when">Juin 2026</p><div><h3>Bloomberg Market Concepts</h3><p class="state done">Obtenue</p></div></div>
-        <div class="row"><p class="when">DataCamp</p><div><h3>Python</h3><p class="state done">Obtenue</p></div></div>
+      <div class="cred">
+        <p class="cred-k" data-i18n="cr.k3">Projets</p>
+        <div class="cred-logos"><span class="cred-tag">DCF</span><span class="cred-tag">Backtesting</span><span class="cred-tag">Python</span></div>
+        <p class="cred-t" data-i18n="cr.t3"><b>Modélisation financière</b>, valorisation, backtesting de stratégies et développement d’outils.</p>
+        <a class="cred-go" href="#projets" data-i18n="cr.go3">Voir les projets</a>
       </div>
-    </section>
-    <section class="col stack">
-      <div class="sec"><h2>Langues</h2></div>
-      <p>Français (langue maternelle), anglais (courant), chinois (A1).</p>
-    </section>
-  </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="sel-t" class="sel">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="eyebrow">Selected Work</p><h2 id="sel-t" data-i18n="s.h2">Des modèles construits, testés et documentés.</h2></div>
+        <a class="link" href="#projets" data-i18n="all.projects">Tous les projets</a>
+      </div>
+      <div class="cards four" id="home-cards"></div>
+      <div class="dom-head"><h3 class="eyebrow" data-i18n="s.dom">Explorer par domaine</h3><a class="link" href="#projets" data-i18n="all.projects">Tous les projets</a></div>
+      <nav class="tiles" id="home-tiles" aria-label="Projets par domaine" data-i18n-aria="s.domAria"></nav>
+    </div>
+  </section>
+
+  <section aria-labelledby="app-t">
+    <div class="wrap">
+      <div class="sec-head"><div><p class="eyebrow" data-i18n="m.k">Méthode</p><h2 id="app-t" data-i18n="m.h2">De l’analyse à l’exécution.</h2></div></div>
+      <div class="steps">
+        <div class="step"><span class="n">01</span><h3 data-i18n="m.s1">Comprendre</h3><p data-i18n="m.p1">Analyser les enjeux métiers, financiers ou opérationnels avant de proposer une solution.</p>
+          <a class="ex" href="#projet-lvmh" data-i18n="m.e1"><b>Valorisation de LVMH</b>Étudier chacun des cinq métiers du groupe avant de les valoriser séparément.</a></div>
+        <div class="step"><span class="n">02</span><h3 data-i18n="m.s2">Modéliser</h3><p data-i18n="m.p2">Traduire le problème en modèle : hypothèses explicites, méthode reproductible, tests de sensibilité.</p>
+          <a class="ex" href="#projet-backtests" data-i18n="m.e2"><b>Backtests systématiques</b>Cinq stratégies codées en Python et évaluées sur la même grille de critères.</a></div>
+        <div class="step"><span class="n">03</span><h3 data-i18n="m.s3">Livrer</h3><p data-i18n="m.p3">Transformer l’analyse en livrable utilisable : outil, plateforme ou tableau de bord.</p>
+          <a class="ex" href="#projet-wtw" data-i18n="m.e3"><b>Déploiement chez Willis Towers Watson</b>Le pilotage du déploiement d’une plateforme logicielle de 2 M$.</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="fi-t" id="veille-sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="eyebrow">Financial Intelligence</p><h2 id="fi-t" data-i18n="v.h2">Ma veille des marchés</h2>
+          <p class="sub" data-i18n="v.sub">Les dernières publications de la BCE et de l’AMF, collectées automatiquement depuis leurs flux officiels. Chaque titre renvoie à la source.</p></div>
+        <div class="filters" role="group" aria-label="Filtrer la veille par source" data-i18n-aria="v.filter" id="veille-filters"></div>
+      </div>
+      <div id="veille" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="la-t">
+    <div class="wrap">
+      <div class="sec-head"><div><p class="eyebrow" data-i18n="w.k">Écrits &amp; analyses</p><h2 id="la-t" data-i18n="w.h2">Taux, politique monétaire et finance d’entreprise.</h2></div><a class="link" href="#ecrits" data-i18n="all.writing">Tous les écrits</a></div>
+      <div class="posts" id="home-posts"></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="ev-t">
+    <div class="wrap">
+      <div class="sec-head"><div><p class="eyebrow" data-i18n="e.k">Événements &amp; engagements</p><h2 id="ev-t" data-i18n="e.h2">En dehors des cours.</h2></div><a class="link" href="#parcours-engagements" data-i18n="e.all">Tous mes engagements</a></div>
+      <div class="stories" id="home-stories"></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="cta-t">
+    <div class="wrap">
+      <div class="cta-band">
+        <div><h2 id="cta-t" data-i18n="cta.h2">Échangeons autour de la finance, des données et de la transformation.</h2><p data-i18n="cta.p">Une question sur un projet, une analyse ou mon parcours : écrivez-moi directement.</p></div>
+        <div class="btns"><a class="btn" href="#contact" data-i18n="cta.contact">Me contacter</a><a class="btn ghost" href="#projets" data-i18n="cta.projects">Voir les projets</a></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PROJETS -->
+<div id="v-projets" data-page hidden>
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="nav.projects">Projets</p>
+      <h1 tabindex="-1" data-i18n="pr.h1">Réalisations</h1>
+      <p class="lede" data-i18n="pr.lede">Valorisations, modèles de marché et outils. Chaque fiche suit la même trame : contexte, problème, approche, réalisation, résultats et enseignements. Les figures sont calculées pour illustrer la méthode, elles ne présentent pas de résultats.</p>
+      <div class="tiles tiles-filter" role="group" aria-label="Filtrer les projets par domaine" data-i18n-aria="pr.filter" id="proj-tiles"></div>
+      <p class="tiles-all" id="tiles-all" hidden><button type="button" class="link-btn" id="show-all" data-i18n="pr.all">Afficher tous les projets</button></p>
+    </div>
+  </section>
+  <section class="flush" aria-labelledby="prl-t">
+    <div class="wrap"><h2 id="prl-t" class="sr" data-i18n="pr.list">Liste des projets</h2><div class="cards" id="all-cards"></div></div>
+  </section>
+</div>
+
+<!-- ÉTUDE DE CAS -->
+<div id="v-projet" data-page hidden></div>
+
+<!-- ÉCRITS -->
+<div id="v-ecrits" data-page hidden>
+  <section class="page-head">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="wr.k">Écrits et analyses</p>
+      <h1 tabindex="-1" data-i18n="wr.h1">Ce que je lis dans les marchés</h1>
+      <p class="lede" data-i18n="wr.lede">Taux, politique monétaire, valorisation et financement des entreprises. Des analyses publiées sur LinkedIn, des notes de fond et mes travaux de recherche.</p>
+      <div class="filters" role="group" aria-label="Filtrer les écrits" data-i18n-aria="wr.filter" id="post-filters"></div>
+    </div>
+  </section>
+  <section class="flush" aria-labelledby="wrl-t">
+    <div class="wrap"><h2 id="wrl-t" class="sr" data-i18n="wr.list">Liste des écrits</h2><div class="posts" id="all-posts"></div></div>
+  </section>
+</div>
+
+<!-- ARTICLE -->
+<div id="v-ecrit" data-page hidden></div>
+
+<!-- PARCOURS -->
+<div id="v-parcours" data-page hidden>
+  <section class="ed-head">
+    <div class="wrap bio">
+      <div>
+        <nav class="crumbs" aria-label="Fil d’Ariane, parcours" data-i18n-aria="crumbsP"><a href="#accueil" data-i18n="nav.home">Accueil</a><span aria-hidden="true">/</span><span aria-current="page" data-i18n="nav.path">Parcours</span></nav>
+        <h1 class="ed-h1" tabindex="-1" data-i18n="p.h1">Parcours</h1>
+        <p class="ed-lede" data-i18n="p.lede">Une formation technique, deux ans d’analyse métier dans un groupe international, puis la finance d’entreprise et la modélisation financière à SKEMA Business School.</p>
+        <dl class="bio-facts">
+          <div><dt data-i18n="p.f1k">Formation</dt><dd data-i18n="p.f1v">SKEMA Business School, Programme Grande École, Corporate Financial Management</dd></div>
+          <div><dt data-i18n="p.f2k">Expérience</dt><dd data-i18n="p.f2v">Business Analyst chez Willis Towers Watson pendant deux ans</dd></div>
+          <div><dt data-i18n="p.f3k">Basé à</dt><dd>Paris</dd></div>
+          <div><dt data-i18n="p.f4k">Langues</dt><dd data-i18n="p.f4v">Français, anglais, chinois (A1)</dd></div>
+        </dl>
+        <div class="ctas"><a class="btn" href="#contact" data-i18n="cta.contact">Me contacter</a><a class="link" href="#projets" data-i18n="cta.projects">Voir les projets</a></div>
+      </div>
+      <figure class="bio-photo"><img src="christian-sodara.jpg" alt="Portrait de Christian Sodara" data-i18n-alt="alt.headshot" width="400" height="400"></figure>
+    </div>
+  </section>
+  <nav class="subnav" aria-label="Sections de la page" data-i18n-aria="p.subnav">
+    <div class="wrap">
+      <button type="button" data-goto="p-exp" data-i18n="p.expT">Expérience professionnelle</button>
+      <button type="button" data-goto="p-edu" data-i18n="p.eduT">Formation</button>
+      <button type="button" data-goto="tl-engagements" data-i18n="p.engT">Engagements</button>
+      <button type="button" data-goto="p-skills" data-i18n="p.skT">Compétences</button>
+      <button type="button" data-goto="p-certs" data-i18n="p.ceT">Certifications et langues</button>
+    </div>
+  </nav>
+  <section class="stats" aria-labelledby="stats-t">
+    <div class="wrap">
+      <h2 id="stats-t" class="sr" data-i18n="p.statsT">En chiffres</h2>
+      <ul class="stat-row">
+        <li><b class="num">2</b><span data-i18n="p.st1">années de Business Analysis chez Willis Towers Watson</span></li>
+        <li><b class="num">4</b><span data-i18n="p.st2">pays couverts par mes analyses de données</span></li>
+        <li><b class="num">2 M$</b><span data-i18n="p.st3">plateforme logicielle dont j’ai piloté le déploiement</span></li>
+        <li><b class="num">3</b><span data-i18n="p.st4">langues : français, anglais, chinois</span></li>
+      </ul>
+    </div>
+  </section>
+  <section class="ed-sec" id="p-exp" aria-labelledby="exp-t">
+    <div class="wrap ed-grid">
+      <h2 id="exp-t" class="ed-h2" data-i18n="p.expT">Expérience professionnelle</h2>
+      <ol class="rows" id="xp-work"></ol>
+    </div>
+  </section>
+  <section class="ed-sec" id="p-edu" aria-labelledby="edu-t">
+    <div class="wrap ed-grid">
+      <h2 id="edu-t" class="ed-h2" data-i18n="p.eduT">Formation</h2>
+      <ol class="rows" id="xp-edu"></ol>
+    </div>
+  </section>
+  <section class="ed-sec" id="tl-engagements" aria-labelledby="en-t">
+    <div class="wrap ed-grid">
+      <h2 id="en-t" class="ed-h2" data-i18n="p.engT">Engagements</h2>
+      <ol class="rows" id="parcours-engs"></ol>
+    </div>
+  </section>
+  <section class="ed-sec" id="p-skills" aria-labelledby="sk-t">
+    <div class="wrap ed-grid">
+      <h2 id="sk-t" class="ed-h2" data-i18n="p.skT">Compétences</h2>
+      <div class="skills-ed" id="skills"></div>
+    </div>
+  </section>
+  <section class="ed-sec" id="p-certs" aria-labelledby="ce-t">
+    <div class="wrap ed-grid">
+      <h2 id="ce-t" class="ed-h2" data-i18n="p.ceT">Certifications et langues</h2>
+      <div>
+        <div class="tbl-wrap">
+          <table class="ed-table">
+            <caption class="sr" data-i18n="p.ceCap">Certifications obtenues et en cours</caption>
+            <thead><tr><th scope="col">Certification</th><th scope="col" data-i18n="p.ceOrg">Organisme</th><th scope="col">Date</th><th scope="col" data-i18n="p.ceSt">Statut</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Bloomberg Market Concepts</th><td>Bloomberg</td><td data-i18n="p.d1">Juin 2026</td><td><span class="st ok" data-i18n="p.ok">Obtenue</span></td></tr>
+              <tr><th scope="row">Python</th><td>DataCamp</td><td>—</td><td><span class="st ok" data-i18n="p.ok">Obtenue</span></td></tr>
+              <tr><th scope="row" data-i18n="p.amf">Certification AMF</th><td>AMF</td><td data-i18n="p.d2">Déc. 2026</td><td><span class="st" data-i18n="p.plan">Examen planifié</span></td></tr>
+              <tr><th scope="row">CFA Level I</th><td>CFA Institute</td><td>2027</td><td><span class="st" data-i18n="p.prep">En préparation</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <dl class="langs-ed">
+          <div><dt data-i18n="l.fr">Français</dt><dd data-i18n="l.frv">Langue maternelle</dd></div>
+          <div><dt data-i18n="l.en">Anglais</dt><dd data-i18n="l.env">Courant</dd></div>
+          <div><dt data-i18n="l.zh">Chinois</dt><dd data-i18n="l.zhv">Niveau A1</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+  <section class="ed-close" aria-labelledby="pc-t">
+    <div class="wrap">
+      <h2 id="pc-t" data-i18n="p.closeT">Une expérience ou un projet vous intéresse ? Parlons-en.</h2>
+      <div class="ctas"><a class="btn" href="#contact" data-i18n="cta.contact">Me contacter</a><a class="link" href="#projets" data-i18n="cta.projects">Voir les projets</a></div>
+    </div>
+  </section>
+</div>
+
+<!-- CONTACT -->
+<div id="v-contact" data-page hidden>
+  <section class="ed-head">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Fil d’Ariane, contact" data-i18n-aria="crumbsC"><a href="#accueil" data-i18n="nav.home">Accueil</a><span aria-hidden="true">/</span><span aria-current="page" data-i18n="nav.contact">Me contacter</span></nav>
+      <h1 class="ed-h1" tabindex="-1" data-i18n="c.h1">Me contacter</h1>
+      <p class="ed-lede" data-i18n="c.lede">Pour un échange autour de la finance, des données ou de la transformation, ou pour toute question sur un projet, une analyse ou mon parcours.</p>
+    </div>
+  </section>
+  <section class="ed-sec flush0" aria-label="Coordonnées et formulaire" data-i18n-aria="c.aria">
+    <div class="wrap c-ed">
+      <div class="c-info">
+        <h2 class="h-sm" data-i18n="c.coordT">Coordonnées</h2>
+        <dl class="c-dl">
+          <div><dt>E-mail</dt><dd><a id="email" href="mailto:christiansodara00@gmail.com">christiansodara00@gmail.com</a><button class="link-btn" type="button" id="copy" data-i18n="c.copy">Copier l’adresse</button><span class="toast" id="toast" role="status"></span></dd></div>
+          <div><dt>GitHub</dt><dd><a href="https://github.com/sodara-cpu" rel="me">github.com/sodara-cpu</a></dd></div>
+          <div class="draft-only"><dt>LinkedIn</dt><dd><span class="draft">Adresse du profil LinkedIn à ajouter.</span></dd></div>
+          <div><dt data-i18n="c.locK">Localisation</dt><dd>Paris</dd></div>
+          <div><dt data-i18n="c.langK">Langues d’échange</dt><dd data-i18n="c.langV">Français, anglais</dd></div>
+        </dl>
+        <h2 class="h-sm" data-i18n="c.topicsT">Sujets d’échange</h2>
+        <ul class="topic-list">
+          <li><button type="button" class="topic" data-topic="0" data-i18n="c.t0">Un projet ou une analyse</button></li>
+          <li><button type="button" class="topic" data-topic="1" data-i18n="c.t1">Une question sur mon parcours</button></li>
+          <li><button type="button" class="topic" data-topic="2" data-i18n="c.t2">Un échange sur la finance et la technologie</button></li>
+        </ul>
+      </div>
+      <form class="c-form" id="cform" aria-labelledby="form-t">
+        <h2 class="h-sm" id="form-t" data-i18n="c.formT">Envoyer un message</h2>
+        <p class="c-note" data-i18n="c.formNote">Votre messagerie s’ouvre avec le message prêt à envoyer. Ce site ne collecte ni n’enregistre aucune donnée.</p>
+        <p class="c-req" data-i18n="c.req">Les champs marqués d’un astérisque (*) sont obligatoires.</p>
+        <div class="f2">
+          <div class="field"><label for="f-name"><span data-i18n="c.name">Nom</span> *</label><input type="text" id="f-name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="f-org" data-i18n="c.org">Organisation</label><input type="text" id="f-org" name="org" autocomplete="organization"></div>
+        </div>
+        <div class="field"><label for="f-subj" data-i18n="c.subj">Sujet</label>
+          <select id="f-subj" name="subject">
+            <option value="0" data-i18n="c.t0">Un projet ou une analyse</option>
+            <option value="1" data-i18n="c.t1">Une question sur mon parcours</option>
+            <option value="2" data-i18n="c.t2">Un échange sur la finance et la technologie</option>
+            <option value="3" data-i18n="c.t3">Autre sujet</option>
+          </select></div>
+        <div class="field"><label for="f-msg"><span data-i18n="c.msg">Message</span> *</label><textarea id="f-msg" name="message" rows="7" required aria-describedby="f-status"></textarea></div>
+        <div class="f-actions"><button class="btn" type="submit" data-i18n="c.send">Préparer l’e-mail</button><p class="toast" id="f-status" role="status"></p></div>
+      </form>
+    </div>
+  </section>
+</div>
+
 </main>
 
+<button class="to-top" type="button" id="to-top" aria-label="Revenir en haut de la page" data-i18n-aria="totop"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 16V4"/><path d="M4.5 9.5L10 4l5.5 5.5"/></svg></button>
+
 <footer class="foot">
-  <div class="top-in"><span>Christian Sodara, Paris</span><span>christiansodara00@gmail.com</span></div>
+  <div class="wrap foot-grid">
+    <div class="foot-id">
+      <a class="foot-brand" href="#accueil">Christian Sodara</a>
+      <p class="foot-tag">Corporate Finance · Financial Modelling · Data &amp; Technology</p>
+      <p class="foot-copy" data-i18n="f.copy">© 2026 Christian Sodara. Tous droits réservés. Paris.</p>
+    </div>
+    <nav class="foot-col" aria-label="Plan du site" data-i18n-aria="f.map">
+      <p class="foot-k">Navigation</p>
+      <a href="#projets" data-i18n="nav.projects">Projets</a><a href="#ecrits" data-i18n="nav.writing">Écrits</a><a href="#parcours" data-i18n="nav.path">Parcours</a><a href="#contact" data-i18n="nav.contact">Me contacter</a>
+    </nav>
+    <div class="foot-col">
+      <p class="foot-k" data-i18n="f.links">Liens</p>
+      <a href="https://github.com/sodara-cpu" rel="me">GitHub</a>
+      <a href="mailto:christiansodara00@gmail.com">E-mail</a>
+      <span class="draft">Lien LinkedIn à ajouter.</span>
+    </div>
+  </div>
 </footer>
 
 <script>
-/* ---------- Contenu : à modifier ici ---------- */
+/* ============ Brouillons : visibles en local et en aperçu, jamais sur le site en ligne ============ */
+const SHOW_DRAFTS = !/github\.io$/.test(location.hostname);
+document.body.classList.toggle("show-drafts", SHOW_DRAFTS);
+const D = s => `<div class="draft">${s}</div>`;
+const DL = a => a && a.length ? `<div class="draft"><ul>${a.map(x => `<li>${x}</li>`).join("")}</ul></div>` : "";
+
+/* ============ Langues : français (texte de la page) et anglais ============
+   Le français est écrit dans la page ; l'anglais vient de ces dictionnaires.
+   Les brouillons (encadrés « À compléter ») restent en français : ils ne sont jamais publiés. */
+const I18N = { en: {
+  "skip": "Skip to content",
+  "nav.label": "Main navigation", "nav.home": "Home", "nav.writing": "Writing", "nav.projects": "Projects", "nav.path": "Background", "nav.contact": "Contact",
+  "h.h1": "I analyse financial issues. <em>I build the tools to address them.</em>",
+  "h.lede": "My background combines technical training, experience in business analysis and transformation, and a specialisation in corporate finance. I explore financial markets, valuation and quantitative modelling through hands-on projects and applied analysis.",
+  "h.cta1": "Explore my work", "h.cta2": "View my background",
+  "alt.portrait": "Professional portrait of Christian Sodara", "alt.headshot": "Portrait of Christian Sodara",
+  "cr.t": "At a glance", "cr.k1": "Experience", "cr.k2": "Education", "cr.k3": "Projects",
+  "cr.t1": "<b>2 years in Business Analysis</b> at Willis Towers Watson: transformation and international coordination.",
+  "cr.t2": "<b>SKEMA Business School</b>, Corporate Financial Management &amp; Quantitative Finance.",
+  "cr.t3": "<b>Financial modelling</b>, valuation, strategy backtesting and tool development.",
+  "cr.cfa": "CFA Level I · in preparation", "cr.go1": "View experience", "cr.go2": "View education", "cr.go3": "View projects",
+  "s.h2": "Models built, tested and documented.", "s.dom": "Explore by area", "s.domAria": "Projects by area", "all.projects": "All projects",
+  "m.k": "Method", "m.h2": "From analysis to execution.",
+  "m.s1": "Understand", "m.p1": "Analyse the business, financial or operational issues before proposing a solution.",
+  "m.e1": "<b>Valuation of LVMH</b>Studying each of the group’s five businesses before valuing them separately.",
+  "m.s2": "Model", "m.p2": "Turn the problem into a model: explicit assumptions, a reproducible method, sensitivity tests.",
+  "m.e2": "<b>Systematic backtests</b>Five strategies coded in Python and assessed on the same set of criteria.",
+  "m.s3": "Deliver", "m.p3": "Turn the analysis into a usable deliverable: a tool, a platform or a dashboard.",
+  "m.e3": "<b>Deployment at Willis Towers Watson</b>Leading the deployment of a $2M software platform.",
+  "v.h2": "My market watch", "v.sub": "The latest releases from the ECB and the AMF (French markets regulator), collected automatically from their official feeds. Each headline links to the source.", "v.filter": "Filter the market watch by source",
+  "w.k": "Writing &amp; analysis", "w.h2": "Rates, monetary policy and corporate finance.", "all.writing": "All writing",
+  "e.k": "Events &amp; involvement", "e.h2": "Beyond the classroom.", "e.all": "All my involvement",
+  "cta.h2": "Let’s talk finance, data and transformation.", "cta.p": "A question about a project, an analysis or my background: write to me directly.", "cta.contact": "Get in touch", "cta.projects": "View projects",
+  "pr.h1": "Work", "pr.lede": "Valuations, market models and tools. Each case study follows the same structure: context, problem, approach, execution, results and lessons. Figures are computed to illustrate the method; they do not present results.",
+  "pr.filter": "Filter projects by area", "pr.all": "Show all projects", "pr.list": "Project list",
+  "wr.k": "Writing and analysis", "wr.h1": "What I read in the markets", "wr.lede": "Rates, monetary policy, valuation and corporate financing. Analyses published on LinkedIn, in-depth notes and my research work.", "wr.filter": "Filter writing", "wr.list": "List of writing",
+  "crumbsP": "Breadcrumb, background", "crumbsC": "Breadcrumb, contact",
+  "p.h1": "Background", "p.lede": "Technical training, two years of business analysis in an international group, then corporate finance and financial modelling at SKEMA Business School.",
+  "p.f1k": "Education", "p.f1v": "SKEMA Business School, Grande École Programme, Corporate Financial Management", "p.f2k": "Experience", "p.f2v": "Business Analyst at Willis Towers Watson for two years", "p.f3k": "Based in", "p.f4k": "Languages", "p.f4v": "French, English, Chinese (A1)",
+  "p.subnav": "Page sections", "p.expT": "Professional experience", "p.eduT": "Education", "p.engT": "Involvement", "p.skT": "Skills", "p.ceT": "Certifications and languages",
+  "p.statsT": "Key figures", "p.st1": "years of Business Analysis at Willis Towers Watson", "p.st2": "countries covered by my data analysis", "p.st3": "software platform whose deployment I led", "p.st4": "languages: French, English, Chinese",
+  "p.ceCap": "Certifications obtained and in progress", "p.ceOrg": "Issuer", "p.ceSt": "Status", "p.d1": "June 2026", "p.d2": "Dec. 2026", "p.ok": "Obtained", "p.amf": "AMF certification", "p.plan": "Exam scheduled", "p.prep": "In preparation",
+  "l.fr": "French", "l.frv": "Native", "l.en": "English", "l.env": "Fluent", "l.zh": "Chinese", "l.zhv": "A1 level",
+  "p.closeT": "Interested in an experience or a project? Let’s talk.",
+  "c.h1": "Contact", "c.lede": "For a conversation about finance, data or transformation, or any question about a project, an analysis or my background.", "c.aria": "Contact details and form",
+  "c.coordT": "Contact details", "c.copy": "Copy address", "c.locK": "Location", "c.langK": "Languages", "c.langV": "French, English", "c.topicsT": "Topics",
+  "c.t0": "A project or an analysis", "c.t1": "A question about my background", "c.t2": "A conversation about finance and technology", "c.t3": "Other topic",
+  "c.formT": "Send a message", "c.formNote": "Your email app opens with the message ready to send. This site does not collect or store any data.", "c.req": "Fields marked with an asterisk (*) are required.",
+  "c.name": "Name", "c.org": "Organisation", "c.subj": "Topic", "c.msg": "Message", "c.send": "Prepare the email",
+  "totop": "Back to top", "f.copy": "© 2026 Christian Sodara. All rights reserved. Paris.", "f.map": "Site map", "f.links": "Links"
+} };
+const UI = {
+  fr: { explore:"Explorer le projet", read:"min de lecture", unpublished:"non publié", all:"Tous", allF:"Toutes", projectsN:n => n + " projet" + (n > 1 ? "s" : ""),
+    back:"← Tous les projets", backW:"← Tous les écrits", others:"Autres projets", tools:"Outils", sources:"Sources", more:"Plus", undated:"Non daté",
+    secs:["Contexte","Problème","Approche","Réalisation","Résultats","Enseignements"], todo:"À compléter", frOnly:"",
+    copied:"Adresse copiée", copyFail:"Copie impossible, sélectionnez l’adresse", opened:"Votre messagerie s’ouvre avec le message prêt à envoyer.", fill:"Indiquez votre nom et votre message.",
+    vEmptyT:"La veille n’est pas disponible pour le moment.", vEmptyP:"Elle se met à jour automatiquement à partir des flux officiels. En attendant, les publications restent consultables à la source : ",
+    vEcb:"communiqués de la BCE", vAmf:"actualités de l’AMF", vAnd:" et ", vUpd:"Mis à jour le ", vSrc:"Sources : ", vNote:"Collecte automatique, sans commentaire ni sélection éditoriale.",
+    page:"Page : ", title:"Christian Sodara · Corporate Finance & Financial Modelling", locale:"fr-FR", mailHello:"" },
+  en: { explore:"Explore the project", read:"min read", unpublished:"unpublished", all:"All", allF:"All", projectsN:n => n + " project" + (n > 1 ? "s" : ""),
+    back:"← All projects", backW:"← All writing", others:"Other projects", tools:"Tools", sources:"Sources", more:"More", undated:"Undated",
+    secs:["Context","Problem","Approach","Execution","Results","Lessons"], todo:"À compléter", frOnly:"This article is available in French.",
+    copied:"Address copied", copyFail:"Copy failed, please select the address", opened:"Your email app is opening with the message ready to send.", fill:"Please enter your name and your message.",
+    vEmptyT:"The market watch is not available right now.", vEmptyP:"It updates automatically from official feeds. In the meantime, releases can be read at the source: ",
+    vEcb:"ECB press releases", vAmf:"AMF news", vAnd:" and ", vUpd:"Updated ", vSrc:"Sources: ", vNote:"Automatic collection, with no commentary or editorial selection.",
+    page:"Page: ", title:"Christian Sodara · Corporate Finance & Financial Modelling", locale:"en-GB" }
+};
+/* Contenus traduits, par identifiant */
+const EN = {
+  projects: {
+    lvmh: { type:"Personal project", title:"Valuing LVMH division by division", short:"Full DCF and trading comparables across the group’s five divisions, with sensitivity analysis.",
+      facts:[["Type","Personal project"],["Scope","5 LVMH divisions"],["Status","Completed"]], tools:["DCF","WACC","Comparables","Excel"],
+      figcap:"Illustration of the method: sensitivity matrix of terminal value to WACC and terminal growth. Relative values, not the model’s results.",
+      s:{ context:["LVMH brings together five businesses with very different growth and margin profiles. A single group-level valuation hides these differences."],
+        problem:["What value should be retained for a group whose divisions share neither the same growth, nor the same profitability, nor the same peers?"],
+        approach:["Personal project, carried out alone: modelling, choice of assumptions and writing of the thesis.","Five-year revenue projections for each of the five divisions.","WACC calculation and full DCF.","Trading comparables: Hermès, Kering, Richemont.","Sensitivity analysis on the terminal growth rate."],
+        lessons:["Value depends heavily on WACC and terminal growth: the sensitivity analysis is part of the result, not an appendix."] } },
+    backtests: { type:"Personal project", title:"Backtesting five systematic strategies", short:"Pairs Trading, Momentum, Volatility Arbitrage and two other strategies, assessed on around 120 simulated trades.",
+      facts:[["Type","Personal project"],["Data","Historical, simulated trades"],["Status","Completed"]],
+      figcap:"Illustration of the method: z-score of a simulated spread with ±2σ bands. Simulated data, not a backtest result.",
+      s:{ context:["A trading rule can look profitable on a chart and be worthless once rigorously tested."],
+        problem:["How can several systematic strategies be compared fairly, on the same grid and with the same criteria?"],
+        approach:["Personal project, carried out alone: choice of strategies, code, backtests and analysis.","Five strategies, including Pairs Trading, Momentum and Volatility Arbitrage.","Around 120 simulated trades on historical data.","Three criteria for each strategy: Sharpe ratio, maximum drawdown and alpha against a benchmark."],
+        lessons:["A backtest describes the past: it does not guarantee future performance and remains exposed to overfitting."] } },
+    eolien: { type:"Case study", title:"20-year wind farm: a project finance model", short:"Full financial model of a wind project: DSCR, IRR, NPV and feed-in tariff mechanics.",
+      facts:[["Type","Case study (Project South)"],["Horizon","20 years"],["Status","Completed, 2025"]], tools:["Project finance","DSCR","IRR","NPV"],
+      figcap:"Illustration of the method: cash flow available and debt service over 20 years. Indicative profile, not the model’s results.",
+      s:{ context:["An infrastructure project is largely debt-financed: its ability to repay matters as much as its return."],
+        problem:["Does the project cover its debt service every year, and does it create value for shareholders over 20 years?"],
+        approach:["Full model of the Project South case (2025).","Debt service coverage ratio (DSCR).","Project IRR and NPV.","Feed-in tariff mechanics."] } },
+    wtw: { type:"Professional experience", title:"Deploying a software platform at Willis Towers Watson", short:"Business analysis and leading the deployment of a $2M software platform within an international group.",
+      facts:[["Type","Professional experience"],["My role","Business Analyst"],["Duration","2 years"]], tools:["Business Analysis","Project management","Data analysis"],
+      figcap:"Schematic of the Business Analyst role, from business needs to deployment. Not the project’s actual timeline.",
+      s:{ context:["Willis Towers Watson is an international advisory, broking and solutions group, notably in risk management. I was a Business Analyst there for two years."],
+        problem:["Delivering the deployment of a $2M software platform means translating business needs into clear requirements, then coordinating teams through go-live."],
+        approach:["Led the deployment of a $2M software platform.","Data analysis across 4 countries.","Risk management advisory."] } },
+    pricer: { type:"Personal project", title:"Black-Scholes option pricer", short:"European option pricer with Greeks computed by hand.",
+      facts:[["Type","Personal project"],["Model","Black-Scholes"],["Status","Completed"]], tools:["Black-Scholes","Greeks","Python"],
+      figcap:"Black-Scholes call price (K = 100, σ = 20%, r = 3%) at 1 year and 3 months, against the payoff at expiry. Curves computed in the page.",
+      s:{ context:["An option’s price depends on five parameters. Understanding how each one moves it requires computing the Greeks."],
+        problem:["Build a pricer and compute the Greeks by hand rather than relying on a library."],
+        approach:["Personal project, carried out alone.","Black-Scholes formula for option prices.","Greeks computed by hand."],
+        lessons:["The model assumes constant volatility and rates and exercise at expiry: it does not apply as is to American options or to the volatility smile."] } },
+    weskool: { type:"Entrepreneurial project", title:"WeSkool", short:"International academic ERP for higher education: multi-campus, multi-programme, multi-currency.",
+      facts:[["Type","Weskool AI, co-founded company"],["My role","Co-founder and CTO"],["Status","In development"]],
+      figcap:"Deployment diagram: GitHub, test environment, production and managed PostgreSQL database on Render.",
+      s:{ context:["Higher education institutions manage several campuses, programmes and currencies and internationally mobile students, often with separate tools."],
+        problem:["Bring these needs together in a single international academic ERP."],
+        approach:["Co-founder and CTO of Weskool AI, alongside three partners.","Multi-campus, multi-programme and multi-currency management, international mobility tracking."],
+        build:["Set up the team workflow: branches, protections, test and production environments.","Stack: Node.js, managed PostgreSQL, Render (test and production), GitHub."] } },
+    fonds: { type:"Academic research", title:"Skill or luck: fund performance", short:"How to separate skill from luck in the performance of European equity funds.",
+      facts:[["Type","Research at SKEMA"],["Scope","European equity funds"],["Status","In progress"]], tools:["Research","Literature review","Statistics"],
+      figcap:"Illustration of the question: distribution of funds’ alpha t-stats against a pure-luck distribution. Theoretical curves.",
+      s:{ context:["Outperformance can come from the manager’s skill or from chance. Across a large number of funds, some outperform by luck."],
+        problem:["Distinguish skill from luck in the performance of European equity funds."],
+        approach:["Personal research topic for the research methodology course at SKEMA.","Review of the academic literature on fund performance persistence."] } },
+    finlens: { type:"Personal project", title:"FinLens", short:"Equity research platform by industry: market data, DCF and multiples valuation, investment thesis.",
+      facts:[["Type","Personal project"],["Status","Launching"]], tools:["Equity research","DCF","Multiples"],
+      figcap:"Illustration of a valuation football field: DCF, multiples and price range. Indicative values.",
+      s:{ context:["Equity research gathers scattered data: prices, financial statements, multiples, valuation assumptions."],
+        problem:["Bring together, by industry, market data, valuation and investment thesis in a single platform."],
+        approach:["Personal project.","DCF and multiples valuation, organised by industry."] } }
+  },
+  posts: {
+    "courbe-us": { title:"The US curve is steepening. Is it really a bullish signal?", intro:"A falling 2-year or a rising 10-year: the same steepening tells two stories. I cross-check the 2s10s, SOFR futures, the OIS curve and the term premium." },
+    "warsh": { title:"Warsh and the policy of silence", intro:"When the Fed says less, the market has to form its own view. What it changes for the 10-year, the 30-year and the term premium." },
+    "fed-funds": { title:"What Fed Funds futures say about rates", intro:"The arithmetic of implied probabilities, and the difference between Fed Funds and SOFR contracts." },
+    "wacc": { title:"WACC is not a number, it is a set of assumptions", intro:"Risk-free rate, beta, risk premium, target structure: every building block of the cost of capital is a choice. And one point of WACC can move value by more than 10%." },
+    "structure-capital": { title:"Debt or equity: what theory says, what companies do", intro:"From Modigliani-Miller to the pecking order theory, three frameworks for understanding why companies borrow neither too much nor too little." },
+    "backtesting": { title:"Why so many backtests are too good to be true", intro:"Testing a hundred variants of a strategy almost guarantees finding one that shines by chance. The biases to know, and the safeguards I apply." },
+    "dcf-multiples": { title:"DCF or multiples: two methods, two different questions", intro:"A DCF asks what a company is worth given its future cash flows. Multiples ask what the market pays for comparable companies. The two complement each other." },
+    "private-debt": { title:"Private debt: when funds lend instead of banks", intro:"Private credit increasingly finances mid-sized companies and LBOs. What it brings, and why supervisors are watching it." }
+  },
+  cats: { "Taux":"Rates", "Banques centrales":"Central banks", "Finance d’entreprise":"Corporate finance", "Marchés":"Markets", "Valorisation":"Valuation", "Financement":"Financing", "Recherche":"Research", "Parcours":"Background", "Dette souveraine":"Sovereign debt" },
+  formats: { "Carrousel · 6 slides":"Carousel · 6 slides", "Article":"Article", "Post":"Post", "Note de fond":"In-depth note", "Note d’analyse":"Analysis note", "Recherche":"Research", "Récit":"Story" },
+  status: { "Publié sur LinkedIn":"Published on LinkedIn", "Brouillon":"Draft", "À paraître":"Forthcoming", "Recherche en cours":"Research in progress" },
+  timeline: {
+    esatic: { stage:"Technical foundation", org:"ESATIC, Abidjan", role:"Bachelor’s degree in computer science and telecommunications", items:["Foundations in computing, networks and programming."] },
+    wtw: { stage:"Business analysis", when:"2 years", role:"Business Analyst", items:["Data analysis across 4 countries.","Risk management advisory.","Led the deployment of a $2M software platform."], link:"View the deployment project" },
+    datascientest: { stage:"Project management", role:"Internship, project management", items:["Data science training provider."] },
+    bpifrance: { stage:"Project management", when:"Aug. to Dec. 2025", role:"Assistant project manager, internship · Digital Learning", items:["Structured reporting and KPI dashboards for senior management."] },
+    skema: { stage:"Finance and modelling", when:"2024 to 2027", role:"Grande École Programme, Master in Management", items:["Specialisation in Corporate Financial Management.","Quantitative Finance elective.","Preparing for CFA Level I.","Company valuation, financial modelling, research on fund performance."], link:"View projects" }
+  },
+  eng: [
+    { k:"Financial analysis competition", desc:"A CFA Institute competition: student teams write an equity research report on a listed company, then defend their recommendation before a panel of investment professionals.", stages:["Participation","Preparation","Result"], vals:["Participant"] },
+    { k:"Entrepreneurship", desc:"SKEMA Business School’s student entrepreneur network.", stages:["Status"], vals:["Member"] },
+    { k:"Event", desc:"Bpifrance’s annual gathering for entrepreneurs, at the Accor Arena, during my internship at Bpifrance." }
+  ],
+  skills: [
+    { t:"Finance", ok:["Financial analysis","Valuation (DCF, multiples)","Financial modelling"], learn:["Corporate finance","Financial markets","Derivatives"] },
+    { t:"Data & Technology", ok:["Python","Excel","Data analysis"] },
+    { t:"Business & Execution", ok:["Business analysis","Project management","Digital transformation","International coordination"] }
+  ],
+  domains: { valo:"Valuation", marches:"Markets & quant", pf:"Project finance", ba:"Business Analysis & Tech", recherche:"Research" },
+  stories: [ { k:"Event", s:"Accor Arena, Paris" }, { k:"Financial analysis competition", s:"Participant" }, { k:"Entrepreneurship", s:"Member of the student entrepreneur network" } ],
+  figs: { "prix du call":"call price", "payoff":"payoff", "T = 1 an":"T = 1 yr", "z-score du spread (simulé)":"spread z-score (simulated)", "WACC":"WACC", "croissance terminale":"terminal growth",
+    "flux disponibles":"cash flow available", "dette":"debt", "chance seule":"luck alone", "fonds":"funds", "branches":"branches", "Besoins métier":"Business needs", "Spécifications":"Specifications",
+    "Recette":"Testing", "Déploiement":"Deployment", "schéma de principe":"schematic", "cours":"price", "52 sem.":"52 wk", "valeur terminale selon le WACC (g = 2 %)":"terminal value vs WACC (g = 2%)",
+    "16,7×":"16.7×", "14,3×":"14.3×", "6 %":"6%", "8 %":"8%", "10 %":"10%", "optimum":"optimum", "avec impôts seuls":"taxes only", "valeur de l’entreprise":"firm value", "endettement":"leverage",
+    "meilleur Sharpe attendu, sans aucun talent":"best expected Sharpe, with no skill", "stratégies testées":"strategies tested", "Investisseurs":"Investors", "Fonds de dette":"Debt fund", "Entreprise":"Company",
+    "Banque":"Bank", "prêt direct":"direct lending", "circuit bancaire":"bank lending", "rendement":"yield", "pentification":"steepening", "2a":"2y", "10a":"10y", "30a":"30y" }
+};
+let LANG = "fr";
+try { LANG = localStorage.getItem("lang") || ((navigator.language || "fr").toLowerCase().startsWith("fr") ? "fr" : "en"); } catch (e) { LANG = (navigator.language || "fr").toLowerCase().startsWith("fr") ? "fr" : "en"; }
+if (!["fr", "en"].includes(LANG)) LANG = "fr";
+const U = () => UI[LANG];
+const FT = s => (LANG === "en" && EN.figs[s]) || s;
+const enP = p => LANG === "en" ? (EN.projects[p.id] || {}) : {};
+const PJ = (p, k) => enP(p)[k] ?? p[k];
+const PS = (p, k) => (LANG === "en" && EN.projects[p.id] && EN.projects[p.id].s && EN.projects[p.id].s[k]) || p.s[k];
+const PO = (p, k) => (LANG === "en" && EN.posts[p.id] && EN.posts[p.id][k]) || p[k];
+const CAT = c => (LANG === "en" && EN.cats[c]) || c;
+const FMT = c => (LANG === "en" && EN.formats[c]) || c;
+const STAT = c => (LANG === "en" && EN.status[c]) || c;
+function applyStatic() {
+  const dict = I18N[LANG] || {};
+  document.querySelectorAll("[data-i18n]").forEach(el => { if (el.dataset.fr === undefined) el.dataset.fr = el.innerHTML; el.innerHTML = (LANG !== "fr" && dict[el.dataset.i18n]) || el.dataset.fr; });
+  [["data-i18n-aria", "aria-label"], ["data-i18n-alt", "alt"]].forEach(([a, attr]) => document.querySelectorAll("[" + a + "]").forEach(el => {
+    const keep = attr === "alt" ? "frAlt" : "frAria"; if (el.dataset[keep] === undefined) el.dataset[keep] = el.getAttribute(attr) || "";
+    el.setAttribute(attr, (LANG !== "fr" && dict[el.getAttribute(a)]) || el.dataset[keep]); }));
+  document.documentElement.lang = LANG;
+  document.querySelectorAll(".lang-sw button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === LANG));
+}
+
+/* ============ Contenu : projets ============
+   Trame commune : contexte, problème, approche, réalisation, résultats, enseignements.
+   todo : ce qui manque encore, visible seulement en aperçu. */
 const PROJECTS = [
-  { fig:"pairs", group:"finance", home:true, title:"Backtests de cinq stratégies systématiques",
-    what:"Pairs Trading, Momentum, Volatility Arbitrage et autres, sur environ 120 trades simulés.",
-    where:"Python. Projet personnel.",
-    more:"Chaque stratégie est évaluée par son ratio de Sharpe, son max drawdown et son alpha face à un benchmark." },
-  { fig:"bs", group:"finance", home:true, title:"Pricer d’options Black-Scholes",
-    what:"Pricer d’options avec des grecques calculées manuellement.",
-    where:"Projet personnel.",
-    more:"La figure montre le prix d’un call (K = 100, σ = 20&nbsp;%, r = 3&nbsp;%) à 1 an et à 3 mois, face à son payoff à l’échéance." },
-  { fig:"dcf", group:"finance", home:true, title:"Valorisation de LVMH",
-    what:"DCF complet et comparables, sur les cinq divisions du groupe.",
-    where:"Projet personnel." },
-  { fig:"wind", group:"finance", home:true, title:"Parc éolien sur 20 ans : modèle de PE infrastructure",
-    what:"DSCR, TRI et mécanique du tarif de rachat (Feed-in-Tariff).",
-    where:"Projet personnel." },
-  { fig:"luck", group:"finance", home:false, title:"Chance ou mérite : la performance des fonds",
-    what:"Comment séparer le talent de la chance dans la performance d’un gérant.",
-    where:"Recherche à SKEMA. En cours.",
-    more:"Mon sujet de recherche, accompagné d’une mini revue de littérature." },
-  { fig:"finlens", group:"soft", home:false, title:"FinLens",
-    what:"Plateforme d’equity research par industrie : données de marché, valorisation DCF et multiples, thèse d’investissement.",
-    where:"Projet personnel. En lancement." },
-  { fig:"weskool", group:"soft", home:false, title:"WeSkool",
-    what:"ERP académique international pour l’enseignement supérieur : multi-campus, multi-programmes, multi-devises, mobilité internationale.",
-    where:"En équipe. Node, PostgreSQL, Render, GitHub." },
-  { fig:"gauge", group:"soft", home:false, title:"CandiPilot",
-    what:"Application web d’aide à la candidature : génération de CV et de lettres, suivi des candidatures, score de correspondance avec l’offre.",
-    where:"HTML/JS, API Anthropic, Netlify. En développement." }
+  { id:"lvmh", dom:"valo", fig:"dcf", group:"finance", type:"Projet personnel", home:1,
+    title:"Valorisation de LVMH par division",
+    short:"DCF complet et comparables boursiers sur les cinq divisions du groupe, avec analyse de sensibilité.",
+    tools:["DCF","WACC","Comparables","Excel"],
+    facts:[["Nature","Projet personnel"],["Périmètre","5 divisions de LVMH"],["Statut","Réalisé"]],
+    figcap:"Illustration de la méthode : matrice de sensibilité de la valeur terminale au WACC et à la croissance terminale. Valeurs relatives, pas les résultats du modèle.",
+    s:{ context:["LVMH réunit cinq métiers aux profils de croissance et de marge très différents. Une valorisation globale masque ces écarts."],
+      problem:["Quelle valeur retenir pour un groupe dont les divisions n’ont ni la même croissance, ni la même rentabilité, ni les mêmes comparables ?"],
+      approach:["Projet personnel, mené seul : modélisation, choix des hypothèses et rédaction de la thèse.","Projections de chiffre d’affaires sur 5 ans pour chacune des cinq divisions.","Calcul du WACC et DCF complet.","Comparables boursiers : Hermès, Kering, Richemont.","Analyse de sensibilité sur le taux de croissance terminal."],
+      build:[], results:[],
+      lessons:["La valeur dépend fortement du WACC et de la croissance terminale : l’analyse de sensibilité fait partie du résultat, pas de l’annexe."],
+      todo:["Hypothèses clés : taux de croissance, marges, WACC retenu, multiples utilisés.","Confirmer l’outil (Excel ou autre).","Étapes : lecture des états financiers, projections, WACC, DCF, comparables, réconciliation.","Résultats : objectif de cours, fourchette de valorisation et conclusion, avec la date des données.","Une capture du modèle ou une note de synthèse publiable.","Tes enseignements personnels sur le cas."] }},
+  { id:"backtests", dom:"marches", fig:"pairs", group:"finance", type:"Projet personnel", home:1,
+    title:"Backtests de cinq stratégies systématiques",
+    short:"Pairs Trading, Momentum, Volatility Arbitrage et deux autres stratégies, évaluées sur environ 120 trades simulés.",
+    tools:["Python","Backtesting","Sharpe","Max drawdown"],
+    facts:[["Nature","Projet personnel"],["Données","Historiques, trades simulés"],["Statut","Réalisé"]],
+    figcap:"Illustration de la méthode : z-score d’un spread simulé et bandes à ±2σ. Données simulées, ce n’est pas un résultat du backtest.",
+    s:{ context:["Une règle de trading peut sembler rentable sur un graphique et ne rien valoir une fois testée avec rigueur."],
+      problem:["Comment comparer honnêtement plusieurs stratégies systématiques, sur une même grille et avec les mêmes critères ?"],
+      approach:["Projet personnel, mené seul : choix des stratégies, code, backtests et analyse.","Cinq stratégies, dont Pairs Trading, Momentum et Volatility Arbitrage.","Environ 120 trades simulés sur données historiques.","Trois critères pour chaque stratégie : ratio de Sharpe, max drawdown et alpha face à un benchmark."],
+      build:[], results:[],
+      lessons:["Un backtest décrit le passé : il ne garantit pas la performance future et reste exposé au surapprentissage."],
+      todo:["Nommer les deux autres stratégies, les marchés et la période testés, la source des données et les règles d’entrée et de sortie.","Bibliothèques utilisées (pandas, NumPy, etc.).","Étapes : collecte des données, signaux, simulation des trades, indicateurs.","Sharpe, max drawdown et alpha de chaque stratégie, depuis tes notebooks (résultats de simulation, pas une performance réelle).","Une capture de tes graphiques réels.","Lien vers le dépôt GitHub ou un notebook public."] }},
+  { id:"eolien", dom:"pf", fig:"wind", group:"finance", type:"Étude de cas", home:1,
+    title:"Parc éolien sur 20 ans : modèle de project finance",
+    short:"Modèle financier complet d’un projet éolien : DSCR, TRI, VAN et mécanique du tarif de rachat.",
+    tools:["Project finance","DSCR","TRI","VAN"],
+    facts:[["Nature","Étude de cas (Project South)"],["Horizon","20 ans"],["Statut","Réalisé, 2025"]],
+    figcap:"Illustration de la méthode : flux disponibles et service de la dette sur 20 ans. Profil indicatif, pas les résultats du modèle.",
+    s:{ context:["Un projet d’infrastructure se finance largement par la dette : sa capacité à la rembourser compte autant que son rendement."],
+      problem:["Le projet couvre-t-il son service de la dette chaque année, et crée-t-il de la valeur pour les actionnaires sur 20 ans ?"],
+      approach:["Modélisation complète du cas Project South (2025).","Ratio de couverture du service de la dette (DSCR).","TRI et VAN du projet.","Mécanique du tarif de rachat (Feed-in Tariff)."],
+      build:[], results:[], lessons:[],
+      todo:["Cadre du cas (cours, concours ou projet personnel) et hypothèses principales.","Outil utilisé.","Étapes de construction du modèle.","DSCR minimum, TRI, VAN, avec leurs hypothèses.","Enseignements et limites du modèle."] }},
+  { id:"wtw", dom:"ba", fig:"ba", group:"tech", type:"Expérience professionnelle", home:1,
+    title:"Déploiement d’une plateforme logicielle chez Willis Towers Watson",
+    short:"Business Analysis et pilotage du déploiement d’une plateforme logicielle de 2 M$, au sein d’un groupe international.",
+    tools:["Business Analysis","Gestion de projet","Analyse de données"],
+    facts:[["Nature","Expérience professionnelle"],["Mon rôle","Business Analyst"],["Durée","2 ans"]],
+    figcap:"Schéma de principe du rôle de Business Analyst, des besoins métier au déploiement. Ce n’est pas le calendrier réel du projet.",
+    s:{ context:["Willis Towers Watson est un groupe international de conseil, de courtage et de solutions, notamment en gestion des risques. J’y ai été Business Analyst pendant deux ans."],
+      problem:["Faire aboutir le déploiement d’une plateforme logicielle de 2 M$ suppose de traduire des besoins métier en exigences claires, puis de coordonner les équipes jusqu’à la mise en service."],
+      approach:["Pilotage du déploiement d’une plateforme logicielle de 2 M$.","Analyse de données sur 4 pays.","Conseil en gestion des risques."],
+      build:[], results:[], lessons:[],
+      todo:["Dates exactes du poste (mois et année).","Nature de la plateforme, décrite sans information confidentielle.","Équipes et pays impliqués dans le déploiement.","Livrables : spécifications, recette, formation, reporting.","Résultats mesurables que tu peux rendre publics.","Application iOS WTW (capture TestFlight reçue) : préciser ton rôle et si elle peut être citée publiquement. La capture ne sera pas publiée, elle contient le nom d’un collègue."] }},
+  { id:"pricer", dom:"marches", fig:"bs", group:"finance", type:"Projet personnel", home:0,
+    title:"Pricer d’options Black-Scholes",
+    short:"Pricer d’options européennes avec des grecques calculées manuellement.",
+    tools:["Black-Scholes","Grecques","Python"],
+    facts:[["Nature","Projet personnel"],["Modèle","Black-Scholes"],["Statut","Réalisé"]],
+    figcap:"Prix d’un call Black-Scholes (K = 100, σ = 20 %, r = 3 %) à 1 an et à 3 mois, face au payoff à l’échéance. Courbes calculées dans la page.",
+    s:{ context:["Le prix d’une option dépend de cinq paramètres. Comprendre comment chacun le fait varier passe par le calcul des grecques."],
+      problem:["Construire un pricer et calculer les grecques à la main plutôt que de s’appuyer sur une bibliothèque."],
+      approach:["Projet personnel, mené seul.","Formule de Black-Scholes pour le prix des options.","Grecques calculées manuellement."],
+      build:[], results:[],
+      lessons:["Le modèle suppose une volatilité et des taux constants et un exercice à l’échéance : il ne s’applique pas tel quel aux options américaines ni au smile de volatilité."],
+      todo:["Quelles grecques, et si le pricer traite calls et puts.","Langage et bibliothèques.","Fonctionnalités : entrées, sorties, graphiques.","Capture du pricer ou exemple de calcul vérifié.","Lien vers le dépôt GitHub."] }},
+  { id:"weskool", dom:"ba", fig:"weskool", group:"tech", type:"Projet entrepreneurial", home:0,
+    title:"WeSkool",
+    short:"ERP académique international pour l’enseignement supérieur : multi-campus, multi-programmes, multi-devises.",
+    tools:["Node.js","PostgreSQL","Render","GitHub"],
+    facts:[["Nature","Weskool AI, société cofondée"],["Mon rôle","Cofondateur et CTO"],["Statut","En développement"]],
+    figcap:"Schéma de déploiement : GitHub, environnement de test, production et base PostgreSQL managée sur Render.",
+    s:{ context:["Les établissements d’enseignement supérieur gèrent plusieurs campus, programmes, devises et des étudiants en mobilité internationale, souvent avec des outils séparés."],
+      problem:["Réunir ces besoins dans un seul ERP académique international."],
+      approach:["Cofondateur et CTO de Weskool AI, aux côtés de trois associés.","Gestion multi-campus, multi-programmes et multi-devises, suivi de la mobilité internationale."],
+      build:["Mise en place du workflow d’équipe : branches, protections, environnements de test et de production.","Stack : Node.js, PostgreSQL managée, Render (test et production), GitHub."],
+      results:[], lessons:[],
+      todo:["Modules déjà livrés et problèmes métier résolus.","Grandes étapes et calendrier.","Avancement réel : fonctionnalités en production, établissements pilotes.","Enseignements et difficultés.","Lien vers une démo publique, si tu veux en montrer une."] }},
+  { id:"fonds", dom:"recherche", fig:"luck", group:"acad", type:"Recherche académique", home:0,
+    title:"Chance ou mérite : la performance des fonds",
+    short:"Comment séparer le talent de la chance dans la performance des fonds actions européens.",
+    tools:["Recherche","Revue de littérature","Statistiques"],
+    facts:[["Nature","Recherche à SKEMA"],["Périmètre","Fonds actions européens"],["Statut","En cours"]],
+    figcap:"Illustration de la question : distribution des t-stats d’alpha des fonds face à une distribution de pure chance. Courbes théoriques.",
+    s:{ context:["Une surperformance peut venir du talent du gérant ou du hasard. Sur un grand nombre de fonds, certains surperforment par chance."],
+      problem:["Distinguer le talent de la chance dans la performance des fonds actions européens."],
+      approach:["Sujet de recherche personnel dans le cadre du cours de méthodologie de la recherche à SKEMA.","Revue de la littérature académique sur la persistance de la performance des fonds."],
+      build:[], results:[], lessons:[],
+      todo:["Méthode retenue et données envisagées.","Calendrier de la recherche.","Travail en cours : aucun résultat à publier pour l’instant."] }},
+  { id:"finlens", dom:"valo", fig:"finlens", group:"tech", type:"Projet personnel", home:0,
+    title:"FinLens",
+    short:"Plateforme d’equity research par industrie : données de marché, valorisation DCF et multiples, thèse d’investissement.",
+    tools:["Equity research","DCF","Multiples"],
+    facts:[["Nature","Projet personnel"],["Statut","En lancement"]],
+    figcap:"Illustration d’un football field de valorisation : DCF, multiples et plage de cours. Valeurs indicatives.",
+    s:{ context:["L’equity research rassemble des données éparses : cours, états financiers, multiples, hypothèses de valorisation."],
+      problem:["Réunir, par industrie, données de marché, valorisation et thèse d’investissement dans une seule plateforme."],
+      approach:["Projet personnel.","Valorisation par DCF et par multiples, organisée par industrie."],
+      build:[], results:[], lessons:[],
+      todo:["Architecture et sources de données envisagées.","Stack technique.","Feuille de route.","Projet en lancement : aucun livrable public pour l’instant."] }}
 ];
 
+/* ============ Contenu : écrits ============
+   Seuls les écrits dont le statut commence par « Publié » apparaissent sur le site en ligne.
+   body : Markdown simple (## titre, - liste, paragraphes, [texte](https://…)). */
 const POSTS = [
-  { sketch:"curve", home:true, cat:"Taux", title:"La courbe américaine se pentifie. Est-ce vraiment un signal bullish&nbsp;?",
-    ex:"Baisse du 2 ans ou hausse du 10 ans : la même pentification raconte deux histoires. Je croise le 2s10s, les SOFR Futures, la courbe OIS et le term premium.",
-    meta:"Carrousel LinkedIn · 6 slides" },
-  { sketch:"silence", cat:"Fed", title:"Warsh et la politique du silence",
-    ex:"Quand la Fed en dit moins, le marché doit se faire son propre avis. Ce que cela change pour le 10 ans, le 30 ans et le term premium.",
-    meta:"Article LinkedIn" },
-  { sketch:"futures", cat:"Taux", title:"Ce que les Fed Funds Futures disent des taux",
-    ex:"L’arithmétique des probabilités implicites, et la différence entre les contrats Fed Funds et SOFR.",
-    meta:"Post LinkedIn" },
-  { sketch:"oat", cat:"Souverain", title:"Dette française : ce que raconte le spread OAT-Bund",
-    ex:"3&nbsp;536&nbsp;Md€ de dette au T1 2026, 117,5&nbsp;% du PIB et un déficit projeté à 5,2&nbsp;% en 2026.",
-    meta:"À paraître" },
-  { sketch:"luck", home:true, cat:"Recherche", title:"Gérants de fonds : chance ou mérite&nbsp;?",
-    ex:"Mon sujet de recherche à SKEMA. Comment savoir si une surperformance vient du talent du gérant ou du hasard.",
-    meta:"Recherche en cours" },
-  { sketch:"journey", home:true, cat:"Vie", title:"D’Abidjan à Paris",
-    ex:"L’ESATIC, Willis Towers Watson, puis SKEMA. Comment un parcours en informatique m’a conduit vers les marchés.",
-    meta:"À paraître" }
+  { id:"courbe-us", url:"", home:1, fig:"curve", cat:"Taux", status:"Publié sur LinkedIn", format:"Carrousel · 6 slides", date:"",
+    title:"La courbe américaine se pentifie. Est-ce vraiment un signal bullish ?",
+    intro:"Baisse du 2 ans ou hausse du 10 ans : la même pentification raconte deux histoires. Je croise le 2s10s, les SOFR Futures, la courbe OIS et le term premium.",
+    body:"", sources:[] },
+  { id:"warsh", url:"", home:1, cat:"Banques centrales", status:"Publié sur LinkedIn", format:"Article", date:"",
+    title:"Warsh et la politique du silence",
+    intro:"Quand la Fed en dit moins, le marché doit se faire son propre avis. Ce que cela change pour le 10 ans, le 30 ans et le term premium.",
+    body:"", sources:[] },
+  { id:"fed-funds", url:"", home:1, cat:"Taux", status:"Publié sur LinkedIn", format:"Post", date:"",
+    title:"Ce que les Fed Funds Futures disent des taux",
+    intro:"L’arithmétique des probabilités implicites, et la différence entre les contrats Fed Funds et SOFR.",
+    body:"", sources:[] },
+  { id:"wacc", fig:"wacc", cat:"Finance d’entreprise", status:"Brouillon", format:"Note de fond", date:"",
+    title:"Le WACC n’est pas un chiffre, c’est une série d’hypothèses",
+    intro:"Taux sans risque, bêta, prime de risque, structure cible : chaque brique du coût du capital est un choix. Et un point de WACC peut déplacer la valeur de plus de 10 %.",
+    body:`## Ce que mesure le WACC
+Le coût moyen pondéré du capital est le rendement que l’entreprise doit offrir à l’ensemble de ses financeurs. Il pondère le coût des fonds propres et le coût de la dette après impôt : WACC = E/(D+E) × Re + D/(D+E) × Rd × (1 − t).
+
+## Quatre choix qui font le résultat
+- Les pondérations se calculent en valeur de marché et, idéalement, sur une structure cible, pas sur les montants comptables du dernier bilan.
+- Le coût des fonds propres vient le plus souvent du MEDAF : taux sans risque plus bêta multiplié par la prime de risque du marché actions. Le taux sans risque doit être cohérent avec la devise des flux actualisés.
+- Le bêta d’une société cotée reflète sa propre structure financière. On le désendette, on prend la médiane d’un échantillon de comparables, puis on le réendette à la structure cible.
+- Le coût de la dette est un coût marginal : celui auquel l’entreprise emprunterait aujourd’hui, pas le taux moyen de sa dette historique.
+
+## Pourquoi un point compte autant
+Avec une croissance terminale de 2 %, la valeur terminale vaut 1/(WACC − g) fois le flux de l’année suivante : 16,7 fois avec un WACC de 8 %, 14,3 fois avec 9 %. Un point de WACC retire donc environ 14 % à la valeur terminale, qui représente souvent la majorité de la valeur d’un DCF.
+
+## Ce que j’en retiens
+Un WACC se présente avec sa fourchette et ses sources. C’est pour cela qu’une valorisation sérieuse s’accompagne d’une matrice de sensibilité, comme celle de mon projet sur LVMH.`,
+    sources:["T. Koller, M. Goedhart, D. Wessels, Valuation: Measuring and Managing the Value of Companies, McKinsey & Company, Wiley, 7e édition, 2020.","A. Damodaran, Investment Valuation, Wiley, 3e édition, 2012.","[A. Damodaran, données sur les primes de risque et les bêtas sectoriels, NYU Stern](https://pages.stern.nyu.edu/~adamodar/)"] },
+  { id:"structure-capital", fig:"cap", cat:"Finance d’entreprise", status:"Brouillon", format:"Note de fond", date:"",
+    title:"Dette ou fonds propres : ce que dit la théorie, ce que font les entreprises",
+    intro:"De Modigliani-Miller à la théorie du financement hiérarchique, trois cadres pour comprendre pourquoi les entreprises ne s’endettent ni trop, ni trop peu.",
+    body:`## Le point de départ : la structure ne compte pas
+En 1958, Modigliani et Miller montrent que, dans un marché parfait sans impôts ni coûts de faillite, la valeur d’une entreprise ne dépend pas de la façon dont elle est financée. Le résultat est volontairement irréaliste : il dit où chercher les vraies raisons d’un choix de financement.
+
+## Premier écart : l’impôt
+Les intérêts sont déductibles. En 1963, les mêmes auteurs intègrent cet avantage fiscal : chaque euro de dette crée une économie d’impôt, et la valeur augmente avec l’endettement.
+
+## Deuxième écart : le risque de faillite
+Au-delà d’un certain niveau, la dette augmente la probabilité de difficultés financières, avec des coûts directs et indirects : clients et fournisseurs inquiets, investissements reportés. La théorie du compromis place la structure optimale là où l’économie d’impôt marginale égale le coût marginal de ces difficultés.
+
+## Troisième lecture : l’ordre de financement
+Myers et Majluf (1984) partent de l’asymétrie d’information. Les dirigeants en savent plus que les investisseurs, et une émission d’actions peut être lue comme le signal d’une action surévaluée. D’où une hiérarchie : autofinancement d’abord, puis dette, et actions en dernier recours.
+
+## Ce que j’en retiens
+En pratique, les entreprises raisonnent souvent à partir d’une notation de crédit cible et de ratios comme la dette nette sur EBITDA. Les théories n’en donnent pas le chiffre, mais elles expliquent pourquoi ce chiffre diffère autant d’un secteur à l’autre.`,
+    sources:["F. Modigliani, M. Miller, « The Cost of Capital, Corporation Finance and the Theory of Investment », American Economic Review, 1958.","F. Modigliani, M. Miller, « Corporate Income Taxes and the Cost of Capital: A Correction », American Economic Review, 1963.","S. Myers, N. Majluf, « Corporate Financing and Investment Decisions When Firms Have Information That Investors Do Not Have », Journal of Financial Economics, 1984.","S. Myers, « The Capital Structure Puzzle », Journal of Finance, 1984."] },
+  { id:"backtesting", fig:"overfit", cat:"Marchés", status:"Brouillon", format:"Note de fond", date:"",
+    title:"Pourquoi tant de backtests sont trop beaux pour être vrais",
+    intro:"Tester cent variantes d’une stratégie, c’est presque garantir d’en trouver une qui brille par hasard. Les biais à connaître, et les garde-fous que j’applique.",
+    body:`## Le piège des essais multiples
+Si l’on teste de nombreuses variantes d’une stratégie sans aucun pouvoir prédictif, la meilleure d’entre elles affichera quand même un ratio de Sharpe flatteur. Le résultat ne mesure pas un talent, seulement le nombre d’essais. Bailey et López de Prado proposent pour cela un Sharpe « dégonflé », qui tient compte du nombre de stratégies testées.
+
+## Les autres biais classiques
+- Le biais d’anticipation : utiliser une information qui n’était pas disponible à la date de la décision, par exemple des données comptables publiées plus tard.
+- Le biais du survivant : ne garder que les titres encore cotés aujourd’hui, en oubliant ceux qui ont disparu.
+- Les coûts oubliés : frais de transaction, écart entre prix acheteur et vendeur, impact des ordres sur le marché.
+
+## Les garde-fous
+- Séparer les données d’apprentissage et de test, et ne regarder le test qu’une fois.
+- Préférer une validation glissante (walk-forward) à un seul découpage.
+- Noter combien de variantes ont été essayées, et relever le seuil de significativité en conséquence : Harvey, Liu et Zhu suggèrent un t-stat d’au moins 3 pour un nouveau facteur.
+
+## Ce que j’en retiens
+Dans mes propres backtests, j’ai évalué cinq stratégies sur une même grille (Sharpe, max drawdown, alpha). La comparaison n’a de sens que si chaque stratégie subit les mêmes contraintes, et un bon backtest reste une hypothèse à confirmer, pas une preuve.`,
+    sources:["D. Bailey, J. Borwein, M. López de Prado, Q. Zhu, « Pseudo-Mathematics and Financial Charlatanism », Notices of the American Mathematical Society, 2014.","D. Bailey, M. López de Prado, « The Deflated Sharpe Ratio », Journal of Portfolio Management, 2014.","C. Harvey, Y. Liu, H. Zhu, « … and the Cross-Section of Expected Returns », Review of Financial Studies, 2016."] },
+  { id:"dcf-multiples", fig:"finlens", cat:"Valorisation", status:"Brouillon", format:"Note de fond", date:"",
+    title:"DCF ou multiples : deux méthodes, deux questions différentes",
+    intro:"Le DCF demande ce que vaut une entreprise compte tenu de ses flux futurs. Les multiples demandent combien le marché paie des entreprises comparables. Les deux se complètent.",
+    body:`## Deux logiques
+Le DCF est une valorisation intrinsèque : on projette des flux de trésorerie et on les actualise au coût du capital. Les multiples sont une valorisation relative : on applique à l’entreprise le prix que le marché accorde à des sociétés comparables, par exemple en valeur d’entreprise sur EBITDA.
+
+## Un multiple contient un DCF implicite
+Un multiple n’est pas une méthode sans hypothèses. Il résume, de façon compacte, la croissance, la rentabilité des capitaux investis et le risque que le marché prête aux comparables. Deux sociétés au même EBITDA peuvent justifier des multiples très différents si leur croissance ou leur besoin d’investissement diffèrent.
+
+## Les limites de chacune
+- Le DCF est très sensible au WACC et à la croissance terminale, et la valeur terminale pèse souvent la majorité du total.
+- Les multiples dépendent du choix des comparables et du moment : ils héritent des excès éventuels du marché.
+- Les études empiriques, comme celle de Liu, Nissim et Thomas (2002), comparent la précision des multiples entre eux. Elles montrent que les multiples fondés sur les bénéfices prévisionnels font mieux que ceux fondés sur les flux historiques.
+
+## Ce que j’en retiens
+La présentation la plus honnête est un « football field » : la fourchette de chaque méthode côte à côte, puis une explication des écarts. C’est l’approche que j’ai suivie pour LVMH, avec un DCF par division confronté aux multiples d’Hermès, Kering et Richemont.`,
+    sources:["T. Koller, M. Goedhart, D. Wessels, Valuation, McKinsey & Company, Wiley, 7e édition, 2020.","A. Damodaran, The Dark Side of Valuation, FT Press, 2e édition, 2009.","J. Liu, D. Nissim, J. Thomas, « Equity Valuation Using Multiples », Journal of Accounting Research, 2002."] },
+  { id:"private-debt", fig:"pdebt", cat:"Financement", status:"Brouillon", format:"Note de fond", date:"",
+    title:"Private debt : quand les fonds prêtent à la place des banques",
+    intro:"Le crédit privé finance de plus en plus d’entreprises de taille intermédiaire et d’opérations de LBO. Ce qu’il apporte, et pourquoi les superviseurs le surveillent.",
+    body:`## De quoi parle-t-on
+La dette privée désigne des prêts accordés directement par des fonds d’investissement à des entreprises, sans passer par une banque ni par le marché obligataire. Elle prend souvent la forme de prêts à taux variable, assortis de clauses de protection, et notamment de financements « unitranche » dans les LBO.
+
+## Pourquoi elle s’est développée
+Après la crise de 2008, le durcissement des règles de capital bancaire a rendu certains prêts moins attractifs pour les banques. Dans le même temps, les investisseurs institutionnels cherchaient du rendement dans un environnement de taux bas. Les fonds de dette privée ont occupé cet espace, en offrant aux emprunteurs rapidité d’exécution et confidentialité.
+
+## Ce qui inquiète les superviseurs
+Le FMI a consacré en avril 2024 un chapitre de son rapport sur la stabilité financière à l’essor du crédit privé. Il relève plusieurs fragilités : des emprunteurs souvent plus endettés, des valorisations peu fréquentes, une faible transparence et des liens croissants avec les assureurs et les fonds de pension.
+
+## En Europe
+Le règlement européen ELTIF, révisé en 2023, élargit l’accès des investisseurs particuliers aux fonds investis dans des actifs non cotés, dont la dette privée.
+
+## Ce que j’en retiens
+Pour une entreprise, la dette privée est une alternative au crédit bancaire, plus chère mais plus flexible. Pour l’analyste, la question clé est la capacité de remboursement : la même logique de couverture du service de la dette que dans mon modèle de project finance.`,
+    sources:["[FMI, Global Financial Stability Report, avril 2024, chapitre 2 : « The Rise and Risks of Private Credit »](https://www.imf.org/en/Publications/GFSR/Issues/2024/04/16/global-financial-stability-report-april-2024)","Règlement (UE) 2023/606 du 15 mars 2023 modifiant le règlement (UE) 2015/760 relatif aux fonds européens d’investissement à long terme (ELTIF)."] }
+];
+const POST_TODO = {
+  "courbe-us":"Ajouter la date et le lien vers la publication LinkedIn, puis le texte ou les slides si tu veux une version complète sur le site.",
+  "warsh":"Ajouter la date et le lien vers l’article LinkedIn.",
+  "fed-funds":"Ajouter la date et le lien vers le post LinkedIn.",
+  "_draft":"Brouillon rédigé pour toi : relis-le, corrige-le, vérifie chaque source, puis dis-moi « publie l’article » pour qu’il apparaisse en ligne avec sa date."
+};
+
+/* ============ Contenu : parcours et engagements ============ */
+const TIMELINE = [
+  { id:"esatic", type:"edu", stage:"Fondation technique", when:"", org:"ESATIC, Abidjan", role:"Licence en informatique et télécommunications",
+    items:["Bases en informatique, réseaux et programmation."], draft:"Dates de la licence." },
+  { id:"wtw", type:"work", stage:"Analyse métier", when:"2 ans", org:"Willis Towers Watson", logo:["logo-wtw.png","Logo WTW",""], role:"Business Analyst",
+    items:["Analyse de données sur 4 pays.","Conseil en gestion des risques.","Pilotage du déploiement d’une plateforme logicielle de 2 M$."], link:["#projet-wtw","Voir le projet de déploiement"], draft:"Dates exactes (mois et année)." },
+  { id:"datascientest", type:"work", stage:"Gestion de projets", when:"", org:"DataScientest", logo:["logo-liora.png","Logo Liora, ex DataScientest","tall"], role:"Stage, gestion de projet",
+    items:["Organisme de formation en data science."], draft:"Dates et missions principales." },
+  { id:"bpifrance", type:"work", stage:"Gestion de projets", when:"Août à déc. 2025", org:"Bpifrance", logo:["logo-bpifrance.png","Logo Bpifrance",""], role:"Assistant chef de projet, stage · Digital Learning",
+    items:["Reportings structurés et tableaux de bord KPI destinés à la direction."], draft:"" },
+  { id:"skema", type:"edu", stage:"Finance et modélisation", when:"2024 à 2027", org:"SKEMA Business School, Paris", logo:["logo-skema.png","Logo SKEMA Business School","skema"], role:"Programme Grande École, Master in Management",
+    items:["Spécialisation Corporate Financial Management.","Électif Quantitative Finance.","Préparation du CFA Level I.","Valorisation d’entreprises, modélisation financière, recherche sur la performance des fonds."], link:["#projets","Voir les projets"], draft:"" }
+];
+const ENGAGEMENTS = [
+  { k:"Compétition d’analyse financière", t:"CFA Institute Research Challenge",
+    desc:"Une compétition du CFA Institute : des équipes d’étudiants rédigent un rapport d’equity research sur une société cotée, puis défendent leur recommandation devant un jury de professionnels.",
+    stages:[["Participation","Participant"],["Préparation",""],["Résultat",""]],
+    draft:"Préparation : édition, société analysée, équipe et ton rôle dans le rapport. Résultat : à afficher seulement quand il est officiel." },
+  { k:"Entrepreneuriat", t:"SKEMA Entrepreneurs",
+    desc:"Le réseau des étudiants entrepreneurs de SKEMA Business School.",
+    stages:[["Statut","Membre"]],
+    draft:"Ton rôle et tes activités, et si WeSkool y est accompagné." },
+  { k:"Événement", t:"Bpifrance Inno Generation (BIG) 2025",
+    desc:"Le rassemblement annuel de Bpifrance pour les entrepreneurs, à l’Accor Arena, pendant mon stage chez Bpifrance.",
+    stages:[],
+    draft:"Ton rôle pendant l’événement et ce que tu en as retenu." }
+];
+const SKILLS = [
+  { t:"Finance", ok:["Analyse financière","Valorisation (DCF, multiples)","Modélisation financière"], learn:["Corporate Finance","Marchés financiers","Produits dérivés"] },
+  { t:"Data & Technology", ok:["Python","Excel","Analyse de données"], learn:[], draft:"Confirmer Power BI et l’automatisation avant de les afficher." },
+  { t:"Business & Execution", ok:["Business analysis","Gestion de projet","Transformation digitale","Coordination internationale"], learn:[] }
 ];
 
-/* ---------- Figures techniques : calculées, pas dessinées ---------- */
+/* ============ Figures calculées (illustrations, jamais des résultats) ============ */
 const pts = a => a.map(p => p[0].toFixed(1) + "," + p[1].toFixed(1)).join(" ");
 const pl = (a, c) => `<polyline class="${c}" points="${pts(a)}"/>`;
-const tx = (x, y, s, c = "f-t", anchor = "start") => `<text class="${c}" x="${x}" y="${y}" text-anchor="${anchor}">${s}</text>`;
+const tx = (x, y, s, c = "f-t", anchor = "start") => `<text class="${c}" x="${x}" y="${y}" text-anchor="${anchor}">${FT(String(s))}</text>`;
 const svg = (body, label) => `<svg viewBox="0 0 190 120" role="img" aria-label="${label}">${body}</svg>`;
-
+const box = (x, y, w, s, a) => `<rect class="${a ? "f-boxa" : "f-box"}" x="${x}" y="${y}" width="${w}" height="24" rx="3"/>` + tx(x + w / 2, y + 15, s, "f-tt", "middle");
+const arrow = (x1, y1, x2, y2) => { const dx = Math.sign(x2 - x1), dy = Math.sign(y2 - y1);
+  return pl([[x1, y1], [x2, y2]], "f-axis") + (dx ? pl([[x2 - 3 * dx, y2 - 2.5], [x2, y2], [x2 - 3 * dx, y2 + 2.5]], "f-axis") : pl([[x2 - 2.5, y2 - 3 * dy], [x2, y2], [x2 + 2.5, y2 - 3 * dy]], "f-axis")); };
 function seeded(seed) { let s = seed; return () => (s = (s * 16807) % 2147483647) / 2147483647; }
 function gauss(r) { return Math.sqrt(-2 * Math.log(r() + 1e-9)) * Math.cos(2 * Math.PI * r()); }
-function cdf(x) { // Abramowitz & Stegun 26.2.17
-  const t = 1 / (1 + 0.2316419 * Math.abs(x));
-  const d = 0.3989423 * Math.exp(-x * x / 2);
-  const p = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274))));
-  return x > 0 ? 1 - p : p;
-}
-function call(S, K, r, v, T) {
-  if (T <= 0) return Math.max(S - K, 0);
-  const d1 = (Math.log(S / K) + (r + v * v / 2) * T) / (v * Math.sqrt(T));
-  return S * cdf(d1) - K * Math.exp(-r * T) * cdf(d1 - v * Math.sqrt(T));
-}
+function cdf(x) { const t = 1 / (1 + 0.2316419 * Math.abs(x)); const d = 0.3989423 * Math.exp(-x * x / 2);
+  const p = d * t * (0.3193815 + t * (-0.3565638 + t * (1.781478 + t * (-1.821256 + t * 1.330274)))); return x > 0 ? 1 - p : p; }
+function call(S, K, r, v, T) { if (T <= 0) return Math.max(S - K, 0);
+  const d1 = (Math.log(S / K) + (r + v * v / 2) * T) / (v * Math.sqrt(T)); return S * cdf(d1) - K * Math.exp(-r * T) * cdf(d1 - v * Math.sqrt(T)); }
 const normal = (x, m, s) => Math.exp(-((x - m) ** 2) / (2 * s * s)) / (s * Math.sqrt(2 * Math.PI));
-
 const FIGS = {
-  bs() {
-    const X = s => 22 + (s - 60) / 80 * 158, Y = v => 102 - v / 45 * 92;
+  bs() { const X = s => 22 + (s - 60) / 80 * 158, Y = v => 102 - v / 45 * 92;
     const curve = T => { const a = []; for (let s = 60; s <= 140; s += 2) a.push([X(s), Y(call(s, 100, 0.03, 0.2, T))]); return a; };
-    return svg(
-      pl([[22, 8], [22, 102], [182, 102]], "f-axis") +
-      pl(curve(0), "f-b") + pl(curve(0.25), "f-c") + pl(curve(1), "f-a") +
-      [60, 100, 140].map(s => tx(X(s), 112, s, "f-t", "middle")).join("") +
-      tx(26, 15, "prix du call") + tx(122, 52, "T = 1 an", "f-tt", "end") + tx(150, 92, "payoff", "f-t", "start"),
-      "Prix d’un call Black-Scholes selon le sous-jacent, à 1 an, 3 mois et à l’échéance");
-  },
-  pairs() {
-    const r = seeded(4217); let z = 0.4; const a = [], hits = [];
-    const X = i => 26 + i / 149 * 156, Y = v => 56 - Math.max(-3.2, Math.min(3.2, v)) * 15;
-    let armed = true;
-    for (let i = 0; i < 150; i++) {
-      z = 0.93 * z + 0.52 * gauss(r); a.push([X(i), Y(z)]);
-      if (Math.abs(z) > 2 && armed) { hits.push([X(i), Y(z)]); armed = false; }
-      if (Math.abs(z) < 0.5) armed = true;
-    }
-    return svg(
-      pl([[26, Y(2)], [182, Y(2)]], "f-c") + pl([[26, Y(-2)], [182, Y(-2)]], "f-c") + pl([[26, Y(0)], [182, Y(0)]], "f-axis") +
-      pl(a, "f-b") + hits.map(h => `<circle class="f-dot" cx="${h[0].toFixed(1)}" cy="${h[1].toFixed(1)}" r="2.6"/>`).join("") +
-      tx(22, Y(2) + 2.5, "+2σ", "f-t", "end") + tx(22, Y(-2) + 2.5, "−2σ", "f-t", "end") + tx(22, Y(0) + 2.5, "0", "f-t", "end") +
-      tx(104, 114, "z-score du spread", "f-t", "middle"),
-      "Illustration d’un z-score de spread avec bandes à plus ou moins deux sigmas et points d’entrée");
-  },
-  dcf() {
-    const W = [7, 7.5, 8, 8.5, 9], G = [1, 1.5, 2, 2.5, 3];
-    const val = (w, g) => 1 / (w - g), lo = val(9, 1), hi = val(7, 3);
-    let b = "";
-    W.forEach((w, i) => G.forEach((g, j) => {
-      const o = 0.08 + 0.82 * (val(w, g) - lo) / (hi - lo);
-      b += `<rect class="f-cell" x="${36 + j * 29}" y="${8 + i * 17.5}" width="27.5" height="16" fill-opacity="${o.toFixed(2)}"/>`;
-    }));
-    return svg(b + `<rect class="f-b" x="${36 + 2 * 29}" y="${8 + 2 * 17.5}" width="27.5" height="16"/>` +
-      tx(30, 55, "WACC", "f-t", "end") + tx(107, 113, "croissance terminale", "f-t", "middle"),
-      "Matrice de sensibilité de la valeur terminale au WACC et au taux de croissance");
-  },
-  wind() {
-    let b = ""; const bw = 6.6, X = i => 26 + i * 7.9, base = 100;
-    for (let i = 0; i < 20; i++) {
-      const cf = 72 - i * 0.9 - (i >= 15 ? 14 : 0);
+    return svg(pl([[22, 8], [22, 102], [182, 102]], "f-axis") + pl(curve(0), "f-c") + pl(curve(0.25), "f-b") + pl(curve(1), "f-a") +
+      [60, 100, 140].map(s => tx(X(s), 112, s, "f-t", "middle")).join("") + tx(26, 15, "prix du call") +
+      tx(118, 50, "T = 1 an", "f-tt", "end") + tx(150, 92, "payoff"), "Prix d’un call Black-Scholes selon le sous-jacent, à 1 an, 3 mois et à l’échéance"); },
+  pairs() { const r = seeded(4217); let z = 0.4; const a = [], hits = []; const X = i => 26 + i / 149 * 156, Y = v => 56 - Math.max(-3.2, Math.min(3.2, v)) * 15; let armed = true;
+    for (let i = 0; i < 150; i++) { z = 0.93 * z + 0.52 * gauss(r); a.push([X(i), Y(z)]); if (Math.abs(z) > 2 && armed) { hits.push([X(i), Y(z)]); armed = false; } if (Math.abs(z) < 0.5) armed = true; }
+    return svg(pl([[26, Y(2)], [182, Y(2)]], "f-c") + pl([[26, Y(-2)], [182, Y(-2)]], "f-c") + pl([[26, Y(0)], [182, Y(0)]], "f-axis") + pl(a, "f-b") +
+      hits.map(h => `<circle class="f-dot" cx="${h[0].toFixed(1)}" cy="${h[1].toFixed(1)}" r="2.6"/>`).join("") +
+      tx(22, Y(2) + 2.5, "+2σ", "f-t", "end") + tx(22, Y(-2) + 2.5, "−2σ", "f-t", "end") + tx(22, Y(0) + 2.5, "0", "f-t", "end") + tx(104, 114, "z-score du spread (simulé)", "f-t", "middle"),
+      "Illustration d’un z-score de spread simulé avec bandes à plus ou moins deux sigmas"); },
+  dcf() { const W = [7, 7.5, 8, 8.5, 9], G = [1, 1.5, 2, 2.5, 3]; const val = (w, g) => 1 / (w - g), lo = val(9, 1), hi = val(7, 3); let b = "";
+    W.forEach((w, i) => G.forEach((g, j) => { const o = 0.08 + 0.82 * (val(w, g) - lo) / (hi - lo);
+      b += `<rect class="f-cell" x="${36 + j * 29}" y="${8 + i * 17.5}" width="27.5" height="16" fill-opacity="${o.toFixed(2)}"/>`; }));
+    return svg(b + `<rect class="f-b" x="${36 + 2 * 29}" y="${8 + 2 * 17.5}" width="27.5" height="16"/>` + tx(30, 55, "WACC", "f-t", "end") + tx(107, 113, "croissance terminale", "f-t", "middle"),
+      "Matrice de sensibilité de la valeur terminale au WACC et à la croissance terminale"); },
+  wind() { let b = ""; const bw = 6.6, X = i => 26 + i * 7.9, base = 100;
+    for (let i = 0; i < 20; i++) { const cf = 72 - i * 0.9 - (i >= 15 ? 14 : 0);
       b += `<rect class="f-bar" x="${X(i).toFixed(1)}" y="${(base - cf).toFixed(1)}" width="${bw}" height="${cf.toFixed(1)}"/>`;
-      if (i < 15) { const ds = cf / 1.35; b += `<rect class="f-cell" fill-opacity="0.75" x="${X(i).toFixed(1)}" y="${(base - ds).toFixed(1)}" width="${bw}" height="${ds.toFixed(1)}"/>`; }
-    }
-    return svg(b + pl([[24, 100], [186, 100]], "f-axis") +
-      [1, 5, 10, 15, 20].map(y => tx(X(y - 1) + bw / 2, 111, y, "f-t", "middle")).join("") +
+      if (i < 15) { const ds = cf / 1.35; b += `<rect class="f-cell" fill-opacity="0.75" x="${X(i).toFixed(1)}" y="${(base - ds).toFixed(1)}" width="${bw}" height="${ds.toFixed(1)}"/>`; } }
+    return svg(b + pl([[24, 100], [186, 100]], "f-axis") + [1, 5, 10, 15, 20].map(y => tx(X(y - 1) + bw / 2, 111, y, "f-t", "middle")).join("") +
       tx(26, 16, "flux disponibles") + `<rect class="f-cell" fill-opacity="0.75" x="120" y="10" width="7" height="7"/>` + tx(130, 16, "dette"),
-      "Illustration des flux disponibles et du service de la dette sur 20 ans");
-  },
-  luck() {
-    const X = t => 12 + (t + 4.5) / 9 * 166, Y = d => 100 - d * 215;
-    const a = [], b = [];
+      "Illustration des flux disponibles et du service de la dette sur 20 ans"); },
+  luck() { const X = t => 12 + (t + 4.5) / 9 * 166, Y = d => 100 - d * 215; const a = [], b = [];
     for (let t = -4.5; t <= 4.5; t += 0.15) { a.push([X(t), Y(normal(t, 0, 1))]); b.push([X(t), Y(normal(t, -0.1, 1.45))]); }
     const tail = [[X(2), 100]]; for (let t = 2; t <= 4.5; t += 0.15) tail.push([X(t), Y(normal(t, -0.1, 1.45))]); tail.push([X(4.5), 100]);
     return svg(`<polygon class="f-fill" points="${pts(tail)}"/>` + pl(a, "f-b") + pl(b, "f-a") + pl([[12, 100], [178, 100]], "f-axis") +
       tx(X(0) + 26, 22, "chance seule", "f-tt") + tx(X(2.3), 72, "fonds") + tx(95, 113, "t(α)", "f-t", "middle"),
-      "Illustration de la distribution des t-stats d’alpha des fonds face à une distribution de pure chance");
-  },
-  weskool() {
-    const box = (x, y, w, s, a) => `<rect class="${a ? "f-boxa" : "f-box"}" x="${x}" y="${y}" width="${w}" height="24" rx="3"/>` + tx(x + w / 2, y + 15, s, "f-tt", "middle");
-    const arrow = (x1, y1, x2, y2) => pl([[x1, y1], [x2, y2]], "f-axis") + pl([[x2 - 3, y2 - 2.5], [x2, y2], [x2 - 3, y2 + 2.5]], "f-axis");
-    return svg(box(4, 24, 52, "GitHub") + box(72, 24, 46, "test") + box(134, 24, 52, "prod", true) + box(112, 80, 74, "PostgreSQL") +
-      arrow(56, 36, 71, 36) + arrow(118, 36, 133, 36) + pl([[160, 48], [160, 79]], "f-axis") +
-      tx(30, 62, "branches", "f-t", "middle") + tx(4, 104, "Render"),
-      "Schéma de déploiement de WeSkool : GitHub, environnement de test, production et base PostgreSQL");
-  },
-  gauge() {
-    const cx = 95, cy = 88, R = 62, pt = d => [cx + R * Math.cos(d), cy + R * Math.sin(d)];
-    const arc = (a, b, c) => { const p = []; for (let t = a; t <= b + 0.001; t += (b - a) / 40) p.push(pt(t)); return pl(p, c); };
-    const a0 = Math.PI, a1 = 2 * Math.PI, v = a0 + (a1 - a0) * 0.78;
-    return svg(arc(a0, a1, "f-c") + `<g style="stroke-width:5">${arc(a0, v, "f-a")}</g>` +
-      tx(cx, cy - 12, "score", "f-tt", "middle") + tx(cx, cy + 2, "CV / offre", "f-t", "middle"),
-      "Jauge de score de correspondance entre un CV et une offre");
-  },
-  finlens() {
-    const rows = [["DCF", 62, 132], ["EV/EBITDA", 76, 120], ["P/E", 70, 112], ["52 sem.", 56, 138]];
+      "Distribution des t-stats d’alpha des fonds face à une distribution de pure chance"); },
+  weskool() { return svg(box(4, 24, 52, "GitHub") + box(72, 24, 46, "test") + box(134, 24, 52, "prod", true) + box(112, 80, 74, "PostgreSQL") +
+      arrow(56, 36, 71, 36) + arrow(118, 36, 133, 36) + arrow(160, 48, 160, 79) + tx(30, 62, "branches", "f-t", "middle") + tx(4, 104, "Render"),
+      "Schéma de déploiement de WeSkool : GitHub, test, production et PostgreSQL"); },
+  ba() { return svg(box(8, 16, 76, "Besoins métier") + box(106, 16, 76, "Spécifications") + box(106, 76, 76, "Recette") + box(8, 76, 76, "Déploiement", true) +
+      arrow(84, 28, 105, 28) + arrow(144, 40, 144, 75) + arrow(106, 88, 85, 88) + tx(95, 62, "schéma de principe", "f-t", "middle"),
+      "Schéma de principe du rôle de Business Analyst : besoins métier, spécifications, recette, déploiement"); },
+  finlens() { const rows = [["DCF", 62, 132], ["EV/EBITDA", 76, 120], ["P/E", 70, 112], ["52 sem.", 56, 138]];
     const b = rows.map((r, i) => tx(46, 22 + i * 22, r[0], "f-t", "end") + `<rect class="f-range" x="${r[1]}" y="${13 + i * 22}" width="${r[2] - r[1]}" height="12"/>`).join("");
-    return svg(b + pl([[98, 6], [98, 100]], "f-c") + tx(98, 112, "cours", "f-t", "middle"),
-      "Illustration d’un football field de valorisation : DCF, multiples et plage de cours");
-  }
+    return svg(b + pl([[98, 6], [98, 100]], "f-c") + tx(98, 112, "cours", "f-t", "middle"), "Illustration d’un football field de valorisation"); },
+  wacc() { const X = w => 26 + (w - 6) / 5 * 156, Y = m => 100 - m / 26 * 88, a = [];
+    for (let w = 6; w <= 11.001; w += 0.1) a.push([X(w), Y(1 / (w / 100 - 0.02))]);
+    const p8 = [X(8), Y(1 / 0.06)], p9 = [X(9), Y(1 / 0.07)];
+    return svg(pl([[26, 8], [26, 100], [184, 100]], "f-axis") + pl(a, "f-a") + pl([[p8[0], p8[1]], [p8[0], 100]], "f-c") + pl([[p9[0], p9[1]], [p9[0], 100]], "f-c") +
+      `<circle class="f-dot" cx="${p8[0].toFixed(1)}" cy="${p8[1].toFixed(1)}" r="2.6"/><circle class="f-dot" cx="${p9[0].toFixed(1)}" cy="${p9[1].toFixed(1)}" r="2.6"/>` +
+      tx(p8[0] + 4, p8[1] - 4, "16,7×", "f-tt") + tx(p9[0] + 4, p9[1] - 4, "14,3×", "f-tt") + [6, 8, 10].map(w => tx(X(w), 111, w + " %", "f-t", "middle")).join("") +
+      tx(30, 15, "multiple de valeur terminale selon le WACC (g = 2 %)"), "Multiple de valeur terminale selon le WACC, avec une croissance terminale de 2 %"); },
+  cap() { const X = l => 26 + l * 156, V = l => 100 + 28 * l - 70 * l ** 3, Y = v => 100 - (v - 96) / 16 * 86, a = [], m = [];
+    for (let l = 0; l <= 1.001; l += 0.02) { a.push([X(l), Y(V(l))]); m.push([X(l), Y(100 + 28 * l)]); }
+    const lo = Math.sqrt(28 / 210);
+    return svg(pl([[26, 8], [26, 100], [184, 100]], "f-axis") + pl(m.filter(p => p[1] > 6), "f-c") + pl(a.filter(p => p[1] < 100), "f-a") +
+      `<circle class="f-dot" cx="${X(lo).toFixed(1)}" cy="${Y(V(lo)).toFixed(1)}" r="2.6"/>` + tx(X(lo), Y(V(lo)) - 6, "optimum", "f-tt", "middle") +
+      tx(120, 26, "avec impôts seuls") + tx(30, 15, "valeur de l’entreprise") + tx(184, 111, "endettement", "f-t", "end"), "Théorie du compromis : valeur de l’entreprise selon l’endettement"); },
+  overfit() { const X = n => 26 + Math.log10(n) / 2 * 156, Y = s => 100 - s / 3.2 * 86, a = [];
+    for (let n = 1; n <= 100; n *= 1.12) a.push([X(n), Y(n < 2 ? 0 : Math.sqrt(2 * Math.log(n)))]); a.push([X(100), Y(Math.sqrt(2 * Math.log(100)))]);
+    return svg(pl([[26, 8], [26, 100], [184, 100]], "f-axis") + pl(a, "f-a") + [1, 10, 100].map(n => tx(X(n), 111, n, "f-t", "middle")).join("") +
+      tx(30, 15, "meilleur Sharpe attendu, sans aucun talent") + tx(184, 92, "stratégies testées", "f-t", "end"), "Meilleur ratio de Sharpe attendu par pur hasard selon le nombre de stratégies testées"); },
+  pdebt() { return svg(box(6, 14, 74, "Investisseurs") + box(110, 14, 74, "Fonds de dette", true) + box(110, 82, 74, "Entreprise") + box(6, 82, 74, "Banque") +
+      arrow(80, 26, 109, 26) + arrow(147, 38, 147, 81) + pl([[80, 94], [109, 94]], "f-c") + tx(95, 64, "prêt direct", "f-t", "middle") + tx(95, 112, "circuit bancaire", "f-t", "middle"),
+      "Schéma du crédit privé : des investisseurs financent un fonds qui prête directement à l’entreprise"); },
+  curve() { const X = m => 26 + Math.log(m / 0.25 + 1) / Math.log(121) * 156, mats = [0.25, 1, 2, 5, 10, 30], a = [], b = [];
+    mats.forEach(m => { a.push([X(m), 60 - Math.log(m + 1) * 4]); b.push([X(m), 74 - Math.log(m + 1) * 14]); });
+    return svg(pl([[26, 8], [26, 100], [184, 100]], "f-axis") + pl(a, "f-c") + pl(b, "f-a") + [[2, "2a"], [10, "10a"], [30, "30a"]].map(m => tx(X(m[0]), 111, m[1], "f-t", "middle")).join("") +
+      tx(30, 15, "rendement") + tx(X(30) - 2, 18, "pentification", "f-tt", "end"), "Illustration d’une pentification de la courbe des taux"); }
 };
 
-/* ---------- Croquis : tracés au stylo, avec un léger tremblement ---------- */
-function ink(points, cls, seed, amp = 1.1, ghost = true) {
-  const dense = [];
-  for (let i = 0; i < points.length - 1; i++) {
-    const [a, b] = [points[i], points[i + 1]];
-    const n = Math.max(1, Math.round(Math.hypot(b[0] - a[0], b[1] - a[1]) / 22));
-    for (let k = 0; k < n; k++) dense.push([a[0] + (b[0] - a[0]) * k / n, a[1] + (b[1] - a[1]) * k / n]);
-  }
-  dense.push(points[points.length - 1]);
-  const pass = (s, extra) => {
-    const r = seeded(s);
-    const p = dense.map(q => [q[0] + (r() - 0.5) * 2 * amp, q[1] + (r() - 0.5) * 2 * amp]);
-    let d = `M${p[0][0].toFixed(1)} ${p[0][1].toFixed(1)}`;
-    for (let i = 0; i < p.length - 1; i++) {
-      const p0 = p[i - 1] || p[i], p1 = p[i], p2 = p[i + 1], p3 = p[i + 2] || p2;
-      d += `C${(p1[0] + (p2[0] - p0[0]) / 6).toFixed(1)} ${(p1[1] + (p2[1] - p0[1]) / 6).toFixed(1)} ${(p2[0] - (p3[0] - p1[0]) / 6).toFixed(1)} ${(p2[1] - (p3[1] - p1[1]) / 6).toFixed(1)} ${p2[0].toFixed(1)} ${p2[1].toFixed(1)}`;
-    }
-    return `<path class="${cls} ${extra}" d="${d}"/>`;
-  };
-  return pass(seed, "") + (ghost && cls !== "ink-d" ? pass(seed * 7 + 13, "ghost") : "");
-}
-const hand = (x, y, s, a, anchor = "start") => `<text class="${a ? "hand-a" : "hand"}" x="${x}" y="${y}" text-anchor="${anchor}">${s}</text>`;
-const sk = (body, label) => `<svg viewBox="0 0 400 260" role="img" aria-label="${label}">${body}</svg>`;
-const arrowHead = (x, y, dx, dy, seed, cls = "ink") => ink([[x - dx * 11 - dy * 7, y - dy * 11 + dx * 7], [x, y], [x - dx * 11 + dy * 7, y - dy * 11 - dx * 7]], cls, seed, 0.5, false);
+/* ============ Rendu ============ */
+const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const inl = s => esc(s).replace(/\[([^\]]+)\]\((https:[^)\s]+)\)/g, (m, t, u) => "<a href" + "=\"" + u + "\" rel=\"noopener\">" + t + "</a>");
+const fill = (id, html) => { const el = document.getElementById(id); if (el) el.innerHTML = html; };
+const list = a => a && a.length ? `<ul>${a.map(x => `<li>${x}</li>`).join("")}</ul>` : "";
+const paras = a => (a || []).map(x => `<p>${x}</p>`).join("");
+const chips = a => a && a.length ? `<div class="chips">${a.map(t => `<span class="chip">${t}</span>`).join("")}</div>` : "";
+const facts = p => PJ(p, "facts");
+const statusOf = p => (facts(p)[p.facts.findIndex(f => f[0] === "Statut")] || [])[1];
 
-const SKETCHES = {
-  curve: () => sk(
-    ink([[58, 30], [56, 214], [362, 216]], "ink", 11) +
-    ink([[78, 128], [130, 133], [190, 138], [260, 140], [340, 136]], "ink-d", 12) +
-    ink([[78, 182], [130, 156], [190, 118], [260, 86], [340, 62]], "ink-a", 13) +
-    ink([[130, 210], [130, 222]], "ink", 14, 0.4, false) + ink([[304, 210], [304, 222]], "ink", 15, 0.4, false) +
-    hand(130, 244, "2 ans", false, "middle") + hand(304, 244, "10 ans", false, "middle") +
-    hand(346, 160, "avant", false, "end") + hand(330, 50, "après", true, "end"),
-    "Croquis d’une courbe des taux qui se pentifie entre 2 ans et 10 ans"),
-  silence: () => {
-    const b = []; for (let t = 0; t <= 6.28; t += 0.35) b.push([150 + 92 * Math.cos(t), 78 + 50 * Math.sin(t)]);
-    return sk(ink(b, "ink", 21) + ink([[108, 122], [88, 160], [136, 128]], "ink", 22, 0.7) +
-      `<circle class="dot-ink" cx="122" cy="80" r="4"/><circle class="dot-ink" cx="150" cy="80" r="4"/><circle class="dot-ink" cx="178" cy="80" r="4"/>` +
-      hand(60, 186, "la Fed") +
-      ink([[120, 226], [190, 214], [260, 186], [310, 142], [360, 96]], "ink-a", 23) + arrowHead(360, 96, 0.73, -0.68, 24, "ink-a") +
-      hand(252, 234, "term premium", true),
-      "Croquis d’une bulle de parole vide au-dessus d’une prime de terme qui monte");
-  },
-  futures: () => {
-    let h = ""; for (let y = 88; y < 202; y += 12) h += ink([[176, y + 8], [228, y - 4]], "ink-h", 40 + y, 0.5, false);
-    return sk(ink([[66, 204], [350, 206]], "ink", 31) +
-      ink([[92, 204], [92, 150], [146, 150], [148, 204]], "ink", 32) +
-      ink([[172, 204], [172, 80], [232, 80], [232, 204]], "ink-a", 33) + h +
-      ink([[258, 204], [258, 170], [312, 170], [314, 204]], "ink", 34) +
-      hand(120, 232, "−25 pb", false, "middle") + hand(202, 232, "inchangé", true, "middle") + hand(286, 232, "+25 pb", false, "middle") +
-      hand(66, 44, "proba. implicite"),
-      "Croquis de trois barres de probabilité implicite selon la décision de la banque centrale");
-  },
-  oat: () => sk(
-    ink([[48, 196], [130, 190], [210, 182], [290, 186], [352, 176]], "ink", 41) +
-    ink([[48, 176], [130, 160], [210, 128], [290, 108], [352, 70]], "ink-a", 42) +
-    ink([[334, 90], [334, 164]], "ink", 43, 0.6, false) + arrowHead(334, 84, 0, -1, 44) + arrowHead(334, 170, 0, 1, 45) +
-    hand(322, 134, "spread", false, "end") + hand(250, 88, "OAT", true, "end") + hand(240, 214, "Bund"),
-    "Croquis du spread entre l’OAT et le Bund qui s’élargit"),
-  luck: () => {
-    const b1 = [], b2 = [], base = 210, g = (x, m, s, a) => a * Math.exp(-((x - m) ** 2) / (2 * s * s)); let h = "";
-    for (let x = 30; x <= 370; x += 10) { b1.push([x, base - g(x, 170, 44, 150)]); b2.push([x, base - g(x, 190, 78, 92)]); }
-    for (let x = 298; x < 366; x += 11) { const t = base - g(x, 190, 78, 92); h += ink([[x, base - 2], [x + 6, t + 2]], "ink-h", x, 0.4, false); }
-    return sk(ink([[24, 210], [376, 212]], "ink", 51) + ink(b1, "ink", 52, 0.8) + ink(b2, "ink-a", 53, 0.8) + h +
-      hand(170, 40, "chance", false, "middle") + hand(322, 132, "mérite ?", true, "middle") + ink([[322, 140], [330, 176]], "ink-a", 54, 0.5, false) + arrowHead(330, 180, 0.2, 1, 55, "ink-a"),
-      "Croquis de deux distributions de performance, chance et mérite, avec la queue droite hachurée");
-  },
-  journey: () => sk(
-    ink([[92, 206], [112, 130], [180, 74], [260, 58], [318, 86]], "ink-d", 61) +
-    `<circle class="dot-a" cx="92" cy="208" r="6"/><circle class="dot-a" cx="320" cy="90" r="6"/>` +
-    hand(108, 222, "Abidjan") + hand(306, 122, "Paris", false, "end") +
-    ink([[336, 150], [350, 96], [358, 40]], "ink", 62, 0.6) + ink([[380, 150], [366, 96], [358, 40]], "ink", 63, 0.6) +
-    ink([[343, 122], [373, 122]], "ink", 64, 0.5, false) + ink([[351, 92], [365, 92]], "ink", 65, 0.5, false) +
-    ink([[52, 208], [58, 176], [66, 146]], "ink", 66, 0.6) +
-    ink([[66, 146], [46, 142], [32, 156]], "ink", 67, 0.6) + ink([[66, 146], [88, 138], [100, 152]], "ink", 68, 0.6) +
-    ink([[66, 146], [52, 128], [36, 124]], "ink", 69, 0.6) + ink([[66, 146], [78, 124], [96, 118]], "ink", 70, 0.6),
-    "Croquis d’une ligne pointillée entre Abidjan et Paris, avec un palmier et la tour Eiffel")
+const cardHTML = p => `<a class="card" href="#projet-${p.id}" data-g="${p.group}" data-d="${p.dom}">
+  <div class="fig">${FIGS[p.fig]()}</div>
+  <div class="txt"><div class="meta"><span class="pill ${p.group === "tech" ? "grey" : ""}">${PJ(p, "type")}</span>${statusOf(p) ? `<span class="pill grey">${statusOf(p)}</span>` : ""}</div>
+  <h3>${PJ(p, "title")}</h3><p>${PJ(p, "short")}</p>
+  ${chips(PJ(p, "tools"))}
+  <span class="go">${U().explore}</span></div></a>`;
+
+/* Écrits */
+const isPublished = p => p.status.startsWith("Publié");
+const visiblePosts = () => POSTS.filter(p => SHOW_DRAFTS || isPublished(p));
+const words = p => (p.intro + " " + p.body).split(/\s+/).filter(Boolean).length;
+const readTime = p => p.body ? Math.max(1, Math.ceil(words(p) / 220)) + " " + U().read : "";
+const THEME = { "Taux":0, "Banques centrales":1, "Finance d’entreprise":2, "Marchés":3, "Valorisation":4, "Financement":5, "Recherche":4 };
+const hashStr = t => [...t].reduce((h, c) => (h * 31 + c.charCodeAt(0)) % 2147483646, 7) + 1;
+function waves(seed) { const r = seeded(seed); let d = "";
+  for (let i = 0; i < 7; i++) { const y = 70 + r() * 150, a = r() * 90 - 45, b = r() * 90 - 45;
+    d += `<path d="M-10 ${y.toFixed(0)} C 120 ${(y + a).toFixed(0)}, 260 ${(y + b - 70).toFixed(0)}, 410 ${(y - 40 + a / 2).toFixed(0)}"/>`; }
+  return `<svg class="waves" viewBox="0 0 400 225" preserveAspectRatio="none" aria-hidden="true">${d}</svg>`; }
+const artCover = (key, cat, fig) => `<div class="cover art th-${THEME[cat] ?? 0}">${waves(hashStr(key))}${fig ? `<div class="art-fig">${FIGS[fig]()}</div>` : ""}</div>`;
+const coverHTML = p => p.fig ? `<div class="cover">${FIGS[p.fig]()}</div>` : `<div class="cover typo" aria-hidden="true"><span>${CAT(p.cat)}</span></div>`;
+const postMeta = p => [p.date, readTime(p), isPublished(p) ? STAT(p.status) : (SHOW_DRAFTS ? p.status + " · non publié" : ""), FMT(p.format)].filter(Boolean).join(" · ");
+const postInner = p => `${coverHTML(p)}<span class="cat">${CAT(p.cat)}</span><h3>${PO(p, "title")}</h3><p>${PO(p, "intro")}</p><span class="meta">${postMeta(p)}${p.url ? " ↗" : ""}</span>`;
+const postHTML = p => {
+  const draftTag = isPublished(p) ? "" : " post-draft";
+  if (p.body || SHOW_DRAFTS) return `<a class="post${draftTag}" href="#ecrit-${p.id}" data-cat="${p.cat}">${postInner(p)}</a>`;
+  if (p.url) return "<a class=\"post\" rel=\"noopener\" href" + "=" + JSON.stringify(p.url) + ` data-cat="${p.cat}">${postInner(p)}</a>`;
+  return `<article class="post post-static" data-cat="${p.cat}">${postInner(p)}</article>`;
 };
+const homePosts = () => { const pub = visiblePosts().filter(p => p.home); return (SHOW_DRAFTS ? [...visiblePosts().filter(p => !isPublished(p)).slice(0, 1), ...pub].slice(0, 3) : pub.slice(0, 3)); };
 
-/* ---------- Rendu ---------- */
-function rowHTML(p, full) {
-  const head = full ? p.title : `<a href="#projets">${p.title}</a>`;
-  return `<article class="row"><div class="thumb">${FIGS[p.fig]()}</div><div>
-    <h3>${head}</h3>
-    <p class="what">${p.what}</p><p class="where">${p.where}</p>
-    ${full && p.more ? `<p class="more">${p.more}</p>` : ""}</div></article>`;
+/* Étude de cas */
+function caseHTML(p) {
+  const n = U().secs;
+  const secs = [
+    ["contexte", n[0], paras(PS(p, "context"))],
+    ["probleme", n[1], paras(PS(p, "problem"))],
+    ["approche", n[2], p.s.approach.length ? list(PS(p, "approach")) + chips(PJ(p, "tools")) : ""],
+    ["realisation", n[3], list(PS(p, "build"))],
+    ["resultats", n[4], list(PS(p, "results"))],
+    ["enseignements", n[5], paras(PS(p, "lessons"))]
+  ].filter(x => x[2]);
+  const missing = [n[3], n[4], n[5]].filter(m => !secs.some(x => x[1] === m));
+  const todo = SHOW_DRAFTS && (p.s.todo.length || missing.length) ? [["a-completer", U().todo, (missing.length ? `<p class="draft">Sections masquées en ligne tant qu’elles sont vides : ${missing.join(", ")}.</p>` : "") + DL(p.s.todo)]] : [];
+  const all = secs.concat(todo);
+  const others = PROJECTS.filter(q => q.id !== p.id && q.home).slice(0, 2);
+  return `<section class="page-head"><div class="wrap">
+    <a class="crumb" href="#projets">${U().back}</a>
+    <div class="case-top">
+      <div><p class="eyebrow">${PJ(p, "type")}</p><h1 tabindex="-1">${PJ(p, "title")}</h1><p class="lede">${PJ(p, "short")}</p>
+        <table class="facts-table"><tbody>${facts(p).map(f => `<tr><th scope="row">${f[0]}</th><td>${f[1]}</td></tr>`).join("")}
+        <tr><th scope="row">${U().tools}</th><td><div class="chips flat">${PJ(p, "tools").map(t => `<span class="chip">${t}</span>`).join("")}</div></td></tr></tbody></table></div>
+      <figure class="case-fig">${FIGS[p.fig]()}<figcaption>${PJ(p, "figcap")}</figcaption></figure>
+    </div></div></section>
+  <section><div class="wrap case-body">
+    <ol class="toc">${all.map((x, i) => `<li><a href="#projet-${p.id}" data-jump="${x[0]}">${String(i + 1).padStart(2, "0")} · ${x[1]}</a></li>`).join("")}</ol>
+    <div>${all.map((x, i) => `<div class="case-sec${x[0] === "a-completer" ? " draft-only" : ""}" id="s-${x[0]}"><h2><span class="n">${String(i + 1).padStart(2, "0")}</span>${x[1]}</h2>${x[2]}</div>`).join("")}</div>
+  </div></section>
+  <section><div class="wrap"><div class="sec-head"><div><h2 class="eyebrow">${U().others}</h2></div><a class="link" href="#projets">${LANG === "en" ? I18N.en["all.projects"] : "Tous les projets"}</a></div>
+    <div class="cards">${others.map(cardHTML).join("")}</div></div></section>`;
 }
-function postHTML(p) {
-  return `<article class="post"><div class="sketch">${SKETCHES[p.sketch]()}</div>
-    <p class="cat">${p.cat}</p><h3>${p.title}</h3><p class="ex">${p.ex}</p><p class="meta">${p.meta}</p></article>`;
+function md(src) {
+  return src.trim().split(/\n{2,}|\n(?=## )/).map(b => b.trim()).filter(Boolean).map(b => {
+    if (b.startsWith("## ")) { const [h, ...rest] = b.split("\n"); return `<h2>${esc(h.slice(3))}</h2>` + (rest.length ? md(rest.join("\n")) : ""); }
+    if (/^- /.test(b)) return `<ul>${b.split("\n").map(l => `<li>${inl(l.replace(/^- /, ""))}</li>`).join("")}</ul>`;
+    return `<p>${inl(b)}</p>`;
+  }).join("");
 }
-const fill = (id, html) => { document.getElementById(id).innerHTML = html; };
-fill("home-projects", PROJECTS.filter(p => p.home).map(p => rowHTML(p, false)).join(""));
-fill("proj-finance", PROJECTS.filter(p => p.group === "finance").map(p => rowHTML(p, true)).join(""));
-fill("proj-soft", PROJECTS.filter(p => p.group === "soft").map(p => rowHTML(p, true)).join(""));
-fill("home-posts", POSTS.filter(p => p.home).map(postHTML).join(""));
-fill("all-posts", POSTS.map(postHTML).join(""));
+function articleHTML(p) {
+  const todo = isPublished(p) ? POST_TODO[p.id] : POST_TODO._draft;
+  const frOnly = LANG !== "fr" && p.body ? `<p class="fr-only">${U().frOnly}</p>` : "";
+  return `<section class="page-head"><div class="wrap"><div class="article">
+    <a class="crumb" href="#ecrits">${U().backW}</a>
+    <p class="eyebrow">${CAT(p.cat)}</p><h1 tabindex="-1">${PO(p, "title")}</h1>
+    <div class="byline">${[p.date || (SHOW_DRAFTS ? U().undated : ""), readTime(p), FMT(p.format), STAT(p.status) + (isPublished(p) ? "" : " · " + U().unpublished)].filter(Boolean).map(x => `<span>${x}</span>`).join("")}</div>
+    ${coverHTML(p)}
+    ${todo ? D(todo) : ""}
+    <p class="intro">${PO(p, "intro")}</p>${frOnly}
+    ${p.body ? `<div class="prose" lang="fr">${md(p.body)}</div>` : ""}
+    ${p.sources.length ? `<div class="sources"><h2>${U().sources}</h2><ol>${p.sources.map(x => `<li>${inl(x)}</li>`).join("")}</ol></div>` : ""}
+  </div></div></section>`;
+}
 
-/* Navigation */
-const views = ["accueil", "ecrits", "projets", "parcours"];
+/* Parcours : lignes éditoriales (expérience, formation, engagements) */
+const TL = (t, k) => (LANG === "en" && EN.timeline[t.id] && EN.timeline[t.id][k]) || t[k];
+const rowHTML = t => `<li class="row-item" id="tl-${t.id}">
+  <div class="row-when">${TL(t, "when") || ""}</div>
+  <div class="row-body">
+    <div class="row-head"><h3>${TL(t, "org")}</h3>${t.logo ? "<img class=\"row-logo " + t.logo[2] + "\" alt=\"\" src" + "=" + JSON.stringify(t.logo[0]) + ">" : ""}</div>
+    <p class="row-role">${TL(t, "role")}</p>
+    <p class="row-stage">${TL(t, "stage")}</p>
+    ${list(TL(t, "items"))}
+    ${t.link ? "<a class=\"link\" href" + "=" + JSON.stringify(t.link[0]) + ">" + (TL(t, "link") && LANG !== "fr" ? TL(t, "link") : t.link[1]) + "</a>" : ""}
+    ${t.draft ? D(t.draft) : ""}
+  </div></li>`;
+const engRow = (e, i) => { const en = LANG === "en" ? EN.eng[i] || {} : {};
+  const st = e.stages.map((s, j) => [(en.stages || [])[j] || s[0], s[1] ? ((en.vals || [])[j] || s[1]) : ""]).filter(s => s[1] || SHOW_DRAFTS);
+  return `<li class="row-item" id="eng-${i}"><div class="row-when">${en.k || e.k}</div><div class="row-body">
+    <div class="row-head"><h3>${e.t}</h3></div>
+    ${st.length ? `<p class="row-role">${st.map(s => `${s[0]} : ${s[1] || "<span class=\"draft-only\">à préciser</span>"}`).join(" · ")}</p>` : ""}
+    <p class="row-desc">${en.desc || e.desc}</p>${e.draft ? D(e.draft) : ""}</div></li>`; };
+const skillHTML = (s, i) => { const en = LANG === "en" ? EN.skills[i] || {} : {}; const ok = en.ok || s.ok, learn = en.learn || s.learn;
+  return `<div class="sk"><h3>${en.t || s.t}</h3><p class="sk-l">${LANG === "en" ? "Practised" : "Pratiqué"}</p><ul>${ok.map(x => `<li>${x}</li>`).join("")}</ul>
+  ${learn.length ? `<p class="sk-l">${LANG === "en" ? "Currently deepening" : "En approfondissement"}</p><ul>${learn.map(x => `<li>${x}</li>`).join("")}</ul>` : ""}${s.draft ? D(s.draft) : ""}</div>`; };
+
+/* Accueil : cartes hautes (événement, compétition, réseau) */
+const STORIES = [
+  { href:"#parcours-bpifrance", img:["christian-bpifrance.jpg","Christian Sodara au Bpifrance Inno Generation 2025","Christian Sodara at Bpifrance Inno Generation 2025"], k:"Événement", t:"Bpifrance Inno Generation (BIG) 2025", s:"Accor Arena, Paris" },
+  { href:"#parcours-engagements", art:"Banques centrales", ico:'<svg viewBox="0 0 48 48"><path d="M8 40h32M10 34l8-9 7 6 13-15"/><path d="M31 16h7v7"/><rect x="6" y="6" width="36" height="36" rx="4"/></svg>', k:"Compétition d’analyse financière", t:"CFA Institute Research Challenge", s:"Participant" },
+  { href:"#parcours-engagements", art:"Taux", logo:["logo-skema.png","SKEMA"], k:"Entrepreneuriat", t:"SKEMA Entrepreneurs", s:"Membre du réseau des étudiants entrepreneurs" }
+];
+const storyHTML = (x, i) => { const en = LANG === "en" ? EN.stories[i] : {};
+  return "<a class=\"story\" href" + "=" + JSON.stringify(x.href) + ">" +
+  (x.img ? "<img class=\"bg\" src" + "=" + JSON.stringify(x.img[0]) + " alt=" + JSON.stringify(LANG === "en" ? x.img[2] : x.img[1]) + ">" : artCover("story" + i, x.art, null)) +
+  (x.ico ? `<span class="s-ico" aria-hidden="true">${x.ico}</span>` : "") + (x.logo ? "<img class=\"s-logo\" alt=\"\" src" + "=" + JSON.stringify(x.logo[0]) + ">" : "") +
+  `<span class="s-k">${en.k || x.k}</span><h3>${x.t}</h3><span class="s-s">${en.s || x.s}</span><span class="s-more" aria-hidden="true">${U().more}</span></a>`; };
+
+/* Domaines : tuiles de couleur, sur l'accueil (liens) et sur la page Projets (filtres) */
+const ICO = {
+  valo: '<path d="M3 20.5h18M4.5 9.5h15M12 3l8.5 4.5h-17L12 3z"/><path d="M6.5 9.5v8.5M10.5 9.5v8.5M13.5 9.5v8.5M17.5 9.5v8.5"/>',
+  marches: '<path d="M7 3.5v3M7 15.5v5M17 5.5v4M17 16.5v4"/><rect x="5" y="6.5" width="4" height="9" rx=".8"/><rect x="15" y="9.5" width="4" height="7" rx=".8"/>',
+  pf: '<circle cx="12" cy="10" r="1.6"/><path d="M12 11.6V21M9 21h6M12 8.4V2.8M10.6 10.8l-5 2.8M13.4 10.8l5 2.8"/>',
+  ba: '<path d="M12 3l9 4.5-9 4.5-9-4.5L12 3z"/><path d="M3 12l9 4.5 9-4.5M3 16.5l9 4.5 9-4.5"/>',
+  recherche: '<circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5.5 5.5M8 10.5h5M10.5 8v5"/>'
+};
+const DOMAINS = [
+  { id:"valo", label:"Valorisation" }, { id:"marches", label:"Marchés & quant" }, { id:"pf", label:"Project finance" },
+  { id:"ba", label:"Business Analysis & Tech" }, { id:"recherche", label:"Recherche" }
+];
+const DL_ = d => (LANG === "en" && EN.domains[d.id]) || d.label;
+const nProj = d => PROJECTS.filter(p => p.dom === d).length;
+const tileInner = d => `<svg viewBox="0 0 24 24" aria-hidden="true">${ICO[d.id]}</svg><b>${DL_(d)}</b><span class="num">${U().projectsN(nProj(d.id))}</span>`;
+let currentDomain = null;
+function setDomain(d) {
+  currentDomain = d;
+  document.querySelectorAll("#proj-tiles .tile").forEach(t => t.setAttribute("aria-pressed", t.dataset.d === d));
+  document.getElementById("proj-tiles").classList.toggle("has-sel", !!d);
+  document.getElementById("tiles-all").hidden = !d;
+  document.querySelectorAll("#all-cards .card").forEach(c => { c.hidden = !!d && c.dataset.d !== d; });
+}
+
+/* Filtres des écrits */
+const bindFilter = (groupSel, itemSel, key, allVal) => document.querySelectorAll(groupSel + " button").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(groupSel + " button").forEach(x => x.setAttribute("aria-pressed", x === b));
+  document.querySelectorAll(itemSel).forEach(el => { el.hidden = !(b.dataset.v === allVal || el.dataset[key] === b.dataset.v); });
+}));
+
+/* Rendu complet, relancé à chaque changement de langue */
+function renderAll() {
+  applyStatic();
+  fill("home-cards", PROJECTS.filter(p => p.home).map(cardHTML).join(""));
+  fill("all-cards", PROJECTS.map(cardHTML).join(""));
+  fill("home-posts", homePosts().map(postHTML).join(""));
+  fill("all-posts", visiblePosts().map(postHTML).join(""));
+  fill("xp-work", TIMELINE.filter(t => t.type === "work").slice().reverse().map(rowHTML).join(""));
+  fill("xp-edu", TIMELINE.filter(t => t.type === "edu").slice().reverse().map(rowHTML).join(""));
+  fill("parcours-engs", ENGAGEMENTS.map(engRow).join(""));
+  fill("skills", SKILLS.map(skillHTML).join(""));
+  fill("home-stories", STORIES.map(storyHTML).join(""));
+  fill("home-tiles", DOMAINS.map(d => `<a class="tile t-${d.id}" href="#projets-${d.id}">${tileInner(d)}</a>`).join(""));
+  fill("proj-tiles", DOMAINS.map(d => `<button type="button" class="tile t-${d.id}" data-d="${d.id}" aria-pressed="false">${tileInner(d)}</button>`).join(""));
+  document.querySelectorAll("#proj-tiles .tile").forEach(t => t.addEventListener("click", () => setDomain(t.getAttribute("aria-pressed") === "true" ? null : t.dataset.d)));
+  setDomain(currentDomain);
+  const cats = ["*", ...new Set(visiblePosts().map(p => p.cat))];
+  fill("post-filters", cats.map((c, i) => `<button type="button" data-v="${c}" aria-pressed="${i === 0}">${c === "*" ? U().all : CAT(c)}</button>`).join(""));
+  bindFilter("#post-filters", "#all-posts .post", "cat", "*");
+  veilleRender(veilleData);
+}
+document.getElementById("show-all").addEventListener("click", () => setDomain(null));
+
+/* ============ Veille des marchés : veille.json est produit côté serveur par la GitHub Action « veille » ============ */
+const VEILLE_HOSTS = ["www.ecb.europa.eu", "ecb.europa.eu", "www.amf-france.org", "amf-france.org"];
+let veilleData = null;
+const fmtDate = (iso, opts) => { const d = new Date(iso); return isNaN(d) ? "" : d.toLocaleDateString(U().locale, opts || { day: "numeric", month: "short", year: "numeric" }); };
+function veilleEmpty() {
+  fill("veille-filters", "");
+  fill("veille", `<div class="v-empty"><svg viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="9"/><path d="M11 6.5V11l3 2"/></svg><div>
+    <p class="v-t">${U().vEmptyT}</p>
+    <p>${U().vEmptyP}<a href="https://www.ecb.europa.eu/press/pr/html/index.en.html" rel="noopener">${U().vEcb}</a>${U().vAnd}<a href="https://www.amf-france.org/fr/actualites-publications" rel="noopener">${U().vAmf}</a>.</p></div></div>`);
+}
+function veilleRender(data) {
+  const ok = it => { try { const u = new URL(it.link); return u.protocol === "https:" && VEILLE_HOSTS.includes(u.hostname) && it.title && !isNaN(new Date(it.date)); } catch (e) { return false; } };
+  const items = (data && Array.isArray(data.items) ? data.items : []).filter(ok).slice(0, 8);
+  if (!items.length) return veilleEmpty();
+  const srcs = [...new Set(items.map(i => i.source))];
+  fill("veille-filters", srcs.length > 1 ? ["*", ...srcs].map((s, i) => `<button type="button" data-v="${esc(s)}" aria-pressed="${i === 0}">${s === "*" ? U().allF : esc(s)}</button>`).join("") : "");
+  fill("veille", `<div class="veille">${items.map(i => "<a class=\"v-item\" rel=\"noopener\" lang=\"" + (i.source === "AMF" ? "fr" : "en") + "\" data-src=\"" + esc(i.source) + "\" href" + "=" + JSON.stringify(i.link) + `><time datetime="${esc(i.date)}">${fmtDate(i.date)}</time><span class="pill grey">${esc(i.source)}</span><span class="t">${esc(i.title)}</span></a>`).join("")}</div>
+    <p class="v-foot">${U().vUpd}${fmtDate(data.updated, { day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" })} · ${U().vSrc}${srcs.map(esc).join(", ")}. ${U().vNote}</p>`);
+  bindFilter("#veille-filters", "#veille .v-item", "src", "*");
+}
+
+/* ============ Navigation : #accueil, #projets, #projets-<domaine>, #projet-<id>, #ecrits, #ecrit-<id>, #parcours, #parcours-<id>, #contact ============ */
+const progress = document.getElementById("progress");
+const reduce = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+let firstRoute = true;
 function route() {
-  const h = location.hash.slice(1), v = views.includes(h) ? h : "accueil";
-  document.querySelectorAll("[data-page]").forEach(el => { el.hidden = el.id !== "v-" + v; });
-  document.querySelectorAll(".nav a").forEach(a => {
-    if (a.dataset.view === v) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
-  });
-  window.scrollTo(0, 0);
+  const h = location.hash.slice(1);
+  let view = ["accueil", "ecrits", "projets", "parcours", "contact"].includes(h) ? h : "accueil", nav = view, target = null;
+  const pj = h.startsWith("projet-") && PROJECTS.find(p => p.id === h.slice(7));
+  const ar = h.startsWith("ecrit-") && visiblePosts().find(p => p.id === h.slice(6) && (p.body || SHOW_DRAFTS));
+  if (pj) { fill("v-projet", caseHTML(pj)); view = "projet"; nav = "projets"; }
+  if (ar) { fill("v-ecrit", articleHTML(ar)); view = "ecrit"; nav = "ecrits"; }
+  if (h.startsWith("projets-") && DOMAINS.some(d => d.id === h.slice(8))) { view = nav = "projets"; setDomain(h.slice(8)); }
+  else if (view === "projets") setDomain(null);
+  if (h.startsWith("parcours-")) { view = nav = "parcours"; target = document.getElementById("tl-" + h.slice(9)); }
+  if (h === "accueil-engagements") target = document.getElementById("ev-t");
+  document.querySelectorAll("[data-page]").forEach(el => { el.hidden = el.id !== "v-" + view; });
+  document.querySelectorAll(".nav a").forEach(a => a.dataset.view === nav ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"));
+  const page = document.getElementById("v-" + view), h1 = page.querySelector("h1");
+  document.title = pj ? PJ(pj, "title") + " · Christian Sodara" : ar ? PO(ar, "title") + " · Christian Sodara" : (view === "accueil" ? U().title : h1.textContent + " · Christian Sodara");
+  progress.hidden = !ar;
+  if (target) {
+    requestAnimationFrame(() => { target.scrollIntoView({ behavior: reduce() ? "auto" : "smooth", block: "start" });
+      if (target.classList.contains("row-item")) { target.classList.add("flash"); setTimeout(() => target.classList.remove("flash"), 1400); } });
+  } else window.scrollTo(0, 0);
+  if (!firstRoute) {
+    document.getElementById("announcer").textContent = U().page + document.title;
+    if (!target && h1) h1.focus({ preventScroll: true });
+  }
+  firstRoute = false;
+  if (!reduce() && page.animate) page.animate([{ opacity: .6, transform: "translateY(6px)" }, { opacity: 1, transform: "none" }], { duration: 240, easing: "ease-out" });
 }
-addEventListener("hashchange", route);
-route();
-
-/* Copie de l'email */
-document.getElementById("copy").addEventListener("click", e => {
-  const btn = e.currentTarget, text = document.getElementById("mail").textContent;
-  const done = () => { btn.textContent = "copié"; setTimeout(() => { btn.textContent = "copier"; }, 1600); };
-  const pick = () => { const s = getSelection(), r = document.createRange(); r.selectNodeContents(document.getElementById("mail")); s.removeAllRanges(); s.addRange(r); btn.textContent = "sélectionné"; };
-  if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, pick); else pick();
+document.addEventListener("click", e => {
+  const j = e.target.closest("[data-jump]");
+  if (j) { e.preventDefault(); const el = document.getElementById("s-" + j.dataset.jump); el.scrollIntoView({ behavior: reduce() ? "auto" : "smooth" }); el.querySelector("h2").setAttribute("tabindex", "-1"); el.querySelector("h2").focus({ preventScroll: true }); }
+  const g = e.target.closest("[data-goto]");
+  if (g) { const el = document.getElementById(g.dataset.goto); el.scrollIntoView({ behavior: reduce() ? "auto" : "smooth" }); const t = el.querySelector("h2"); t.setAttribute("tabindex", "-1"); t.focus({ preventScroll: true }); }
 });
+addEventListener("hashchange", route);
+
+/* Changement de langue */
+document.querySelectorAll(".lang-sw button").forEach(b => b.addEventListener("click", () => {
+  if (b.dataset.lang === LANG) return;
+  LANG = b.dataset.lang;
+  try { localStorage.setItem("lang", LANG); } catch (e) { /* stockage indisponible : la langue vaut pour cette visite */ }
+  const y = scrollY; renderAll(); firstRoute = true; route(); window.scrollTo(0, y);
+  document.getElementById("announcer").textContent = LANG === "en" ? "Page in English" : "Page en français";
+}));
+
+/* En-tête, progression de lecture, retour en haut */
+const top_ = document.querySelector(".top"), toTop = document.getElementById("to-top");
+addEventListener("scroll", () => {
+  top_.classList.toggle("scrolled", scrollY > 8);
+  toTop.classList.toggle("on", scrollY > 700);
+  if (!progress.hidden) { const max = document.documentElement.scrollHeight - innerHeight; progress.style.width = (max > 0 ? scrollY / max * 100 : 0) + "%"; }
+}, { passive: true });
+toTop.addEventListener("click", () => { window.scrollTo({ top: 0, behavior: reduce() ? "auto" : "smooth" }); document.getElementById("main").focus({ preventScroll: true }); });
+
+/* Contact : copier l'adresse, sujets, message préparé dans la messagerie du visiteur */
+document.getElementById("copy").addEventListener("click", () => {
+  const t = document.getElementById("email").textContent, toast = document.getElementById("toast");
+  try { navigator.clipboard.writeText(t).then(() => toast.textContent = U().copied, () => toast.textContent = U().copyFail); }
+  catch (e) { toast.textContent = U().copyFail; }
+});
+document.querySelectorAll(".topic").forEach(t => t.addEventListener("click", () => {
+  document.getElementById("f-subj").value = t.dataset.topic;
+  document.querySelectorAll(".topic").forEach(x => x.setAttribute("aria-current", x === t ? "true" : "false"));
+  const f = document.getElementById(document.getElementById("f-name").value ? "f-msg" : "f-name");
+  f.scrollIntoView({ behavior: reduce() ? "auto" : "smooth", block: "center" }); f.focus({ preventScroll: true });
+}));
+document.getElementById("cform").addEventListener("submit", e => {
+  e.preventDefault();
+  const f = e.target, v = n => f.elements[n].value.trim(), status = document.getElementById("f-status");
+  if (!v("name") || !v("message")) { status.textContent = U().fill; (v("name") ? f.elements.message : f.elements.name).focus(); return; }
+  const subj = f.elements.subject.options[f.elements.subject.selectedIndex].textContent.trim();
+  const subject = subj + " · " + v("name") + (v("org") ? " (" + v("org") + ")" : "");
+  const body = v("message") + "\n\n" + v("name") + (v("org") ? "\n" + v("org") : "");
+  location.href = "mailto:christiansodara00@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+  status.textContent = U().opened;
+});
+
+renderAll();
+route();
+fetch("veille.json", { cache: "no-cache" }).then(r => r.ok ? r.json() : null).then(d => { veilleData = d; veilleRender(d); }, () => { veilleData = null; veilleEmpty(); });
 </script>
 </body>
 </html>

@@ -1,0 +1,50 @@
+# Veille des marchés : régénère veille.json toutes les 6 heures à partir des flux
+# officiels (BCE, AMF) et le publie sur gh-pages, sans toucher au reste du site.
+name: veille
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gh-pages
+  cancel-in-progress: false
+
+jobs:
+  veille:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Récupérer le fichier précédent (repli si les flux ne répondent pas)
+        run: |
+          git fetch --depth=1 origin gh-pages || true
+          git show origin/gh-pages:veille.json > prev.json 2>/dev/null || rm -f prev.json
+
+      - name: Générer veille.json
+        run: |
+          mkdir -p out/test
+          if [ -f prev.json ]; then python3 scripts/veille.py out/veille.json prev.json; else python3 scripts/veille.py out/veille.json; fi
+          test -s out/veille.json
+          cp out/veille.json out/test/veille.json
+
+      - name: Publier sur gh-pages (production et test)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./out
+          destination_dir: .
+          keep_files: true
+          commit_message: "veille: mise à jour automatique"

@@ -15,7 +15,8 @@
 <style>
 /* Modern Financial Editorial : grille 12 colonnes, conteneur 1200 px, contrastes typographiques plutôt que décor. */
 :root {
-  --paper: #F8F9F7;
+  --paper: #FFFFFF;
+  --subtle: #F5F6F8;
   --surface: #FFFFFF;
   --ink: #17191E;
   --muted: #68717D;
@@ -50,24 +51,24 @@ span.draft { display: inline-block; padding: 1px 8px; font-size: 13px; }
 span.draft::before { content: none; }
 body:not(.show-drafts) .draft { display: none !important; }
 
-/* En-tête */
-.top { position: sticky; top: 0; z-index: 20; background: rgba(248, 249, 247, 0.9); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; transition: border-color .2s; }
-.top.scrolled { border-bottom-color: var(--line); }
-.top .wrap { display: flex; align-items: center; gap: 24px; height: 68px; }
-.brand { text-decoration: none; display: flex; flex-direction: column; line-height: 1.15; margin-right: auto; }
-.brand b { font-weight: 800; font-size: 17px; letter-spacing: -0.01em; }
-.brand small { color: var(--muted); font-size: 12px; font-weight: 500; }
-.nav { display: flex; gap: 4px; }
-.nav a { text-decoration: none; font-size: 15px; font-weight: 600; color: var(--muted); padding: 8px 12px; border-radius: 999px; transition: color .15s, background .15s; }
-.nav a:hover { color: var(--ink); }
-.nav a[aria-current="page"] { color: var(--ink); background: var(--surface); box-shadow: 0 0 0 1px var(--line); }
+/* En-tête : capsule flottante */
+.top { position: sticky; top: 12px; z-index: 20; margin-top: 16px; padding: 0 16px; }
+.capsule { max-width: 1120px; margin: 0 auto; padding: 5px 5px 5px 22px; display: flex; align-items: center; justify-content: space-between; gap: 8px 24px;
+  background: rgba(255, 255, 255, 0.8); -webkit-backdrop-filter: blur(12px) saturate(140%); backdrop-filter: blur(12px) saturate(140%);
+  border: 1px solid var(--line); border-radius: 999px; box-shadow: 0 1px 2px rgba(22, 25, 30, .05), 0 6px 20px rgba(22, 25, 30, .06); transition: box-shadow .24s ease; }
+.top.scrolled .capsule { box-shadow: 0 1px 2px rgba(22, 25, 30, .06), 0 12px 32px rgba(22, 25, 30, .11); }
+.brand { color: var(--ink); font-size: 19px; font-weight: 800; letter-spacing: -0.025em; text-decoration: none; }
+.brand:hover { color: var(--accent); }
+.nav { display: flex; align-items: center; gap: 2px; }
+.nav a { padding: 9px 16px; border-radius: 999px; color: #2F343B; font-size: 15px; font-weight: 500; line-height: 1.3; text-decoration: none; transition: background-color .14s ease, color .14s ease, transform .14s ease; }
+.nav a:hover { background: rgba(22, 25, 30, 0.055); color: var(--ink); }
+.nav a:active { transform: scale(0.97); }
+.nav a[aria-current="page"], .nav a[aria-current="page"]:hover { background: var(--accent); color: #fff; box-shadow: 0 1px 2px rgba(29, 95, 224, .35); }
 .btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 700; font-size: 15px; padding: 11px 18px; border-radius: 999px; border: 1px solid var(--ink); background: var(--ink); color: #fff; cursor: pointer; font-family: inherit; transition: transform .15s, background .15s; }
 .btn:hover { transform: translateY(-1px); background: #000; }
 .btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
 .btn.ghost:hover { border-color: var(--ink); background: var(--surface); }
 .btn.small { padding: 8px 14px; font-size: 14px; }
-.menu-btn { display: none; background: none; border: 1px solid var(--line); border-radius: 10px; width: 42px; height: 42px; cursor: pointer; }
-.menu-btn span { display: block; width: 18px; height: 2px; background: var(--ink); margin: 4px auto; }
 
 /* Sections */
 section { padding: 56px 0; }
@@ -82,7 +83,7 @@ h3 { font-size: clamp(19px, 1.8vw, 23px); line-height: 1.25; font-weight: 700; }
 .link::after { content: " →"; color: var(--accent); }
 
 /* Hero */
-.hero { padding: 48px 0 40px; border-top: 0; }
+.hero { padding: 40px 0 40px; border-top: 0; }
 .hero .grid { align-items: center; }
 .hero-text { grid-column: span 7; }
 .hero h1 { font-size: clamp(36px, 4.6vw, 60px); line-height: 1.06; font-weight: 800; margin: 14px 0 20px; }
@@ -114,7 +115,7 @@ h3 { font-size: clamp(19px, 1.8vw, 23px); line-height: 1.25; font-weight: 700; }
 .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 20px; display: grid; grid-template-columns: 170px 1fr; gap: 20px; text-decoration: none; transition: border-color .2s, transform .2s, box-shadow .2s; }
 .card:hover { border-color: #C9D3E6; transform: translateY(-2px); box-shadow: 0 10px 30px -18px rgba(23, 25, 30, .35); }
-.card .fig { background: var(--paper); border-radius: 10px; padding: 10px; align-self: start; }
+.card .fig { background: var(--subtle); border-radius: 10px; padding: 10px; align-self: start; }
 .card .meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
 .card h3 { margin-bottom: 6px; }
 .card p { font-size: 15px; color: #3A3F47; line-height: 1.5; }
@@ -176,13 +177,13 @@ svg text { font-family: var(--sans); }
 .crumb { font-size: 14px; color: var(--muted); text-decoration: none; font-weight: 600; }
 .crumb:hover { color: var(--ink); }
 .case-top { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 32px; align-items: start; }
-.case-fig { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; }
+.case-fig { background: var(--subtle); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; }
 .case-fig figcaption { font-size: 13px; color: var(--muted); margin-top: 10px; line-height: 1.45; }
 .facts-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 15px; }
 .facts-table th { text-align: left; font-weight: 600; color: var(--muted); font-size: 13px; text-transform: uppercase; letter-spacing: .05em; padding: 10px 16px 10px 0; vertical-align: top; width: 120px; border-top: 1px solid var(--line); }
 .facts-table td { padding: 10px 0; border-top: 1px solid var(--line); }
 .case-body { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; }
-.toc { position: sticky; top: 92px; align-self: start; list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; font-size: 14px; }
+.toc { position: sticky; top: 96px; align-self: start; list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; font-size: 14px; }
 .toc a { text-decoration: none; color: var(--muted); font-weight: 600; }
 .toc a:hover { color: var(--accent); }
 .case-sec { padding: 0 0 28px; border: 0; }
@@ -240,6 +241,37 @@ svg text { font-family: var(--sans); }
 .cta-band p { color: #C4C9D1; margin-top: 6px; }
 .cta-band .btn { background: #fff; color: var(--ink); border-color: #fff; }
 
+.mark .lz { height: 44px; display: flex; align-items: center; margin-bottom: 12px; }
+.logo { width: auto; filter: brightness(0); opacity: .5; transition: filter .25s, opacity .25s; }
+.mark:hover .logo, .tl:hover .tl-logo { filter: none; opacity: 1; }
+.l-wtw { height: 24px; } .l-bpi { height: 26px; } .l-liora { height: 40px; }
+.wordmark { font-weight: 800; font-size: 22px; letter-spacing: 0.12em; color: #17191E; opacity: .5; }
+.tl-head { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin: 2px 0 2px; }
+.tl-head h3 { margin: 0; }
+.tl-logo { height: 22px; width: auto; filter: brightness(0); opacity: .5; transition: filter .25s, opacity .25s; }
+.tl-logo.tall { height: 30px; }
+.hero-photo { grid-column: 8 / span 5; margin: 0; position: relative; }
+.hero-photo > img { width: 100%; height: 440px; object-fit: cover; object-position: 50% 62%; border-radius: 22px; }
+.hero-photo figcaption { position: absolute; left: 14px; right: 14px; bottom: 14px; display: flex; gap: 10px; align-items: center; background: rgba(255,255,255,.92); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-radius: 14px; padding: 9px 12px; font-size: 13px; color: var(--muted); line-height: 1.35; }
+.hero-photo figcaption img { width: 36px; height: 36px; border-radius: 10px; object-fit: cover; }
+.hero-photo figcaption b { display: block; color: var(--ink); font-size: 14px; }
+.proofs { padding: 8px 0 28px; border-top: 0; }
+.proof-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.proof { display: flex; gap: 12px; align-items: flex-start; }
+.proof svg { width: 20px; height: 20px; flex: none; margin-top: 2px; fill: none; stroke: var(--accent); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.proof b { display: block; font-size: 15.5px; font-weight: 800; }
+.proof span { font-size: 14.5px; color: var(--muted); line-height: 1.5; }
+.card { grid-template-columns: 1fr; gap: 16px; padding: 14px 14px 20px; }
+.card .fig { padding: 16px 24px; aspect-ratio: 16 / 8.5; display: flex; align-items: center; justify-content: center; }
+.card .fig svg { width: 100%; height: 100%; }
+.card > div:last-child { padding: 0 6px; }
+.engs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.eng { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 22px; border-top: 3px solid var(--accent); }
+.eng-k { font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); margin-bottom: 6px; }
+.eng h3 { margin-bottom: 2px; }
+.eng .role { font-weight: 600; color: #3A3F47; font-size: 15px; margin-bottom: 10px; }
+.eng p:not(.eng-k):not(.role) { font-size: 15.5px; color: #3A3F47; }
+@media (max-width: 820px) { .engs { grid-template-columns: 1fr; } }
 .eyebrow-h { font-size: 13px; line-height: 1.6; }
 .flush { border-top: 0; padding-top: 8px; }
 .flush0 { border-top: 0; padding-top: 0; }
@@ -266,7 +298,9 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
 /* Responsive */
 @media (max-width: 1000px) {
   .hero-text { grid-column: span 12; }
-  .id-card { grid-column: span 12; max-width: 520px; }
+  .hero-photo { grid-column: span 12; max-width: 520px; }
+  .hero-photo > img { height: 380px; }
+  .proof-row { grid-template-columns: 1fr; gap: 14px; }
   .cards { grid-template-columns: 1fr; }
   .posts { grid-template-columns: 1fr 1fr; }
   .case-body { grid-template-columns: 1fr; }
@@ -274,10 +308,6 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   .case-top { grid-template-columns: 1fr; }
 }
 @media (max-width: 820px) {
-  .menu-btn { display: block; }
-  .nav { display: none; position: absolute; top: 68px; left: 0; right: 0; flex-direction: column; background: var(--paper); border-bottom: 1px solid var(--line); padding: 10px clamp(16px, 4vw, 32px) 16px; }
-  .nav.open { display: flex; }
-  .nav a { padding: 12px 14px; }
   .top .btn { display: none; }
   .marks-row { grid-template-columns: 1fr 1fr; }
   .mark:nth-child(3) { border-left: 0; }
@@ -292,9 +322,15 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
   .tl .when-m { display: block; font-size: 13px; font-weight: 700; color: var(--muted); }
 }
 @media (min-width: 821px) { .tl .when-m { display: none; } }
+@media (max-width: 620px) {
+  /* La marque reste en haut, seuls les onglets suivent le défilement */
+  .top, .capsule { display: contents; }
+  .brand { display: block; margin-top: 12px; padding: 0 16px; line-height: 1.3; }
+  .nav { position: sticky; top: 8px; z-index: 20; margin: 8px 16px 0; padding: 4px; background: rgba(255, 255, 255, 0.8); -webkit-backdrop-filter: blur(12px) saturate(140%); backdrop-filter: blur(12px) saturate(140%); border: 1px solid var(--line); border-radius: 999px; box-shadow: 0 1px 2px rgba(22, 25, 30, .05), 0 6px 20px rgba(22, 25, 30, .06); }
+  .nav a { flex: 1 1 auto; padding: 9px 4px; font-size: 13.5px; text-align: center; white-space: nowrap; }
+}
 @media (max-width: 560px) {
   body { font-size: 16px; }
-  .card { grid-template-columns: 1fr; }
   .posts { grid-template-columns: 1fr; }
   section { padding: 40px 0; }
   .tbl td:first-child { width: 100px; }
@@ -305,9 +341,8 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
 <div class="progress" id="progress" hidden></div>
 
 <header class="top">
-  <div class="wrap">
-    <a class="brand" href="#accueil"><b>Christian Sodara</b><small>Finance · Données · Technologie</small></a>
-    <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+  <div class="capsule">
+    <a class="brand" href="#accueil">Christian Sodara</a>
     <nav class="nav" id="nav" aria-label="Navigation principale">
       <a href="#accueil" data-view="accueil">Accueil</a>
       <a href="#ecrits" data-view="ecrits">Écrits</a>
@@ -333,18 +368,18 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
           <a class="btn ghost" href="#parcours">Consulter mon parcours</a>
         </div>
       </div>
-      <aside class="id-card" aria-label="En bref">
-        <div class="id-top">
-          <img src="christian-sodara.jpg" alt="Portrait de Christian Sodara" width="84" height="84">
-          <div><b>Christian Sodara</b><span>Master in Management, SKEMA Business School · Paris</span></div>
-        </div>
-        <ul class="facts">
-          <li><span class="k">Spécialité</span><span>Corporate Financial Management, électif Quantitative Finance</span></li>
-          <li><span class="k">Expérience</span><span><span class="num">2</span> ans de Business Analyst chez Willis Towers Watson, sur <span class="num">4</span> pays</span></li>
-          <li><span class="k">Fondation</span><span>Licence en informatique et télécommunications</span></li>
-          <li><span class="k">En cours</span><span>Certification AMF <span class="pill">déc. 2026</span><br>Candidat au CFA <span class="pill">mai 2027</span></span></li>
-        </ul>
-      </aside>
+      <figure class="hero-photo">
+        <img src="christian-bpifrance.jpg" alt="Christian Sodara à un événement Bpifrance, à l’Accor Arena" width="701" height="935">
+        <figcaption><img src="christian-sodara.jpg" alt="" width="36" height="36"><span><b>Christian Sodara</b>Événement Bpifrance, Accor Arena, Paris</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="proofs" aria-label="En bref">
+    <div class="wrap proof-row">
+      <div class="proof"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6 10.2l2.6 2.6L14 7.4"/></svg><div><b>Expérience professionnelle</b><span><span class="num">2</span> ans de Business Analyst chez Willis Towers Watson, sur <span class="num">4</span> pays, puis un stage chez Bpifrance.</span></div></div>
+      <div class="proof"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6 10.2l2.6 2.6L14 7.4"/></svg><div><b>Formation en finance</b><span>SKEMA Business School, Corporate Financial Management. Participant au CFA Research Challenge, certification AMF en déc. 2026, candidat au CFA pour mai 2027.</span></div></div>
+      <div class="proof"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8.5"/><path d="M6 10.2l2.6 2.6L14 7.4"/></svg><div><b>Projets quantitatifs</b><span>Backtests de stratégies, pricer d’options, valorisation DCF et modèle de project finance.</span></div></div>
     </div>
   </section>
 
@@ -352,10 +387,10 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
     <div class="wrap">
       <h2 id="marks-t" class="eyebrow eyebrow-h">Repères de parcours</h2>
       <div class="marks-row">
-        <div class="mark"><b>SKEMA Business School</b><span>Corporate Financial Management</span></div>
-        <div class="mark"><b>Willis Towers Watson</b><span>Business Analysis &amp; Transformation</span></div>
-        <div class="mark"><b>Bpifrance</b><span>Digital Learning &amp; Reporting</span></div>
-        <div class="mark"><b>DataScientest</b><span>Project Management</span></div>
+        <div class="mark"><div class="lz"><span class="wordmark">SKEMA</span></div><b>SKEMA Business School</b><span>Corporate Financial Management</span></div>
+        <div class="mark"><div class="lz"><img class="logo l-wtw" src="logo-wtw.png" alt="Logo WTW" width="191" height="68"></div><b>Willis Towers Watson</b><span>Business Analysis &amp; Transformation</span></div>
+        <div class="mark"><div class="lz"><img class="logo l-bpi" src="logo-bpifrance.png" alt="Logo Bpifrance" width="345" height="105"></div><b>Bpifrance</b><span>Digital Learning &amp; Reporting</span></div>
+        <div class="mark"><div class="lz"><img class="logo l-liora" src="logo-liora.png" alt="Logo Liora, ex DataScientest" width="333" height="160"></div><b>DataScientest</b><span>Project Management</span></div>
       </div>
     </div>
   </section>
@@ -469,6 +504,27 @@ footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wr
         <li><b>Finance et modélisation</b><span>Valorisation, marchés, Python</span></li>
       </ol>
       <ol class="timeline" id="timeline"></ol>
+    </div>
+  </section>
+  <section aria-labelledby="en-t">
+    <div class="wrap">
+      <div class="sec-head"><div><p class="eyebrow">Engagements</p><h2 id="en-t">En dehors des cours</h2></div></div>
+      <div class="engs">
+        <article class="eng">
+          <p class="eng-k">Compétition d’analyse financière</p>
+          <h3>CFA Institute Research Challenge</h3>
+          <p class="role">Participant</p>
+          <p>Une compétition organisée par le CFA Institute : des équipes d’étudiants rédigent un rapport d’equity research sur une société cotée, puis défendent leur recommandation devant un jury de professionnels de l’investissement.</p>
+          <div class="draft mt12">Préciser l’édition, la société analysée, la composition de l’équipe et ton rôle dans le rapport.</div>
+        </article>
+        <article class="eng">
+          <p class="eng-k">Entrepreneuriat</p>
+          <h3>SKEMA Entrepreneurs</h3>
+          <p class="role">Membre</p>
+          <p>Le réseau des étudiants entrepreneurs de SKEMA Business School.</p>
+          <div class="draft mt12">Préciser ton rôle et tes activités au sein de SKEMA Entrepreneurs, et dire si WeSkool y est accompagné.</div>
+        </article>
+      </div>
     </div>
   </section>
   <section aria-labelledby="sk-t">
@@ -702,11 +758,11 @@ const POSTS = [
 const TIMELINE = [
   { stage:"Fondation technique", when:"", org:"ESATIC, Abidjan", role:"Licence en informatique et télécommunications",
     items:["Bases en informatique, réseaux et programmation."], draft:"Dates de la licence." },
-  { stage:"Analyse métier", when:"2 ans", org:"Willis Towers Watson", role:"Business Analyst",
-    items:["Analyse de données sur 4 pays.","Conseil en gestion des risques.","Pilotage du déploiement d’une plateforme logicielle de 2 M$."], draft:"Dates exactes (mois et année) et intitulé de l’entité (Gras Savoye Willis Towers Watson ?)." },
-  { stage:"Gestion de projets", when:"", org:"DataScientest", role:"Stage, gestion de projet",
+  { stage:"Analyse métier", when:"2 ans", org:"Willis Towers Watson", logo:["logo-wtw.png","Logo WTW",""], role:"Business Analyst",
+    items:["Analyse de données sur 4 pays.","Conseil en gestion des risques.","Pilotage du déploiement d’une plateforme logicielle de 2 M$."], draft:"Dates exactes (mois et année)." },
+  { stage:"Gestion de projets", when:"", org:"DataScientest", logo:["logo-liora.png","Logo Liora, ex DataScientest","tall"], role:"Stage, gestion de projet",
     items:["Organisme de formation en data science."], draft:"Dates et missions principales." },
-  { stage:"Gestion de projets", when:"Août à déc. 2025", org:"Bpifrance", role:"Assistant chef de projet, stage · Digital Learning",
+  { stage:"Gestion de projets", when:"Août à déc. 2025", org:"Bpifrance", logo:["logo-bpifrance.png","Logo Bpifrance",""], role:"Assistant chef de projet, stage · Digital Learning",
     items:["Reportings structurés et tableaux de bord KPI destinés à la direction."], draft:"" },
   { stage:"Finance et modélisation", when:"2024 à 2027", org:"SKEMA Business School, Paris", role:"Programme Grande École, Master in Management",
     items:["Spécialisation Corporate Financial Management.","Électif Quantitative Finance.","Valorisation d’entreprises, modélisation financière, recherche sur la performance des fonds."], draft:"" }
@@ -838,7 +894,7 @@ function articleHTML(p) {
 
 /* Parcours */
 fill("timeline", TIMELINE.map(t => `<li class="tl"><div class="when">${t.when}</div><div class="rail"></div><div class="body">
-  <span class="stage">${t.stage}</span>${t.when ? `<span class="when-m">${t.when}</span>` : ""}<h3>${t.org}</h3><p class="role">${t.role}</p>${list(t.items)}${t.draft ? D(t.draft) : ""}</div></li>`).join(""));
+  <span class="stage">${t.stage}</span>${t.when ? `<span class="when-m">${t.when}</span>` : ""}<div class="tl-head"><h3>${t.org}</h3>${t.logo ? "<img class=\"tl-logo " + t.logo[2] + "\" " + "src" + "=" + JSON.stringify(t.logo[0]) + " alt=" + JSON.stringify(t.logo[1]) + ">" : ""}</div><p class="role">${t.role}</p>${list(t.items)}${t.draft ? D(t.draft) : ""}</div></li>`).join(""));
 fill("skills", SKILLS.map(s => `<div class="skill"><h3>${s.t}</h3>
   <p class="lvl">Pratiqué</p><div class="chips" style="margin:0">${s.ok.map(x => `<span class="pill ok">${x}</span>`).join("")}</div>
   ${s.learn.length ? `<p class="lvl">En approfondissement</p><div class="chips" style="margin:0">${s.learn.map(x => `<span class="pill grey">${x}</span>`).join("")}</div>` : ""}
@@ -869,8 +925,6 @@ function route() {
   document.querySelectorAll(".nav a").forEach(a => a.dataset.view === nav ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"));
   document.title = pj ? pj.title + " · Christian Sodara" : ar ? ar.title.replace(/<[^>]+>/g, "") + " · Christian Sodara" : "Christian Sodara";
   progress.hidden = !ar;
-  document.getElementById("nav").classList.remove("open");
-  document.getElementById("menu-btn").setAttribute("aria-expanded", "false");
   window.scrollTo(0, 0);
   observe();
 }
@@ -879,12 +933,6 @@ document.addEventListener("click", e => {
   if (j) { e.preventDefault(); document.getElementById("s-" + j.dataset.jump).scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }); }
 });
 addEventListener("hashchange", route);
-
-/* Menu mobile */
-document.getElementById("menu-btn").addEventListener("click", function () {
-  const open = document.getElementById("nav").classList.toggle("open");
-  this.setAttribute("aria-expanded", open);
-});
 
 /* Bordure de l'en-tête et progression de lecture */
 const top_ = document.querySelector(".top");

@@ -269,7 +269,7 @@ svg text { font-family: var(--sans); }
 .step .ex:hover b { color: var(--accent); }
 
 /* Veille : repères chiffrés + deux colonnes par source */
-.v-kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line); margin-bottom: 34px; }
+.v-kpis { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 0; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line); margin-bottom: 34px; }
 .v-kpi { padding: 18px 22px 18px 0; }
 .v-kpi + .v-kpi { padding-left: 22px; border-left: 1px solid var(--line); }
 .v-kpi .k { display: block; font-size: 12.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
@@ -295,7 +295,7 @@ svg text { font-family: var(--sans); }
 .v-item span.t::after { content: " ↗"; color: var(--muted); font-weight: 400; font-family: var(--sans); font-size: .8em; }
 .pill.bce { background: var(--accent-soft); color: var(--accent); } .pill.amf { background: #0B1F4D; color: #fff; }
 @media (max-width: 900px) {
-  .v-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .v-kpis { grid-auto-flow: row; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .v-kpi { padding: 14px 16px 14px 0; }
   .v-kpi + .v-kpi { padding-left: 16px; }
   .v-kpi:nth-child(odd) { padding-left: 0; border-left: 0; }
@@ -1250,14 +1250,14 @@ const UI = {
     secs:["Contexte","Problème","Approche","Réalisation","Résultats","Enseignements"], todo:"À compléter", frOnly:"",
     copied:"Adresse copiée", copyFail:"Copie impossible, sélectionnez l’adresse", opened:"Votre messagerie s’ouvre avec le message prêt à envoyer.", fill:"Indiquez votre nom et votre message.",
     vEmptyT:"La veille n’est pas disponible pour le moment.", vEmptyP:"Elle se met à jour automatiquement à partir des flux officiels. En attendant, les publications restent consultables à la source : ",
-    vEcb:"communiqués de la BCE", vAmf:"actualités de l’AMF", vAnd:" et ", vUpd:"Mis à jour le ", vSrc:"Sources : ", vAll:"Tout voir ↗", vSame:"inchangé", vRead:"Lire sur ", vKpiSrc:" ; repères : BCE Data Portal", vNote:"Collecte automatique, sans commentaire ni sélection éditoriale.",
+    vEcb:"communiqués de la BCE", vAmf:"actualités de l’AMF", vAnd:" et ", vUpd:"Mis à jour le ", vSrc:"Sources : ", vAll:"Tout voir ↗", vSame:"inchangé", vSince:"depuis le ", vRead:"Lire sur ", vKpiSrc:" ; repères : BCE Data Portal", vNote:"Collecte automatique, sans commentaire ni sélection éditoriale.",
     page:"Page : ", title:"Christian Sodara · Corporate Finance & Financial Modelling", locale:"fr-FR", mailHello:"" },
   en: { explore:"Explore the project", read:"min read", unpublished:"unpublished", all:"All", allF:"All", projectsN:n => n + " project" + (n > 1 ? "s" : ""),
     back:"← All projects", backW:"← All writing", others:"Other projects", tools:"Tools", sources:"Sources", more:"More", undated:"Undated",
     secs:["Context","Problem","Approach","Execution","Results","Lessons"], todo:"À compléter", frOnly:"This article is available in French.",
     copied:"Address copied", copyFail:"Copy failed, please select the address", opened:"Your email app is opening with the message ready to send.", fill:"Please enter your name and your message.",
     vEmptyT:"The market watch is not available right now.", vEmptyP:"It updates automatically from official feeds. In the meantime, releases can be read at the source: ",
-    vEcb:"ECB press releases", vAmf:"AMF news", vAnd:" and ", vUpd:"Updated ", vSrc:"Sources: ", vAll:"See all ↗", vSame:"unchanged", vRead:"Read on ", vKpiSrc:"; indicators: ECB Data Portal", vNote:"Automatic collection, with no commentary or editorial selection.",
+    vEcb:"ECB press releases", vAmf:"AMF news", vAnd:" and ", vUpd:"Updated ", vSrc:"Sources: ", vAll:"See all ↗", vSame:"unchanged", vSince:"since ", vRead:"Read on ", vKpiSrc:"; indicators: ECB Data Portal", vNote:"Automatic collection, with no commentary or editorial selection.",
     page:"Page: ", title:"Christian Sodara · Corporate Finance & Financial Modelling", locale:"en-GB" }
 };
 /* Contenus traduits, par identifiant */
@@ -1908,17 +1908,18 @@ const V_SRC = {
 const V_KPI = {
   dfr: { fr: "Taux de dépôt BCE", en: "ECB deposit rate", unit: "%", dec: 2 },
   y10: { fr: "Taux 10 ans zone euro (AAA)", en: "Euro area 10-year yield (AAA)", unit: "%", dec: 2 },
-  hicp: { fr: "Inflation zone euro (IPCH)", en: "Euro area inflation (HICP)", unit: "%", dec: 1 },
+  hicp: { fr: "Inflation zone euro (IPCH)", en: "Euro area inflation (HICP)", unit: "%", dec: 1, maxAge: 100 },
   eurusd: { fr: "Euro / dollar", en: "Euro / dollar", unit: "", dec: 4 }
 };
 const fmtNum = (v, dec) => Number(v).toLocaleString(U().locale, { minimumFractionDigits: dec, maximumFractionDigits: dec });
 const fmtPeriod = t => /^\d{4}-\d{2}$/.test(t) ? fmtDate(t + "-15T12:00:00", { month: "short", year: "numeric" }) : /^\d{4}-\d{2}-\d{2}$/.test(t) ? fmtDate(t + "T12:00:00") : esc(t);
 function kpiHTML(list) {
-  const rows = (Array.isArray(list) ? list : []).filter(k => V_KPI[k.id] && isFinite(k.value) && k.period).slice(0, 4);
+  const fresh = k => { const m = V_KPI[k.id], t = Date.parse(/^\d{4}-\d{2}$/.test(k.period) ? k.period + "-15" : k.period); return !m.maxAge || (isFinite(t) && (Date.now() - t) / 864e5 <= m.maxAge); };
+  const rows = (Array.isArray(list) ? list : []).filter(k => V_KPI[k.id] && isFinite(k.value) && k.period && fresh(k)).slice(0, 4);
   if (!rows.length) return "";
   return `<div class="v-kpis" role="list">${rows.map(k => { const m = V_KPI[k.id], d = isFinite(k.prev) ? Number(k.value) - Number(k.prev) : null;
     const dTxt = d === null ? "" : `<b class="${d > 0 ? "up" : d < 0 ? "down" : ""}">${d === 0 ? U().vSame : (d > 0 ? "+ " : "− ") + fmtNum(Math.abs(d), m.dec)}</b> · `;
-    return `<div class="v-kpi" role="listitem"><span class="k">${m[LANG] || m.fr}</span><span class="v">${fmtNum(k.value, m.dec)}<small>${m.unit}</small></span><span class="d">${dTxt}${fmtPeriod(k.period)}</span></div>`; }).join("")}</div>`;
+    return `<div class="v-kpi" role="listitem"><span class="k">${m[LANG] || m.fr}</span><span class="v">${fmtNum(k.value, m.dec)}<small>${m.unit}</small></span><span class="d">${dTxt}${k.id === "dfr" ? U().vSince : ""}${fmtPeriod(k.period)}</span></div>`; }).join("")}</div>`;
 }
 function veilleRender(data) {
   const ok = it => { try { const u = new URL(it.link); return u.protocol === "https:" && VEILLE_HOSTS.includes(u.hostname) && it.title && !isNaN(new Date(it.date)) && V_SRC[it.source]; } catch (e) { return false; } };

@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Christian Sodara · Corporate Finance &amp; Financial Modelling</title>
 <meta name="description" content="Christian Sodara : finance d’entreprise, modélisation financière, valorisation et outils data. Parcours, projets détaillés, analyses et veille des marchés.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230B1F4D%27/%3E%3Ctext x=%2732%27 y=%2742%27 font-family=%27Arial,Helvetica,sans-serif%27 font-size=%2728%27 font-weight=%27800%27 text-anchor=%27middle%27 fill=%27%23fff%27%3ECS%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#FFFFFF">
 <link rel="canonical" href="https://christiansodara.com/">
 <meta property="og:type" content="profile">
 <meta property="og:locale" content="fr_FR">
@@ -58,7 +61,7 @@
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { position: relative; margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 img { max-width: 100%; display: block; }
 a { color: inherit; }
 h1, h2, h3 { text-wrap: balance; margin: 0; letter-spacing: -0.02em; }
@@ -553,13 +556,6 @@ body.show-drafts .post-draft .cover { outline: 2px dashed var(--draft); outline-
 .v-t { font-weight: 700; margin-bottom: 4px; }
 
 .brand, .nav a { white-space: nowrap; }
-@media (min-width: 621px) and (max-width: 900px) {
-  .capsule { padding-left: 16px; gap: 6px; }
-  .brand { font-size: 17px; }
-  .nav a { padding: 8px 10px; font-size: 14px; }
-  .lang-sw button { min-width: 32px; }
-}
-@media (min-width: 621px) and (max-width: 720px) { .nav a { padding: 8px 7px; font-size: 13.5px; } .brand { font-size: 16px; } .capsule { padding-right: 4px; } }
 @media (max-width: 1000px) {
   .bio, .c-ed { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   .bio-photo { max-width: 340px; }
@@ -570,18 +566,13 @@ body.show-drafts .post-draft .cover { outline: 2px dashed var(--draft); outline-
   .skills-ed { grid-template-columns: 1fr; gap: 8px; }
 }
 @media (max-width: 620px) {
-  .lang-sw { position: absolute; top: 8px; right: 12px; background: #fff; }
-  .lang-sw button { min-height: 30px; }
-  .brand { display: flex; align-items: center; min-height: 46px; margin-top: 4px; padding-right: 110px; }
-  .subnav { top: 62px; }
   .row-item { grid-template-columns: 1fr; gap: 4px; }
   .bio-facts > div, .c-dl > div { grid-template-columns: 1fr; gap: 2px; }
   .langs-ed { grid-template-columns: 1fr; }
   .f2 { grid-template-columns: 1fr; }
   .stat-row span { font-size: 14px; }
-  .nav a { padding: 12px 4px; }
 }
-@media (max-width: 380px) { .nav { margin: 8px 8px 0; overflow-x: auto; scrollbar-width: none; } .nav a { font-size: 12px; padding: 12px 2px; letter-spacing: -0.01em; } .brand { padding: 0 8px; } .stat-row { grid-template-columns: 1fr; } .stat-row li { padding-left: 0; border-left: 0; } }
+@media (max-width: 380px) { .stat-row { grid-template-columns: 1fr; } .stat-row li { padding-left: 0; border-left: 0; } }
 
 /* Retour en haut */
 .to-top { position: fixed; right: 20px; bottom: 20px; z-index: 25; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: rgba(255, 255, 255, .92); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: 0 6px 20px rgba(22, 25, 30, .1); cursor: pointer; display: grid; place-items: center; opacity: 0; transform: translateY(8px); pointer-events: none; transition: opacity .2s, transform .2s, border-color .2s; }
@@ -627,10 +618,6 @@ body.show-drafts .post-draft .cover { outline: 2px dashed var(--draft); outline-
 }
 @media (min-width: 821px) { .tl .when-m { display: none; } }
 @media (max-width: 620px) {
-  .top, .capsule { display: contents; }
-  .brand { display: block; margin-top: 12px; padding: 0 16px; line-height: 1.3; }
-  .nav { position: sticky; top: 8px; z-index: 20; margin: 8px 16px 0; padding: 4px; background: rgba(255, 255, 255, 0.8); -webkit-backdrop-filter: blur(12px) saturate(140%); backdrop-filter: blur(12px) saturate(140%); border: 1px solid var(--line); border-radius: 999px; box-shadow: 0 1px 2px rgba(22, 25, 30, .05), 0 6px 20px rgba(22, 25, 30, .06); }
-  .nav a { flex: 1 1 auto; padding: 9px 4px; font-size: 13.5px; text-align: center; white-space: nowrap; }
   .cards.four { grid-template-columns: 1fr; }
   .marks-row { grid-template-columns: 1fr; }
   .mark + .mark { border-left: 0; border-top: 1px solid var(--line); }
@@ -642,6 +629,101 @@ body.show-drafts .post-draft .cover { outline: 2px dashed var(--draft); outline-
   .tbl td:first-child { width: 100px; }
   .hero-photo img { height: 340px; }
 }
+
+/* ===== Menu (bouton) : caché sur ordinateur ===== */
+.menu-btn { display: none; width: 44px; height: 44px; margin-left: 2px; border: 0; border-radius: 999px; background: transparent; cursor: pointer; flex-direction: column; justify-content: center; align-items: center; gap: 6px; }
+.menu-btn span { display: block; width: 22px; height: 2px; border-radius: 2px; background: var(--ink); transition: transform .2s ease; }
+body.menu-open .menu-btn span:first-child { transform: translateY(4px) rotate(45deg); }
+body.menu-open .menu-btn span:last-child { transform: translateY(-4px) rotate(-45deg); }
+
+/* ===== Tablette et téléphone ===== */
+@media (max-width: 900px) {
+  .top { position: sticky; top: 0; margin: 0; padding: 0; }
+  .capsule { max-width: none; min-height: 58px; padding: 7px 8px 7px 16px; gap: 6px; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: #fff; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .top.scrolled .capsule { box-shadow: 0 4px 18px rgba(22, 25, 30, .08); }
+  .brand { margin-right: auto; font-size: 18px; }
+  .menu-btn { display: inline-flex; }
+  .lang-sw button { min-height: 34px; }
+  .nav { display: none; }
+  body.menu-open { overflow: hidden; }
+  body.menu-open .nav { display: flex; position: fixed; top: 58px; left: 0; right: 0; bottom: 0; z-index: 40; flex-direction: column; align-items: stretch; gap: 0; padding: 12px 20px 48px; background: #fff; overflow-y: auto; }
+  body.menu-open .nav a { padding: 18px 0; border-radius: 0; border-bottom: 1px solid var(--line); background: none; box-shadow: none; color: var(--ink); font-family: var(--serif); font-size: 30px; font-weight: 500; line-height: 1.15; letter-spacing: -0.01em; }
+  body.menu-open .nav a:hover { background: none; color: var(--accent); }
+  body.menu-open .nav a[aria-current="page"], body.menu-open .nav a[aria-current="page"]:hover { background: none; box-shadow: none; color: var(--accent); }
+  .subnav { top: 58px; }
+  .row-item, .ed-sec, .tl, .xp-item { scroll-margin-top: 90px; }
+}
+
+/* ===== Téléphone ===== */
+@media (max-width: 620px) {
+  .wrap { padding: 0 18px; }
+  section { padding: 36px 0; }
+  h2 { font-size: 27px; }
+  .sec-head { margin-bottom: 18px; }
+  .hero { padding: 18px 0 8px; }
+  .hero .eyebrow { font-size: 11px; letter-spacing: .08em; }
+  .hero h1 { font-size: 34px; margin: 8px 0 14px; }
+  .hero .lede { font-size: 16.5px; margin-bottom: 20px; }
+  .ctas { gap: 10px; }
+  .hero .ctas .btn { flex: 1 1 100%; justify-content: center; }
+  .hero-photo { max-width: none; border-radius: 16px; }
+  .hero-photo img { height: 300px; object-position: 50% 8%; }
+  .cred-row > .cred { padding: 16px 0; }
+  .sel { padding-top: 28px; }
+
+  /* Rangées horizontales à faire défiler (projets, écrits, événements) */
+  .cards.four, #home-posts, .stories, #v-projet .cards {
+    display: grid; grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 82%; gap: 14px;
+    overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-left: 18px;
+    margin: 0 -18px; padding: 2px 18px 14px; scrollbar-width: none; }
+  .cards.four::-webkit-scrollbar, #home-posts::-webkit-scrollbar, .stories::-webkit-scrollbar, #v-projet .cards::-webkit-scrollbar { display: none; }
+  .cards.four > *, #home-posts > *, .stories > *, #v-projet .cards > * { scroll-snap-align: start; }
+  .stories .story:first-child { grid-column: auto; }
+  .story { min-height: 400px; padding: 22px; }
+  .card .fig { padding: 10px 14px; }
+  p.swipe-hint { display: flex; }
+  .filters { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-right: -18px; padding-right: 18px; }
+  .filters::-webkit-scrollbar { display: none; }
+  .filters button { flex: none; }
+
+  /* Domaines : tuiles plus compactes */
+  .tiles { gap: 10px; }
+  .tile { min-height: 92px; padding: 14px 10px; }
+  .tile svg { width: 26px; height: 26px; margin-bottom: 4px; }
+  .tile b { font-size: 14.5px; }
+
+  /* Écrits : liste avec vignette */
+  #all-posts { grid-template-columns: 1fr; gap: 0; }
+  #all-posts .post { display: grid; grid-template-columns: 104px minmax(0, 1fr); column-gap: 14px; row-gap: 4px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  #all-posts .post > .cover { grid-row: 1 / span 4; aspect-ratio: 1; padding: 8px; border-radius: 8px; align-self: start; }
+  #all-posts .post > .cover.typo span { font-size: 15px; }
+  #all-posts .post h3 { font-size: 18.5px; line-height: 1.25; }
+  #all-posts .post p { font-size: 14.5px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  #all-posts .post .meta { font-size: 12.5px; }
+
+  /* Parcours : tableau des certifications en lignes */
+  .ed-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .ed-table, .ed-table tbody { display: block; }
+  .ed-table tr { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .ed-table th, .ed-table td { padding: 0; border: 0; }
+  .ed-table tbody th { flex: 1 1 100%; font-size: 16px; }
+  .ed-table td { font-size: 14px; color: var(--muted); }
+  .ed-table td:last-child { margin-left: auto; }
+  .ed-head { padding: 24px 0 24px; }
+  .ed-h1 { font-size: 44px; }
+  .ed-lede { font-size: 17px; margin-bottom: 20px; }
+  .bio-photo { max-width: 260px; }
+  .ed-sec { padding: 40px 0; }
+  .cta-band { padding: 26px 22px; border-radius: 16px; }
+  .cta-band .btns { width: 100%; }
+  .cta-band .btn { flex: 1 1 auto; justify-content: center; }
+  .page-head { padding: 28px 0 18px; }
+  .to-top { right: 14px; bottom: 14px; }
+}
+
+/* Indication de défilement horizontal (téléphone) */
+.swipe-hint { display: none; align-items: center; gap: 6px; margin-top: 2px; font-size: 13px; font-weight: 600; color: var(--muted); }
+.swipe-hint::after { content: "→"; color: var(--accent); }
 </style>
 </head>
 <body>
@@ -663,6 +745,7 @@ body.show-drafts .post-draft .cover { outline: 2px dashed var(--draft); outline-
       <button type="button" data-lang="fr" lang="fr" aria-label="Français" aria-pressed="true">FR</button>
       <button type="button" data-lang="en" lang="en" aria-label="English" aria-pressed="false">EN</button>
     </div>
+    <button class="menu-btn" type="button" id="menu-btn" aria-controls="nav" aria-expanded="false" aria-label="Ouvrir le menu"><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
   </div>
 </header>
 
@@ -723,6 +806,7 @@ body.show-drafts .post-draft .cover { outline: 2px dashed var(--draft); outline-
         <a class="link" href="#projets" data-i18n="all.projects">Tous les projets</a>
       </div>
       <div class="cards four" id="home-cards"></div>
+      <p class="swipe-hint" aria-hidden="true" data-i18n="swipe">Faites défiler</p>
       <div class="dom-head"><h3 class="eyebrow" data-i18n="s.dom">Explorer par domaine</h3><a class="link" href="#projets" data-i18n="all.projects">Tous les projets</a></div>
       <nav class="tiles" id="home-tiles" aria-label="Projets par domaine" data-i18n-aria="s.domAria"></nav>
     </div>
@@ -757,6 +841,7 @@ body.show-drafts .post-draft .cover { outline: 2px dashed var(--draft); outline-
     <div class="wrap">
       <div class="sec-head"><div><p class="eyebrow" data-i18n="w.k">Écrits &amp; analyses</p><h2 id="la-t" data-i18n="w.h2">Taux, politique monétaire et finance d’entreprise.</h2></div><a class="link" href="#ecrits" data-i18n="all.writing">Tous les écrits</a></div>
       <div class="posts" id="home-posts"></div>
+      <p class="swipe-hint" aria-hidden="true" data-i18n="swipe">Faites défiler</p>
     </div>
   </section>
 
@@ -764,6 +849,7 @@ body.show-drafts .post-draft .cover { outline: 2px dashed var(--draft); outline-
     <div class="wrap">
       <div class="sec-head"><div><p class="eyebrow" data-i18n="e.k">Événements &amp; engagements</p><h2 id="ev-t" data-i18n="e.h2">En dehors des cours.</h2></div><a class="link" href="#parcours-engagements" data-i18n="e.all">Tous mes engagements</a></div>
       <div class="stories" id="home-stories"></div>
+      <p class="swipe-hint" aria-hidden="true" data-i18n="swipe">Faites défiler</p>
     </div>
   </section>
 
@@ -993,7 +1079,7 @@ const DL = a => a && a.length ? `<div class="draft"><ul>${a.map(x => `<li>${x}</
    Le français est écrit dans la page ; l'anglais vient de ces dictionnaires.
    Les brouillons (encadrés « À compléter ») restent en français : ils ne sont jamais publiés. */
 const I18N = { en: {
-  "skip": "Skip to content",
+  "skip": "Skip to content", "swipe": "Swipe",
   "nav.label": "Main navigation", "nav.home": "Home", "nav.writing": "Writing", "nav.projects": "Projects", "nav.path": "Background", "nav.contact": "Contact",
   "h.h1": "I analyse financial issues. <em>I build the tools to address them.</em>",
   "h.lede": "My background combines technical training, experience in business analysis and transformation, and a specialisation in corporate finance. I explore financial markets, valuation and quantitative modelling through hands-on projects and applied analysis.",
@@ -1472,7 +1558,7 @@ const FIGS = {
     return svg(pl([[26, 8], [26, 100], [184, 100]], "f-axis") + pl(a, "f-a") + pl([[p8[0], p8[1]], [p8[0], 100]], "f-c") + pl([[p9[0], p9[1]], [p9[0], 100]], "f-c") +
       `<circle class="f-dot" cx="${p8[0].toFixed(1)}" cy="${p8[1].toFixed(1)}" r="2.6"/><circle class="f-dot" cx="${p9[0].toFixed(1)}" cy="${p9[1].toFixed(1)}" r="2.6"/>` +
       tx(p8[0] + 4, p8[1] - 4, "16,7×", "f-tt") + tx(p9[0] + 4, p9[1] - 4, "14,3×", "f-tt") + [6, 8, 10].map(w => tx(X(w), 111, w + " %", "f-t", "middle")).join("") +
-      tx(30, 15, "multiple de valeur terminale selon le WACC (g = 2 %)"), "Multiple de valeur terminale selon le WACC, avec une croissance terminale de 2 %"); },
+      tx(30, 15, "valeur terminale selon le WACC (g = 2 %)"), "Multiple de valeur terminale selon le WACC, avec une croissance terminale de 2 %"); },
   cap() { const X = l => 26 + l * 156, V = l => 100 + 28 * l - 70 * l ** 3, Y = v => 100 - (v - 96) / 16 * 86, a = [], m = [];
     for (let l = 0; l <= 1.001; l += 0.02) { a.push([X(l), Y(V(l))]); m.push([X(l), Y(100 + 28 * l)]); }
     const lo = Math.sqrt(28 / 210);
@@ -1731,6 +1817,19 @@ document.addEventListener("click", e => {
   if (g) { const el = document.getElementById(g.dataset.goto); el.scrollIntoView({ behavior: reduce() ? "auto" : "smooth" }); const t = el.querySelector("h2"); t.setAttribute("tabindex", "-1"); t.focus({ preventScroll: true }); }
 });
 addEventListener("hashchange", route);
+
+/* Menu sur téléphone et tablette */
+const menuBtn = document.getElementById("menu-btn");
+function setMenu(open) {
+  document.body.classList.toggle("menu-open", open);
+  menuBtn.setAttribute("aria-expanded", open);
+  menuBtn.setAttribute("aria-label", open ? (LANG === "en" ? "Close menu" : "Fermer le menu") : (LANG === "en" ? "Open menu" : "Ouvrir le menu"));
+  if (open) { const a = document.querySelector('.nav a[aria-current="page"]') || document.querySelector(".nav a"); a.focus(); }
+}
+menuBtn.addEventListener("click", () => setMenu(!document.body.classList.contains("menu-open")));
+document.getElementById("nav").addEventListener("click", e => { if (e.target.closest("a")) setMenu(false); });
+addEventListener("keydown", e => { if (e.key === "Escape" && document.body.classList.contains("menu-open")) { setMenu(false); menuBtn.focus(); } });
+matchMedia("(min-width: 901px)").addEventListener("change", e => { if (e.matches) setMenu(false); });
 
 /* Changement de langue */
 document.querySelectorAll(".lang-sw button").forEach(b => b.addEventListener("click", () => {

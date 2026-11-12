@@ -22,6 +22,14 @@ FEEDS = [
     ("BCE", "https://www.ecb.europa.eu/rss/press.html"),
     ("AMF", "https://www.amf-france.org/fr/flux-rss/display/23"),
 ]
+# Repères chiffrés (BCE Data Portal, API SDMX publique, sans clé) : identifiant affiché -> clé de série
+INDICATORS = [
+    ("dfr", "FM/B.U2.EUR.4F.KR.DFR.LEV"),           # taux de la facilité de dépôt
+    ("y10", "YC/B.U2.EUR.4F.G_N_A.SV_C_YM.SR_10Y"),  # taux 10 ans zone euro, émetteurs AAA
+    ("hicp", "ICP/M.U2.N.000000.4.ANR"),             # inflation IPCH, glissement annuel
+    ("eurusd", "EXR/D.USD.EUR.SP00.A"),              # cours de référence EUR/USD
+]
+DATA_API = "https://data-api.ecb.europa.eu/service/data/"
 MAX_ITEMS = 30
 TIMEOUT = 20
 UA = "Mozilla/5.0 (compatible; veille-sodara/1.0; +https://sodara-cpu.github.io/Mywebsite/)"
@@ -72,6 +80,37 @@ def fetch(url):
         return r.read(5_000_000)
 
 
+def fetch_indicator(iid, key):
+    """Deux dernières observations d'une série SDMX en CSV ; None si la série ne répond pas."""
+    import csv
+    import io
+    req = urllib.request.Request(DATA_API + key + "?lastNObservations=2&format=csvdata", headers={"User-Agent": UA, "Accept": "text/csv"})
+    with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
+        rows = list(csv.DictReader(io.StringIO(r.read(200_000).decode("utf-8", "replace"))))
+    obs = [(row.get("TIME_PERIOD", ""), float(row["OBS_VALUE"])) for row in rows if row.get("OBS_VALUE") not in (None, "")]
+    if not obs:
+        return None
+    obs.sort()
+    last, prev = obs[-1], (obs[-2] if len(obs) > 1 else (None, None))
+    return {"id": iid, "value": last[1], "period": last[0], "prev": prev[1]}
+
+
+def indicators(previous):
+    """Repères à jour ; en cas d'échec, la valeur précédente est conservée série par série."""
+    old = {i.get("id"): i for i in (previous or {}).get("indicators", []) if isinstance(i, dict)}
+    out = []
+    for iid, key in INDICATORS:
+        try:
+            got = fetch_indicator(iid, key)
+        except Exception as e:  # une série en panne n'empêche pas les autres
+            print(f"indicateur {iid} : {type(e).__name__}")
+            got = None
+        got = got or old.get(iid)
+        if got:
+            out.append(got)
+    return out
+
+
 def dedupe(items):
     seen, out = set(), []
     for it in sorted(items, key=lambda x: x["date"], reverse=True):
@@ -85,6 +124,13 @@ def dedupe(items):
 
 def main(out_path, previous_path=None):
     items, ok, errors = [], [], []
+    previous = None
+    if previous_path:
+        try:
+            with open(previous_path, encoding="utf-8") as f:
+                previous = json.load(f)
+        except (OSError, ValueError):
+            previous = None
     for source, url in FEEDS:
         try:
             got = parse_feed(source, fetch(url))
@@ -106,6 +152,7 @@ def main(out_path, previous_path=None):
         "updated": datetime.now(timezone.utc).isoformat(timespec="minutes"),
         "sources": [{"name": s, "url": u} for s, u in FEEDS if s in ok],
         "items": dedupe(items),
+        "indicators": indicators(previous),
     }
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=1)

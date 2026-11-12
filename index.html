@@ -135,15 +135,6 @@ h3 { font-size: clamp(18px, 1.7vw, 21px); line-height: 1.28; font-weight: 700; }
 .hero-photo figcaption b { color: var(--ink); }
 
 /* Piliers */
-.pillars { padding: 4px 0 18px; border-top: 0; }
-.pillar-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-.pillar { display: flex; gap: 12px; align-items: flex-start; text-decoration: none; padding: 12px 16px; border: 1px solid var(--line); border-radius: 12px; transition: border-color .2s, background-color .2s; }
-.pillar:hover { border-color: #C9D3E6; background: #FAFBFD; }
-.pillar svg { width: 20px; height: 20px; flex: none; margin-top: 2px; fill: none; stroke: var(--accent); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-.pillar b { display: block; font-size: 14px; font-weight: 800; letter-spacing: .02em; }
-.pillar b::after { content: " →"; color: var(--accent); }
-.pillar span { display: block; font-size: 14px; color: var(--muted); line-height: 1.45; }
-.pillar .more { color: var(--accent); font-weight: 700; font-size: 13px; margin-top: 4px; }
 
 /* Repères */
 .marks { padding: 0 0 8px; border-top: 0; }
@@ -162,30 +153,39 @@ h3 { font-size: clamp(18px, 1.7vw, 21px); line-height: 1.28; font-weight: 700; }
 
 /* Bande de preuves : expérience, formation, projets */
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-.creds { padding: 6px 0 4px; border-top: 0; }
-.cred-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.cred-row > .cred { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 18px 24px 18px 0; display: flex; flex-direction: column; }
-.cred-row > .cred + .cred { padding-left: 24px; border-left: 1px solid var(--line); }
-.cred-k { font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
-.cred-logos { display: flex; align-items: center; gap: 8px 22px; min-height: 40px; margin: 8px 0 12px; flex-wrap: wrap; }
-.cred-logos a { display: flex; align-items: center; text-decoration: none; border-radius: 6px; }
-.cred-logos a:hover .logo { filter: none; opacity: 1; }
-.cred-logos a:hover .wordmark { opacity: 1; color: #0A2D6E; }
-.cred-tag { font-size: 12.5px; font-weight: 700; color: #4A515B; background: var(--subtle); border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; white-space: nowrap; }
-.cred-t { font-size: 15px; line-height: 1.5; color: var(--muted); }
-.cred-t b { color: var(--ink); font-weight: 700; }
-.cred-go { margin-top: auto; padding-top: 10px; font-size: 13.5px; font-weight: 700; color: var(--ink); text-decoration: none; }
-.cred-go::after { content: " →"; color: var(--accent); transition: margin .2s; }
-.cred-go:hover { color: var(--accent); }
-.cred .logo { max-width: none; }
-.cred .l-wtw { height: 19px; } .cred .l-bpi { height: 21px; } .cred .l-liora { height: 30px; }
-.cred .l-skema { height: 21px; }
-.tl-logo.skema { height: 18px; }
+/* Bandeau des organisations (une ligne) */
+.trust { padding: 10px 0 0; border-top: 0; }
+.trust-row { display: flex; align-items: center; gap: 18px 28px; flex-wrap: wrap; padding: 16px 0 22px; border-top: 1px solid var(--line); }
+.trust-k { font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0; }
+.trust-logos { list-style: none; display: flex; align-items: center; gap: 12px 30px; flex-wrap: wrap; margin: 0; padding: 0; }
+.trust-logos li { display: flex; }
+.trust-logos a { display: flex; align-items: center; text-decoration: none; border-radius: 6px; }
+.trust-logos .logo { max-width: none; filter: grayscale(1); opacity: .72; transition: opacity .2s, filter .2s; }
+.trust-logos a:hover .logo { filter: none; opacity: 1; }
+.trust-logos .l-wtw { height: 19px; } .trust-logos .l-bpi { height: 21px; } .trust-logos .l-liora { height: 30px; } .trust-logos .l-skema { height: 21px; }
+.cred-tag { font-size: 12.5px; font-weight: 700; color: #4A515B; background: var(--subtle); border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; white-space: nowrap; text-decoration: none; }
+a.cred-tag:hover { color: var(--accent); border-color: #C9D3E6; }
+
+/* Domaines d'expertise : sobre, éditorial, sur fond blanc */
+.exp { padding: 56px 0 48px; border-top: 0; }
+.exp-h { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 2.4vw, 31px); line-height: 1.3; letter-spacing: -0.01em; color: var(--ink); max-width: none; margin: 8px 0 28px; }
+.exp-h em { font-style: normal; color: var(--muted); }
+.exp-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 40px; }
+.exp-card { display: flex; flex-direction: column; gap: 10px; padding: 22px 0 6px; border-top: 1px solid var(--ink); color: var(--ink); text-decoration: none; }
+.exp-n { font-size: 13px; font-weight: 800; letter-spacing: .08em; color: var(--accent); }
+.exp-card h3 { font-family: var(--serif); font-weight: 500; font-size: 25px; line-height: 1.2; letter-spacing: -0.01em; transition: color .2s; }
+.exp-card p { font-size: 15.5px; line-height: 1.55; color: var(--body); flex: 1; }
+.exp-go { margin-top: 4px; font-size: 14px; font-weight: 700; color: var(--ink); }
+.exp-go::after { content: " →"; color: var(--accent); transition: margin .2s; }
+.exp-card:hover h3 { color: var(--accent); }
+.exp-card:hover .exp-go::after { margin-left: 4px; }
 @media (max-width: 900px) {
-  .cred-row { grid-template-columns: 1fr; }
-  .cred-row > .cred { padding: 16px 0; border-bottom: 0; }
-  .cred-row > .cred + .cred { padding-left: 0; border-left: 0; }
-  .cred-row > .cred:last-child { border-bottom: 1px solid var(--line); }
+  .exp { padding: 40px 0 32px; }
+  .exp-cards { grid-template-columns: 1fr; }
+  .exp-card { padding: 18px 0 20px; border-top-color: var(--line); }
+  .exp-card:first-child { border-top: 1px solid var(--ink); }
+  .exp-card h3 { font-size: 22px; }
+  .trust-row { gap: 12px 22px; }
 }
 
 /* Cartes projets */
@@ -194,8 +194,8 @@ h3 { font-size: clamp(18px, 1.7vw, 21px); line-height: 1.28; font-weight: 700; }
 .cards.four { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 14px 14px 18px; display: flex; flex-direction: column; gap: 14px; text-decoration: none; transition: border-color .2s, transform .2s, box-shadow .2s; }
 .card:hover { border-color: #C9D3E6; transform: translateY(-2px); box-shadow: 0 10px 30px -18px rgba(23, 25, 30, .35); }
-.card .fig { background: var(--subtle); border-radius: 10px; padding: 14px 20px; aspect-ratio: 16 / 9; display: flex; align-items: center; justify-content: center; }
-.card .fig svg { width: 100%; height: 100%; }
+.card .fig { position: relative; background: var(--subtle); border-radius: 10px; padding: 14px 20px; aspect-ratio: 16 / 9; }
+.card .fig svg { position: absolute; inset: 0; width: 100%; height: 100%; padding: inherit; box-sizing: border-box; }
 .card .txt { padding: 0 6px; display: flex; flex-direction: column; flex: 1; }
 .card .meta { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; }
 .card h3 { margin-bottom: 6px; }
@@ -251,13 +251,41 @@ svg text { font-family: var(--sans); }
 .step .ex b { display: block; color: var(--ink); font-size: 14px; margin-bottom: 2px; }
 .step .ex:hover b { color: var(--accent); }
 
-/* Veille */
-.veille { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; border-top: 1px solid var(--line); }
-.v-item { display: grid; grid-template-columns: 110px 64px minmax(0, 1fr); gap: 16px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--line); text-decoration: none; }
-.v-item time { font-size: 13.5px; color: var(--muted); font-weight: 600; }
-.v-item span.t { font-weight: 600; font-size: 15.5px; line-height: 1.45; }
-.v-item:hover span.t { color: var(--accent); }
-.v-item span.t::after { content: " ↗"; color: var(--muted); font-weight: 400; }
+/* Veille : repères chiffrés + deux colonnes par source */
+.v-kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line); margin-bottom: 34px; }
+.v-kpi { padding: 18px 22px 18px 0; }
+.v-kpi + .v-kpi { padding-left: 22px; border-left: 1px solid var(--line); }
+.v-kpi .k { display: block; font-size: 12.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+.v-kpi .v { display: block; font-family: var(--serif); font-size: 38px; line-height: 1.05; letter-spacing: -0.02em; color: var(--ink); margin: 8px 0 6px; font-variant-numeric: tabular-nums; }
+.v-kpi .v small { font-family: var(--sans); font-size: 15px; color: var(--muted); letter-spacing: 0; margin-left: 2px; }
+.v-kpi .d { display: block; font-size: 13px; color: var(--muted); }
+.v-kpi .d b { font-weight: 700; color: var(--ink); }
+.v-kpi .d b.up { color: #1E6B3E; } .v-kpi .d b.down { color: #B3261E; }
+.v-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 48px; }
+.v-col-h { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-bottom: 12px; border-bottom: 2px solid var(--ink); }
+.v-col-h h3 { font-size: 15px; font-weight: 800; letter-spacing: .02em; }
+.v-col-h h3 .pill { margin-right: 8px; vertical-align: 2px; }
+.v-col-h a { font-size: 13px; font-weight: 700; color: var(--accent); white-space: nowrap; text-decoration: none; }
+.v-col-h a:hover { text-decoration: underline; }
+.v-list { list-style: none; margin: 0; padding: 0; }
+.v-item { display: block; padding: 16px 0; border-bottom: 1px solid var(--line); text-decoration: none; }
+.v-item time { display: block; font-size: 13px; color: var(--muted); font-weight: 600; margin-bottom: 4px; }
+.v-item span.t { display: block; font-weight: 600; font-size: 15.5px; line-height: 1.45; color: var(--ink); }
+.v-item.lead { padding: 20px 0 22px; }
+.v-item.lead span.t { font-family: var(--serif); font-weight: 500; font-size: 25px; line-height: 1.22; letter-spacing: -0.01em; }
+.v-item.lead .v-more { display: inline-block; margin-top: 10px; font-size: 13.5px; font-weight: 700; color: var(--accent); }
+.v-item:hover span.t, .v-item:hover .v-more { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.v-item span.t::after { content: " ↗"; color: var(--muted); font-weight: 400; font-family: var(--sans); font-size: .8em; }
+.pill.bce { background: var(--accent-soft); color: var(--accent); } .pill.amf { background: #0B1F4D; color: #fff; }
+@media (max-width: 900px) {
+  .v-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .v-kpi { padding: 14px 16px 14px 0; }
+  .v-kpi + .v-kpi { padding-left: 16px; }
+  .v-kpi:nth-child(odd) { padding-left: 0; border-left: 0; }
+  .v-kpi:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .v-kpi .v { font-size: 32px; }
+  .v-cols { grid-template-columns: 1fr; gap: 36px; }
+}
 .v-foot { font-size: 13px; color: var(--muted); margin-top: 12px; }
 .v-empty { border: 1px solid var(--line); border-radius: var(--r); padding: 22px; background: var(--subtle); display: flex; gap: 16px; align-items: flex-start; }
 .v-empty svg { width: 22px; height: 22px; flex: none; fill: none; stroke: var(--muted); stroke-width: 1.6; stroke-linecap: round; }
@@ -268,8 +296,8 @@ svg text { font-family: var(--sans); }
 /* Écrits */
 .posts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
 .post { text-decoration: none; display: flex; flex-direction: column; gap: 10px; }
-.cover { aspect-ratio: 16 / 9; border-radius: 12px; background: var(--subtle); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; padding: 14px 22px; overflow: hidden; }
-.cover svg { width: 100%; height: 100%; }
+.cover { position: relative; aspect-ratio: 16 / 9; border-radius: 12px; background: var(--subtle); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; padding: 14px 22px; overflow: hidden; }
+.cover > svg { position: absolute; inset: 0; width: 100%; height: 100%; padding: inherit; box-sizing: border-box; }
 .cover.typo { justify-content: flex-start; align-items: flex-end; background: linear-gradient(135deg, #F5F6F8 0%, #EAF0FD 100%); }
 .cover.typo span { font-family: var(--serif); font-size: 30px; line-height: 1.05; color: var(--accent); letter-spacing: -0.01em; }
 .post .cat { font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--accent); margin-top: 4px; }
@@ -593,7 +621,6 @@ body.show-drafts .post-draft .cover { outline: 2px dashed var(--draft); outline-
   .hero-text { grid-column: span 12; }
   .hero-photo { grid-column: span 12; max-width: 460px; }
   .hero-photo img { height: 380px; }
-  .pillar-row { grid-template-columns: 1fr; gap: 10px; }
   .cards { grid-template-columns: 1fr; }
   .posts { grid-template-columns: 1fr 1fr; }
   .case-body, .case-top, .events { grid-template-columns: 1fr; }
@@ -612,8 +639,6 @@ body.show-drafts .post-draft .cover { outline: 2px dashed var(--draft); outline-
   .tl .when { display: none; }
   .tl .when-m { display: block; font-size: 13px; font-weight: 700; color: var(--muted); }
   .col-7, .col-4r { grid-column: span 12; }
-  .v-item { grid-template-columns: 1fr; gap: 2px; }
-  .v-item .pill { justify-self: start; }
   .eng-stages { grid-template-columns: 1fr; }
 }
 @media (min-width: 821px) { .tl .when-m { display: none; } }
@@ -668,7 +693,6 @@ body.menu-open .menu-btn span:last-child { transform: translateY(-4px) rotate(-4
   .hero .ctas .btn { flex: 1 1 100%; justify-content: center; }
   .hero-photo { max-width: none; border-radius: 16px; }
   .hero-photo img { height: 300px; object-position: 50% 8%; }
-  .cred-row > .cred { padding: 16px 0; }
   .sel { padding-top: 28px; }
 
   /* Rangées horizontales à faire défiler (projets, écrits, événements) */
@@ -680,7 +704,6 @@ body.menu-open .menu-btn span:last-child { transform: translateY(-4px) rotate(-4
   .cards.four > *, #home-posts > *, .stories > *, #v-projet .cards > * { scroll-snap-align: start; }
   .stories .story:first-child { grid-column: auto; }
   .story { min-height: 400px; padding: 22px; }
-  .card .fig { padding: 10px 14px; }
   p.swipe-hint { display: flex; }
   .filters { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-right: -18px; padding-right: 18px; }
   .filters::-webkit-scrollbar { display: none; }
@@ -700,6 +723,35 @@ body.menu-open .menu-btn span:last-child { transform: translateY(-4px) rotate(-4
   #all-posts .post h3 { font-size: 18.5px; line-height: 1.25; }
   #all-posts .post p { font-size: 14.5px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
   #all-posts .post .meta { font-size: 12.5px; }
+
+  /* Projets : liste compacte avec vignette (évite une page interminable) */
+  /* Accueil : domaines en rangée défilante, tuiles masquées (doublon des domaines) */
+  #v-accueil .dom-head, #home-tiles { display: none; }
+  .trust-logos { gap: 12px 22px; }
+  .trust-logos .l-liora { height: 26px; }
+  /* Veille : trois titres par source */
+  .v-list li:nth-child(n+4) { display: none; }
+  .v-item.lead span.t { font-size: 21px; }
+  .v-kpis { margin-bottom: 26px; }
+
+  .tiles-filter { display: flex; gap: 10px; overflow-x: auto; margin: 20px -18px 0; padding: 4px 18px 8px; scrollbar-width: none; scroll-snap-type: x proximity; }
+  .tiles-filter::-webkit-scrollbar { display: none; }
+  .tiles-filter .tile { flex: 0 0 128px; min-height: 84px; padding: 12px 10px; scroll-snap-align: start; }
+  .tiles-filter .tile:last-child { grid-column: auto; }
+  .tiles-filter .tile svg { width: 22px; height: 22px; }
+  .tiles-filter .tile b { font-size: 13.5px; }
+  .tiles-filter .tile span { font-size: 12px; }
+
+  #all-cards { grid-template-columns: 1fr; gap: 0; }
+  #all-cards .card { display: grid; grid-template-columns: 104px minmax(0, 1fr); column-gap: 14px; row-gap: 0; padding: 16px 0; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: none; box-shadow: none; transform: none; }
+  #all-cards .card .fig { grid-row: 1 / span 2; aspect-ratio: 1; padding: 8px; border-radius: 8px; align-self: start; }
+  #all-cards .card .txt { padding: 0; }
+  #all-cards .card .meta { margin-bottom: 6px; }
+  #all-cards .card .chips { display: none; }
+  #all-cards .card h3 { font-size: 18.5px; line-height: 1.25; }
+  #all-cards .card p { font-size: 14.5px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  #all-cards .card .go { padding-top: 10px; font-size: 13.5px; }
+  .card .fig { padding: 10px 14px; }
 
   /* Parcours : tableau des certifications en lignes */
   .ed-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
@@ -771,30 +823,42 @@ body.menu-open .menu-btn span:last-child { transform: translateY(-4px) rotate(-4
     </div>
   </section>
 
-  <section class="creds" aria-labelledby="creds-t">
-    <h2 id="creds-t" class="sr" data-i18n="cr.t">En bref</h2>
-    <div class="wrap cred-row">
-      <div class="cred">
-        <p class="cred-k" data-i18n="cr.k1">Expérience</p>
-        <div class="cred-logos">
-          <a href="#parcours-wtw"><img class="logo l-wtw" src="logo-wtw.png" alt="Willis Towers Watson" width="191" height="68"></a>
-          <a href="#parcours-bpifrance"><img class="logo l-bpi" src="logo-bpifrance.png" alt="Bpifrance" width="345" height="105"></a>
-          <a href="#parcours-datascientest"><img class="logo l-liora" src="logo-liora.png" alt="DataScientest (Liora)" width="333" height="160"></a>
-        </div>
-        <p class="cred-t" data-i18n="cr.t1"><b>2 ans en Business Analysis</b> chez Willis Towers Watson : transformation et coordination internationale.</p>
-        <a class="cred-go" href="#parcours-wtw" data-i18n="cr.go1">Voir l’expérience</a>
-      </div>
-      <div class="cred">
-        <p class="cred-k" data-i18n="cr.k2">Formation</p>
-        <div class="cred-logos"><a href="#parcours-skema"><img class="logo l-skema" src="logo-skema.png" alt="SKEMA Business School" width="859" height="180"></a><span class="cred-tag" data-i18n="cr.cfa">CFA Level I · en préparation</span></div>
-        <p class="cred-t" data-i18n="cr.t2"><b>SKEMA Business School</b>, Corporate Financial Management &amp; Quantitative Finance.</p>
-        <a class="cred-go" href="#parcours-skema" data-i18n="cr.go2">Voir la formation</a>
-      </div>
-      <div class="cred">
-        <p class="cred-k" data-i18n="cr.k3">Projets</p>
-        <div class="cred-logos"><span class="cred-tag">DCF</span><span class="cred-tag">Backtesting</span><span class="cred-tag">Python</span></div>
-        <p class="cred-t" data-i18n="cr.t3"><b>Modélisation financière</b>, valorisation, backtesting de stratégies et développement d’outils.</p>
-        <a class="cred-go" href="#projets" data-i18n="cr.go3">Voir les projets</a>
+  <section class="trust" aria-labelledby="trust-t">
+    <div class="wrap"><div class="trust-row">
+      <h2 id="trust-t" class="trust-k" data-i18n="tr.k">Parcours</h2>
+      <ul class="trust-logos">
+        <li><a href="#parcours-wtw"><img class="logo l-wtw" src="logo-wtw.png" alt="Willis Towers Watson" width="191" height="68"></a></li>
+        <li><a href="#parcours-bpifrance"><img class="logo l-bpi" src="logo-bpifrance.png" alt="Bpifrance" width="345" height="105"></a></li>
+        <li><a href="#parcours-datascientest"><img class="logo l-liora" src="logo-liora.png" alt="DataScientest (Liora)" width="333" height="160"></a></li>
+        <li><a href="#parcours-skema"><img class="logo l-skema" src="logo-skema.png" alt="SKEMA Business School" width="859" height="180"></a></li>
+        <li><a class="cred-tag" href="#parcours-certs" data-i18n="cr.cfa">CFA Level I · en préparation</a></li>
+      </ul>
+    </div></div>
+  </section>
+
+  <section class="exp" aria-labelledby="dom-t">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="exp.k">Domaines d’expertise</p>
+      <h2 id="dom-t" class="exp-h" data-i18n="exp.h2">Valoriser les entreprises. <em>Lire les marchés.</em> Construire les outils.</h2>
+      <div class="exp-cards">
+        <a class="exp-card" href="#projets-valo">
+          <span class="exp-n" aria-hidden="true">01</span>
+          <h3 data-i18n="exp.t1">Finance d’entreprise &amp; valorisation</h3>
+          <p data-i18n="exp.p1">DCF, multiples, project finance : des modèles qui relient hypothèses, structure financière et valeur.</p>
+          <span class="exp-go" data-i18n="exp.go">Découvrir les projets</span>
+        </a>
+        <a class="exp-card" href="#projets-marches">
+          <span class="exp-n" aria-hidden="true">02</span>
+          <h3 data-i18n="exp.t2">Marchés &amp; finance quantitative</h3>
+          <p data-i18n="exp.p2">Backtests de stratégies, pricing d’options et lecture de la politique monétaire, avec une méthode reproductible.</p>
+          <span class="exp-go" data-i18n="exp.go">Découvrir les projets</span>
+        </a>
+        <a class="exp-card" href="#projets-ba">
+          <span class="exp-n" aria-hidden="true">03</span>
+          <h3 data-i18n="exp.t3">Data, technologie &amp; transformation</h3>
+          <p data-i18n="exp.p3">Du cadrage métier au déploiement : plateformes, outils d’analyse et pilotage de projets internationaux.</p>
+          <span class="exp-go" data-i18n="exp.go">Découvrir les projets</span>
+        </a>
       </div>
     </div>
   </section>
@@ -830,8 +894,7 @@ body.menu-open .menu-btn span:last-child { transform: translateY(-4px) rotate(-4
     <div class="wrap">
       <div class="sec-head">
         <div><p class="eyebrow">Financial Intelligence</p><h2 id="fi-t" data-i18n="v.h2">Ma veille des marchés</h2>
-          <p class="sub" data-i18n="v.sub">Les dernières publications de la BCE et de l’AMF, collectées automatiquement depuis leurs flux officiels. Chaque titre renvoie à la source.</p></div>
-        <div class="filters" role="group" aria-label="Filtrer la veille par source" data-i18n-aria="v.filter" id="veille-filters"></div>
+          <p class="sub" data-i18n="v.sub">Les repères du moment et les dernières publications de la BCE et de l’AMF, collectés automatiquement depuis leurs sources officielles. Chaque titre renvoie à la source.</p></div>
       </div>
       <div id="veille" aria-live="polite"></div>
     </div>
@@ -1085,11 +1148,11 @@ const I18N = { en: {
   "h.lede": "My background combines technical training, experience in business analysis and transformation, and a specialisation in corporate finance. I explore financial markets, valuation and quantitative modelling through hands-on projects and applied analysis.",
   "h.cta1": "Explore my work", "h.cta2": "View my background",
   "alt.portrait": "Professional portrait of Christian Sodara", "alt.headshot": "Portrait of Christian Sodara",
-  "cr.t": "At a glance", "cr.k1": "Experience", "cr.k2": "Education", "cr.k3": "Projects",
-  "cr.t1": "<b>2 years in Business Analysis</b> at Willis Towers Watson: transformation and international coordination.",
-  "cr.t2": "<b>SKEMA Business School</b>, Corporate Financial Management &amp; Quantitative Finance.",
-  "cr.t3": "<b>Financial modelling</b>, valuation, strategy backtesting and tool development.",
-  "cr.cfa": "CFA Level I · in preparation", "cr.go1": "View experience", "cr.go2": "View education", "cr.go3": "View projects",
+  "tr.k": "Background", "cr.cfa": "CFA Level I · in preparation",
+  "exp.k": "Areas of expertise", "exp.h2": "Valuing companies. <em>Reading markets.</em> Building the tools.", "exp.go": "Explore the projects",
+  "exp.t1": "Corporate finance &amp; valuation", "exp.p1": "DCF, multiples, project finance: models that tie assumptions, capital structure and value together.",
+  "exp.t2": "Markets &amp; quantitative finance", "exp.p2": "Strategy backtests, option pricing and a close reading of monetary policy, with a reproducible method.",
+  "exp.t3": "Data, technology &amp; transformation", "exp.p3": "From business scoping to deployment: platforms, analysis tools and the coordination of international projects.",
   "s.h2": "Models built, tested and documented.", "s.dom": "Explore by area", "s.domAria": "Projects by area", "all.projects": "All projects",
   "m.k": "Method", "m.h2": "From analysis to execution.",
   "m.s1": "Understand", "m.p1": "Analyse the business, financial or operational issues before proposing a solution.",
@@ -1098,7 +1161,7 @@ const I18N = { en: {
   "m.e2": "<b>Systematic backtests</b>Five strategies coded in Python and assessed on the same set of criteria.",
   "m.s3": "Deliver", "m.p3": "Turn the analysis into a usable deliverable: a tool, a platform or a dashboard.",
   "m.e3": "<b>Deployment at Willis Towers Watson</b>Leading the deployment of a $2M software platform.",
-  "v.h2": "My market watch", "v.sub": "The latest releases from the ECB and the AMF (French markets regulator), collected automatically from their official feeds. Each headline links to the source.", "v.filter": "Filter the market watch by source",
+  "v.h2": "My market watch", "v.sub": "Key figures of the moment and the latest releases from the ECB and the AMF (French markets regulator), collected automatically from official sources. Each headline links to the source.",
   "w.k": "Writing &amp; analysis", "w.h2": "Rates, monetary policy and corporate finance.", "all.writing": "All writing",
   "e.k": "Events &amp; involvement", "e.h2": "Beyond the classroom.", "e.all": "All my involvement",
   "cta.h2": "Let’s talk finance, data and transformation.", "cta.p": "A question about a project, an analysis or my background: write to me directly.", "cta.contact": "Get in touch", "cta.projects": "View projects",
@@ -1126,14 +1189,14 @@ const UI = {
     secs:["Contexte","Problème","Approche","Réalisation","Résultats","Enseignements"], todo:"À compléter", frOnly:"",
     copied:"Adresse copiée", copyFail:"Copie impossible, sélectionnez l’adresse", opened:"Votre messagerie s’ouvre avec le message prêt à envoyer.", fill:"Indiquez votre nom et votre message.",
     vEmptyT:"La veille n’est pas disponible pour le moment.", vEmptyP:"Elle se met à jour automatiquement à partir des flux officiels. En attendant, les publications restent consultables à la source : ",
-    vEcb:"communiqués de la BCE", vAmf:"actualités de l’AMF", vAnd:" et ", vUpd:"Mis à jour le ", vSrc:"Sources : ", vNote:"Collecte automatique, sans commentaire ni sélection éditoriale.",
+    vEcb:"communiqués de la BCE", vAmf:"actualités de l’AMF", vAnd:" et ", vUpd:"Mis à jour le ", vSrc:"Sources : ", vAll:"Tout voir ↗", vSame:"inchangé", vRead:"Lire sur ", vKpiSrc:" ; repères : BCE Data Portal", vNote:"Collecte automatique, sans commentaire ni sélection éditoriale.",
     page:"Page : ", title:"Christian Sodara · Corporate Finance & Financial Modelling", locale:"fr-FR", mailHello:"" },
   en: { explore:"Explore the project", read:"min read", unpublished:"unpublished", all:"All", allF:"All", projectsN:n => n + " project" + (n > 1 ? "s" : ""),
     back:"← All projects", backW:"← All writing", others:"Other projects", tools:"Tools", sources:"Sources", more:"More", undated:"Undated",
     secs:["Context","Problem","Approach","Execution","Results","Lessons"], todo:"À compléter", frOnly:"This article is available in French.",
     copied:"Address copied", copyFail:"Copy failed, please select the address", opened:"Your email app is opening with the message ready to send.", fill:"Please enter your name and your message.",
     vEmptyT:"The market watch is not available right now.", vEmptyP:"It updates automatically from official feeds. In the meantime, releases can be read at the source: ",
-    vEcb:"ECB press releases", vAmf:"AMF news", vAnd:" and ", vUpd:"Updated ", vSrc:"Sources: ", vNote:"Automatic collection, with no commentary or editorial selection.",
+    vEcb:"ECB press releases", vAmf:"AMF news", vAnd:" and ", vUpd:"Updated ", vSrc:"Sources: ", vAll:"See all ↗", vSame:"unchanged", vRead:"Read on ", vKpiSrc:"; indicators: ECB Data Portal", vNote:"Automatic collection, with no commentary or editorial selection.",
     page:"Page: ", title:"Christian Sodara · Corporate Finance & Financial Modelling", locale:"en-GB" }
 };
 /* Contenus traduits, par identifiant */
@@ -1763,20 +1826,39 @@ const VEILLE_HOSTS = ["www.ecb.europa.eu", "ecb.europa.eu", "www.amf-france.org"
 let veilleData = null;
 const fmtDate = (iso, opts) => { const d = new Date(iso); return isNaN(d) ? "" : d.toLocaleDateString(U().locale, opts || { day: "numeric", month: "short", year: "numeric" }); };
 function veilleEmpty() {
-  fill("veille-filters", "");
-  fill("veille", `<div class="v-empty"><svg viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="9"/><path d="M11 6.5V11l3 2"/></svg><div>
+    fill("veille", `<div class="v-empty"><svg viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="9"/><path d="M11 6.5V11l3 2"/></svg><div>
     <p class="v-t">${U().vEmptyT}</p>
     <p>${U().vEmptyP}<a href="https://www.ecb.europa.eu/press/pr/html/index.en.html" rel="noopener">${U().vEcb}</a>${U().vAnd}<a href="https://www.amf-france.org/fr/actualites-publications" rel="noopener">${U().vAmf}</a>.</p></div></div>`);
 }
+const V_SRC = {
+  BCE: { fr: ["BCE", "Banque centrale européenne"], en: ["ECB", "European Central Bank"], url: "https://www.ecb.europa.eu/press/pr/html/index.en.html", lang: "en", n: 5 },
+  AMF: { fr: ["AMF", "Autorité des marchés financiers"], en: ["AMF", "French markets regulator"], url: "https://www.amf-france.org/fr/actualites-publications", lang: "fr", n: 5 }
+};
+const V_KPI = {
+  dfr: { fr: "Taux de dépôt BCE", en: "ECB deposit rate", unit: "%", dec: 2 },
+  y10: { fr: "Taux 10 ans zone euro (AAA)", en: "Euro area 10-year yield (AAA)", unit: "%", dec: 2 },
+  hicp: { fr: "Inflation zone euro (IPCH)", en: "Euro area inflation (HICP)", unit: "%", dec: 1 },
+  eurusd: { fr: "Euro / dollar", en: "Euro / dollar", unit: "", dec: 4 }
+};
+const fmtNum = (v, dec) => Number(v).toLocaleString(U().locale, { minimumFractionDigits: dec, maximumFractionDigits: dec });
+const fmtPeriod = t => /^\d{4}-\d{2}$/.test(t) ? fmtDate(t + "-15T12:00:00", { month: "short", year: "numeric" }) : /^\d{4}-\d{2}-\d{2}$/.test(t) ? fmtDate(t + "T12:00:00") : esc(t);
+function kpiHTML(list) {
+  const rows = (Array.isArray(list) ? list : []).filter(k => V_KPI[k.id] && isFinite(k.value) && k.period).slice(0, 4);
+  if (!rows.length) return "";
+  return `<div class="v-kpis" role="list">${rows.map(k => { const m = V_KPI[k.id], d = isFinite(k.prev) ? Number(k.value) - Number(k.prev) : null;
+    const dTxt = d === null ? "" : `<b class="${d > 0 ? "up" : d < 0 ? "down" : ""}">${d === 0 ? U().vSame : (d > 0 ? "+ " : "− ") + fmtNum(Math.abs(d), m.dec)}</b> · `;
+    return `<div class="v-kpi" role="listitem"><span class="k">${m[LANG] || m.fr}</span><span class="v">${fmtNum(k.value, m.dec)}<small>${m.unit}</small></span><span class="d">${dTxt}${fmtPeriod(k.period)}</span></div>`; }).join("")}</div>`;
+}
 function veilleRender(data) {
-  const ok = it => { try { const u = new URL(it.link); return u.protocol === "https:" && VEILLE_HOSTS.includes(u.hostname) && it.title && !isNaN(new Date(it.date)); } catch (e) { return false; } };
-  const items = (data && Array.isArray(data.items) ? data.items : []).filter(ok).slice(0, 8);
+  const ok = it => { try { const u = new URL(it.link); return u.protocol === "https:" && VEILLE_HOSTS.includes(u.hostname) && it.title && !isNaN(new Date(it.date)) && V_SRC[it.source]; } catch (e) { return false; } };
+  const items = (data && Array.isArray(data.items) ? data.items : []).filter(ok);
   if (!items.length) return veilleEmpty();
-  const srcs = [...new Set(items.map(i => i.source))];
-  fill("veille-filters", srcs.length > 1 ? ["*", ...srcs].map((s, i) => `<button type="button" data-v="${esc(s)}" aria-pressed="${i === 0}">${s === "*" ? U().allF : esc(s)}</button>`).join("") : "");
-  fill("veille", `<div class="veille">${items.map(i => "<a class=\"v-item\" rel=\"noopener\" lang=\"" + (i.source === "AMF" ? "fr" : "en") + "\" data-src=\"" + esc(i.source) + "\" href" + "=" + JSON.stringify(i.link) + `><time datetime="${esc(i.date)}">${fmtDate(i.date)}</time><span class="pill grey">${esc(i.source)}</span><span class="t">${esc(i.title)}</span></a>`).join("")}</div>
-    <p class="v-foot">${U().vUpd}${fmtDate(data.updated, { day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" })} · ${U().vSrc}${srcs.map(esc).join(", ")}. ${U().vNote}</p>`);
-  bindFilter("#veille-filters", "#veille .v-item", "src", "*");
+  const srcs = Object.keys(V_SRC).filter(k => items.some(i => i.source === k));
+  const col = k => { const m = V_SRC[k], list = items.filter(i => i.source === k).slice(0, m.n), name = m[LANG] || m.fr;
+    return `<div class="v-col"><div class="v-col-h"><h3 id="vc-${k}"><span class="pill ${k.toLowerCase()}">${name[0]}</span>${name[1]}</h3><a href="${m.url}" rel="noopener" lang="${m.lang}">${U().vAll}</a></div>
+      <ul class="v-list">${list.map((i, n) => "<li><a class=\"v-item" + (n === 0 ? " lead" : "") + "\" rel=\"noopener\" lang=\"" + m.lang + "\" href" + "=" + JSON.stringify(i.link) + `><time datetime="${esc(i.date)}">${fmtDate(i.date)}</time><span class="t">${esc(i.title)}</span>${n === 0 ? `<span class="v-more">${U().vRead}${new URL(i.link).hostname.replace(/^www\./, "")}</span>` : ""}</a></li>`).join("")}</ul></div>`; };
+  fill("veille", kpiHTML(data.indicators) + `<div class="v-cols">${srcs.map(col).join("")}</div>
+    <p class="v-foot">${U().vUpd}${fmtDate(data.updated, { day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" })} · ${U().vSrc}${srcs.map(k => (V_SRC[k][LANG] || V_SRC[k].fr)[1]).join(", ")}${data.indicators && data.indicators.length ? U().vKpiSrc : ""}. ${U().vNote}</p>`);
 }
 
 /* ============ Navigation : #accueil, #projets, #projets-<domaine>, #projet-<id>, #ecrits, #ecrit-<id>, #parcours, #parcours-<id>, #contact ============ */
@@ -1792,7 +1874,7 @@ function route() {
   if (ar) { fill("v-ecrit", articleHTML(ar)); view = "ecrit"; nav = "ecrits"; }
   if (h.startsWith("projets-") && DOMAINS.some(d => d.id === h.slice(8))) { view = nav = "projets"; setDomain(h.slice(8)); }
   else if (view === "projets") setDomain(null);
-  if (h.startsWith("parcours-")) { view = nav = "parcours"; target = document.getElementById("tl-" + h.slice(9)); }
+  if (h.startsWith("parcours-")) { view = nav = "parcours"; target = document.getElementById("tl-" + h.slice(9)) || document.getElementById("p-" + h.slice(9)); }
   if (h === "accueil-engagements") target = document.getElementById("ev-t");
   document.querySelectorAll("[data-page]").forEach(el => { el.hidden = el.id !== "v-" + view; });
   document.querySelectorAll(".nav a").forEach(a => a.dataset.view === nav ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"));

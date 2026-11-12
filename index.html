@@ -1855,7 +1855,7 @@ function veilleRender(data) {
   if (!items.length) return veilleEmpty();
   const srcs = Object.keys(V_SRC).filter(k => items.some(i => i.source === k));
   const col = k => { const m = V_SRC[k], list = items.filter(i => i.source === k).slice(0, m.n), name = m[LANG] || m.fr;
-    return `<div class="v-col"><div class="v-col-h"><h3 id="vc-${k}"><span class="pill ${k.toLowerCase()}">${name[0]}</span>${name[1]}</h3><a href="${m.url}" rel="noopener" lang="${m.lang}">${U().vAll}</a></div>
+    return `<div class="v-col"><div class="v-col-h"><h3 id="vc-${k}"><span class="pill ${k.toLowerCase()}">${name[0]}</span>${name[1]}</h3><a rel="noopener" lang="${m.lang}" href` + "=" + JSON.stringify(m.url) + `>${U().vAll}</a></div>
       <ul class="v-list">${list.map((i, n) => "<li><a class=\"v-item" + (n === 0 ? " lead" : "") + "\" rel=\"noopener\" lang=\"" + m.lang + "\" href" + "=" + JSON.stringify(i.link) + `><time datetime="${esc(i.date)}">${fmtDate(i.date)}</time><span class="t">${esc(i.title)}</span>${n === 0 ? `<span class="v-more">${U().vRead}${new URL(i.link).hostname.replace(/^www\./, "")}</span>` : ""}</a></li>`).join("")}</ul></div>`; };
   fill("veille", kpiHTML(data.indicators) + `<div class="v-cols">${srcs.map(col).join("")}</div>
     <p class="v-foot">${U().vUpd}${fmtDate(data.updated, { day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" })} · ${U().vSrc}${srcs.map(k => (V_SRC[k][LANG] || V_SRC[k].fr)[1]).join(", ")}${data.indicators && data.indicators.length ? U().vKpiSrc : ""}. ${U().vNote}</p>`);

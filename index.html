@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Christian Sodara · Corporate Finance &amp; Financial Modelling</title>
 <meta name="description" content="Christian Sodara : finance d’entreprise, modélisation financière, valorisation et outils data. Parcours, projets détaillés, analyses et veille des marchés.">
-<link rel="canonical" href="https://sodara-cpu.github.io/Mywebsite/">
+<link rel="canonical" href="https://christiansodara.com/">
 <meta property="og:type" content="profile">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:site_name" content="Christian Sodara">
 <meta property="og:title" content="Christian Sodara · J’analyse les enjeux financiers. Je construis les outils pour y répondre.">
 <meta property="og:description" content="Corporate finance, modélisation financière et data : projets détaillés, analyses et veille des marchés.">
-<meta property="og:url" content="https://sodara-cpu.github.io/Mywebsite/">
-<meta property="og:image" content="https://sodara-cpu.github.io/Mywebsite/og-image.jpg">
+<meta property="og:url" content="https://christiansodara.com/">
+<meta property="og:image" content="https://christiansodara.com/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Christian Sodara, portrait professionnel, et sa phrase de présentation">
@@ -25,8 +25,8 @@
   "@context": "https://schema.org",
   "@type": "Person",
   "name": "Christian Sodara",
-  "url": "https://sodara-cpu.github.io/Mywebsite/",
-  "image": "https://sodara-cpu.github.io/Mywebsite/christian-portrait.jpg",
+  "url": "https://christiansodara.com/",
+  "image": "https://christiansodara.com/christian-portrait.jpg",
   "description": "Corporate finance, modélisation financière et data & technologie.",
   "affiliation": { "@type": "CollegeOrUniversity", "name": "SKEMA Business School" },
   "alumniOf": [{ "@type": "CollegeOrUniversity", "name": "ESATIC" }],
@@ -984,7 +984,7 @@ body.show-drafts .post-draft .cover { outline: 2px dashed var(--draft); outline-
 
 <script>
 /* ============ Brouillons : visibles en local et en aperçu, jamais sur le site en ligne ============ */
-const SHOW_DRAFTS = !/github\.io$/.test(location.hostname);
+const SHOW_DRAFTS = !/(^|\.)(github\.io|christiansodara\.com)$/.test(location.hostname);
 document.body.classList.toggle("show-drafts", SHOW_DRAFTS);
 const D = s => `<div class="draft">${s}</div>`;
 const DL = a => a && a.length ? `<div class="draft"><ul>${a.map(x => `<li>${x}</li>`).join("")}</ul></div>` : "";
@@ -1118,7 +1118,7 @@ const EN = {
   },
   cats: { "Taux":"Rates", "Banques centrales":"Central banks", "Finance d’entreprise":"Corporate finance", "Marchés":"Markets", "Valorisation":"Valuation", "Financement":"Financing", "Recherche":"Research", "Parcours":"Background", "Dette souveraine":"Sovereign debt" },
   formats: { "Carrousel · 6 slides":"Carousel · 6 slides", "Article":"Article", "Post":"Post", "Note de fond":"In-depth note", "Note d’analyse":"Analysis note", "Recherche":"Research", "Récit":"Story" },
-  status: { "Publié sur LinkedIn":"Published on LinkedIn", "Brouillon":"Draft", "À paraître":"Forthcoming", "Recherche en cours":"Research in progress" },
+  status: { "Publié sur LinkedIn":"Published on LinkedIn", "Publié sur le site":"Published on this site", "Brouillon":"Draft", "À paraître":"Forthcoming", "Recherche en cours":"Research in progress" },
   timeline: {
     esatic: { stage:"Technical foundation", org:"ESATIC, Abidjan", role:"Bachelor’s degree in computer science and telecommunications", items:["Foundations in computing, networks and programming."] },
     wtw: { stage:"Business analysis", when:"2 years", role:"Business Analyst", items:["Data analysis across 4 countries.","Risk management advisory.","Led the deployment of a $2M software platform."], link:"View the deployment project" },
@@ -1281,7 +1281,7 @@ const POSTS = [
     title:"Ce que les Fed Funds Futures disent des taux",
     intro:"L’arithmétique des probabilités implicites, et la différence entre les contrats Fed Funds et SOFR.",
     body:"", sources:[] },
-  { id:"wacc", fig:"wacc", cat:"Finance d’entreprise", status:"Brouillon", format:"Note de fond", date:"",
+  { id:"wacc", fig:"wacc", cat:"Finance d’entreprise", status:"Publié sur le site", format:"Note de fond", date:"2026-11-12",
     title:"Le WACC n’est pas un chiffre, c’est une série d’hypothèses",
     intro:"Taux sans risque, bêta, prime de risque, structure cible : chaque brique du coût du capital est un choix. Et un point de WACC peut déplacer la valeur de plus de 10 %.",
     body:`## Ce que mesure le WACC
@@ -1299,7 +1299,7 @@ Avec une croissance terminale de 2 %, la valeur terminale vaut 1/(WACC − g) fo
 ## Ce que j’en retiens
 Un WACC se présente avec sa fourchette et ses sources. C’est pour cela qu’une valorisation sérieuse s’accompagne d’une matrice de sensibilité, comme celle de mon projet sur LVMH.`,
     sources:["T. Koller, M. Goedhart, D. Wessels, Valuation: Measuring and Managing the Value of Companies, McKinsey & Company, Wiley, 7e édition, 2020.","A. Damodaran, Investment Valuation, Wiley, 3e édition, 2012.","[A. Damodaran, données sur les primes de risque et les bêtas sectoriels, NYU Stern](https://pages.stern.nyu.edu/~adamodar/)"] },
-  { id:"structure-capital", fig:"cap", cat:"Finance d’entreprise", status:"Brouillon", format:"Note de fond", date:"",
+  { id:"structure-capital", fig:"cap", cat:"Finance d’entreprise", status:"Publié sur le site", format:"Note de fond", date:"2026-11-12",
     title:"Dette ou fonds propres : ce que dit la théorie, ce que font les entreprises",
     intro:"De Modigliani-Miller à la théorie du financement hiérarchique, trois cadres pour comprendre pourquoi les entreprises ne s’endettent ni trop, ni trop peu.",
     body:`## Le point de départ : la structure ne compte pas
@@ -1317,7 +1317,7 @@ Myers et Majluf (1984) partent de l’asymétrie d’information. Les dirigeants
 ## Ce que j’en retiens
 En pratique, les entreprises raisonnent souvent à partir d’une notation de crédit cible et de ratios comme la dette nette sur EBITDA. Les théories n’en donnent pas le chiffre, mais elles expliquent pourquoi ce chiffre diffère autant d’un secteur à l’autre.`,
     sources:["F. Modigliani, M. Miller, « The Cost of Capital, Corporation Finance and the Theory of Investment », American Economic Review, 1958.","F. Modigliani, M. Miller, « Corporate Income Taxes and the Cost of Capital: A Correction », American Economic Review, 1963.","S. Myers, N. Majluf, « Corporate Financing and Investment Decisions When Firms Have Information That Investors Do Not Have », Journal of Financial Economics, 1984.","S. Myers, « The Capital Structure Puzzle », Journal of Finance, 1984."] },
-  { id:"backtesting", fig:"overfit", cat:"Marchés", status:"Brouillon", format:"Note de fond", date:"",
+  { id:"backtesting", fig:"overfit", cat:"Marchés", status:"Publié sur le site", format:"Note de fond", date:"2026-11-12",
     title:"Pourquoi tant de backtests sont trop beaux pour être vrais",
     intro:"Tester cent variantes d’une stratégie, c’est presque garantir d’en trouver une qui brille par hasard. Les biais à connaître, et les garde-fous que j’applique.",
     body:`## Le piège des essais multiples
@@ -1336,7 +1336,7 @@ Si l’on teste de nombreuses variantes d’une stratégie sans aucun pouvoir pr
 ## Ce que j’en retiens
 Dans mes propres backtests, j’ai évalué cinq stratégies sur une même grille (Sharpe, max drawdown, alpha). La comparaison n’a de sens que si chaque stratégie subit les mêmes contraintes, et un bon backtest reste une hypothèse à confirmer, pas une preuve.`,
     sources:["D. Bailey, J. Borwein, M. López de Prado, Q. Zhu, « Pseudo-Mathematics and Financial Charlatanism », Notices of the American Mathematical Society, 2014.","D. Bailey, M. López de Prado, « The Deflated Sharpe Ratio », Journal of Portfolio Management, 2014.","C. Harvey, Y. Liu, H. Zhu, « … and the Cross-Section of Expected Returns », Review of Financial Studies, 2016."] },
-  { id:"dcf-multiples", fig:"finlens", cat:"Valorisation", status:"Brouillon", format:"Note de fond", date:"",
+  { id:"dcf-multiples", fig:"finlens", cat:"Valorisation", status:"Publié sur le site", format:"Note de fond", date:"2026-11-12",
     title:"DCF ou multiples : deux méthodes, deux questions différentes",
     intro:"Le DCF demande ce que vaut une entreprise compte tenu de ses flux futurs. Les multiples demandent combien le marché paie des entreprises comparables. Les deux se complètent.",
     body:`## Deux logiques
@@ -1353,7 +1353,7 @@ Un multiple n’est pas une méthode sans hypothèses. Il résume, de façon com
 ## Ce que j’en retiens
 La présentation la plus honnête est un « football field » : la fourchette de chaque méthode côte à côte, puis une explication des écarts. C’est l’approche que j’ai suivie pour LVMH, avec un DCF par division confronté aux multiples d’Hermès, Kering et Richemont.`,
     sources:["T. Koller, M. Goedhart, D. Wessels, Valuation, McKinsey & Company, Wiley, 7e édition, 2020.","A. Damodaran, The Dark Side of Valuation, FT Press, 2e édition, 2009.","J. Liu, D. Nissim, J. Thomas, « Equity Valuation Using Multiples », Journal of Accounting Research, 2002."] },
-  { id:"private-debt", fig:"pdebt", cat:"Financement", status:"Brouillon", format:"Note de fond", date:"",
+  { id:"private-debt", fig:"pdebt", cat:"Financement", status:"Publié sur le site", format:"Note de fond", date:"2026-11-12",
     title:"Private debt : quand les fonds prêtent à la place des banques",
     intro:"Le crédit privé finance de plus en plus d’entreprises de taille intermédiaire et d’opérations de LBO. Ce qu’il apporte, et pourquoi les superviseurs le surveillent.",
     body:`## De quoi parle-t-on
@@ -1522,7 +1522,8 @@ function waves(seed) { const r = seeded(seed); let d = "";
   return `<svg class="waves" viewBox="0 0 400 225" preserveAspectRatio="none" aria-hidden="true">${d}</svg>`; }
 const artCover = (key, cat, fig) => `<div class="cover art th-${THEME[cat] ?? 0}">${waves(hashStr(key))}${fig ? `<div class="art-fig">${FIGS[fig]()}</div>` : ""}</div>`;
 const coverHTML = p => p.fig ? `<div class="cover">${FIGS[p.fig]()}</div>` : `<div class="cover typo" aria-hidden="true"><span>${CAT(p.cat)}</span></div>`;
-const postMeta = p => [p.date, readTime(p), isPublished(p) ? STAT(p.status) : (SHOW_DRAFTS ? p.status + " · non publié" : ""), FMT(p.format)].filter(Boolean).join(" · ");
+const pDate = p => p.date ? (/^\d{4}-\d{2}-\d{2}$/.test(p.date) ? fmtDate(p.date + "T12:00:00", { day: "numeric", month: "long", year: "numeric" }) : p.date) : "";
+const postMeta = p => [pDate(p), readTime(p), isPublished(p) ? STAT(p.status) : (SHOW_DRAFTS ? p.status + " · non publié" : ""), FMT(p.format)].filter(Boolean).join(" · ");
 const postInner = p => `${coverHTML(p)}<span class="cat">${CAT(p.cat)}</span><h3>${PO(p, "title")}</h3><p>${PO(p, "intro")}</p><span class="meta">${postMeta(p)}${p.url ? " ↗" : ""}</span>`;
 const postHTML = p => {
   const draftTag = isPublished(p) ? "" : " post-draft";
@@ -1575,7 +1576,7 @@ function articleHTML(p) {
   return `<section class="page-head"><div class="wrap"><div class="article">
     <a class="crumb" href="#ecrits">${U().backW}</a>
     <p class="eyebrow">${CAT(p.cat)}</p><h1 tabindex="-1">${PO(p, "title")}</h1>
-    <div class="byline">${[p.date || (SHOW_DRAFTS ? U().undated : ""), readTime(p), FMT(p.format), STAT(p.status) + (isPublished(p) ? "" : " · " + U().unpublished)].filter(Boolean).map(x => `<span>${x}</span>`).join("")}</div>
+    <div class="byline">${[pDate(p) || (SHOW_DRAFTS ? U().undated : ""), readTime(p), FMT(p.format), STAT(p.status) + (isPublished(p) ? "" : " · " + U().unpublished)].filter(Boolean).map(x => `<span>${x}</span>`).join("")}</div>
     ${coverHTML(p)}
     ${todo ? D(todo) : ""}
     <p class="intro">${PO(p, "intro")}</p>${frOnly}

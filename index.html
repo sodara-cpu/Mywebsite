@@ -984,7 +984,7 @@ body.show-drafts .post-draft .cover { outline: 2px dashed var(--draft); outline-
 
 <script>
 /* ============ Brouillons : visibles en local et en aperçu, jamais sur le site en ligne ============ */
-const SHOW_DRAFTS = !/github\.io$/.test(location.hostname);
+const SHOW_DRAFTS = !/(^|\.)(github\.io|christiansodara\.com)$/.test(location.hostname);
 document.body.classList.toggle("show-drafts", SHOW_DRAFTS);
 const D = s => `<div class="draft">${s}</div>`;
 const DL = a => a && a.length ? `<div class="draft"><ul>${a.map(x => `<li>${x}</li>`).join("")}</ul></div>` : "";

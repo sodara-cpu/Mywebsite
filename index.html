@@ -1186,7 +1186,7 @@ section { padding: 72px 0; }
   .lang-sw button[aria-pressed="true"] { color: var(--ink); }
   .top { border-bottom: 1px solid rgba(0, 0, 0, .06); }
 }
-#v-parcours .bio-photo img { aspect-ratio: 1; object-position: 50% 20%; -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent); mask-image: linear-gradient(to bottom, #000 80%, transparent); }
+#v-parcours .bio-photo img { aspect-ratio: 1; height: auto; object-position: 50% 0; -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent); mask-image: linear-gradient(to bottom, #000 80%, transparent); }
 
 /* ===== Typographie : deux familles, une échelle stricte =====
    Newsreader (empattements) uniquement aux grandes tailles d'affichage ;
@@ -1258,6 +1258,8 @@ body { font-feature-settings: normal; }
 .mono { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: #0B1F4D; color: #fff; font-size: 12px; font-weight: 700; letter-spacing: .02em; }
 .brand:hover .mono { background: var(--accent); }
 @media (max-width: 380px) { .brand-t { display: none; } }
+.crumbs { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+#v-parcours .bio-photo { max-width: 400px; }
 </style>
 </head>
 <body>
@@ -1300,7 +1302,7 @@ body { font-feature-settings: normal; }
         </div>
       </div>
       <figure class="hero-photo pcard">
-        <img src="christian-portrait-hero2.jpg" alt="Portrait professionnel de Christian Sodara" data-i18n-alt="alt.portrait" width="604" height="680" fetchpriority="high">
+        <img src="christian-portrait-hero3.jpg" alt="Portrait professionnel de Christian Sodara" data-i18n-alt="alt.portrait" width="800" height="901" fetchpriority="high">
       </figure>
     </div>
   </section>
@@ -1464,7 +1466,7 @@ body { font-feature-settings: normal; }
         <p class="ed-lede" data-i18n="p.lede">Une formation technique, deux ans d’analyse métier dans un groupe international, puis la finance d’entreprise et la modélisation financière à SKEMA Business School.</p>
         <div class="ctas"><a class="btn" href="#contact" data-i18n="cta.contact">Me contacter</a><a class="cta-link" href="#projets"><span data-i18n="cta.projects">Voir les projets</span> <span aria-hidden="true">›</span></a></div>
       </div>
-      <figure class="bio-photo"><img src="christian-parcours.jpg" alt="Portrait de Christian Sodara" data-i18n-alt="alt.headshot" width="400" height="400"></figure>
+      <figure class="bio-photo"><img src="christian-parcours3.jpg" alt="Portrait de Christian Sodara" data-i18n-alt="alt.headshot" width="800" height="800"></figure>
     </div>
   </section>
   <section class="traj" aria-labelledby="traj-t">

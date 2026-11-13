@@ -97,7 +97,9 @@ body:not(.show-drafts) .draft, body:not(.show-drafts) .draft-only { display: non
 
 /* Boutons et liens */
 .btn { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 700; font-size: 15px; padding: 11px 18px; border-radius: 999px; border: 1px solid var(--ink); background: var(--ink); color: #fff; cursor: pointer; font-family: inherit; transition: transform .15s, background .15s, border-color .15s; }
-.btn:hover { transform: translateY(-1px); background: #000; }
+.btn:hover { transform: translateY(-1px); background: var(--accent); border-color: var(--accent); }
+.btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.btn:active { transform: none; }
 .btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
 .btn.ghost:hover { border-color: var(--ink); background: var(--surface); }
 .btn.small { padding: 8px 14px; font-size: 14px; }
@@ -129,14 +131,51 @@ h3 { font-size: clamp(18px, 1.7vw, 21px); line-height: 1.28; font-weight: 600; l
 .hero .eyebrow { font-size: 12.5px; letter-spacing: 0.1em; }
 .hero h1 { font-size: clamp(36px, 4vw, 56px); line-height: 1.06; font-weight: 400; margin: 10px 0 18px; }
 .hero h1 em { font-style: normal; color: var(--accent); }
-.hero .lede { margin-bottom: 22px; font-size: 17px; }
+.hero .lede { margin-bottom: 12px; font-size: 17px; }
+.hero .lede-2 { margin-bottom: 24px; color: var(--muted); font-size: 16px; }
+.hero h1 { text-wrap: balance; }
+.hero h1 em { display: block; }
+/* Apparition discrète du haut de page */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-text > *, .hero-photo { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
+  .hero-text > :nth-child(2) { animation-delay: .06s; } .hero-text > :nth-child(3) { animation-delay: .12s; } .hero-text > :nth-child(4) { animation-delay: .18s; } .hero-text > :nth-child(5) { animation-delay: .24s; } .hero-photo { animation-delay: .1s; }
+}
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
 .hero-photo { grid-column: 8 / span 5; margin: 0; position: relative; background: var(--photo); border-radius: 22px; overflow: hidden; }
 .hero-photo img { width: 100%; height: 390px; object-fit: cover; object-position: 50% 12%; }
+/* Haut de page épuré : portrait fondu dans la page, une seule action principale */
+.hero-photo.pcard { position: relative; max-width: 500px; width: 100%; margin: 0 0 0 auto; background: none; border: 0; border-radius: 0; overflow: visible; box-shadow: none; }
+.hero-photo.pcard img { display: block; width: 100%; height: auto; aspect-ratio: 604 / 680; object-fit: cover; object-position: 50% 0; -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%); mask-image: linear-gradient(to bottom, #000 72%, transparent 100%); }
+.hero { padding: 40px 0 8px; }
+.hero .grid { align-items: center; min-height: min(560px, calc(100vh - 200px)); }
+.hero h1 { font-size: clamp(38px, 4.2vw, 60px); line-height: 1.04; letter-spacing: -0.022em; margin: 14px 0 22px; }
+.hero h1 em { text-wrap: balance; }
+.hero .lede { font-size: 18px; line-height: 1.55; color: var(--muted); max-width: 46ch; margin-bottom: 30px; }
+.hero .ctas { align-items: center; gap: 22px; }
+.btn.primary { background: var(--accent); border-color: var(--accent); padding: 13px 24px; font-size: 15.5px; }
+.btn.primary:hover { background: #1D4ED8; border-color: #1D4ED8; }
+.cta-link { font-weight: 700; font-size: 15.5px; color: var(--accent); text-decoration: none; display: inline-flex; gap: 6px; align-items: center; border-radius: 6px; }
+.cta-link span[aria-hidden] { font-size: 20px; line-height: 1; transition: transform .2s; }
+.cta-link:hover span[aria-hidden] { transform: translateX(3px); }
+.cta-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+.cta-link:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+@media (max-width: 900px) {
+  .hero .grid { min-height: 0; }
+  .hero-photo.pcard { max-width: 380px; margin: 8px auto 0; }
+}
+@media (max-width: 620px) {
+  .hero { padding-top: 22px; }
+  .hero .lede { font-size: 16.5px; margin-bottom: 22px; }
+  .hero .ctas { flex-direction: column; align-items: stretch; gap: 14px; }
+  .cta-link { justify-content: center; }
+  .hero-photo.pcard { max-width: 320px; }
+}
 /* Mosaïque du portrait (inspiration WTW) */
-.mosaic { position: relative; height: 470px; background: none; border-radius: 0; overflow: visible; }
+.mosaic { position: relative; height: 470px; background: none; border-radius: 0; overflow: visible; isolation: isolate; }
 .mosaic > * { position: absolute; margin: 0; }
-.mosaic .mz-a { right: 0; top: 0; width: 56%; height: 76%; background: #0B1F4D; border-radius: 22px; overflow: hidden; }
+.mosaic .mz-a { right: 0; top: 0; width: 56%; height: 76%; background: #EEF1F6; border-radius: 22px; overflow: hidden; box-shadow: inset 0 0 0 1px #E1E6EE; }
+.mosaic::after { content: ""; position: absolute; right: -10px; top: 12%; width: 56%; height: 76%; border: 1px solid rgba(36, 91, 230, .35); border-radius: 22px; pointer-events: none; z-index: -1; }
 .mz-a svg { width: 100%; height: 100%; display: block; }
 .mosaic .mz-main { left: 0; bottom: 0; width: 70%; height: 78%; object-fit: cover; object-position: 50% 20%; border-radius: 22px; background: #EAEEF4; box-shadow: 0 0 0 1px rgba(11, 31, 77, .06), 0 26px 50px -30px rgba(11, 31, 77, .55); }
 .hero-photo figcaption { position: absolute; left: 14px; bottom: 14px; background: rgba(255, 255, 255, .92); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-radius: 999px; padding: 6px 14px; font-size: 13px; color: var(--muted); }
@@ -161,6 +200,17 @@ h3 { font-size: clamp(18px, 1.7vw, 21px); line-height: 1.28; font-weight: 600; l
 
 /* Bande de preuves : expérience, formation, projets */
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+/* Preuves (sous le haut de page) */
+.proofs { list-style: none; margin: 0 0 26px; padding: 0 0 22px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-bottom: 1px solid var(--line); }
+.proofs li { display: flex; flex-direction: column; gap: 3px; padding: 0 24px; }
+.proofs li:first-child { padding-left: 0; } .proofs li + li { border-left: 1px solid var(--line); }
+.proofs b { font-family: var(--display); font-weight: 400; font-size: clamp(21px, 1.9vw, 26px); line-height: 1.15; letter-spacing: -0.015em; color: var(--ink); }
+.proofs b.num { font-size: clamp(30px, 3vw, 40px); }
+.proofs li > span { font-size: 14.5px; font-weight: 600; color: var(--ink); }
+.proofs b span { font-size: .55em; color: var(--muted); margin-left: 2px; }
+.proofs small { font-size: 13.5px; color: var(--muted); }
+@media (max-width: 760px) { .proofs { grid-template-columns: 1fr; gap: 14px; } .proofs li, .proofs li:first-child { padding: 0 0 0 14px; border-left: 2px solid var(--accent) !important; } }
+
 /* Bandeau parcours (logos) + certifications (texte), réparti sur toute la largeur */
 .trust { padding: 10px 0 0; border-top: 0; }
 .trust-row { padding: 20px 0 22px; border-top: 1px solid var(--line); }
@@ -533,6 +583,60 @@ body.show-drafts .post-draft .cover { outline: 2px dashed var(--draft); outline-
 .ed-grid { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); gap: 40px; align-items: start; }
 .ed-h2 { font-family: var(--display); font-weight: 400; font-optical-sizing: auto; font-size: clamp(26px, 2.4vw, 34px); line-height: 1.12; letter-spacing: -0.02em; position: sticky; top: 140px; }
 .ed-h2:focus { outline: none; }
+/* En production */
+.prod-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin-top: 28px; }
+.prod-card { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: var(--surface); transition: box-shadow .2s, transform .2s; }
+.prod-card:hover { box-shadow: 0 18px 40px -26px rgba(11, 31, 77, .4); transform: translateY(-2px); }
+.prod-vis { background: linear-gradient(160deg, #F4F7FC, #E9EFF9); padding: 22px; height: 236px; display: flex; align-items: center; justify-content: center; gap: 12px; }
+.prod-vis .prod-mock { height: 100%; width: auto; max-width: 100%; min-width: 0; display: block; filter: drop-shadow(0 12px 22px rgba(11, 31, 77, .10)); }
+.prod-duo .prod-mock { height: auto; flex: 1 1 0; }
+.prod-txt { padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.prod-meta { display: flex; align-items: center; gap: 14px; font-size: 12.5px; font-weight: 600; color: var(--muted); }
+.prod-meta .live { display: inline-flex; align-items: center; gap: 7px; color: #1E6B3E; }
+.prod-card h3 { font-family: var(--display); font-weight: 400; font-size: 27px; line-height: 1.15; letter-spacing: -0.015em; }
+.prod-txt > p { font-size: 15px; line-height: 1.55; color: var(--body); }
+.prod-role { padding-top: 10px; border-top: 1px solid var(--line); }
+.prod-role b { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 2px; }
+.prod-links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: auto; padding-top: 6px; }
+.prod-links a { font-size: 14px; font-weight: 700; color: var(--ink); text-decoration: none; }
+.prod-links a:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 900px) { .prod-grid { grid-template-columns: 1fr; } }
+@media (max-width: 620px) { .prod-vis { padding: 14px; height: 200px; } .prod-duo .prod-mock + .prod-mock { display: none; } .prod-txt { padding: 18px 18px 20px; } }
+
+.prod-proj { padding-top: 8px; }
+#prod-t2 { scroll-margin-top: 110px; }
+.prod-h2 { font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.prod-grid.compact { margin-top: 14px; }
+.prod-grid.compact .prod-vis { height: 170px; padding: 16px; }
+.prod-grid.compact .prod-card h3 { font-size: 23px; }
+.xc-prod { margin-top: 10px; display: flex; align-items: center; gap: 7px; font-size: 13.5px; color: var(--body); }
+.xc-prod a { font-weight: 700; color: var(--ink); }
+.xc-prod a:hover { color: var(--accent); }
+@media (max-width: 620px) {
+  .prod-grid { display: grid; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 88%; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-left: 18px; margin-left: -18px; margin-right: -18px; padding: 2px 18px 10px; scrollbar-width: none; }
+  .prod-grid::-webkit-scrollbar { display: none; }
+  .prod-card { scroll-snap-align: start; }
+  .prod-card:hover { transform: none; }
+  .prod-grid.compact .prod-vis { height: 150px; }
+  .prod-duo .prod-mock { height: 100%; width: auto; flex: none; }
+}
+
+/* Recommandations */
+.reco-pend { font-size: 12.5px; font-weight: 700; color: var(--draft); background: #FFF6E0; border-radius: 8px; padding: 6px 10px; align-self: flex-start; }
+.reco-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin-top: 28px; }
+.reco-card { margin: 0; padding: 30px 32px 24px; background: var(--subtle); border-radius: 18px; border-left: 3px solid var(--accent); display: flex; flex-direction: column; gap: 18px; }
+.reco-card blockquote { margin: 0; }
+.reco-card blockquote p { font-family: var(--display); font-weight: 400; font-size: clamp(21px, 2vw, 26px); line-height: 1.35; letter-spacing: -0.01em; color: var(--ink); }
+.reco-card figcaption { display: flex; flex-direction: column; gap: 2px; font-size: 14px; }
+.reco-card figcaption b { font-weight: 700; color: var(--ink); }
+.reco-card figcaption span { color: var(--muted); }
+.reco-more { margin-top: 0; padding-top: 0; }
+.reco-more p { font-size: 15px; line-height: 1.6; color: var(--body); margin-top: 10px; }
+.reco-more .reco-note { font-size: 13px; color: var(--muted); font-style: italic; }
+.xc-q { margin-top: 12px; padding-left: 12px; border-left: 2px solid var(--accent); font-size: 13.5px; line-height: 1.5; font-style: italic; color: var(--body); }
+.xc-q a { font-style: normal; font-weight: 600; font-size: 12.5px; color: var(--muted); white-space: nowrap; }
+@media (max-width: 620px) { .reco-card { padding: 22px 20px 18px; } .reco-list { grid-template-columns: 1fr; } }
+
 /* Parcours : cartes synthétiques */
 .xcards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
 .xcard { position: relative; display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 20px 20px 18px; scroll-margin-top: 140px; transition: border-color .2s, box-shadow .2s, transform .2s, background-color .6s; }
@@ -738,7 +842,8 @@ body.menu-open .menu-btn span:last-child { transform: translateY(-4px) rotate(-4
   .hero { padding: 18px 0 8px; }
   .hero .eyebrow { font-size: 11px; letter-spacing: .08em; }
   .hero h1 { font-size: 38px; margin: 8px 0 14px; }
-  .hero .lede { font-size: 16.5px; margin-bottom: 20px; }
+  .hero .lede { font-size: 16.5px; margin-bottom: 22px; }
+  .hero .lede-2 { font-size: 15px; margin-bottom: 20px; }
   .ctas { gap: 10px; }
   .hero .ctas .btn { flex: 1 1 100%; justify-content: center; }
   .hero-photo { max-width: none; border-radius: 16px; }
@@ -831,6 +936,257 @@ body.menu-open .menu-btn span:last-child { transform: translateY(-4px) rotate(-4
 /* Indication de défilement horizontal (téléphone) */
 .swipe-hint { display: none; align-items: center; gap: 6px; margin-top: 2px; font-size: 13px; font-weight: 600; color: var(--muted); }
 .swipe-hint::after { content: "→"; color: var(--accent); }
+
+/* ================================================================
+   Système « Apple » : une seule langue visuelle pour tout le site
+   - sections rythmées par l'espace et un gris très clair (#F5F5F7), pas par des filets
+   - surfaces sans bordure, angles généreux, ombres seulement au survol
+   - une action principale bleue par bloc, les autres en liens « › »
+   ================================================================ */
+:root { --soft: #F5F5F7; --r-lg: 22px; }
+section + section { border-top: 1px solid #F0F0F3; }
+.prod + section, section + .prod, .trust + section, .ct-form-sec + section { border-top: 0; }
+section { padding: 72px 0; }
+.trust { padding: 8px 0 0; } .trust-row { border-top: 0; }
+#v-accueil > .prod { background: var(--soft); }
+#v-projets .prod-proj { padding: 24px 0 8px; }
+#v-projets .prod-card, .reco-card { background: var(--soft); }
+.stats { border-top: 1px solid #E5E5EA !important; border-bottom: 1px solid #E5E5EA; }
+.sec-head h2, section > .wrap > h2 { letter-spacing: -0.022em; }
+.eyebrow { letter-spacing: .1em; }
+
+/* Boutons et liens d'action */
+.btn { background: var(--accent); border-color: var(--accent); color: #fff; padding: 12px 22px; }
+.btn:hover { background: #1D4ED8; border-color: #1D4ED8; }
+.btn.ghost { background: transparent; border-color: transparent; color: var(--accent); padding-left: 6px; padding-right: 6px; }
+.btn.ghost::after { content: "›"; font-size: 1.25em; line-height: 1; margin-left: 2px; transition: transform .2s; }
+.btn.ghost:hover { background: transparent; border-color: transparent; text-decoration: underline; text-underline-offset: 4px; transform: none; }
+.btn.ghost:hover::after { transform: translateX(3px); }
+.link::after, .card .go::after, .exp-go::after { content: " ›" !important; }
+
+/* Cartes projets : surface grise, sans contour */
+.card { border: 0; background: transparent; padding: 0; gap: 16px; border-radius: 0; }
+.card:hover { box-shadow: none; transform: none; }
+.card .fig { background: var(--soft); border-radius: var(--r-lg); transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+.card:hover .fig { transform: scale(1.015); }
+.card .txt { padding: 0 2px; }
+.card .chips { display: none; }
+.card .meta .pill + .pill { display: none; }
+
+/* Écrits */
+.post .cover { border: 0; background: var(--soft); border-radius: var(--r-lg); transition: transform .35s cubic-bezier(.2,.7,.2,1); }
+.post:hover .cover { transform: scale(1.015); }
+
+/* Outils en production, recommandations, parcours : surfaces blanches sur fond gris, sans contour */
+.prod-card { border: 0; border-radius: var(--r-lg); }
+.prod-card:hover { transform: none; box-shadow: 0 20px 44px -30px rgba(0, 0, 0, .28); }
+.prod-vis { background: linear-gradient(180deg, #FBFBFD, #EEF1F6); }
+.reco-card { background: #fff; border-left: 0; border-radius: var(--r-lg); }
+.xcard { border: 0; background: var(--soft); border-radius: var(--r-lg); }
+.xcard:hover { box-shadow: none; transform: none; background: #EFEFF3; }
+.xcard::before { display: none; }
+.xc-when { background: #fff; border-color: transparent; }
+
+/* Domaines : tuiles neutres (plus de couleurs vives) */
+.tile { --c: var(--ink); background: var(--soft); color: var(--ink); border-radius: 18px; }
+.tile:hover { filter: none; box-shadow: none; transform: none; background: #ECECF0; }
+.tile svg { stroke: var(--accent); }
+.tile span { color: var(--muted); }
+.tile[aria-pressed="true"] { background: var(--ink); color: #fff; box-shadow: none; }
+.tile[aria-pressed="true"] svg { stroke: #fff; } .tile[aria-pressed="true"] span { color: rgba(255, 255, 255, .75); }
+#v-accueil .dom-head, #home-tiles { display: none; }
+
+/* Chiffres clés du parcours */
+.stats .num, .stats b { color: var(--ink); }
+
+/* Bandeau d'appel à l'action : clair et centré */
+.cta-band { background: transparent; color: var(--ink); padding: 24px 0 8px; flex-direction: column; text-align: center; justify-content: center; }
+.cta-band h2 { color: var(--ink); font-size: clamp(30px, 3.4vw, 46px); max-width: 22ch; margin: 0 auto; }
+.cta-band p { color: var(--muted); font-size: 17px; margin-top: 12px; }
+.cta-band .btns { justify-content: center; margin-top: 10px; gap: 18px; }
+.cta-band .btn { background: var(--accent); color: #fff; border-color: var(--accent); }
+.cta-band .btn.ghost { background: transparent; color: var(--accent); border-color: transparent; }
+
+/* Pied de page clair */
+.foot { background: #fff; color: var(--ink); margin-top: 0; padding: 40px 0 40px; border-top: 1px solid #E5E5EA; }
+.foot-brand { color: var(--ink); font-size: 20px; }
+.foot-tag, .foot-copy { color: var(--muted); }
+.foot-k { color: var(--muted); }
+.foot-col a { color: var(--ink); font-size: 14.5px; background-image: linear-gradient(var(--accent), var(--accent)); }
+
+@media (max-width: 620px) {
+  section { padding: 52px 0; }
+  .cta-band h2 { font-size: 30px; }
+}
+.bio-photo { background: none !important; border: 0 !important; box-shadow: none !important; }
+.bio-photo img { object-fit: cover; object-position: 50% 0; -webkit-mask-image: linear-gradient(to bottom, #000 75%, transparent); mask-image: linear-gradient(to bottom, #000 75%, transparent); }
+@media (max-width: 900px) { .bio-photo { max-width: 240px; } .bio-photo img { aspect-ratio: 604 / 600; height: auto; } }
+
+/* Page Me contacter : une question, une action */
+.ct-hero { padding: 88px 0 56px; text-align: center; }
+.ct-h1 { font-family: var(--display); font-weight: 400; font-size: clamp(48px, 6.4vw, 88px); line-height: 1; letter-spacing: -0.03em; }
+.ct-lede { font-size: 19px; line-height: 1.55; color: var(--muted); max-width: 46ch; margin: 22px auto 0; }
+.ct-mail { margin-top: 34px; }
+.ct-mail a { font-family: var(--display); font-size: clamp(24px, 2.8vw, 36px); letter-spacing: -0.015em; color: var(--ink); text-decoration: none; background-image: linear-gradient(var(--accent), var(--accent)); background-size: 0 1px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .3s; }
+.ct-mail a:hover { background-size: 100% 1px; }
+.ct-acts { display: flex; justify-content: center; align-items: center; gap: 22px; margin-top: 26px; flex-wrap: wrap; }
+.ct-copy { background: none; border: 0; cursor: pointer; font-family: inherit; padding: 0; }
+.ct-toast { min-height: 1.4em; margin-top: 10px; font-size: 14px; color: var(--muted); }
+.ct-form-sec { background: var(--soft); padding: 64px 0 72px; }
+.ct-form { max-width: 680px; margin: 0 auto; background: #fff; border-radius: 26px; padding: 40px 40px 34px; }
+.ct-h2 { font-family: var(--display); font-weight: 400; font-size: 30px; letter-spacing: -0.02em; text-align: center; }
+.ct-note { text-align: center; font-size: 14.5px; color: var(--muted); margin: 8px auto 26px; max-width: 48ch; }
+.ct-topics { border: 0; padding: 0; margin: 0 0 22px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.ct-topics legend { width: 100%; text-align: center; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.ct-topics label { position: relative; cursor: pointer; }
+.ct-topics input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.ct-topics span { display: inline-block; padding: 9px 16px; border-radius: 999px; background: var(--soft); font-size: 14px; font-weight: 600; color: var(--ink); transition: background-color .2s, color .2s; }
+.ct-topics label:hover span { background: #E8E8ED; }
+.ct-topics input:checked + span { background: var(--ink); color: #fff; }
+.ct-topics input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 2px; }
+.ct-form .field { margin-bottom: 14px; }
+.ct-form label { font-size: 13.5px; font-weight: 600; color: var(--ink); }
+.ct-form input[type=text], .ct-form textarea { background: var(--soft); border: 1px solid transparent; border-radius: 14px; padding: 13px 15px; font-size: 16px; transition: border-color .2s, background-color .2s; }
+.ct-form input[type=text]:focus, .ct-form textarea:focus { background: #fff; border-color: var(--accent); outline: none; box-shadow: 0 0 0 4px rgba(36, 91, 230, .14); }
+.ct-form .c-req { font-size: 12.5px; color: var(--muted); margin: 4px 0 18px; }
+.ct-form .f-actions { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.ct-form .f-actions .btn { width: 100%; justify-content: center; padding: 14px; font-size: 16px; border-radius: 999px; }
+.ct-meta { list-style: none; margin: 30px 0 0; padding: 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 28px; font-size: 14.5px; color: var(--muted); }
+.ct-meta a { color: var(--accent); font-weight: 600; text-decoration: none; }
+.ct-meta a:hover { text-decoration: underline; }
+@media (max-width: 620px) {
+  .ct-hero { padding: 48px 0 40px; }
+  .ct-lede { font-size: 17px; }
+  .ct-acts { flex-direction: column; gap: 14px; }
+  .ct-acts .btn { width: 100%; justify-content: center; }
+  .ct-form-sec { padding: 36px 0 48px; }
+  .ct-form { padding: 26px 18px 22px; border-radius: 20px; }
+  .ct-h2 { font-size: 25px; }
+  .ct-topics { justify-content: flex-start; } .ct-topics legend { text-align: left; }
+}
+.reco-card { background: var(--soft); }
+
+/* Repères des marchés (accueil) + veille allégée (Écrits) */
+.mkt { padding: 44px 0; }
+.mkt-row { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 32px; align-items: center; }
+.mkt-h h2 { font-family: var(--display); font-weight: 400; font-size: clamp(26px, 2.4vw, 34px); letter-spacing: -0.02em; margin-bottom: 10px; }
+.mkt .v-kpis { margin: 0; border-top: 0; border-bottom: 0; grid-auto-flow: column; grid-template-columns: none; }
+.mkt .v-kpi { padding: 4px 0 4px 22px; border-left: 1px solid #E5E5EA; }
+.mkt .v-kpi .v { font-size: 34px; }
+#veille-sec { scroll-margin-top: 90px; }
+#fi-t { scroll-margin-top: 110px; }
+.v-item span.t, .v-item.lead span.t { font-family: var(--sans); font-size: 15.5px; font-weight: 600; line-height: 1.45; letter-spacing: 0; }
+.v-item.lead { padding: 16px 0; } .v-item.lead .v-more { display: none; }
+.v-col-h { border-bottom: 1px solid #E5E5EA; }
+.v-kpis { border-top: 1px solid #E5E5EA; }
+.v-en { margin-left: 8px; font-size: 10.5px; font-weight: 700; letter-spacing: .06em; color: var(--muted); background: var(--soft); border-radius: 4px; padding: 1px 5px; text-decoration: none; }
+@media (max-width: 900px) {
+  .mkt-row { grid-template-columns: 1fr; gap: 18px; }
+  .mkt .v-kpis { grid-auto-flow: row; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .mkt .v-kpi { padding: 0 0 0 12px; border-top: 0 !important; }
+  .mkt .v-kpi:first-child { padding-left: 0; border-left: 0; }
+  .mkt .v-kpi .v { font-size: 24px; } .mkt .v-kpi .k { font-size: 10.5px; } .mkt .v-kpi .d { font-size: 11.5px; }
+}
+.v-item time { display: inline-block; }
+.v-item .v-en { display: inline-block; vertical-align: 1px; }
+
+/* ===== Parcours, version épurée ===== */
+#v-parcours .ed-head { padding: 32px 0 16px; }
+#v-parcours .bio { align-items: center; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); }
+#v-parcours .ed-h1 { font-size: clamp(42px, 5.4vw, 76px); letter-spacing: -0.03em; line-height: 1.02; }
+#v-parcours .ed-lede { font-size: 19px; color: var(--muted); max-width: 44ch; margin-bottom: 30px; }
+#v-parcours .ctas { align-items: center; gap: 22px; }
+#v-parcours .bio-photo { max-width: 360px; justify-self: end; }
+/* Trajectoire */
+.traj { padding: 28px 0 56px; }
+.traj-k { font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+.traj-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); position: relative; }
+.traj-list::before { content: ""; position: absolute; left: 0; right: 0; top: 7px; height: 2px; background: linear-gradient(90deg, #C9D3E6, var(--accent)); border-radius: 2px; }
+.traj-list li { position: relative; padding-right: 20px; }
+.traj-list li::before { content: ""; position: absolute; left: 0; top: 0; width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 2px solid var(--accent); box-sizing: border-box; }
+.traj-list li:last-child::before { background: var(--accent); }
+.traj-list a { display: flex; flex-direction: column; gap: 4px; padding-top: 34px; text-decoration: none; color: var(--ink); border-radius: 8px; }
+.traj-n { font-size: 12px; font-weight: 700; color: var(--accent); letter-spacing: .08em; }
+.traj-list b { font-family: var(--display); font-weight: 400; font-size: clamp(22px, 2vw, 28px); letter-spacing: -0.015em; line-height: 1.15; transition: color .2s; }
+.traj-list a > span:not(.traj-n) { font-size: 14.5px; font-weight: 600; }
+.traj-list small { font-size: 13.5px; color: var(--muted); }
+.traj-list a:hover b { color: var(--accent); }
+/* Sous-navigation en segments */
+#v-parcours .subnav { border: 0; background: rgba(255, 255, 255, .86); }
+#v-parcours .subnav .wrap { justify-content: center; gap: 6px; padding-top: 10px; padding-bottom: 10px; }
+#v-parcours .subnav button { border: 0; border-radius: 999px; padding: 8px 16px; font-size: 14px; background: transparent; }
+#v-parcours .subnav button:hover { background: var(--soft); color: var(--ink); }
+/* Chiffres clés : sans fond, plus grands */
+#v-parcours .stats { background: none; border: 0 !important; padding: 56px 0; }
+#v-parcours .stat-row li { border-left: 0; padding: 0 24px 0 0; }
+#v-parcours .stat-row b { color: var(--ink); font-size: clamp(48px, 5vw, 72px); letter-spacing: -0.03em; }
+#v-parcours .stat-row span { color: var(--muted); }
+/* Sections : titre au-dessus, contenu sur toute la largeur */
+#v-parcours .ed-sec { padding: 64px 0; }
+#v-parcours .ed-grid { display: block; }
+#v-parcours .ed-h2 { position: static; font-size: clamp(32px, 3.4vw, 48px); letter-spacing: -0.025em; margin-bottom: 28px; }
+#v-parcours .xcards { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+#v-parcours .xcard { padding: 26px 26px 22px; }
+#v-parcours .xcard h3 { font-size: 26px; }
+/* Compétences et certifications, plus légères */
+#v-parcours .skills-ed { border-top: 0; padding-top: 0; gap: 20px; }
+#v-parcours .skills-ed > * { background: var(--soft); border-radius: 22px; padding: 24px 26px; }
+#v-parcours .ed-table { border-top: 0; }
+#v-parcours .ed-table thead th { border-bottom: 1px solid #E5E5EA; }
+#v-parcours .ed-table th, #v-parcours .ed-table td { border-bottom-color: #F0F0F3; }
+/* Fin de page centrée */
+#v-parcours .ed-close { background: none; text-align: center; padding: 80px 0 88px; }
+#v-parcours .ed-close h2 { margin: 0 auto 26px; font-size: clamp(32px, 3.6vw, 48px); letter-spacing: -0.025em; }
+#v-parcours .ed-close .ctas { justify-content: center; }
+@media (max-width: 900px) {
+  #v-parcours .bio { grid-template-columns: 1fr; }
+  #v-parcours .bio-photo { justify-self: start; }
+  .traj-list { grid-template-columns: 1fr 1fr; row-gap: 26px; }
+  .traj-list::before { display: none; }
+  #v-parcours .subnav .wrap { justify-content: flex-start; }
+}
+@media (max-width: 620px) {
+  #v-parcours .ed-head { padding-top: 28px; }
+  #v-parcours .ed-lede { font-size: 17px; }
+  .traj-list { grid-template-columns: 1fr; row-gap: 0; }
+  .traj-list li { padding: 0 0 22px 30px; }
+  .traj-list li::before { top: 2px; }
+  .traj-list li:not(:last-child)::after { content: ""; position: absolute; left: 7px; top: 18px; bottom: 0; width: 2px; background: #DCE3EE; }
+  .traj-list a { padding-top: 0; }
+  #v-parcours .stats { padding: 36px 0; }
+  #v-parcours .stat-row b { font-size: 44px; }
+  #v-parcours .ed-sec { padding: 44px 0; }
+  #v-parcours .skills-ed > * { padding: 20px; }
+  #v-parcours .ctas { flex-direction: column; align-items: stretch; gap: 14px; }
+  #v-parcours .ctas .btn { justify-content: center; } #v-parcours .cta-link { justify-content: center; }
+}
+
+/* ===== Barre de navigation épurée ===== */
+@media (min-width: 901px) {
+  .top { top: 0; margin-top: 0; padding: 0; background: rgba(255, 255, 255, .78); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid rgba(0, 0, 0, .06); }
+  .capsule { position: relative; max-width: 1180px; height: 56px; padding: 0 28px; background: none; border: 0; border-radius: 0; box-shadow: none !important; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .top.scrolled { border-bottom-color: rgba(0, 0, 0, .1); }
+  .brand { font-size: 17px; }
+  .nav { gap: 6px; position: absolute; left: 50%; transform: translateX(-50%); }
+  .nav a { position: relative; padding: 8px 12px; font-size: 14px; font-weight: 500; color: #424245; border-radius: 8px; background: none !important; box-shadow: none !important; }
+  .nav a:hover { color: var(--ink); }
+  .nav a[aria-current="page"], .nav a[aria-current="page"]:hover { color: var(--ink); font-weight: 600; }
+  .nav a[aria-current="page"]::after { content: ""; position: absolute; left: 50%; bottom: 0; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: var(--accent); }
+  .lang-sw { border: 0; padding: 0; gap: 0; }
+  .lang-sw button { min-width: 30px; min-height: 30px; font-size: 12.5px; color: #86868B; background: none !important; }
+  .lang-sw button + button::before { content: "·"; margin-right: 6px; color: #C7C7CC; }
+  .lang-sw button[aria-pressed="true"] { color: var(--ink); }
+  #v-parcours .subnav { top: 56px; }
+  .subnav { top: 56px; }
+}
+@media (max-width: 900px) {
+  .lang-sw { border: 0; padding: 0; gap: 0; }
+  .lang-sw button { min-width: 34px; font-size: 13px; color: #86868B; background: none !important; }
+  .lang-sw button + button::before { content: "·"; margin-right: 6px; color: #C7C7CC; }
+  .lang-sw button[aria-pressed="true"] { color: var(--ink); }
+  .top { border-bottom: 1px solid rgba(0, 0, 0, .06); }
+}
+#v-parcours .bio-photo img { aspect-ratio: 1; object-position: 50% 20%; -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent); mask-image: linear-gradient(to bottom, #000 80%, transparent); }
 </style>
 </head>
 <body>
@@ -864,17 +1220,16 @@ body.menu-open .menu-btn span:last-child { transform: translateY(-4px) rotate(-4
     <canvas class="hero-fx" id="hero-fx" aria-hidden="true"></canvas>
     <div class="wrap grid">
       <div class="hero-text">
-        <p class="eyebrow">Corporate Finance · Financial Modelling · Data &amp; Technology</p>
-        <h1 tabindex="-1" data-i18n="h.h1">J’analyse les enjeux financiers. <em>Je construis les outils pour y répondre.</em></h1>
-        <p class="lede" data-i18n="h.lede">Mon parcours associe une formation technique, une expérience en transformation et analyse métier, et une spécialisation en finance d’entreprise. J’explore les marchés financiers, la valorisation et la modélisation quantitative à travers des projets concrets et des analyses appliquées.</p>
+        <p class="eyebrow">Corporate Finance · Financial Modelling · Data &amp; Transformation</p>
+        <h1 tabindex="-1" data-i18n="h.h1">Comprendre les enjeux financiers. <em>Transformer l’analyse en décisions.</em></h1>
+        <p class="lede" data-i18n="h.lede">Une expérience en analyse métier et gestion de projets, une spécialisation en Corporate Financial Management à SKEMA Business School.</p>
         <div class="ctas">
-          <a class="btn" href="#projets" data-i18n="h.cta1">Découvrir mes réalisations</a>
-          <a class="btn ghost" href="#parcours" data-i18n="h.cta2">Consulter mon parcours</a>
+          <a class="btn primary" href="#projets" data-i18n="h.cta1">Découvrir mes réalisations</a>
+          <a class="cta-link" href="#parcours"><span data-i18n="h.cta2">Consulter mon parcours</span> <span aria-hidden="true">›</span></a>
         </div>
       </div>
-      <figure class="hero-photo mosaic">
-        <div class="mz-a" aria-hidden="true"><svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice" focusable="false"><g fill="none" stroke="#9DB4F2" stroke-width=".8" opacity=".45"><path d="M-300 300 L0 0"/><path d="M-284 300 L16 0"/><path d="M-268 300 L32 0"/><path d="M-252 300 L48 0"/><path d="M-236 300 L64 0"/><path d="M-220 300 L80 0"/><path d="M-204 300 L96 0"/><path d="M-188 300 L112 0"/><path d="M-172 300 L128 0"/><path d="M-156 300 L144 0"/><path d="M-140 300 L160 0"/><path d="M-124 300 L176 0"/><path d="M-108 300 L192 0"/><path d="M-92 300 L208 0"/><path d="M-76 300 L224 0"/><path d="M-60 300 L240 0"/><path d="M-44 300 L256 0"/><path d="M-28 300 L272 0"/><path d="M-12 300 L288 0"/><path d="M4 300 L304 0"/><path d="M20 300 L320 0"/><path d="M36 300 L336 0"/><path d="M52 300 L352 0"/><path d="M68 300 L368 0"/><path d="M84 300 L384 0"/><path d="M100 300 L400 0"/><path d="M116 300 L416 0"/><path d="M132 300 L432 0"/><path d="M148 300 L448 0"/><path d="M164 300 L464 0"/><path d="M180 300 L480 0"/><path d="M196 300 L496 0"/><path d="M212 300 L512 0"/><path d="M228 300 L528 0"/><path d="M244 300 L544 0"/><path d="M260 300 L560 0"/><path d="M276 300 L576 0"/><path d="M292 300 L592 0"/><path d="M308 300 L608 0"/></g></svg></div>
-        <img class="mz-main" src="christian-portrait-hero.jpg" alt="Portrait professionnel de Christian Sodara" data-i18n-alt="alt.portrait" width="492" height="562" fetchpriority="high">
+      <figure class="hero-photo pcard">
+        <img src="christian-portrait-hero2.jpg" alt="Portrait professionnel de Christian Sodara" data-i18n-alt="alt.portrait" width="604" height="680" fetchpriority="high">
       </figure>
     </div>
   </section>
@@ -896,6 +1251,28 @@ body.menu-open .menu-btn span:last-child { transform: translateY(-4px) rotate(-4
         <li><a href="#parcours-certs"><span class="dot prep" aria-hidden="true"></span><span data-i18n="cr.cfa">CFA Level I · en préparation</span></a></li>
       </ul>
     </div></div>
+  </section>
+
+  <section aria-labelledby="sel-t" class="sel">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="eyebrow">Selected Work</p><h2 id="sel-t" data-i18n="s.h2">Des modèles construits, testés et documentés.</h2></div>
+        <a class="link" href="#projets" data-i18n="all.projects">Tous les projets</a>
+      </div>
+      <div class="cards four" id="home-cards"></div>
+      <p class="swipe-hint" aria-hidden="true" data-i18n="swipe">Faites défiler</p>
+      <div class="dom-head"><h3 class="eyebrow" data-i18n="s.dom">Explorer par domaine</h3><a class="link" href="#projets" data-i18n="all.projects">Tous les projets</a></div>
+      <nav class="tiles" id="home-tiles" aria-label="Projets par domaine" data-i18n-aria="s.domAria"></nav>
+    </div>
+  </section>
+
+  <section class="prod" aria-labelledby="prod-t">
+    <div class="wrap">
+      <p class="eyebrow" data-i18n="pd.k">En production</p>
+      <h2 id="prod-t" data-i18n="pd.h2">Des outils utilisés au quotidien</h2>
+      <p class="sub" data-i18n="pd.sub">Des plateformes en ligne sur lesquelles j’ai travaillé, de la recette au déploiement.</p>
+      <div class="prod-grid" id="home-prod"></div>
+    </div>
   </section>
 
   <section class="exp" aria-labelledby="dom-t">
@@ -925,22 +1302,17 @@ body.menu-open .menu-btn span:last-child { transform: translateY(-4px) rotate(-4
     </div>
   </section>
 
-  <section aria-labelledby="sel-t" class="sel">
+  <section class="reco" aria-labelledby="reco-t">
     <div class="wrap">
-      <div class="sec-head">
-        <div><p class="eyebrow">Selected Work</p><h2 id="sel-t" data-i18n="s.h2">Des modèles construits, testés et documentés.</h2></div>
-        <a class="link" href="#projets" data-i18n="all.projects">Tous les projets</a>
-      </div>
-      <div class="cards four" id="home-cards"></div>
-      <p class="swipe-hint" aria-hidden="true" data-i18n="swipe">Faites défiler</p>
-      <div class="dom-head"><h3 class="eyebrow" data-i18n="s.dom">Explorer par domaine</h3><a class="link" href="#projets" data-i18n="all.projects">Tous les projets</a></div>
-      <nav class="tiles" id="home-tiles" aria-label="Projets par domaine" data-i18n-aria="s.domAria"></nav>
+      <p class="eyebrow" data-i18n="rc.k">Recommandations</p>
+      <h2 id="reco-t" data-i18n="rc.h2">Ils m’ont fait confiance</h2>
+      <div class="reco-list" id="reco-list"></div>
     </div>
   </section>
 
   <section aria-labelledby="app-t">
     <div class="wrap">
-      <div class="sec-head"><div><p class="eyebrow" data-i18n="m.k">Méthode</p><h2 id="app-t" data-i18n="m.h2">De l’analyse à l’exécution.</h2></div></div>
+      <div class="sec-head"><div><p class="eyebrow" data-i18n="m.k">Méthode</p><h2 id="app-t" data-i18n="m.h2">De l’analyse à l’exécution.</h2><p class="sub" data-i18n="m.sub">Mon approche : comprendre les enjeux économiques, développer des analyses financières rigoureuses et concevoir des solutions concrètes pour éclairer la prise de décision.</p></div></div>
       <div class="steps">
         <div class="step"><span class="n">01</span><h3 data-i18n="m.s1">Comprendre</h3><p data-i18n="m.p1">Analyser les enjeux métiers, financiers ou opérationnels avant de proposer une solution.</p>
           <a class="ex" href="#projet-lvmh" data-i18n="m.e1"><b>Valorisation de LVMH</b>Étudier chacun des cinq métiers du groupe avant de les valoriser séparément.</a></div>
@@ -952,13 +1324,10 @@ body.menu-open .menu-btn span:last-child { transform: translateY(-4px) rotate(-4
     </div>
   </section>
 
-  <section aria-labelledby="fi-t" id="veille-sec">
-    <div class="wrap">
-      <div class="sec-head">
-        <div><p class="eyebrow">Financial Intelligence</p><h2 id="fi-t" data-i18n="v.h2">Ma veille des marchés</h2>
-          <p class="sub" data-i18n="v.sub">Les repères du moment et les dernières publications de la BCE et de l’AMF, collectés automatiquement depuis leurs sources officielles. Chaque titre renvoie à la source.</p></div>
-      </div>
-      <div id="veille" aria-live="polite"></div>
+  <section class="mkt" id="home-mkt" aria-labelledby="mkt-t" hidden>
+    <div class="wrap mkt-row">
+      <div class="mkt-h"><h2 id="mkt-t" data-i18n="v.band">Repères des marchés</h2><a class="cta-link" href="#ecrits-veille"><span data-i18n="v.more">Ma veille des marchés</span> <span aria-hidden="true">›</span></a></div>
+      <div id="home-kpis"></div>
     </div>
   </section>
 
@@ -999,6 +1368,12 @@ body.menu-open .menu-btn span:last-child { transform: translateY(-4px) rotate(-4
       <p class="tiles-all" id="tiles-all" hidden><button type="button" class="link-btn" id="show-all" data-i18n="pr.all">Afficher tous les projets</button></p>
     </div>
   </section>
+  <section class="flush prod-proj" aria-labelledby="prod-t2">
+    <div class="wrap">
+      <h2 id="prod-t2" class="prod-h2"><span class="dot ok" aria-hidden="true"></span><span data-i18n="pd.k">En production</span></h2>
+      <div class="prod-grid compact" id="proj-prod"></div>
+    </div>
+  </section>
   <section class="flush" aria-labelledby="prl-t">
     <div class="wrap"><h2 id="prl-t" class="sr" data-i18n="pr.list">Liste des projets</h2><div class="cards" id="all-cards"></div></div>
   </section>
@@ -1020,6 +1395,15 @@ body.menu-open .menu-btn span:last-child { transform: translateY(-4px) rotate(-4
   <section class="flush" aria-labelledby="wrl-t">
     <div class="wrap"><h2 id="wrl-t" class="sr" data-i18n="wr.list">Liste des écrits</h2><div class="posts" id="all-posts"></div></div>
   </section>
+  <section aria-labelledby="fi-t" id="veille-sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="eyebrow" data-i18n="v.k">Veille</p><h2 id="fi-t" data-i18n="v.h2">Ma veille des marchés</h2>
+          <p class="sub" data-i18n="v.sub">Les repères du moment et les dernières publications de la BCE et de l’AMF, collectés automatiquement depuis leurs sources officielles. Chaque titre renvoie à la source.</p></div>
+      </div>
+      <div id="veille" aria-live="polite"></div>
+    </div>
+  </section>
 </div>
 
 <!-- ARTICLE -->
@@ -1031,17 +1415,22 @@ body.menu-open .menu-btn span:last-child { transform: translateY(-4px) rotate(-4
     <div class="wrap bio">
       <div>
         <nav class="crumbs" aria-label="Fil d’Ariane, parcours" data-i18n-aria="crumbsP"><a href="#accueil" data-i18n="nav.home">Accueil</a><span aria-hidden="true">/</span><span aria-current="page" data-i18n="nav.path">Parcours</span></nav>
-        <h1 class="ed-h1" tabindex="-1" data-i18n="p.h1">Parcours</h1>
+        <h1 class="ed-h1" tabindex="-1" data-i18n="p.h1b">De la technologie à la finance.</h1>
         <p class="ed-lede" data-i18n="p.lede">Une formation technique, deux ans d’analyse métier dans un groupe international, puis la finance d’entreprise et la modélisation financière à SKEMA Business School.</p>
-        <dl class="bio-facts">
-          <div><dt data-i18n="p.f1k">Formation</dt><dd data-i18n="p.f1v">SKEMA Business School, Programme Grande École, Corporate Financial Management</dd></div>
-          <div><dt data-i18n="p.f2k">Expérience</dt><dd data-i18n="p.f2v">Business Analyst chez Willis Towers Watson pendant deux ans</dd></div>
-          <div><dt data-i18n="p.f3k">Basé à</dt><dd>Paris</dd></div>
-          <div><dt data-i18n="p.f4k">Langues</dt><dd data-i18n="p.f4v">Français, anglais</dd></div>
-        </dl>
-        <div class="ctas"><a class="btn" href="#contact" data-i18n="cta.contact">Me contacter</a><a class="link" href="#projets" data-i18n="cta.projects">Voir les projets</a></div>
+        <div class="ctas"><a class="btn" href="#contact" data-i18n="cta.contact">Me contacter</a><a class="cta-link" href="#projets"><span data-i18n="cta.projects">Voir les projets</span> <span aria-hidden="true">›</span></a></div>
       </div>
-      <figure class="bio-photo"><img src="christian-sodara.jpg" alt="Portrait de Christian Sodara" data-i18n-alt="alt.headshot" width="400" height="400"></figure>
+      <figure class="bio-photo"><img src="christian-parcours.jpg" alt="Portrait de Christian Sodara" data-i18n-alt="alt.headshot" width="400" height="400"></figure>
+    </div>
+  </section>
+  <section class="traj" aria-labelledby="traj-t">
+    <div class="wrap">
+      <h2 id="traj-t" class="traj-k" data-i18n="p.trajT">Trajectoire</h2>
+      <ol class="traj-list">
+        <li><a href="#parcours-esatic"><span class="traj-n">01</span><b data-i18n="p.tj1">Technologie</b><span>ESATIC, Abidjan</span><small data-i18n="p.tj1s">Informatique et télécommunications</small></a></li>
+        <li><a href="#parcours-wtw"><span class="traj-n">02</span><b data-i18n="p.tj2">Analyse métier</b><span>Willis Towers Watson</span><small data-i18n="p.tj2s">2 ans · 4 pays</small></a></li>
+        <li><a href="#parcours-bpifrance"><span class="traj-n">03</span><b data-i18n="p.tj3">Projets digitaux</b><span>DataScientest · Bpifrance</span><small data-i18n="p.tj3s">Gestion de projets, reporting</small></a></li>
+        <li><a href="#parcours-skema"><span class="traj-n">04</span><b data-i18n="p.tj4">Finance d’entreprise</b><span>SKEMA Business School</span><small data-i18n="p.tj4s">Corporate Financial Management</small></a></li>
+      </ol>
     </div>
   </section>
   <nav class="subnav" aria-label="Sections de la page" data-i18n-aria="p.subnav">
@@ -1114,56 +1503,51 @@ body.menu-open .menu-btn span:last-child { transform: translateY(-4px) rotate(-4
   <section class="ed-close" aria-labelledby="pc-t">
     <div class="wrap">
       <h2 id="pc-t" data-i18n="p.closeT">Une expérience ou un projet vous intéresse ? Parlons-en.</h2>
-      <div class="ctas"><a class="btn" href="#contact" data-i18n="cta.contact">Me contacter</a><a class="link" href="#projets" data-i18n="cta.projects">Voir les projets</a></div>
+      <div class="ctas"><a class="btn" href="#contact" data-i18n="cta.contact">Me contacter</a><a class="cta-link" href="#projets"><span data-i18n="cta.projects">Voir les projets</span> <span aria-hidden="true">›</span></a></div>
     </div>
   </section>
 </div>
 
 <!-- CONTACT -->
 <div id="v-contact" data-page hidden>
-  <section class="ed-head">
+  <section class="ct-hero">
     <div class="wrap">
-      <nav class="crumbs" aria-label="Fil d’Ariane, contact" data-i18n-aria="crumbsC"><a href="#accueil" data-i18n="nav.home">Accueil</a><span aria-hidden="true">/</span><span aria-current="page" data-i18n="nav.contact">Me contacter</span></nav>
-      <h1 class="ed-h1" tabindex="-1" data-i18n="c.h1">Me contacter</h1>
-      <p class="ed-lede" data-i18n="c.lede">Pour un échange autour de la finance, des données ou de la transformation, ou pour toute question sur un projet, une analyse ou mon parcours.</p>
+      <h1 class="ct-h1" tabindex="-1" data-i18n="c.h1b">Parlons-en.</h1>
+      <p class="ct-lede" data-i18n="c.lede">Pour un échange autour de la finance, des données ou de la transformation, ou pour toute question sur un projet, une analyse ou mon parcours.</p>
+      <p class="ct-mail"><a id="email" href="mailto:christiansodara00@gmail.com">christiansodara00@gmail.com</a></p>
+      <div class="ct-acts">
+        <a class="btn" href="mailto:christiansodara00@gmail.com" data-i18n="c.write">Écrire un e-mail</a>
+        <button class="cta-link ct-copy" type="button" id="copy"><span data-i18n="c.copy">Copier l’adresse</span> <span aria-hidden="true">›</span></button>
+      </div>
+      <p class="toast ct-toast" id="toast" role="status"></p>
     </div>
   </section>
-  <section class="ed-sec flush0" aria-label="Coordonnées et formulaire" data-i18n-aria="c.aria">
-    <div class="wrap c-ed">
-      <div class="c-info">
-        <h2 class="h-sm" data-i18n="c.coordT">Coordonnées</h2>
-        <dl class="c-dl">
-          <div><dt>E-mail</dt><dd><a id="email" href="mailto:christiansodara00@gmail.com">christiansodara00@gmail.com</a><button class="link-btn" type="button" id="copy" data-i18n="c.copy">Copier l’adresse</button><span class="toast" id="toast" role="status"></span></dd></div>
-          <div><dt>GitHub</dt><dd><a href="https://github.com/sodara-cpu" rel="me">github.com/sodara-cpu</a></dd></div>
-          <div class="draft-only"><dt>LinkedIn</dt><dd><span class="draft">Adresse du profil LinkedIn à ajouter.</span></dd></div>
-          <div><dt data-i18n="c.locK">Localisation</dt><dd>Paris</dd></div>
-          <div><dt data-i18n="c.langK">Langues d’échange</dt><dd data-i18n="c.langV">Français, anglais</dd></div>
-        </dl>
-        <h2 class="h-sm" data-i18n="c.topicsT">Sujets d’échange</h2>
-        <ul class="topic-list">
-          <li><button type="button" class="topic" data-topic="0" data-i18n="c.t0">Un projet ou une analyse</button></li>
-          <li><button type="button" class="topic" data-topic="1" data-i18n="c.t1">Une question sur mon parcours</button></li>
-          <li><button type="button" class="topic" data-topic="2" data-i18n="c.t2">Un échange sur la finance et la technologie</button></li>
-        </ul>
-      </div>
-      <form class="c-form" id="cform" aria-labelledby="form-t">
-        <h2 class="h-sm" id="form-t" data-i18n="c.formT">Envoyer un message</h2>
-        <p class="c-note" data-i18n="c.formNote">Votre messagerie s’ouvre avec le message prêt à envoyer. Ce site ne collecte ni n’enregistre aucune donnée.</p>
-        <p class="c-req" data-i18n="c.req">Les champs marqués d’un astérisque (*) sont obligatoires.</p>
+  <section class="ct-form-sec" aria-labelledby="form-t">
+    <div class="wrap">
+      <form class="ct-form" id="cform" aria-labelledby="form-t">
+        <h2 id="form-t" class="ct-h2" data-i18n="c.formT">Ou envoyez un message</h2>
+        <p class="ct-note" data-i18n="c.formNote">Votre messagerie s’ouvre avec le message prêt à envoyer. Ce site ne collecte ni n’enregistre aucune donnée.</p>
+        <fieldset class="ct-topics">
+          <legend data-i18n="c.subj">Sujet</legend>
+          <label><input type="radio" name="subject" value="0" checked><span data-i18n="c.t0">Un projet ou une analyse</span></label>
+          <label><input type="radio" name="subject" value="1"><span data-i18n="c.t1">Une question sur mon parcours</span></label>
+          <label><input type="radio" name="subject" value="2"><span data-i18n="c.t2">Un échange sur la finance et la technologie</span></label>
+          <label><input type="radio" name="subject" value="3"><span data-i18n="c.t3">Autre sujet</span></label>
+        </fieldset>
         <div class="f2">
           <div class="field"><label for="f-name"><span data-i18n="c.name">Nom</span> *</label><input type="text" id="f-name" name="name" autocomplete="name" required></div>
           <div class="field"><label for="f-org" data-i18n="c.org">Organisation</label><input type="text" id="f-org" name="org" autocomplete="organization"></div>
         </div>
-        <div class="field"><label for="f-subj" data-i18n="c.subj">Sujet</label>
-          <select id="f-subj" name="subject">
-            <option value="0" data-i18n="c.t0">Un projet ou une analyse</option>
-            <option value="1" data-i18n="c.t1">Une question sur mon parcours</option>
-            <option value="2" data-i18n="c.t2">Un échange sur la finance et la technologie</option>
-            <option value="3" data-i18n="c.t3">Autre sujet</option>
-          </select></div>
-        <div class="field"><label for="f-msg"><span data-i18n="c.msg">Message</span> *</label><textarea id="f-msg" name="message" rows="7" required aria-describedby="f-status"></textarea></div>
+        <div class="field"><label for="f-msg"><span data-i18n="c.msg">Message</span> *</label><textarea id="f-msg" name="message" rows="6" required aria-describedby="f-status"></textarea></div>
+        <p class="c-req" data-i18n="c.req">Les champs marqués d’un astérisque (*) sont obligatoires.</p>
         <div class="f-actions"><button class="btn" type="submit" data-i18n="c.send">Préparer l’e-mail</button><p class="toast" id="f-status" role="status"></p></div>
       </form>
+      <ul class="ct-meta">
+        <li><a href="https://github.com/sodara-cpu" rel="me">GitHub ›</a></li>
+        <li class="draft-only"><span class="draft">LinkedIn : adresse du profil à ajouter.</span></li>
+        <li>Paris</li>
+        <li data-i18n="c.langV">Français, anglais</li>
+      </ul>
     </div>
   </section>
 </div>
@@ -1205,11 +1589,12 @@ const DL = a => a && a.length ? `<div class="draft"><ul>${a.map(x => `<li>${x}</
 const I18N = { en: {
   "skip": "Skip to content", "swipe": "Swipe",
   "nav.label": "Main navigation", "nav.home": "Home", "nav.writing": "Writing", "nav.projects": "Projects", "nav.path": "Background", "nav.contact": "Contact",
-  "h.h1": "I analyse financial issues. <em>I build the tools to address them.</em>",
-  "h.lede": "My background combines technical training, experience in business analysis and transformation, and a specialisation in corporate finance. I explore financial markets, valuation and quantitative modelling through hands-on projects and applied analysis.",
+  "h.h1": "Understanding financial issues. <em>Turning analysis into decisions.</em>",
+  "h.lede": "Hands-on experience in business analysis and project management, and a specialisation in Corporate Financial Management at SKEMA Business School.",
+  "m.sub": "My approach: understand the economic stakes, build rigorous financial analyses and design concrete solutions that inform decision-making.",
   "h.cta1": "Explore my work", "h.cta2": "View my background",
   "alt.portrait": "Professional portrait of Christian Sodara", "alt.headshot": "Portrait of Christian Sodara",
-  "tr.k": "Background", "tr.t": "Background and certifications", "tr.c": "Certifications", "tr.amf": "AMF · in progress", "tr.bbg": "Bloomberg (BMC) · obtained", "tr.py": "Python (DataCamp) · obtained", "tr.ok": "Obtained", "tr.wip": "In progress", "tr.prep": "In preparation", "cr.cfa": "CFA Level I · in preparation",
+  "tr.k": "Background", "tr.t": "Background and certifications", "pf.y": "years", "pf.1": "Business Analysis", "pf.2": "Three complementary areas", "pf.3": "Master in Management", "tr.c": "Certifications", "tr.amf": "AMF · in progress", "tr.bbg": "Bloomberg (BMC) · obtained", "tr.py": "Python (DataCamp) · obtained", "tr.ok": "Obtained", "tr.wip": "In progress", "tr.prep": "In preparation", "cr.cfa": "CFA Level I · in preparation",
   "exp.k": "Areas of expertise", "exp.h2": "Valuing companies. <em>Reading markets.</em> Building the tools.", "exp.go": "Explore the projects",
   "exp.t1": "Corporate finance &amp; valuation", "exp.p1": "DCF, multiples, project finance: models that tie assumptions, capital structure and value together.",
   "exp.t2": "Markets &amp; quantitative finance", "exp.p2": "Strategy backtests, option pricing and a close reading of monetary policy, with a reproducible method.",
@@ -1233,14 +1618,14 @@ const I18N = { en: {
   "p.h1": "Background", "p.lede": "Technical training, two years of business analysis in an international group, then corporate finance and financial modelling at SKEMA Business School.",
   "p.f1k": "Education", "p.f1v": "SKEMA Business School, Grande École Programme, Corporate Financial Management", "p.f2k": "Experience", "p.f2v": "Business Analyst at Willis Towers Watson for two years", "p.f3k": "Based in", "p.f4k": "Languages", "p.f4v": "French, English",
   "p.subnav": "Page sections", "p.expT": "Professional experience", "p.eduT": "Education", "p.engT": "Involvement", "p.skT": "Skills", "p.ceT": "Certifications and languages",
-  "p.statsT": "Key figures", "p.st1": "years of Business Analysis at Willis Towers Watson", "p.st2": "countries covered by my data analysis", "p.st3": "software platform whose deployment I led", "p.st4": "languages: French, English",
+  "p.statsT": "Key figures", "p.st1": "years of Business Analysis at Willis Towers Watson", "p.st2": "countries covered by my data analysis", "p.st3": "software platform whose deployment I led", "p.st4": "languages: French, English", "rc.k": "Recommendations", "pd.k": "In production", "p.h1b": "From technology to finance.", "p.trajT": "Trajectory", "p.tj1": "Technology", "p.tj1s": "Computer science and telecommunications", "p.tj2": "Business analysis", "p.tj2s": "2 years · 4 countries", "p.tj3": "Digital projects", "p.tj3s": "Project management, reporting", "p.tj4": "Corporate finance", "p.tj4s": "Corporate Financial Management", "v.band": "Market markers", "v.more": "My market watch", "v.k": "Watch", "pd.h2": "Tools in daily use", "pd.sub": "Live platforms I worked on, from testing to deployment.", "rc.h2": "They trusted me",
   "p.ceCap": "Certifications obtained and in progress", "p.ceOrg": "Issuer", "p.ceSt": "Status", "p.d1": "June 2026", "p.d2": "Dec. 2026", "p.ok": "Obtained", "p.amf": "AMF certification", "p.plan": "Exam scheduled", "p.prep": "In preparation",
   "l.fr": "French", "l.frv": "Native", "l.en": "English", "l.env": "Fluent",
   "p.closeT": "Interested in an experience or a project? Let’s talk.",
-  "c.h1": "Contact", "c.lede": "For a conversation about finance, data or transformation, or any question about a project, an analysis or my background.", "c.aria": "Contact details and form",
+  "c.h1": "Contact", "c.h1b": "Let’s talk.", "c.write": "Write an email", "c.lede": "For a conversation about finance, data or transformation, or any question about a project, an analysis or my background.", "c.aria": "Contact details and form",
   "c.coordT": "Contact details", "c.copy": "Copy address", "c.locK": "Location", "c.langK": "Languages", "c.langV": "French, English", "c.topicsT": "Topics",
   "c.t0": "A project or an analysis", "c.t1": "A question about my background", "c.t2": "A conversation about finance and technology", "c.t3": "Other topic",
-  "c.formT": "Send a message", "c.formNote": "Your email app opens with the message ready to send. This site does not collect or store any data.", "c.req": "Fields marked with an asterisk (*) are required.",
+  "c.formT": "Or send a message", "c.formNote": "Your email app opens with the message ready to send. This site does not collect or store any data.", "c.req": "Fields marked with an asterisk (*) are required.",
   "c.name": "Name", "c.org": "Organisation", "c.subj": "Topic", "c.msg": "Message", "c.send": "Prepare the email",
   "totop": "Back to top", "f.copy": "© 2026 Christian Sodara. All rights reserved. Paris.", "f.map": "Site map", "f.links": "Links"
 } };
@@ -1250,14 +1635,14 @@ const UI = {
     secs:["Contexte","Problème","Approche","Réalisation","Résultats","Enseignements"], todo:"À compléter", frOnly:"",
     copied:"Adresse copiée", copyFail:"Copie impossible, sélectionnez l’adresse", opened:"Votre messagerie s’ouvre avec le message prêt à envoyer.", fill:"Indiquez votre nom et votre message.",
     vEmptyT:"La veille n’est pas disponible pour le moment.", vEmptyP:"Elle se met à jour automatiquement à partir des flux officiels. En attendant, les publications restent consultables à la source : ",
-    vEcb:"communiqués de la BCE", vAmf:"actualités de l’AMF", vAnd:" et ", vUpd:"Mis à jour le ", vSrc:"Sources : ", vAll:"Tout voir ↗", vSame:"inchangé", vSince:"depuis le ", vRead:"Lire sur ", vKpiSrc:" ; repères : BCE Data Portal", vNote:"Collecte automatique, sans commentaire ni sélection éditoriale.",
+    vEcb:"communiqués de la BCE", vAmf:"actualités de l’AMF", vAnd:" et ", vUpd:"Mis à jour le ", vSrc:"Sources : ", vAll:"Tout voir ↗", vSame:"inchangé", rcFull:"Lire la recommandation complète", rcTr:"Traduit du français.", vSince:"depuis le ", vRead:"Lire sur ", vKpiSrc:" ; repères : BCE Data Portal", vNote:"Collecte automatique, sans commentaire ni sélection éditoriale.",
     page:"Page : ", title:"Christian Sodara · Corporate Finance & Financial Modelling", locale:"fr-FR", mailHello:"" },
   en: { explore:"Explore the project", read:"min read", unpublished:"unpublished", all:"All", allF:"All", projectsN:n => n + " project" + (n > 1 ? "s" : ""),
     back:"← All projects", backW:"← All writing", others:"Other projects", tools:"Tools", sources:"Sources", more:"More", undated:"Undated",
     secs:["Context","Problem","Approach","Execution","Results","Lessons"], todo:"À compléter", frOnly:"This article is available in French.",
     copied:"Address copied", copyFail:"Copy failed, please select the address", opened:"Your email app is opening with the message ready to send.", fill:"Please enter your name and your message.",
     vEmptyT:"The market watch is not available right now.", vEmptyP:"It updates automatically from official feeds. In the meantime, releases can be read at the source: ",
-    vEcb:"ECB press releases", vAmf:"AMF news", vAnd:" and ", vUpd:"Updated ", vSrc:"Sources: ", vAll:"See all ↗", vSame:"unchanged", vSince:"since ", vRead:"Read on ", vKpiSrc:"; indicators: ECB Data Portal", vNote:"Automatic collection, with no commentary or editorial selection.",
+    vEcb:"ECB press releases", vAmf:"AMF news", vAnd:" and ", vUpd:"Updated ", vSrc:"Sources: ", vAll:"See all ↗", vSame:"unchanged", rcFull:"Read the full recommendation", rcTr:"Translated from French.", vSince:"since ", vRead:"Read on ", vKpiSrc:"; indicators: ECB Data Portal", vNote:"Automatic collection, with no commentary or editorial selection.",
     page:"Page: ", title:"Christian Sodara · Corporate Finance & Financial Modelling", locale:"en-GB" }
 };
 /* Contenus traduits, par identifiant */
@@ -1329,12 +1714,20 @@ const EN = {
   cats: { "Taux":"Rates", "Banques centrales":"Central banks", "Finance d’entreprise":"Corporate finance", "Marchés":"Markets", "Valorisation":"Valuation", "Financement":"Financing", "Recherche":"Research", "Parcours":"Background", "Dette souveraine":"Sovereign debt" },
   formats: { "Carrousel · 6 slides":"Carousel · 6 slides", "Article":"Article", "Post":"Post", "Note de fond":"In-depth note", "Note d’analyse":"Analysis note", "Recherche":"Research", "Récit":"Story" },
   status: { "Publié sur LinkedIn":"Published on LinkedIn", "Publié sur le site":"Published on this site", "Brouillon":"Draft", "À paraître":"Forthcoming", "Recherche en cours":"Research in progress" },
+  recos: { jcn: { role:"Chief Operating Officer, West & Central Africa",
+    quote:"As the youngest analyst in the region, he earned the trust of his counterparts and met the expectations of senior management […]. We particularly valued his ability to perform under pressure, his commitment and his professionalism.",
+    short:"As the youngest analyst in the region, he earned the trust of his counterparts […]",
+    full:["Coming from a background initially far from the insurance sector, Christian showed a remarkable ability to adapt, quickly mastering the challenges of a complex and demanding environment.","As the youngest analyst in the region, he earned the trust of his counterparts and met the expectations of senior management, while carrying out the responsibilities entrusted to him within a major regional migration and transformation programme.","His autonomy, rigour, flexibility and professional skills, combined with excellent personal qualities, contributed to the project’s success.","We particularly valued his ability to perform under pressure, his commitment and his professionalism. It was a real pleasure to work with Christian, and we would not hesitate to work with him again should our paths cross."] },
+    nb: { role:"Head of the Digital Learning unit",
+    quote:"Christian showed great professionalism, marked by his commitment, reliability, rigour, sense of initiative and sense of service. […] I warmly recommend Christian.",
+    short:"Christian showed great professionalism […]",
+    full:["I am pleased to write this letter of recommendation for Christian SODARA, who completed his internship at Bpifrance Université from 18 August 2025 to 19 December 2025. During this period, Christian showed great professionalism, marked by his commitment, reliability, rigour, sense of initiative and sense of service.","Autonomous and creative, Christian contributed to many projects serving our team’s needs. In particular, he developed skills in project management, collaborative work, tool administration, and the creation of steering tools and dashboards.","Christian also stood out for his ability to carry out relevant statistical analyses that support decision-making. He integrated smoothly into the team, and it was a real pleasure to supervise him during his internship.","I warmly recommend Christian and wish him every success in the rest of his career."] } },
   timeline: {
-    esatic: { stage:"Technical foundation", org:"ESATIC, Abidjan", role:"Bachelor’s degree in computer science and telecommunications", items:["Foundations in computing, networks and programming."] },
-    wtw: { stage:"Business analysis", when:"2 years", role:"Business Analyst", items:["Data analysis across 4 countries.","Risk management advisory.","Led the deployment of a $2M software platform."], link:"View the deployment project" },
-    datascientest: { stage:"Project management", role:"Internship, project management", items:["Data science training provider."] },
-    bpifrance: { stage:"Project management", when:"Aug. to Dec. 2025", role:"Assistant project manager, internship · Digital Learning", items:["Structured reporting and KPI dashboards for senior management."] },
-    skema: { stage:"Finance and modelling", when:"2024 to 2027", role:"Grande École Programme, Master in Management", items:["Specialisation in Corporate Financial Management.","Quantitative Finance elective.","Preparing for CFA Level I.","Company valuation, financial modelling, research on fund performance."], link:"View projects" }
+    esatic: { stage:"Technical foundation", org:"ESATIC, Abidjan", role:"Bachelor’s degree in computer science and telecommunications", items:["Initial training in computing: networks, telecommunications and programming."] },
+    wtw: { stage:"Business analysis", when:"2 years", role:"Business Analyst", items:["Transformation, integration and migration projects, and business coordination.","Data analysis across 4 countries.","Risk management advisory.","Led the deployment of a $2M software platform."], link:"View the deployment project" },
+    datascientest: { stage:"Project management", role:"Internship, project management", items:["Project management and operational coordination.","Data science training provider."] },
+    bpifrance: { stage:"Project management", when:"Aug. to Dec. 2025", role:"Assistant project manager, internship · Digital Learning", items:["Digital project management, reporting and process improvement.","Structured reporting and KPI dashboards for senior management."] },
+    skema: { stage:"Finance and modelling", when:"2024 to 2027", role:"Grande École Programme, Master in Management", items:["Corporate Financial Management, with a complementary specialisation in quantitative finance.","Preparing for CFA Level I.","Company valuation, financial modelling, research on fund performance."], link:"View projects" }
   },
   eng: [
     { k:"Financial analysis competition", desc:"A CFA Institute competition: student teams write an equity research report on a listed company, then defend their recommendation before a panel of investment professionals.", stages:["Participation","Preparation","Result"], vals:["Participant"] },
@@ -1344,7 +1737,7 @@ const EN = {
   skills: [
     { t:"Finance", ok:["Financial analysis","Valuation (DCF, multiples)","Financial modelling"], learn:["Corporate finance","Financial markets","Derivatives"] },
     { t:"Data & Technology", ok:["Python","Excel","Data analysis"] },
-    { t:"Business & Execution", ok:["Business analysis","Project management","Digital transformation","International coordination"] }
+    { t:"Business & Execution", ok:["Business analysis","Project management","Reporting and data","Stakeholder coordination","Change management","International coordination"] }
   ],
   domains: { valo:"Valuation", marches:"Markets & quant", pf:"Project finance", ba:"Business Analysis & Tech", recherche:"Research" },
   stories: [ { k:"Event", s:"Accor Arena, Paris" }, { k:"Financial analysis competition", s:"Participant" }, { k:"Entrepreneurship", s:"Member of the student entrepreneur network" } ],
@@ -1590,17 +1983,48 @@ const POST_TODO = {
 };
 
 /* ============ Contenu : parcours et engagements ============ */
+const PROD = [
+  { id:"medinova", name:"Med’Inova", org:"Willis Towers Watson", tl:"wtw", dom:"ba", vis:['<svg class="prod-mock" viewBox="0 0 320 190" aria-hidden="true" focusable="false"><rect x="1" y="1" width="318" height="188" rx="12" fill="#fff" stroke="#DCE3EE"/><path d="M1 13a12 12 0 0 1 12-12h294a12 12 0 0 1 12 12v13H1z" fill="#F1F4F9"/><circle cx="16" cy="14" r="3.2" fill="#D4DAE5"/><circle cx="27" cy="14" r="3.2" fill="#D4DAE5"/><circle cx="38" cy="14" r="3.2" fill="#D4DAE5"/><rect x="56" y="8" width="150" height="12" rx="6" fill="#fff" stroke="#E2E7EF"/>\n<rect x="16" y="38" width="64" height="136" rx="6" fill="#F6F8FB"/><rect x="24" y="48" width="40" height="6" rx="3" fill="#0B1F4D" opacity=".75"/><rect x="24" y="64" width="46" height="5" rx="2.5" fill="#C9D3E6"/><rect x="24" y="76" width="38" height="5" rx="2.5" fill="#C9D3E6"/><rect x="24" y="88" width="42" height="5" rx="2.5" fill="#C9D3E6"/>\n<rect x="92" y="38" width="66" height="40" rx="6" fill="#EEF3FD"/><rect x="166" y="38" width="66" height="40" rx="6" fill="#EEF3FD"/><rect x="240" y="38" width="64" height="40" rx="6" fill="#0B1F4D"/><rect x="100" y="48" width="30" height="5" rx="2.5" fill="#9DB0D6"/><rect x="100" y="60" width="44" height="9" rx="3" fill="#245BE6"/><rect x="174" y="48" width="30" height="5" rx="2.5" fill="#9DB0D6"/><rect x="174" y="60" width="38" height="9" rx="3" fill="#245BE6"/><rect x="248" y="48" width="30" height="5" rx="2.5" fill="#6E8FD9"/><rect x="248" y="60" width="40" height="9" rx="3" fill="#fff"/>\n<rect x="92" y="88" width="212" height="86" rx="6" fill="#F6F8FB"/><polyline points="102,160 132,146 160,150 190,128 222,134 252,112 292,104" fill="none" stroke="#245BE6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M102 166H294" stroke="#D4DAE5"/></svg>','<svg class="prod-mock" viewBox="0 0 320 190" aria-hidden="true" focusable="false"><rect x="1" y="1" width="318" height="188" rx="12" fill="#F6F8FB"/><g transform="translate(118 10)"><rect x="0" y="0" width="84" height="170" rx="16" fill="#0B1F4D"/><rect x="5" y="5" width="74" height="160" rx="12" fill="#fff"/><rect x="30" y="9" width="24" height="5" rx="2.5" fill="#0B1F4D"/>\n<rect x="12" y="24" width="38" height="6" rx="3" fill="#0B1F4D" opacity=".8"/><rect x="12" y="38" width="60" height="34" rx="7" fill="#245BE6"/><rect x="18" y="46" width="28" height="4" rx="2" fill="#fff" opacity=".7"/><rect x="18" y="56" width="40" height="7" rx="3" fill="#fff"/>\n<rect x="12" y="80" width="28" height="26" rx="6" fill="#EEF3FD"/><rect x="44" y="80" width="28" height="26" rx="6" fill="#EEF3FD"/><rect x="12" y="112" width="60" height="9" rx="4.5" fill="#F1F4F9"/><rect x="12" y="126" width="60" height="9" rx="4.5" fill="#F1F4F9"/><rect x="12" y="140" width="44" height="9" rx="4.5" fill="#F1F4F9"/></g>\n<rect x="30" y="58" width="70" height="44" rx="8" fill="#fff" stroke="#DCE3EE"/><path d="M42 82l9 8 16-18" fill="none" stroke="#1E9E5A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><rect x="72" y="72" width="20" height="4" rx="2" fill="#C9D3E6"/><rect x="72" y="82" width="16" height="4" rx="2" fill="#C9D3E6"/>\n<rect x="222" y="44" width="70" height="44" rx="8" fill="#fff" stroke="#DCE3EE"/><rect x="232" y="54" width="34" height="5" rx="2.5" fill="#0B1F4D" opacity=".7"/><rect x="232" y="66" width="50" height="4" rx="2" fill="#C9D3E6"/><rect x="232" y="75" width="40" height="4" rx="2" fill="#C9D3E6"/>\n<rect x="222" y="100" width="70" height="44" rx="8" fill="#fff" stroke="#DCE3EE"/><rect x="232" y="112" width="12" height="20" rx="2" fill="#C9D3E6"/><rect x="248" y="104" width="12" height="28" rx="2" fill="#245BE6"/><rect x="264" y="116" width="12" height="16" rx="2" fill="#C9D3E6"/></svg>'],
+    fr:{ d:"Plateforme de gestion des contrats santé, sur le web et en application iOS pour les assurés.", r:"Gestion de projet et recette ; responsable régional des tests." },
+    en:{ d:"Health insurance contract management platform, on the web and as an iOS app for members.", r:"Project management and user acceptance testing; regional testing lead." },
+    links:[["https://medinova.wtwco.com","web"],["https://apps.apple.com/fr/app/wtw/id6449940732","ios"]] },
+  { id:"autodiag", name:"Autodiag", org:"Bpifrance Université", tl:"bpifrance", dom:"ba", vis:['<svg class="prod-mock" viewBox="0 0 320 190" aria-hidden="true" focusable="false"><rect x="1" y="1" width="318" height="188" rx="12" fill="#fff" stroke="#DCE3EE"/><path d="M1 13a12 12 0 0 1 12-12h294a12 12 0 0 1 12 12v13H1z" fill="#F1F4F9"/><circle cx="16" cy="14" r="3.2" fill="#D4DAE5"/><circle cx="27" cy="14" r="3.2" fill="#D4DAE5"/><circle cx="38" cy="14" r="3.2" fill="#D4DAE5"/><rect x="56" y="8" width="150" height="12" rx="6" fill="#fff" stroke="#E2E7EF"/>\n<rect x="18" y="40" width="96" height="7" rx="3.5" fill="#0B1F4D" opacity=".8"/><rect x="18" y="54" width="120" height="5" rx="2.5" fill="#C9D3E6"/>\n<g fill="#F6F8FB" stroke="#E2E7EF"><rect x="18" y="70" width="132" height="22" rx="6"/><rect x="18" y="98" width="132" height="22" rx="6"/><rect x="18" y="126" width="132" height="22" rx="6"/></g><circle cx="30" cy="81" r="4.5" fill="#245BE6"/><circle cx="30" cy="109" r="4.5" fill="none" stroke="#9DB0D6" stroke-width="1.5"/><circle cx="30" cy="137" r="4.5" fill="none" stroke="#9DB0D6" stroke-width="1.5"/><rect x="42" y="78" width="80" height="5" rx="2.5" fill="#9DB0D6"/><rect x="42" y="106" width="64" height="5" rx="2.5" fill="#C9D3E6"/><rect x="42" y="134" width="72" height="5" rx="2.5" fill="#C9D3E6"/>\n<rect x="18" y="158" width="58" height="16" rx="8" fill="#0B1F4D"/><g transform="translate(236 108)"><g fill="none" stroke="#DCE3EE"><polygon points="0,-58 55,-18 34,47 -34,47 -55,-18"/><polygon points="0,-38 36,-12 22,31 -22,31 -36,-12"/><polygon points="0,-19 18,-6 11,15 -11,15 -18,-6"/></g><polygon points="0,-46 44,-14 20,28 -28,38 -38,-12" fill="rgba(36,91,230,.18)" stroke="#245BE6" stroke-width="1.8" stroke-linejoin="round"/></g></svg>'],
+    fr:{ d:"Autodiagnostics en ligne qui permettent aux dirigeants de PME et d’ETI d’évaluer leur entreprise en une quinzaine de minutes.", r:"Recette et contenu." },
+    en:{ d:"Online self-assessments that let SME and mid-cap leaders evaluate their company in about fifteen minutes.", r:"User acceptance testing and content." },
+    links:[["https://www.bpifrance-universite.fr/catalogue/recherche?q=autodiag","cat"]] }
+];
+const PL = { fr:{ live:"En ligne", role:"Mon rôle", web:"Plateforme web", ios:"Application iOS", cat:"Voir les autodiagnostics", inprod:"En production" }, en:{ live:"Live", role:"My role", web:"Web platform", ios:"iOS app", cat:"See the self-assessments", inprod:"In production" } };
+const prodHTML = x => { const t = x[LANG] || x.fr, L = PL[LANG] || PL.fr;
+  return `<article class="prod-card" id="prod-${x.id}"><div class="prod-vis${x.vis.length > 1 ? " prod-duo" : ""}">${x.vis.join("")}</div><div class="prod-txt">
+  <p class="prod-meta"><span class="live"><span class="dot ok" aria-hidden="true"></span>${L.live}</span><span>${x.org}</span></p>
+  <h3>${x.name}</h3><p>${t.d}</p>
+  <p class="prod-role"><b>${L.role}</b> ${t.r}</p>
+  <p class="prod-links">${x.links.map(l => "<a rel=\"noopener\" href" + "=" + JSON.stringify(l[0]) + ">" + L[l[1]] + " ↗</a>").join("")}</p></div></article>`; };
+const RECOS = [
+  { id:"jcn", ok:true, name:"Jean-Claude N’Guessan", role:"Directeur des opérations West & Central Africa", org:"Willis Towers Watson", tl:"wtw", short:"Plus jeune analyste de la région, il a su gagner la confiance de ses interlocuteurs […]",
+    quote:"Plus jeune analyste de la région, il a su gagner la confiance de ses interlocuteurs et répondre aux attentes du top management […]. Nous avons particulièrement apprécié sa capacité à évoluer sous pression, son engagement et son professionnalisme.",
+    full:["Issu d’un parcours initialement éloigné du secteur de l’assurance, Christian a démontré une remarquable capacité d’adaptation, parvenant rapidement à maîtriser les enjeux d’un environnement complexe et exigeant.","Plus jeune analyste de la région, il a su gagner la confiance de ses interlocuteurs et répondre aux attentes du top management, tout en menant à bien les responsabilités qui lui étaient confiées dans le cadre d’un important programme de migration et de transformation à l’échelle régionale.","Son autonomie, sa rigueur, sa flexibilité et ses compétences professionnelles, associées à d’excellentes qualités humaines, ont contribué au succès du projet.","Nous avons particulièrement apprécié sa capacité à évoluer sous pression, son engagement et son professionnalisme. Ce fut un réel plaisir de collaborer avec Christian, et nous n’hésiterions pas à travailler de nouveau avec lui si nos parcours professionnels venaient à se croiser."] },
+  { id:"nb", ok:true, name:"Nawal Bozakri", role:"Manager du Pôle Digital Learning", org:"Bpifrance Université", tl:"bpifrance",
+    quote:"Christian a fait preuve d’un grand professionnalisme, marqué par son engagement, sa fiabilité, sa rigueur, son sens de l’initiative et son sens du service. […] Je recommande chaleureusement Christian.",
+    short:"Christian a fait preuve d’un grand professionnalisme […]",
+    full:["J’ai le plaisir de rédiger cette lettre de recommandation pour Christian SODARA, qui a effectué son stage au sein de Bpifrance Université du 18 août 2025 au 19 décembre 2025. Durant cette période, Christian a fait preuve d’un grand professionnalisme, marqué par son engagement, sa fiabilité, sa rigueur, son sens de l’initiative et son sens du service.","Autonome et créatif, Christian a contribué à de nombreux projets au service des besoins de notre équipe. Il a notamment développé des compétences en gestion de projet, en travail collaboratif, en administration d’outils, ainsi qu’en création d’outils de pilotage et de dashboards.","Christian s’est également illustré par sa capacité à réaliser des analyses statistiques pertinentes, utiles pour la prise de décision. Son intégration au sein de l’équipe a été fluide, et ce fut un réel plaisir de l’accompagner durant son stage.","Je recommande chaleureusement Christian et lui souhaite beaucoup de succès pour la suite de son parcours."] }
+];
+const recoHTML = r => { const e = LANG === "en" ? (EN.recos[r.id] || {}) : {};
+  const pend = r.ok ? "" : `<p class="draft-only reco-pend">${LANG === "en" ? "Awaiting the author’s approval: hidden on the live site." : "En attente de l’accord de l’auteur : masqué sur le site en ligne."}</p>`;
+  return `<figure class="reco-card">${pend}<blockquote${LANG === "en" ? " lang=\"en\"" : ""}><p>«&nbsp;${e.quote || r.quote}&nbsp;»</p></blockquote>
+  <figcaption><b>${r.name}</b><span>${e.role || r.role} · ${r.org}</span></figcaption>
+  <details class="xc-more reco-more"><summary>${U().rcFull}</summary>${(e.full || r.full).map(t => `<p>${t}</p>`).join("")}${LANG === "en" ? `<p class="reco-note">${U().rcTr}</p>` : ""}</details></figure>`; };
 const TIMELINE = [
   { id:"esatic", type:"edu", stage:"Fondation technique", when:"", org:"ESATIC, Abidjan", role:"Licence en informatique et télécommunications",
-    items:["Bases en informatique, réseaux et programmation."], draft:"Dates de la licence." },
+    items:["Formation initiale en informatique : réseaux, télécommunications et programmation."], draft:"Dates de la licence." },
   { id:"wtw", type:"work", stage:"Analyse métier", when:"2 ans", org:"Willis Towers Watson", logo:["logo-wtw.png","Logo WTW",""], role:"Business Analyst",
-    items:["Analyse de données sur 4 pays.","Conseil en gestion des risques.","Pilotage du déploiement d’une plateforme logicielle de 2 M$."], link:["#projet-wtw","Voir le projet de déploiement"], draft:"Dates exactes (mois et année)." },
+    items:["Projets de transformation, intégration, migration et coordination métier.","Analyse de données sur 4 pays.","Conseil en gestion des risques.","Pilotage du déploiement d’une plateforme logicielle de 2 M$."], link:["#projet-wtw","Voir le projet de déploiement"], draft:"Dates exactes (mois et année)." },
   { id:"datascientest", type:"work", stage:"Gestion de projets", when:"", org:"DataScientest", logo:["logo-liora.png","Logo Liora, ex DataScientest","tall"], role:"Stage, gestion de projet",
-    items:["Organisme de formation en data science."], draft:"Dates et missions principales." },
+    items:["Gestion de projets et coordination opérationnelle.","Organisme de formation en data science."], draft:"Dates et missions principales." },
   { id:"bpifrance", type:"work", stage:"Gestion de projets", when:"Août à déc. 2025", org:"Bpifrance", logo:["logo-bpifrance.png","Logo Bpifrance",""], role:"Assistant chef de projet, stage · Digital Learning",
-    items:["Reportings structurés et tableaux de bord KPI destinés à la direction."], draft:"" },
+    items:["Gestion de projets digitaux, reporting et amélioration des processus.","Reportings structurés et tableaux de bord KPI destinés à la direction."], draft:"" },
   { id:"skema", type:"edu", stage:"Finance et modélisation", when:"2024 à 2027", org:"SKEMA Business School, Paris", logo:["logo-skema.png","Logo SKEMA Business School","skema"], role:"Programme Grande École, Master in Management",
-    items:["Spécialisation Corporate Financial Management.","Électif Quantitative Finance.","Préparation du CFA Level I.","Valorisation d’entreprises, modélisation financière, recherche sur la performance des fonds."], link:["#projets","Voir les projets"], draft:"" }
+    items:["Corporate Financial Management, avec une spécialisation complémentaire en finance quantitative.","Préparation du CFA Level I.","Valorisation d’entreprises, modélisation financière, recherche sur la performance des fonds."], link:["#projets","Voir les projets"], draft:"" }
 ];
 const ENGAGEMENTS = [
   { k:"Compétition d’analyse financière", t:"CFA Institute Research Challenge",
@@ -1619,7 +2043,7 @@ const ENGAGEMENTS = [
 const SKILLS = [
   { t:"Finance", ok:["Analyse financière","Valorisation (DCF, multiples)","Modélisation financière"], learn:["Corporate Finance","Marchés financiers","Produits dérivés"] },
   { t:"Data & Technology", ok:["Python","Excel","Analyse de données"], learn:[], draft:"Confirmer Power BI et l’automatisation avant de les afficher." },
-  { t:"Business & Execution", ok:["Business analysis","Gestion de projet","Transformation digitale","Coordination internationale"], learn:[] }
+  { t:"Business & Execution", ok:["Business analysis","Gestion de projet","Reporting et data","Coordination des parties prenantes","Conduite du changement","Coordination internationale"], learn:[] }
 ];
 
 /* ============ Figures calculées (illustrations, jamais des résultats) ============ */
@@ -1814,6 +2238,8 @@ const rowHTML = t => { const items = TL(t, "items") || [], when = TL(t, "when");
   <h3>${TL(t, "org")}</h3>
   <p class="xc-role">${TL(t, "role")}</p>
   ${items[0] ? `<p class="xc-hl">${items[0]}</p>` : ""}
+  ${PROD.filter(x => x.tl === t.id).map(x => `<p class="xc-prod"><span class="dot ok" aria-hidden="true"></span>${(PL[LANG] || PL.fr).inprod} : <a href="#projets-prod">${x.name}</a></p>`).join("")}
+  ${RECOS.filter(r => r.tl === t.id && (r.ok || SHOW_DRAFTS)).map(r => `<p class="xc-q">«&nbsp;${LANG === "en" ? (EN.recos[r.id] || {}).short || "" : r.short}&nbsp;» <a href="#accueil-reco">${r.name}</a></p>`).join("")}
   ${items.length > 1 || t.link || (t.draft && SHOW_DRAFTS) ? `<details class="xc-more"><summary>${xMore()}</summary>${list(items.slice(1))}${t.link ? "<a class=\"link\" href" + "=" + JSON.stringify(t.link[0]) + ">" + (TL(t, "link") && LANG !== "fr" ? TL(t, "link") : t.link[1]) + "</a>" : ""}${t.draft ? D(t.draft) : ""}</details>` : ""}
   </li>`; };
 const engRow = (e, i) => { const en = LANG === "en" ? EN.eng[i] || {} : {};
@@ -1861,6 +2287,7 @@ function setDomain(d) {
   document.getElementById("proj-tiles").classList.toggle("has-sel", !!d);
   document.getElementById("tiles-all").hidden = !d;
   document.querySelectorAll("#all-cards .card").forEach(c => { c.hidden = !!d && c.dataset.d !== d; });
+  const pp = document.querySelector(".prod-proj"); if (pp) pp.hidden = !!d && !PROD.some(x => x.dom === d);
 }
 
 /* Filtres des écrits */
@@ -1881,6 +2308,11 @@ function renderAll() {
   fill("parcours-engs", ENGAGEMENTS.map(engRow).join(""));
   fill("skills", SKILLS.map(skillHTML).join(""));
   fill("home-stories", STORIES.map(storyHTML).join(""));
+  const recos = RECOS.filter(r => r.ok || SHOW_DRAFTS);
+  fill("reco-list", recos.map(recoHTML).join(""));
+  document.querySelector(".reco").hidden = !recos.length;
+  fill("home-prod", PROD.map(prodHTML).join(""));
+  fill("proj-prod", PROD.map(prodHTML).join(""));
   fill("home-tiles", DOMAINS.map(d => `<a class="tile t-${d.id}" href="#projets-${d.id}">${tileInner(d)}</a>`).join(""));
   fill("proj-tiles", DOMAINS.map(d => `<button type="button" class="tile t-${d.id}" data-d="${d.id}" aria-pressed="false">${tileInner(d)}</button>`).join(""));
   document.querySelectorAll("#proj-tiles .tile").forEach(t => t.addEventListener("click", () => setDomain(t.getAttribute("aria-pressed") === "true" ? null : t.dataset.d)));
@@ -1897,13 +2329,14 @@ const VEILLE_HOSTS = ["www.ecb.europa.eu", "ecb.europa.eu", "www.amf-france.org"
 let veilleData = null;
 const fmtDate = (iso, opts) => { const d = new Date(iso); return isNaN(d) ? "" : d.toLocaleDateString(U().locale, opts || { day: "numeric", month: "short", year: "numeric" }); };
 function veilleEmpty() {
+    const hm = document.getElementById("home-mkt"); if (hm) hm.hidden = true;
     fill("veille", `<div class="v-empty"><svg viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="9"/><path d="M11 6.5V11l3 2"/></svg><div>
     <p class="v-t">${U().vEmptyT}</p>
     <p>${U().vEmptyP}<a href="https://www.ecb.europa.eu/press/pr/html/index.en.html" rel="noopener">${U().vEcb}</a>${U().vAnd}<a href="https://www.amf-france.org/fr/actualites-publications" rel="noopener">${U().vAmf}</a>.</p></div></div>`);
 }
 const V_SRC = {
-  BCE: { fr: ["BCE", "Banque centrale européenne"], en: ["ECB", "European Central Bank"], url: "https://www.ecb.europa.eu/press/pr/html/index.en.html", lang: "en", n: 5 },
-  AMF: { fr: ["AMF", "Autorité des marchés financiers"], en: ["AMF", "French markets regulator"], url: "https://www.amf-france.org/fr/actualites-publications", lang: "fr", n: 5 }
+  BCE: { fr: ["BCE", "Banque centrale européenne"], en: ["ECB", "European Central Bank"], url: "https://www.ecb.europa.eu/press/pr/html/index.en.html", lang: "en", n: 3 },
+  AMF: { fr: ["AMF", "Autorité des marchés financiers"], en: ["AMF", "French markets regulator"], url: "https://www.amf-france.org/fr/actualites-publications", lang: "fr", n: 3 }
 };
 const V_KPI = {
   dfr: { fr: "Taux de dépôt BCE", en: "ECB deposit rate", unit: "%", dec: 2 },
@@ -1928,8 +2361,9 @@ function veilleRender(data) {
   const srcs = Object.keys(V_SRC).filter(k => items.some(i => i.source === k));
   const col = k => { const m = V_SRC[k], list = items.filter(i => i.source === k).slice(0, m.n), name = m[LANG] || m.fr;
     return `<div class="v-col"><div class="v-col-h"><h3 id="vc-${k}"><span class="pill ${k.toLowerCase()}">${name[0]}</span>${name[1]}</h3><a rel="noopener" lang="${m.lang}" href` + "=" + JSON.stringify(m.url) + `>${U().vAll}</a></div>
-      <ul class="v-list">${list.map((i, n) => "<li><a class=\"v-item" + (n === 0 ? " lead" : "") + "\" rel=\"noopener\" lang=\"" + m.lang + "\" href" + "=" + JSON.stringify(i.link) + `><time datetime="${esc(i.date)}">${fmtDate(i.date)}</time><span class="t">${esc(i.title)}</span>${n === 0 ? `<span class="v-more">${U().vRead}${new URL(i.link).hostname.replace(/^www\./, "")}</span>` : ""}</a></li>`).join("")}</ul></div>`; };
-  fill("veille", kpiHTML(data.indicators) + `<div class="v-cols">${srcs.map(col).join("")}</div>
+      <ul class="v-list">${list.map((i, n) => "<li><a class=\"v-item" + (n === 0 ? " lead" : "") + "\" rel=\"noopener\" lang=\"" + m.lang + "\" href" + "=" + JSON.stringify(i.link) + `><time datetime="${esc(i.date)}">${fmtDate(i.date)}</time>${LANG === "fr" && m.lang === "en" ? "<abbr class=\"v-en\" title=\"En anglais\">EN</abbr>" : ""}<span class="t">${esc(i.title)}</span>${n === 0 ? `<span class="v-more">${U().vRead}${new URL(i.link).hostname.replace(/^www\./, "")}</span>` : ""}</a></li>`).join("")}</ul></div>`; };
+  const kp = kpiHTML(data.indicators); fill("home-kpis", kp); document.getElementById("home-mkt").hidden = !kp;
+  fill("veille", kp + `<div class="v-cols">${srcs.map(col).join("")}</div>
     <p class="v-foot">${U().vUpd}${fmtDate(data.updated, { day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" })} · ${U().vSrc}${srcs.map(k => (V_SRC[k][LANG] || V_SRC[k].fr)[1]).join(", ")}${data.indicators && data.indicators.length ? U().vKpiSrc : ""}. ${U().vNote}</p>`);
 }
 
@@ -1948,6 +2382,9 @@ function route() {
   else if (view === "projets") setDomain(null);
   if (h.startsWith("parcours-")) { view = nav = "parcours"; target = document.getElementById("tl-" + h.slice(9)) || document.getElementById("p-" + h.slice(9)); }
   if (h === "accueil-engagements") target = document.getElementById("ev-t");
+  if (h === "accueil-reco") target = document.getElementById("reco-t");
+  if (h === "ecrits-veille") { view = nav = "ecrits"; target = document.getElementById("fi-t"); }
+  if (h === "projets-prod") { view = nav = "projets"; setDomain(null); target = document.getElementById("prod-t2"); }
   document.querySelectorAll("[data-page]").forEach(el => { el.hidden = el.id !== "v-" + view; });
   document.querySelectorAll(".nav a").forEach(a => a.dataset.view === nav ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"));
   const page = document.getElementById("v-" + view), h1 = page.querySelector("h1");
@@ -2042,17 +2479,11 @@ document.getElementById("copy").addEventListener("click", () => {
   try { navigator.clipboard.writeText(t).then(() => toast.textContent = U().copied, () => toast.textContent = U().copyFail); }
   catch (e) { toast.textContent = U().copyFail; }
 });
-document.querySelectorAll(".topic").forEach(t => t.addEventListener("click", () => {
-  document.getElementById("f-subj").value = t.dataset.topic;
-  document.querySelectorAll(".topic").forEach(x => x.setAttribute("aria-current", x === t ? "true" : "false"));
-  const f = document.getElementById(document.getElementById("f-name").value ? "f-msg" : "f-name");
-  f.scrollIntoView({ behavior: reduce() ? "auto" : "smooth", block: "center" }); f.focus({ preventScroll: true });
-}));
 document.getElementById("cform").addEventListener("submit", e => {
   e.preventDefault();
   const f = e.target, v = n => f.elements[n].value.trim(), status = document.getElementById("f-status");
   if (!v("name") || !v("message")) { status.textContent = U().fill; (v("name") ? f.elements.message : f.elements.name).focus(); return; }
-  const subj = f.elements.subject.options[f.elements.subject.selectedIndex].textContent.trim();
+  const subj = (f.querySelector("input[name=subject]:checked") || f.querySelector("input[name=subject]")).nextElementSibling.textContent.trim();
   const subject = subj + " · " + v("name") + (v("org") ? " (" + v("org") + ")" : "");
   const body = v("message") + "\n\n" + v("name") + (v("org") ? "\n" + v("org") : "");
   location.href = "mailto:christiansodara00@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);

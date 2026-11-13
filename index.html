@@ -1254,6 +1254,10 @@ body { font-feature-settings: normal; }
 .ct-mail a { overflow-wrap: anywhere; }
 @media (max-width: 380px) { .ct-mail a { font-size: 21px; } }
 .brand, .foot-brand { font-weight: 600; letter-spacing: -0.01em; word-spacing: .06em; }
+.brand { display: inline-flex; align-items: center; gap: 10px; }
+.mono { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: #0B1F4D; color: #fff; font-size: 12px; font-weight: 700; letter-spacing: .02em; }
+.brand:hover .mono { background: var(--accent); }
+@media (max-width: 380px) { .brand-t { display: none; } }
 </style>
 </head>
 <body>
@@ -1263,7 +1267,7 @@ body { font-feature-settings: normal; }
 
 <header class="top">
   <div class="capsule">
-    <a class="brand" href="#accueil">Christian Sodara</a>
+    <a class="brand" href="#accueil" aria-label="Christian Sodara, accueil"><span class="mono" aria-hidden="true">CS</span><span class="brand-t">Christian Sodara</span></a>
     <nav class="nav" id="nav" aria-label="Navigation principale" data-i18n-aria="nav.label">
       <a href="#accueil" data-view="accueil" data-i18n="nav.home">Accueil</a>
       <a href="#ecrits" data-view="ecrits" data-i18n="nav.writing">Écrits</a>

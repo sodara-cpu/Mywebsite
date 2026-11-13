@@ -22,7 +22,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&amp;display=swap">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -53,9 +53,9 @@
   --accent-soft: #EAF0FD;
   --draft: #7F5800;
   --draft-bg: #FFF8E6;
-  --sans: "Plus Jakarta Sans", "Helvetica Neue", Arial, sans-serif;
-  --serif: "Newsreader", Georgia, "Times New Roman", serif;
-  --display: "Newsreader", Georgia, "Times New Roman", serif;
+  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --display: "Source Serif 4", Georgia, "Times New Roman", serif;
   --wrap: 1200px;
   --r: 14px;
   color-scheme: light;
@@ -1173,7 +1173,7 @@ section { padding: 72px 0; }
   .nav a[aria-current="page"], .nav a[aria-current="page"]:hover { color: var(--ink); font-weight: 600; }
   .nav a[aria-current="page"]::after { content: ""; position: absolute; left: 50%; bottom: 0; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: var(--accent); }
   .lang-sw { border: 0; padding: 0; gap: 0; }
-  .lang-sw button { min-width: 30px; min-height: 30px; font-size: 12.5px; color: #86868B; background: none !important; }
+  .lang-sw button { min-width: 30px; min-height: 30px; font-size: 12.5px; color: #6E6E73; background: none !important; }
   .lang-sw button + button::before { content: "·"; margin-right: 6px; color: #C7C7CC; }
   .lang-sw button[aria-pressed="true"] { color: var(--ink); }
   #v-parcours .subnav { top: 56px; }
@@ -1181,12 +1181,78 @@ section { padding: 72px 0; }
 }
 @media (max-width: 900px) {
   .lang-sw { border: 0; padding: 0; gap: 0; }
-  .lang-sw button { min-width: 34px; font-size: 13px; color: #86868B; background: none !important; }
+  .lang-sw button { min-width: 34px; font-size: 13px; color: #6E6E73; background: none !important; }
   .lang-sw button + button::before { content: "·"; margin-right: 6px; color: #C7C7CC; }
   .lang-sw button[aria-pressed="true"] { color: var(--ink); }
   .top { border-bottom: 1px solid rgba(0, 0, 0, .06); }
 }
 #v-parcours .bio-photo img { aspect-ratio: 1; object-position: 50% 20%; -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent); mask-image: linear-gradient(to bottom, #000 80%, transparent); }
+
+/* ===== Typographie : deux familles, une échelle stricte =====
+   Newsreader (empattements) uniquement aux grandes tailles d'affichage ;
+   Inter pour tout le reste, y compris les titres de cartes et les chiffres. */
+body { font-family: var(--sans); font-size: 17px; line-height: 1.55; letter-spacing: -0.011em; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-feature-settings: "cv11", "ss01"; }
+p, li, dd { letter-spacing: -0.011em; }
+.eyebrow, .xc-k, .prod-role b, .traj-k, .foot-k, .trust-certs .trust-ck, .ct-topics legend, .v-kpi .k, .mkt .v-kpi .k { font-family: var(--sans); font-weight: 600; letter-spacing: .06em; }
+/* Titres de cartes : sans-serif, semi-gras */
+.card h3, .post h3, .prod-card h3, .xcard h3, .exp-card h3, .traj-list b, .v-item.lead span.t, .story h3 { font-family: var(--sans); font-weight: 600; letter-spacing: -0.02em; line-height: 1.25; }
+.card h3, .post h3 { font-size: 20px; }
+.prod-card h3 { font-size: 24px; }
+.xcard h3, #v-parcours .xcard h3 { font-size: 21px; }
+.exp-card h3 { font-size: 21px; }
+.traj-list b { font-size: clamp(19px, 1.6vw, 22px); }
+h3 { font-weight: 600; letter-spacing: -0.015em; }
+/* Chiffres : sans-serif, chiffres tabulaires */
+.stat-row b, #v-parcours .stat-row b, .v-kpi .v, .mkt .v-kpi .v, .proofs b.num { font-family: var(--sans); font-weight: 600; letter-spacing: -0.035em; font-variant-numeric: tabular-nums; }
+.v-kpi .v small { font-weight: 500; }
+.ct-mail a { font-family: var(--sans); font-weight: 600; letter-spacing: -0.025em; }
+/* Grands titres en empattements : léger, serré */
+h1, h2, .ed-h1, .ed-h2, .ct-h1, .ct-h2, .mkt-h h2, .exp-h, .cta-band h2, .ed-close h2 { font-weight: 400; letter-spacing: -0.025em; }
+.hero h1 { letter-spacing: -0.03em; }
+/* Interface */
+.btn, .cta-link, .link, .nav a, .subnav button, .lang-sw button { font-family: var(--sans); letter-spacing: -0.01em; }
+.btn { font-weight: 600; }
+.pill, .chip, .xc-when, .st { font-family: var(--sans); font-weight: 600; letter-spacing: 0; }
+h1, h2, .ed-h1, .ed-h2, .ct-h1, .ct-h2, .mkt-h h2, .exp-h, .ed-close h2, .reco-card blockquote p, .article h1 { font-optical-sizing: auto; font-weight: 400; }
+.hero h1, .ed-h1, .ct-h1 { font-weight: 300; letter-spacing: -0.035em; }
+body { font-feature-settings: normal; }
+
+/* Méthode : trois étapes, séparées par l'espace seul */
+.method .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px; border: 0 !important; margin-top: 36px; }
+.method .step { border: 0 !important; padding: 0 !important; display: flex; flex-direction: column; gap: 10px; }
+.method .step .n { font-family: var(--sans); font-size: 40px; font-weight: 600; letter-spacing: -0.03em; color: var(--accent); line-height: 1; margin-bottom: 8px; }
+.method .step h3 { font-size: 24px; font-weight: 600; letter-spacing: -0.02em; }
+.method .step p { font-size: 16.5px; color: var(--muted); line-height: 1.55; flex: 1; }
+.method .ex2 { margin-top: 6px; font-size: 15px; }
+@media (max-width: 760px) { .method .steps { grid-template-columns: 1fr; gap: 34px; } .method .step .n { font-size: 32px; } }
+
+/* ===== Accessibilité et confort tactile ===== */
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+.xcards:focus-visible, .cards:focus-visible, .stories:focus-visible, .prod-grid:focus-visible { outline-offset: -3px; }
+::selection { background: rgba(36, 91, 230, .18); }
+@media (pointer: coarse), (max-width: 900px) {
+  /* Cibles tactiles d'au moins 44 px, comme recommandé par Apple */
+  .cta-link, .link, .card .go, .exp-go, .prod-links a, .ct-meta a, .crumbs a, .foot-col a, .xc-prod a, .xc-q a { min-height: 44px; display: inline-flex; align-items: center; }
+  .xc-more summary, .reco-more summary { min-height: 44px; }
+  .lang-sw button { min-height: 44px; min-width: 44px; }
+  .subnav button, .filters button, .ct-topics span { min-height: 44px; display: inline-flex; align-items: center; }
+  .brand, .foot-brand { min-height: 44px; display: inline-flex; align-items: center; }
+  .foot-col { gap: 0; }
+  .trust-logos a, .trust-certs a, .v-col-h a { min-height: 44px; display: inline-flex; align-items: center; }
+  .trust-certs { gap: 0; }
+  .prod-links, .ct-acts { row-gap: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+  .card:hover .fig, .post:hover .cover, .story:hover > img.bg, .trust-logos a:hover .logo, .btn:hover { transform: none !important; }
+}
+@media (prefers-contrast: more) {
+  :root { --muted: #4A4F57; --body: #24272C; }
+  .v-en, .xc-when, .pill { border: 1px solid currentColor; }
+}
+.link { gap: 4px; }
+.ct-mail a { overflow-wrap: anywhere; }
+@media (max-width: 380px) { .ct-mail a { font-size: 21px; } }
 </style>
 </head>
 <body>
@@ -1275,29 +1341,16 @@ section { padding: 72px 0; }
     </div>
   </section>
 
-  <section class="exp" aria-labelledby="dom-t">
+  <section class="method" aria-labelledby="app-t">
     <div class="wrap">
-      <p class="eyebrow" data-i18n="exp.k">Domaines d’expertise</p>
-      <h2 id="dom-t" class="exp-h" data-i18n="exp.h2">Valoriser les entreprises. <em>Lire les marchés.</em> Construire les outils.</h2>
-      <div class="exp-cards">
-        <a class="exp-card" href="#projets-valo">
-          <span class="exp-n" aria-hidden="true">01</span>
-          <h3 data-i18n="exp.t1">Finance d’entreprise &amp; valorisation</h3>
-          <p data-i18n="exp.p1">DCF, multiples, project finance : des modèles qui relient hypothèses, structure financière et valeur.</p>
-          <span class="exp-go" data-i18n="exp.go">Découvrir les projets</span>
-        </a>
-        <a class="exp-card" href="#projets-marches">
-          <span class="exp-n" aria-hidden="true">02</span>
-          <h3 data-i18n="exp.t2">Marchés &amp; finance quantitative</h3>
-          <p data-i18n="exp.p2">Backtests de stratégies, pricing d’options et lecture de la politique monétaire, avec une méthode reproductible.</p>
-          <span class="exp-go" data-i18n="exp.go">Découvrir les projets</span>
-        </a>
-        <a class="exp-card" href="#projets-ba">
-          <span class="exp-n" aria-hidden="true">03</span>
-          <h3 data-i18n="exp.t3">Data, technologie &amp; transformation</h3>
-          <p data-i18n="exp.p3">Du cadrage métier au déploiement : plateformes, outils d’analyse et pilotage de projets internationaux.</p>
-          <span class="exp-go" data-i18n="exp.go">Découvrir les projets</span>
-        </a>
+      <div class="sec-head"><div><p class="eyebrow" data-i18n="m.k2">Comment je travaille</p><h2 id="app-t" data-i18n="m.h2">De l’analyse à l’exécution.</h2></div></div>
+      <div class="steps">
+        <div class="step"><span class="n">01</span><h3 data-i18n="m.s1">Comprendre</h3><p data-i18n="m.p1">Analyser les enjeux métiers, financiers ou opérationnels avant de proposer une solution.</p>
+          <a class="cta-link ex2" href="#projet-lvmh"><span data-i18n="m.e1s">Valorisation de LVMH</span> <span aria-hidden="true">›</span></a></div>
+        <div class="step"><span class="n">02</span><h3 data-i18n="m.s2">Modéliser</h3><p data-i18n="m.p2">Traduire le problème en modèle : hypothèses explicites, méthode reproductible, tests de sensibilité.</p>
+          <a class="cta-link ex2" href="#projet-backtests"><span data-i18n="m.e2s">Backtests systématiques</span> <span aria-hidden="true">›</span></a></div>
+        <div class="step"><span class="n">03</span><h3 data-i18n="m.s3">Livrer</h3><p data-i18n="m.p3">Transformer l’analyse en livrable utilisable : outil, plateforme ou tableau de bord.</p>
+          <a class="cta-link ex2" href="#projet-wtw"><span data-i18n="m.e3s">Déploiement chez Willis Towers Watson</span> <span aria-hidden="true">›</span></a></div>
       </div>
     </div>
   </section>
@@ -1310,19 +1363,6 @@ section { padding: 72px 0; }
     </div>
   </section>
 
-  <section aria-labelledby="app-t">
-    <div class="wrap">
-      <div class="sec-head"><div><p class="eyebrow" data-i18n="m.k">Méthode</p><h2 id="app-t" data-i18n="m.h2">De l’analyse à l’exécution.</h2><p class="sub" data-i18n="m.sub">Mon approche : comprendre les enjeux économiques, développer des analyses financières rigoureuses et concevoir des solutions concrètes pour éclairer la prise de décision.</p></div></div>
-      <div class="steps">
-        <div class="step"><span class="n">01</span><h3 data-i18n="m.s1">Comprendre</h3><p data-i18n="m.p1">Analyser les enjeux métiers, financiers ou opérationnels avant de proposer une solution.</p>
-          <a class="ex" href="#projet-lvmh" data-i18n="m.e1"><b>Valorisation de LVMH</b>Étudier chacun des cinq métiers du groupe avant de les valoriser séparément.</a></div>
-        <div class="step"><span class="n">02</span><h3 data-i18n="m.s2">Modéliser</h3><p data-i18n="m.p2">Traduire le problème en modèle : hypothèses explicites, méthode reproductible, tests de sensibilité.</p>
-          <a class="ex" href="#projet-backtests" data-i18n="m.e2"><b>Backtests systématiques</b>Cinq stratégies codées en Python et évaluées sur la même grille de critères.</a></div>
-        <div class="step"><span class="n">03</span><h3 data-i18n="m.s3">Livrer</h3><p data-i18n="m.p3">Transformer l’analyse en livrable utilisable : outil, plateforme ou tableau de bord.</p>
-          <a class="ex" href="#projet-wtw" data-i18n="m.e3"><b>Déploiement chez Willis Towers Watson</b>Le pilotage du déploiement d’une plateforme logicielle de 2 M$.</a></div>
-      </div>
-    </div>
-  </section>
 
   <section class="mkt" id="home-mkt" aria-labelledby="mkt-t" hidden>
     <div class="wrap mkt-row">
@@ -1456,19 +1496,19 @@ section { padding: 72px 0; }
   <section class="ed-sec" id="p-exp" aria-labelledby="exp-t">
     <div class="wrap ed-grid">
       <h2 id="exp-t" class="ed-h2" data-i18n="p.expT">Expérience professionnelle</h2>
-      <ol class="xcards" id="xp-work"></ol>
+      <ol class="xcards" id="xp-work" tabindex="0" aria-labelledby="exp-t"></ol>
     </div>
   </section>
   <section class="ed-sec" id="p-edu" aria-labelledby="edu-t">
     <div class="wrap ed-grid">
       <h2 id="edu-t" class="ed-h2" data-i18n="p.eduT">Formation</h2>
-      <ol class="xcards" id="xp-edu"></ol>
+      <ol class="xcards" id="xp-edu" tabindex="0" aria-labelledby="edu-t"></ol>
     </div>
   </section>
   <section class="ed-sec" id="tl-engagements" aria-labelledby="en-t">
     <div class="wrap ed-grid">
       <h2 id="en-t" class="ed-h2" data-i18n="p.engT">Engagements</h2>
-      <ol class="xcards" id="parcours-engs"></ol>
+      <ol class="xcards" id="parcours-engs" tabindex="0" aria-labelledby="en-t"></ol>
     </div>
   </section>
   <section class="ed-sec" id="p-skills" aria-labelledby="sk-t">
@@ -1602,7 +1642,7 @@ const I18N = { en: {
   "s.h2": "Models built, tested and documented.", "s.dom": "Explore by area", "s.domAria": "Projects by area", "all.projects": "All projects",
   "m.k": "Method", "m.h2": "From analysis to execution.",
   "m.s1": "Understand", "m.p1": "Analyse the business, financial or operational issues before proposing a solution.",
-  "m.e1": "<b>Valuation of LVMH</b>Studying each of the group’s five businesses before valuing them separately.",
+  "m.k2": "How I work", "m.e1s": "Valuation of LVMH", "m.e2s": "Systematic backtests", "m.e3s": "Deployment at Willis Towers Watson", "m.e1": "<b>Valuation of LVMH</b>Studying each of the group’s five businesses before valuing them separately.",
   "m.s2": "Model", "m.p2": "Turn the problem into a model: explicit assumptions, a reproducible method, sensitivity tests.",
   "m.e2": "<b>Systematic backtests</b>Five strategies coded in Python and assessed on the same set of criteria.",
   "m.s3": "Deliver", "m.p3": "Turn the analysis into a usable deliverable: a tool, a platform or a dashboard.",
@@ -2256,12 +2296,12 @@ const skillHTML = (s, i) => { const en = LANG === "en" ? EN.skills[i] || {} : {}
 /* Accueil : cartes hautes (événement, compétition, réseau) */
 const STORIES = [
   { href:"#parcours-bpifrance", img:["christian-bpifrance.jpg","Christian Sodara au Bpifrance Inno Generation 2025","Christian Sodara at Bpifrance Inno Generation 2025"], k:"Événement", t:"Bpifrance Inno Generation (BIG) 2025", s:"Accor Arena, Paris" },
-  { href:"#parcours-engagements", art:"Banques centrales", ico:'<svg viewBox="0 0 48 48"><path d="M8 40h32M10 34l8-9 7 6 13-15"/><path d="M31 16h7v7"/><rect x="6" y="6" width="36" height="36" rx="4"/></svg>', k:"Compétition d’analyse financière", t:"CFA Institute Research Challenge", s:"Participant" },
+  { href:"#parcours-engagements", img:["cfa-research-challenge.jpg","Visuel officiel du CFA Institute Research Challenge 2026","Official CFA Institute Research Challenge 2026 visual"], pos:"50% 20%", k:"Compétition d’analyse financière", t:"CFA Institute Research Challenge", s:"Participant" },
   { href:"#parcours-engagements", art:"Taux", logo:["logo-skema.png","SKEMA"], k:"Entrepreneuriat", t:"SKEMA Entrepreneurs", s:"Membre du réseau des étudiants entrepreneurs" }
 ];
 const storyHTML = (x, i) => { const en = LANG === "en" ? EN.stories[i] : {};
   return "<a class=\"story\" href" + "=" + JSON.stringify(x.href) + ">" +
-  (x.img ? "<img class=\"bg\" src" + "=" + JSON.stringify(x.img[0]) + " alt=" + JSON.stringify(LANG === "en" ? x.img[2] : x.img[1]) + ">" : artCover("story" + i, x.art, null)) +
+  (x.img ? "<img class=\"bg\"" + (x.pos ? " style=\"object-position:" + x.pos + "\"" : "") + " src" + "=" + JSON.stringify(x.img[0]) + " alt=" + JSON.stringify(LANG === "en" ? x.img[2] : x.img[1]) + ">" : artCover("story" + i, x.art, null)) +
   (x.ico ? `<span class="s-ico" aria-hidden="true">${x.ico}</span>` : "") + (x.logo ? "<img class=\"s-logo\" alt=\"\" src" + "=" + JSON.stringify(x.logo[0]) + ">" : "") +
   `<span class="s-k">${en.k || x.k}</span><h3>${x.t}</h3><span class="s-s">${en.s || x.s}</span><span class="s-more" aria-hidden="true">${U().more}</span></a>`; };
 

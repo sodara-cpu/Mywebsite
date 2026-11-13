@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-13T06:35+00:00",
+ "updated": "2026-11-13T19:37+00:00",
  "sources": [
   {
    "name": "BCE",
@@ -11,6 +11,12 @@
   }
  ],
  "items": [
+  {
+   "title": "Isabel Schnabel: Made in Europe",
+   "link": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261113~3883f1f187.en.html",
+   "source": "BCE",
+   "date": "2026-11-13T07:20+00:00"
+  },
   {
    "title": "Philip R. Lane: The science and practice of monetary policy communication: the ECB experience",
    "link": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261110_1~9725b7aa07.en.html",
@@ -94,12 +100,6 @@
    "link": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.mp261029~9a493adf17.en.html",
    "source": "BCE",
    "date": "2026-10-29T13:15+00:00"
-  },
-  {
-   "title": "ECB President Lagarde to step down on 7 February 2027",
-   "link": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261029~abbb6dc64b.en.html",
-   "source": "BCE",
-   "date": "2026-10-29T10:00+00:00"
   },
   {
    "title": "Révision du règlement MiCA : Les autorités françaises publient leurs propositions conjointes",
@@ -201,9 +201,9 @@
   },
   {
    "id": "y10",
-   "value": 3.3400829714,
-   "period": "2026-11-11",
-   "prev": 3.3308865271
+   "value": 3.3672459164,
+   "period": "2026-11-12",
+   "prev": 3.3400829714
   },
   {
    "id": "hicp",
@@ -213,9 +213,9 @@
   },
   {
    "id": "eurusd",
-   "value": 1.1081,
-   "period": "2026-11-12",
-   "prev": 1.1127
+   "value": 1.1052,
+   "period": "2026-11-13",
+   "prev": 1.1081
   }
  ]
 }

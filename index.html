@@ -944,11 +944,14 @@ body.menu-open .menu-btn span:last-child { transform: translateY(-4px) rotate(-4
    - une action principale bleue par bloc, les autres en liens « › »
    ================================================================ */
 :root { --soft: #F5F5F7; --r-lg: 22px; }
-section + section { border-top: 0; }
+section + section { border-top: 1px solid #F0F0F3; }
+.prod + section, section + .prod, .trust + section, .ct-form-sec + section { border-top: 0; }
 section { padding: 72px 0; }
 .trust { padding: 8px 0 0; } .trust-row { border-top: 0; }
-#v-accueil > .prod, #v-accueil > .reco, #v-accueil > #veille-sec, .stats, #v-projets .prod-proj { background: var(--soft); }
-#v-projets .prod-proj { padding: 40px 0 44px; margin-bottom: 8px; }
+#v-accueil > .prod { background: var(--soft); }
+#v-projets .prod-proj { padding: 24px 0 8px; }
+#v-projets .prod-card, .reco-card { background: var(--soft); }
+.stats { border-top: 1px solid #E5E5EA !important; border-bottom: 1px solid #E5E5EA; }
 .sec-head h2, section > .wrap > h2 { letter-spacing: -0.022em; }
 .eyebrow { letter-spacing: .1em; }
 
@@ -1005,7 +1008,7 @@ section { padding: 72px 0; }
 .cta-band .btn.ghost { background: transparent; color: var(--accent); border-color: transparent; }
 
 /* Pied de page clair */
-.foot { background: var(--soft); color: var(--ink); margin-top: 0; padding: 44px 0 40px; border-top: 1px solid #E5E5EA; }
+.foot { background: #fff; color: var(--ink); margin-top: 0; padding: 40px 0 40px; border-top: 1px solid #E5E5EA; }
 .foot-brand { color: var(--ink); font-size: 20px; }
 .foot-tag, .foot-copy { color: var(--muted); }
 .foot-k { color: var(--muted); }
@@ -1061,6 +1064,129 @@ section { padding: 72px 0; }
   .ct-h2 { font-size: 25px; }
   .ct-topics { justify-content: flex-start; } .ct-topics legend { text-align: left; }
 }
+.reco-card { background: var(--soft); }
+
+/* Repères des marchés (accueil) + veille allégée (Écrits) */
+.mkt { padding: 44px 0; }
+.mkt-row { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 32px; align-items: center; }
+.mkt-h h2 { font-family: var(--display); font-weight: 400; font-size: clamp(26px, 2.4vw, 34px); letter-spacing: -0.02em; margin-bottom: 10px; }
+.mkt .v-kpis { margin: 0; border-top: 0; border-bottom: 0; grid-auto-flow: column; grid-template-columns: none; }
+.mkt .v-kpi { padding: 4px 0 4px 22px; border-left: 1px solid #E5E5EA; }
+.mkt .v-kpi .v { font-size: 34px; }
+#veille-sec { scroll-margin-top: 90px; }
+#fi-t { scroll-margin-top: 110px; }
+.v-item span.t, .v-item.lead span.t { font-family: var(--sans); font-size: 15.5px; font-weight: 600; line-height: 1.45; letter-spacing: 0; }
+.v-item.lead { padding: 16px 0; } .v-item.lead .v-more { display: none; }
+.v-col-h { border-bottom: 1px solid #E5E5EA; }
+.v-kpis { border-top: 1px solid #E5E5EA; }
+.v-en { margin-left: 8px; font-size: 10.5px; font-weight: 700; letter-spacing: .06em; color: var(--muted); background: var(--soft); border-radius: 4px; padding: 1px 5px; text-decoration: none; }
+@media (max-width: 900px) {
+  .mkt-row { grid-template-columns: 1fr; gap: 18px; }
+  .mkt .v-kpis { grid-auto-flow: row; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .mkt .v-kpi { padding: 0 0 0 12px; border-top: 0 !important; }
+  .mkt .v-kpi:first-child { padding-left: 0; border-left: 0; }
+  .mkt .v-kpi .v { font-size: 24px; } .mkt .v-kpi .k { font-size: 10.5px; } .mkt .v-kpi .d { font-size: 11.5px; }
+}
+.v-item time { display: inline-block; }
+.v-item .v-en { display: inline-block; vertical-align: 1px; }
+
+/* ===== Parcours, version épurée ===== */
+#v-parcours .ed-head { padding: 32px 0 16px; }
+#v-parcours .bio { align-items: center; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); }
+#v-parcours .ed-h1 { font-size: clamp(42px, 5.4vw, 76px); letter-spacing: -0.03em; line-height: 1.02; }
+#v-parcours .ed-lede { font-size: 19px; color: var(--muted); max-width: 44ch; margin-bottom: 30px; }
+#v-parcours .ctas { align-items: center; gap: 22px; }
+#v-parcours .bio-photo { max-width: 360px; justify-self: end; }
+/* Trajectoire */
+.traj { padding: 28px 0 56px; }
+.traj-k { font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 18px; }
+.traj-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); position: relative; }
+.traj-list::before { content: ""; position: absolute; left: 0; right: 0; top: 7px; height: 2px; background: linear-gradient(90deg, #C9D3E6, var(--accent)); border-radius: 2px; }
+.traj-list li { position: relative; padding-right: 20px; }
+.traj-list li::before { content: ""; position: absolute; left: 0; top: 0; width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 2px solid var(--accent); box-sizing: border-box; }
+.traj-list li:last-child::before { background: var(--accent); }
+.traj-list a { display: flex; flex-direction: column; gap: 4px; padding-top: 34px; text-decoration: none; color: var(--ink); border-radius: 8px; }
+.traj-n { font-size: 12px; font-weight: 700; color: var(--accent); letter-spacing: .08em; }
+.traj-list b { font-family: var(--display); font-weight: 400; font-size: clamp(22px, 2vw, 28px); letter-spacing: -0.015em; line-height: 1.15; transition: color .2s; }
+.traj-list a > span:not(.traj-n) { font-size: 14.5px; font-weight: 600; }
+.traj-list small { font-size: 13.5px; color: var(--muted); }
+.traj-list a:hover b { color: var(--accent); }
+/* Sous-navigation en segments */
+#v-parcours .subnav { border: 0; background: rgba(255, 255, 255, .86); }
+#v-parcours .subnav .wrap { justify-content: center; gap: 6px; padding-top: 10px; padding-bottom: 10px; }
+#v-parcours .subnav button { border: 0; border-radius: 999px; padding: 8px 16px; font-size: 14px; background: transparent; }
+#v-parcours .subnav button:hover { background: var(--soft); color: var(--ink); }
+/* Chiffres clés : sans fond, plus grands */
+#v-parcours .stats { background: none; border: 0 !important; padding: 56px 0; }
+#v-parcours .stat-row li { border-left: 0; padding: 0 24px 0 0; }
+#v-parcours .stat-row b { color: var(--ink); font-size: clamp(48px, 5vw, 72px); letter-spacing: -0.03em; }
+#v-parcours .stat-row span { color: var(--muted); }
+/* Sections : titre au-dessus, contenu sur toute la largeur */
+#v-parcours .ed-sec { padding: 64px 0; }
+#v-parcours .ed-grid { display: block; }
+#v-parcours .ed-h2 { position: static; font-size: clamp(32px, 3.4vw, 48px); letter-spacing: -0.025em; margin-bottom: 28px; }
+#v-parcours .xcards { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+#v-parcours .xcard { padding: 26px 26px 22px; }
+#v-parcours .xcard h3 { font-size: 26px; }
+/* Compétences et certifications, plus légères */
+#v-parcours .skills-ed { border-top: 0; padding-top: 0; gap: 20px; }
+#v-parcours .skills-ed > * { background: var(--soft); border-radius: 22px; padding: 24px 26px; }
+#v-parcours .ed-table { border-top: 0; }
+#v-parcours .ed-table thead th { border-bottom: 1px solid #E5E5EA; }
+#v-parcours .ed-table th, #v-parcours .ed-table td { border-bottom-color: #F0F0F3; }
+/* Fin de page centrée */
+#v-parcours .ed-close { background: none; text-align: center; padding: 80px 0 88px; }
+#v-parcours .ed-close h2 { margin: 0 auto 26px; font-size: clamp(32px, 3.6vw, 48px); letter-spacing: -0.025em; }
+#v-parcours .ed-close .ctas { justify-content: center; }
+@media (max-width: 900px) {
+  #v-parcours .bio { grid-template-columns: 1fr; }
+  #v-parcours .bio-photo { justify-self: start; }
+  .traj-list { grid-template-columns: 1fr 1fr; row-gap: 26px; }
+  .traj-list::before { display: none; }
+  #v-parcours .subnav .wrap { justify-content: flex-start; }
+}
+@media (max-width: 620px) {
+  #v-parcours .ed-head { padding-top: 28px; }
+  #v-parcours .ed-lede { font-size: 17px; }
+  .traj-list { grid-template-columns: 1fr; row-gap: 0; }
+  .traj-list li { padding: 0 0 22px 30px; }
+  .traj-list li::before { top: 2px; }
+  .traj-list li:not(:last-child)::after { content: ""; position: absolute; left: 7px; top: 18px; bottom: 0; width: 2px; background: #DCE3EE; }
+  .traj-list a { padding-top: 0; }
+  #v-parcours .stats { padding: 36px 0; }
+  #v-parcours .stat-row b { font-size: 44px; }
+  #v-parcours .ed-sec { padding: 44px 0; }
+  #v-parcours .skills-ed > * { padding: 20px; }
+  #v-parcours .ctas { flex-direction: column; align-items: stretch; gap: 14px; }
+  #v-parcours .ctas .btn { justify-content: center; } #v-parcours .cta-link { justify-content: center; }
+}
+
+/* ===== Barre de navigation épurée ===== */
+@media (min-width: 901px) {
+  .top { top: 0; margin-top: 0; padding: 0; background: rgba(255, 255, 255, .78); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid rgba(0, 0, 0, .06); }
+  .capsule { position: relative; max-width: 1180px; height: 56px; padding: 0 28px; background: none; border: 0; border-radius: 0; box-shadow: none !important; -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .top.scrolled { border-bottom-color: rgba(0, 0, 0, .1); }
+  .brand { font-size: 17px; }
+  .nav { gap: 6px; position: absolute; left: 50%; transform: translateX(-50%); }
+  .nav a { position: relative; padding: 8px 12px; font-size: 14px; font-weight: 500; color: #424245; border-radius: 8px; background: none !important; box-shadow: none !important; }
+  .nav a:hover { color: var(--ink); }
+  .nav a[aria-current="page"], .nav a[aria-current="page"]:hover { color: var(--ink); font-weight: 600; }
+  .nav a[aria-current="page"]::after { content: ""; position: absolute; left: 50%; bottom: 0; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: var(--accent); }
+  .lang-sw { border: 0; padding: 0; gap: 0; }
+  .lang-sw button { min-width: 30px; min-height: 30px; font-size: 12.5px; color: #86868B; background: none !important; }
+  .lang-sw button + button::before { content: "·"; margin-right: 6px; color: #C7C7CC; }
+  .lang-sw button[aria-pressed="true"] { color: var(--ink); }
+  #v-parcours .subnav { top: 56px; }
+  .subnav { top: 56px; }
+}
+@media (max-width: 900px) {
+  .lang-sw { border: 0; padding: 0; gap: 0; }
+  .lang-sw button { min-width: 34px; font-size: 13px; color: #86868B; background: none !important; }
+  .lang-sw button + button::before { content: "·"; margin-right: 6px; color: #C7C7CC; }
+  .lang-sw button[aria-pressed="true"] { color: var(--ink); }
+  .top { border-bottom: 1px solid rgba(0, 0, 0, .06); }
+}
+#v-parcours .bio-photo img { aspect-ratio: 1; object-position: 50% 20%; -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent); mask-image: linear-gradient(to bottom, #000 80%, transparent); }
 </style>
 </head>
 <body>
@@ -1198,13 +1324,10 @@ section { padding: 72px 0; }
     </div>
   </section>
 
-  <section aria-labelledby="fi-t" id="veille-sec">
-    <div class="wrap">
-      <div class="sec-head">
-        <div><p class="eyebrow">Financial Intelligence</p><h2 id="fi-t" data-i18n="v.h2">Ma veille des marchés</h2>
-          <p class="sub" data-i18n="v.sub">Les repères du moment et les dernières publications de la BCE et de l’AMF, collectés automatiquement depuis leurs sources officielles. Chaque titre renvoie à la source.</p></div>
-      </div>
-      <div id="veille" aria-live="polite"></div>
+  <section class="mkt" id="home-mkt" aria-labelledby="mkt-t" hidden>
+    <div class="wrap mkt-row">
+      <div class="mkt-h"><h2 id="mkt-t" data-i18n="v.band">Repères des marchés</h2><a class="cta-link" href="#ecrits-veille"><span data-i18n="v.more">Ma veille des marchés</span> <span aria-hidden="true">›</span></a></div>
+      <div id="home-kpis"></div>
     </div>
   </section>
 
@@ -1272,6 +1395,15 @@ section { padding: 72px 0; }
   <section class="flush" aria-labelledby="wrl-t">
     <div class="wrap"><h2 id="wrl-t" class="sr" data-i18n="wr.list">Liste des écrits</h2><div class="posts" id="all-posts"></div></div>
   </section>
+  <section aria-labelledby="fi-t" id="veille-sec">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><p class="eyebrow" data-i18n="v.k">Veille</p><h2 id="fi-t" data-i18n="v.h2">Ma veille des marchés</h2>
+          <p class="sub" data-i18n="v.sub">Les repères du moment et les dernières publications de la BCE et de l’AMF, collectés automatiquement depuis leurs sources officielles. Chaque titre renvoie à la source.</p></div>
+      </div>
+      <div id="veille" aria-live="polite"></div>
+    </div>
+  </section>
 </div>
 
 <!-- ARTICLE -->
@@ -1283,17 +1415,22 @@ section { padding: 72px 0; }
     <div class="wrap bio">
       <div>
         <nav class="crumbs" aria-label="Fil d’Ariane, parcours" data-i18n-aria="crumbsP"><a href="#accueil" data-i18n="nav.home">Accueil</a><span aria-hidden="true">/</span><span aria-current="page" data-i18n="nav.path">Parcours</span></nav>
-        <h1 class="ed-h1" tabindex="-1" data-i18n="p.h1">Parcours</h1>
+        <h1 class="ed-h1" tabindex="-1" data-i18n="p.h1b">De la technologie à la finance.</h1>
         <p class="ed-lede" data-i18n="p.lede">Une formation technique, deux ans d’analyse métier dans un groupe international, puis la finance d’entreprise et la modélisation financière à SKEMA Business School.</p>
-        <dl class="bio-facts">
-          <div><dt data-i18n="p.f1k">Formation</dt><dd data-i18n="p.f1v">SKEMA Business School, Programme Grande École, Corporate Financial Management</dd></div>
-          <div><dt data-i18n="p.f2k">Expérience</dt><dd data-i18n="p.f2v">Business Analyst chez Willis Towers Watson pendant deux ans</dd></div>
-          <div><dt data-i18n="p.f3k">Basé à</dt><dd>Paris</dd></div>
-          <div><dt data-i18n="p.f4k">Langues</dt><dd data-i18n="p.f4v">Français, anglais</dd></div>
-        </dl>
-        <div class="ctas"><a class="btn" href="#contact" data-i18n="cta.contact">Me contacter</a><a class="link" href="#projets" data-i18n="cta.projects">Voir les projets</a></div>
+        <div class="ctas"><a class="btn" href="#contact" data-i18n="cta.contact">Me contacter</a><a class="cta-link" href="#projets"><span data-i18n="cta.projects">Voir les projets</span> <span aria-hidden="true">›</span></a></div>
       </div>
-      <figure class="bio-photo"><img src="christian-portrait-hero2.jpg" alt="Portrait de Christian Sodara" data-i18n-alt="alt.headshot" width="604" height="680"></figure>
+      <figure class="bio-photo"><img src="christian-parcours.jpg" alt="Portrait de Christian Sodara" data-i18n-alt="alt.headshot" width="400" height="400"></figure>
+    </div>
+  </section>
+  <section class="traj" aria-labelledby="traj-t">
+    <div class="wrap">
+      <h2 id="traj-t" class="traj-k" data-i18n="p.trajT">Trajectoire</h2>
+      <ol class="traj-list">
+        <li><a href="#parcours-esatic"><span class="traj-n">01</span><b data-i18n="p.tj1">Technologie</b><span>ESATIC, Abidjan</span><small data-i18n="p.tj1s">Informatique et télécommunications</small></a></li>
+        <li><a href="#parcours-wtw"><span class="traj-n">02</span><b data-i18n="p.tj2">Analyse métier</b><span>Willis Towers Watson</span><small data-i18n="p.tj2s">2 ans · 4 pays</small></a></li>
+        <li><a href="#parcours-bpifrance"><span class="traj-n">03</span><b data-i18n="p.tj3">Projets digitaux</b><span>DataScientest · Bpifrance</span><small data-i18n="p.tj3s">Gestion de projets, reporting</small></a></li>
+        <li><a href="#parcours-skema"><span class="traj-n">04</span><b data-i18n="p.tj4">Finance d’entreprise</b><span>SKEMA Business School</span><small data-i18n="p.tj4s">Corporate Financial Management</small></a></li>
+      </ol>
     </div>
   </section>
   <nav class="subnav" aria-label="Sections de la page" data-i18n-aria="p.subnav">
@@ -1366,7 +1503,7 @@ section { padding: 72px 0; }
   <section class="ed-close" aria-labelledby="pc-t">
     <div class="wrap">
       <h2 id="pc-t" data-i18n="p.closeT">Une expérience ou un projet vous intéresse ? Parlons-en.</h2>
-      <div class="ctas"><a class="btn" href="#contact" data-i18n="cta.contact">Me contacter</a><a class="link" href="#projets" data-i18n="cta.projects">Voir les projets</a></div>
+      <div class="ctas"><a class="btn" href="#contact" data-i18n="cta.contact">Me contacter</a><a class="cta-link" href="#projets"><span data-i18n="cta.projects">Voir les projets</span> <span aria-hidden="true">›</span></a></div>
     </div>
   </section>
 </div>
@@ -1481,7 +1618,7 @@ const I18N = { en: {
   "p.h1": "Background", "p.lede": "Technical training, two years of business analysis in an international group, then corporate finance and financial modelling at SKEMA Business School.",
   "p.f1k": "Education", "p.f1v": "SKEMA Business School, Grande École Programme, Corporate Financial Management", "p.f2k": "Experience", "p.f2v": "Business Analyst at Willis Towers Watson for two years", "p.f3k": "Based in", "p.f4k": "Languages", "p.f4v": "French, English",
   "p.subnav": "Page sections", "p.expT": "Professional experience", "p.eduT": "Education", "p.engT": "Involvement", "p.skT": "Skills", "p.ceT": "Certifications and languages",
-  "p.statsT": "Key figures", "p.st1": "years of Business Analysis at Willis Towers Watson", "p.st2": "countries covered by my data analysis", "p.st3": "software platform whose deployment I led", "p.st4": "languages: French, English", "rc.k": "Recommendations", "pd.k": "In production", "pd.h2": "Tools in daily use", "pd.sub": "Live platforms I worked on, from testing to deployment.", "rc.h2": "They trusted me",
+  "p.statsT": "Key figures", "p.st1": "years of Business Analysis at Willis Towers Watson", "p.st2": "countries covered by my data analysis", "p.st3": "software platform whose deployment I led", "p.st4": "languages: French, English", "rc.k": "Recommendations", "pd.k": "In production", "p.h1b": "From technology to finance.", "p.trajT": "Trajectory", "p.tj1": "Technology", "p.tj1s": "Computer science and telecommunications", "p.tj2": "Business analysis", "p.tj2s": "2 years · 4 countries", "p.tj3": "Digital projects", "p.tj3s": "Project management, reporting", "p.tj4": "Corporate finance", "p.tj4s": "Corporate Financial Management", "v.band": "Market markers", "v.more": "My market watch", "v.k": "Watch", "pd.h2": "Tools in daily use", "pd.sub": "Live platforms I worked on, from testing to deployment.", "rc.h2": "They trusted me",
   "p.ceCap": "Certifications obtained and in progress", "p.ceOrg": "Issuer", "p.ceSt": "Status", "p.d1": "June 2026", "p.d2": "Dec. 2026", "p.ok": "Obtained", "p.amf": "AMF certification", "p.plan": "Exam scheduled", "p.prep": "In preparation",
   "l.fr": "French", "l.frv": "Native", "l.en": "English", "l.env": "Fluent",
   "p.closeT": "Interested in an experience or a project? Let’s talk.",
@@ -2192,13 +2329,14 @@ const VEILLE_HOSTS = ["www.ecb.europa.eu", "ecb.europa.eu", "www.amf-france.org"
 let veilleData = null;
 const fmtDate = (iso, opts) => { const d = new Date(iso); return isNaN(d) ? "" : d.toLocaleDateString(U().locale, opts || { day: "numeric", month: "short", year: "numeric" }); };
 function veilleEmpty() {
+    const hm = document.getElementById("home-mkt"); if (hm) hm.hidden = true;
     fill("veille", `<div class="v-empty"><svg viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="9"/><path d="M11 6.5V11l3 2"/></svg><div>
     <p class="v-t">${U().vEmptyT}</p>
     <p>${U().vEmptyP}<a href="https://www.ecb.europa.eu/press/pr/html/index.en.html" rel="noopener">${U().vEcb}</a>${U().vAnd}<a href="https://www.amf-france.org/fr/actualites-publications" rel="noopener">${U().vAmf}</a>.</p></div></div>`);
 }
 const V_SRC = {
-  BCE: { fr: ["BCE", "Banque centrale européenne"], en: ["ECB", "European Central Bank"], url: "https://www.ecb.europa.eu/press/pr/html/index.en.html", lang: "en", n: 5 },
-  AMF: { fr: ["AMF", "Autorité des marchés financiers"], en: ["AMF", "French markets regulator"], url: "https://www.amf-france.org/fr/actualites-publications", lang: "fr", n: 5 }
+  BCE: { fr: ["BCE", "Banque centrale européenne"], en: ["ECB", "European Central Bank"], url: "https://www.ecb.europa.eu/press/pr/html/index.en.html", lang: "en", n: 3 },
+  AMF: { fr: ["AMF", "Autorité des marchés financiers"], en: ["AMF", "French markets regulator"], url: "https://www.amf-france.org/fr/actualites-publications", lang: "fr", n: 3 }
 };
 const V_KPI = {
   dfr: { fr: "Taux de dépôt BCE", en: "ECB deposit rate", unit: "%", dec: 2 },
@@ -2223,8 +2361,9 @@ function veilleRender(data) {
   const srcs = Object.keys(V_SRC).filter(k => items.some(i => i.source === k));
   const col = k => { const m = V_SRC[k], list = items.filter(i => i.source === k).slice(0, m.n), name = m[LANG] || m.fr;
     return `<div class="v-col"><div class="v-col-h"><h3 id="vc-${k}"><span class="pill ${k.toLowerCase()}">${name[0]}</span>${name[1]}</h3><a rel="noopener" lang="${m.lang}" href` + "=" + JSON.stringify(m.url) + `>${U().vAll}</a></div>
-      <ul class="v-list">${list.map((i, n) => "<li><a class=\"v-item" + (n === 0 ? " lead" : "") + "\" rel=\"noopener\" lang=\"" + m.lang + "\" href" + "=" + JSON.stringify(i.link) + `><time datetime="${esc(i.date)}">${fmtDate(i.date)}</time><span class="t">${esc(i.title)}</span>${n === 0 ? `<span class="v-more">${U().vRead}${new URL(i.link).hostname.replace(/^www\./, "")}</span>` : ""}</a></li>`).join("")}</ul></div>`; };
-  fill("veille", kpiHTML(data.indicators) + `<div class="v-cols">${srcs.map(col).join("")}</div>
+      <ul class="v-list">${list.map((i, n) => "<li><a class=\"v-item" + (n === 0 ? " lead" : "") + "\" rel=\"noopener\" lang=\"" + m.lang + "\" href" + "=" + JSON.stringify(i.link) + `><time datetime="${esc(i.date)}">${fmtDate(i.date)}</time>${LANG === "fr" && m.lang === "en" ? "<abbr class=\"v-en\" title=\"En anglais\">EN</abbr>" : ""}<span class="t">${esc(i.title)}</span>${n === 0 ? `<span class="v-more">${U().vRead}${new URL(i.link).hostname.replace(/^www\./, "")}</span>` : ""}</a></li>`).join("")}</ul></div>`; };
+  const kp = kpiHTML(data.indicators); fill("home-kpis", kp); document.getElementById("home-mkt").hidden = !kp;
+  fill("veille", kp + `<div class="v-cols">${srcs.map(col).join("")}</div>
     <p class="v-foot">${U().vUpd}${fmtDate(data.updated, { day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" })} · ${U().vSrc}${srcs.map(k => (V_SRC[k][LANG] || V_SRC[k].fr)[1]).join(", ")}${data.indicators && data.indicators.length ? U().vKpiSrc : ""}. ${U().vNote}</p>`);
 }
 
@@ -2244,6 +2383,7 @@ function route() {
   if (h.startsWith("parcours-")) { view = nav = "parcours"; target = document.getElementById("tl-" + h.slice(9)) || document.getElementById("p-" + h.slice(9)); }
   if (h === "accueil-engagements") target = document.getElementById("ev-t");
   if (h === "accueil-reco") target = document.getElementById("reco-t");
+  if (h === "ecrits-veille") { view = nav = "ecrits"; target = document.getElementById("fi-t"); }
   if (h === "projets-prod") { view = nav = "projets"; setDomain(null); target = document.getElementById("prod-t2"); }
   document.querySelectorAll("[data-page]").forEach(el => { el.hidden = el.id !== "v-" + view; });
   document.querySelectorAll(".nav a").forEach(a => a.dataset.view === nav ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"));

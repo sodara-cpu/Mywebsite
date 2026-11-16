@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16T06:19+00:00",
+ "updated": "2026-11-16T21:57+00:00",
  "sources": [
   {
    "name": "BCE",
@@ -11,6 +11,18 @@
   }
  ],
  "items": [
+  {
+   "title": "Frank Elderson: Smart supervision for small banks",
+   "link": "https://www.ecb.europa.eu//press/inter/date/2026/html/ecb.in261116_1~11dd7f62af.en.html",
+   "source": "BCE",
+   "date": "2026-11-16T13:00+00:00"
+  },
+  {
+   "title": "Boris Vujčić: Risks and resilience in the euro area financial system",
+   "link": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261116~db374b56ab.en.html",
+   "source": "BCE",
+   "date": "2026-11-16T08:30+00:00"
+  },
   {
    "title": "Isabel Schnabel: Made in Europe",
    "link": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261113~3883f1f187.en.html",
@@ -88,18 +100,6 @@
    "link": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261029~e9b57c3495.en.html",
    "source": "BCE",
    "date": "2026-10-29T15:50+00:00"
-  },
-  {
-   "title": "Christine Lagarde, Boris Vujčić: Monetary policy statement (with Q&A)",
-   "link": "https://www.ecb.europa.eu//press/press_conference/monetary-policy-statement/2026/html/ecb.is261029~5c5ffe99e5.en.html",
-   "source": "BCE",
-   "date": "2026-10-29T14:00+00:00"
-  },
-  {
-   "title": "Monetary policy decisions",
-   "link": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.mp261029~9a493adf17.en.html",
-   "source": "BCE",
-   "date": "2026-10-29T13:15+00:00"
   },
   {
    "title": "Révision du règlement MiCA : Les autorités françaises publient leurs propositions conjointes",
@@ -201,9 +201,9 @@
   },
   {
    "id": "y10",
-   "value": 3.3672459164,
-   "period": "2026-11-12",
-   "prev": 3.3400829714
+   "value": 3.4115908883,
+   "period": "2026-11-13",
+   "prev": 3.3672459164
   },
   {
    "id": "hicp",
@@ -213,9 +213,9 @@
   },
   {
    "id": "eurusd",
-   "value": 1.1052,
-   "period": "2026-11-13",
-   "prev": 1.1081
+   "value": 1.1014,
+   "period": "2026-11-16",
+   "prev": 1.1052
   }
  ]
 }

@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20T07:06+00:00",
+ "updated": "2026-11-20T20:06+00:00",
  "sources": [
   {
    "name": "BCE",
@@ -11,6 +11,18 @@
   }
  ],
  "items": [
+  {
+   "title": "Christine Lagarde: Acting in time",
+   "link": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261120~e52bcc4db2.en.html",
+   "source": "BCE",
+   "date": "2026-11-20T08:30+00:00"
+  },
+  {
+   "title": "La Commission des sanctions de l’AMF sanctionne Auris Gestion et deux de ses dirigeants, pour un montant total de 700 000 euros, pour des manquements à leurs obligations professionnelles",
+   "link": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-la-commission-des-sanctions/la-commission-des-sanctions-de-lamf-sanctionne-auris-gestion-et-deux-de-ses-dirigeants-pour-un#xts=607212&at_medium=RSS feeds&at_campaign=Communiqués de presse&type=RSS",
+   "source": "AMF",
+   "date": "2026-11-20T08:07+00:00"
+  },
   {
    "title": "Boris Vujčić: Financial Stability Review - November 2026",
    "link": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261118~86f1e8147e.en.pdf",
@@ -96,12 +108,6 @@
    "date": "2026-11-02T09:30+00:00"
   },
   {
-   "title": "Philip R. Lane: AI adoption in Europe",
-   "link": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261030~08d9d540f0.en.html",
-   "source": "BCE",
-   "date": "2026-10-30T16:10+00:00"
-  },
-  {
    "title": "Révision du règlement MiCA : Les autorités françaises publient leurs propositions conjointes",
    "link": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/revision-du-reglement-mica-les-autorites-francaises-publient-leurs-propositions-conjointes#xts=607212&at_medium=RSS feeds&at_campaign=Communiqués de presse&type=RSS",
    "source": "AMF",
@@ -184,12 +190,6 @@
    "link": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-annonce-la-radiation-dautomata-france-sas-compter-du-30-juin-2026-en-qualite-de-prestataire-de#xts=607212&at_medium=RSS feeds&at_campaign=Communiqués de presse&type=RSS",
    "source": "AMF",
    "date": "2026-07-01T09:49+00:00"
-  },
-  {
-   "title": "L'AMF publie sa cartographie 2026 des marchés et des risques",
-   "link": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-publie-sa-cartographie-2026-des-marches-et-des-risques#xts=607212&at_medium=RSS feeds&at_campaign=Communiqués de presse&type=RSS",
-   "source": "AMF",
-   "date": "2026-06-30T11:32+00:00"
   }
  ],
  "indicators": [
@@ -201,9 +201,9 @@
   },
   {
    "id": "y10",
-   "value": 3.4245648137,
-   "period": "2026-11-17",
-   "prev": 3.4224059614
+   "value": 3.4415130227,
+   "period": "2026-11-19",
+   "prev": 3.4103236155
   },
   {
    "id": "hicp",
@@ -213,9 +213,9 @@
   },
   {
    "id": "eurusd",
-   "value": 1.0992,
-   "period": "2026-11-19",
-   "prev": 1.0968
+   "value": 1.099,
+   "period": "2026-11-20",
+   "prev": 1.0992
   }
  ]
 }

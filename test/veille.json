@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T07:28+00:00",
+ "updated": "2026-11-23T23:49+00:00",
  "sources": [
   {
    "name": "BCE",
@@ -11,6 +11,18 @@
   }
  ],
  "items": [
+  {
+   "title": "Philip R. Lane: Climate change and monetary policy",
+   "link": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261123~b5816801a0.en.pdf",
+   "source": "BCE",
+   "date": "2026-11-23T14:30+00:00"
+  },
+  {
+   "title": "ECB expands acceptance of DLT-based assets as eligible Eurosystem collateral",
+   "link": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261123~76b6f57b74.en.html",
+   "source": "BCE",
+   "date": "2026-11-23T10:00+00:00"
+  },
   {
    "title": "Christine Lagarde: Acting in time",
    "link": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261120~e52bcc4db2.en.html",
@@ -94,18 +106,6 @@
    "link": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261105~6495a0df6f.en.html",
    "source": "BCE",
    "date": "2026-11-05T07:30+00:00"
-  },
-  {
-   "title": "ECB wage tracker suggests slightly higher wage growth in first three quarters of 2027 compared with the full year of 2026",
-   "link": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261104~caf181d7ac.en.html",
-   "source": "BCE",
-   "date": "2026-11-04T00:00+00:00"
-  },
-  {
-   "title": "Boris Vujčić: Integrated, open and resilient: Europe’s strengths in a fragmenting world",
-   "link": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp.261102~70003226e9.en.html",
-   "source": "BCE",
-   "date": "2026-11-02T09:30+00:00"
   },
   {
    "title": "Révision du règlement MiCA : Les autorités françaises publient leurs propositions conjointes",
@@ -201,9 +201,9 @@
   },
   {
    "id": "y10",
-   "value": 3.4415130227,
-   "period": "2026-11-19",
-   "prev": 3.4103236155
+   "value": 3.3607776552,
+   "period": "2026-11-20",
+   "prev": 3.4415130227
   },
   {
    "id": "hicp",
@@ -213,9 +213,9 @@
   },
   {
    "id": "eurusd",
-   "value": 1.099,
-   "period": "2026-11-20",
-   "prev": 1.0992
+   "value": 1.0939,
+   "period": "2026-11-23",
+   "prev": 1.099
   }
  ]
 }

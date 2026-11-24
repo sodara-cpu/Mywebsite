@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T23:49+00:00",
+ "updated": "2026-11-24T09:48+00:00",
  "sources": [
   {
    "name": "BCE",
@@ -11,6 +11,12 @@
   }
  ],
  "items": [
+  {
+   "title": "L'IA, la cybersécurité et la géopolitique, ainsi que la parité dans les instances de gouvernance, au cœur de l’édition 2026 du rapport annuel de l’AMF sur le gouvernement d’entreprise",
+   "link": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lia-la-cybersecurite-et-la-geopolitique-ainsi-que-la-parite-dans-les-instances-de-gouvernance-au#xts=607212&at_medium=RSS feeds&at_campaign=Communiqués de presse&type=RSS",
+   "source": "AMF",
+   "date": "2026-11-24T08:15+00:00"
+  },
   {
    "title": "Philip R. Lane: Climate change and monetary policy",
    "link": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261123~b5816801a0.en.pdf",
@@ -184,12 +190,6 @@
    "link": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/crypto-actifs-la-fin-de-la-periode-de-transition-entre-la-loi-pacte-et-le-reglement-europeen-mica#xts=607212&at_medium=RSS feeds&at_campaign=Communiqués de presse&type=RSS",
    "source": "AMF",
    "date": "2026-07-06T08:20+00:00"
-  },
-  {
-   "title": "L'AMF annonce la radiation d’AUTOMATA France SAS à compter du 30 juin 2026 en qualité de prestataire de services sur actifs numériques",
-   "link": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lamf-annonce-la-radiation-dautomata-france-sas-compter-du-30-juin-2026-en-qualite-de-prestataire-de#xts=607212&at_medium=RSS feeds&at_campaign=Communiqués de presse&type=RSS",
-   "source": "AMF",
-   "date": "2026-07-01T09:49+00:00"
   }
  ],
  "indicators": [

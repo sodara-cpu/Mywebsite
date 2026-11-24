@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T09:48+00:00",
+ "updated": "2026-11-24T22:21+00:00",
  "sources": [
   {
    "name": "BCE",
@@ -11,6 +11,12 @@
   }
  ],
  "items": [
+  {
+   "title": "Boris Vujčić: Resilience in an age of shocks: lessons from central and eastern Europe",
+   "link": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261124~17928e5456.en.html",
+   "source": "BCE",
+   "date": "2026-11-24T11:00+00:00"
+  },
   {
    "title": "L'IA, la cybersécurité et la géopolitique, ainsi que la parité dans les instances de gouvernance, au cœur de l’édition 2026 du rapport annuel de l’AMF sur le gouvernement d’entreprise",
    "link": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/lia-la-cybersecurite-et-la-geopolitique-ainsi-que-la-parite-dans-les-instances-de-gouvernance-au#xts=607212&at_medium=RSS feeds&at_campaign=Communiqués de presse&type=RSS",
@@ -108,12 +114,6 @@
    "date": "2026-11-05T08:00+00:00"
   },
   {
-   "title": "Piero Cipollone: Shaping the future of money",
-   "link": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261105~6495a0df6f.en.html",
-   "source": "BCE",
-   "date": "2026-11-05T07:30+00:00"
-  },
-  {
    "title": "Révision du règlement MiCA : Les autorités françaises publient leurs propositions conjointes",
    "link": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/revision-du-reglement-mica-les-autorites-francaises-publient-leurs-propositions-conjointes#xts=607212&at_medium=RSS feeds&at_campaign=Communiqués de presse&type=RSS",
    "source": "AMF",
@@ -201,9 +201,9 @@
   },
   {
    "id": "y10",
-   "value": 3.3607776552,
-   "period": "2026-11-20",
-   "prev": 3.4415130227
+   "value": 3.3209069064,
+   "period": "2026-11-23",
+   "prev": 3.3607776552
   },
   {
    "id": "hicp",
@@ -213,9 +213,9 @@
   },
   {
    "id": "eurusd",
-   "value": 1.0939,
-   "period": "2026-11-23",
-   "prev": 1.099
+   "value": 1.0963,
+   "period": "2026-11-24",
+   "prev": 1.0939
   }
  ]
 }

@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T08:23+00:00",
+ "updated": "2026-11-25T21:37+00:00",
  "sources": [
   {
    "name": "BCE",
@@ -11,6 +11,18 @@
   }
  ],
  "items": [
+  {
+   "title": "ECB and Sveriges Riksbank conclude agreement for Sweden to join T2",
+   "link": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261125_1~6333a90f3a.en.html",
+   "source": "BCE",
+   "date": "2026-11-25T17:30+00:00"
+  },
+  {
+   "title": "Card payments edge past cash in shops; euro area consumers want both",
+   "link": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261125~26d1ade228.en.html",
+   "source": "BCE",
+   "date": "2026-11-25T10:00+00:00"
+  },
   {
    "title": "Boris Vujčić: Resilience in an age of shocks: lessons from central and eastern Europe",
    "link": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261124~17928e5456.en.html",
@@ -102,18 +114,6 @@
    "date": "2026-11-07T14:00+00:00"
   },
   {
-   "title": "ECB publishes consolidated banking data for end-June 2026",
-   "link": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261106~356f2fc73a.en.html",
-   "source": "BCE",
-   "date": "2026-11-06T09:00+00:00"
-  },
-  {
-   "title": "Isabel Schnabel: Navigating stormy waters: reflections on monetary policy",
-   "link": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261105_1~5e97d9d5a0.en.html",
-   "source": "BCE",
-   "date": "2026-11-05T08:00+00:00"
-  },
-  {
    "title": "Révision du règlement MiCA : Les autorités françaises publient leurs propositions conjointes",
    "link": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/revision-du-reglement-mica-les-autorites-francaises-publient-leurs-propositions-conjointes#xts=607212&at_medium=RSS feeds&at_campaign=Communiqués de presse&type=RSS",
    "source": "AMF",
@@ -201,9 +201,9 @@
   },
   {
    "id": "y10",
-   "value": 3.3209069064,
-   "period": "2026-11-23",
-   "prev": 3.3607776552
+   "value": 3.3120809567,
+   "period": "2026-11-24",
+   "prev": 3.3209069064
   },
   {
    "id": "hicp",
@@ -213,9 +213,9 @@
   },
   {
    "id": "eurusd",
-   "value": 1.0963,
-   "period": "2026-11-24",
-   "prev": 1.0939
+   "value": 1.0935,
+   "period": "2026-11-25",
+   "prev": 1.0963
   }
  ]
 }

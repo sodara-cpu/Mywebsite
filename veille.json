@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T08:08+00:00",
+ "updated": "2026-11-26T21:26+00:00",
  "sources": [
   {
    "name": "BCE",
@@ -11,6 +11,12 @@
   }
  ],
  "items": [
+  {
+   "title": "Meeting of 28-29 October 2026",
+   "link": "https://www.ecb.europa.eu//press/accounts/2026/html/ecb.mg261126~ccf28c8071.en.html",
+   "source": "BCE",
+   "date": "2026-11-26T12:30+00:00"
+  },
   {
    "title": "ECB and Sveriges Riksbank conclude agreement for Sweden to join T2",
    "link": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261125_1~6333a90f3a.en.html",
@@ -108,12 +114,6 @@
    "date": "2026-11-10T14:00+00:00"
   },
   {
-   "title": "Christine Lagarde: Interview with Yomiuri Shimbun",
-   "link": "https://www.ecb.europa.eu//press/inter/date/2026/html/ecb.in261107~e7b86fc4ce.en.html",
-   "source": "BCE",
-   "date": "2026-11-07T14:00+00:00"
-  },
-  {
    "title": "Révision du règlement MiCA : Les autorités françaises publient leurs propositions conjointes",
    "link": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/revision-du-reglement-mica-les-autorites-francaises-publient-leurs-propositions-conjointes#xts=607212&at_medium=RSS feeds&at_campaign=Communiqués de presse&type=RSS",
    "source": "AMF",
@@ -201,9 +201,9 @@
   },
   {
    "id": "y10",
-   "value": 3.3120809567,
-   "period": "2026-11-24",
-   "prev": 3.3209069064
+   "value": 3.2591807487,
+   "period": "2026-11-25",
+   "prev": 3.3120809567
   },
   {
    "id": "hicp",
@@ -213,9 +213,9 @@
   },
   {
    "id": "eurusd",
-   "value": 1.0935,
-   "period": "2026-11-25",
-   "prev": 1.0963
+   "value": 1.0975,
+   "period": "2026-11-26",
+   "prev": 1.0935
   }
  ]
 }

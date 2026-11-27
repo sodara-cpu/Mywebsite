@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-27T08:19+00:00",
+ "updated": "2026-11-27T21:11+00:00",
  "sources": [
   {
    "name": "BCE",
@@ -11,6 +11,18 @@
   }
  ],
  "items": [
+  {
+   "title": "Decisions taken by the Governing Council of the ECB (in addition to decisions setting interest rates)",
+   "link": "https://www.ecb.europa.eu//press/govcdec/otherdec/2026/html/ecb.gc261127~13ecadc0f2.en.html",
+   "source": "BCE",
+   "date": "2026-11-27T14:00+00:00"
+  },
+  {
+   "title": "ECB Consumer Expectations Survey results – October 2026",
+   "link": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr261127~2e53af695e.en.html",
+   "source": "BCE",
+   "date": "2026-11-27T09:00+00:00"
+  },
   {
    "title": "Meeting of 28-29 October 2026",
    "link": "https://www.ecb.europa.eu//press/accounts/2026/html/ecb.mg261126~ccf28c8071.en.html",
@@ -102,18 +114,6 @@
    "date": "2026-11-13T07:20+00:00"
   },
   {
-   "title": "Philip R. Lane: The science and practice of monetary policy communication: the ECB experience",
-   "link": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261110_1~9725b7aa07.en.html",
-   "source": "BCE",
-   "date": "2026-11-10T16:45+00:00"
-  },
-  {
-   "title": "Piero Cipollone: Cash and the digital euro: two sides of the same coin",
-   "link": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp261110~9422461bad.en.html",
-   "source": "BCE",
-   "date": "2026-11-10T14:00+00:00"
-  },
-  {
    "title": "Révision du règlement MiCA : Les autorités françaises publient leurs propositions conjointes",
    "link": "https://www.amf-france.org/fr/actualites-publications/communiques/communiques-de-lamf/revision-du-reglement-mica-les-autorites-francaises-publient-leurs-propositions-conjointes#xts=607212&at_medium=RSS feeds&at_campaign=Communiqués de presse&type=RSS",
    "source": "AMF",
@@ -201,9 +201,9 @@
   },
   {
    "id": "y10",
-   "value": 3.2591807487,
-   "period": "2026-11-25",
-   "prev": 3.3120809567
+   "value": 3.3053343107,
+   "period": "2026-11-26",
+   "prev": 3.2591807487
   },
   {
    "id": "hicp",
@@ -213,9 +213,9 @@
   },
   {
    "id": "eurusd",
-   "value": 1.0975,
-   "period": "2026-11-26",
-   "prev": 1.0935
+   "value": 1.0957,
+   "period": "2026-11-27",
+   "prev": 1.0975
   }
  ]
 }
